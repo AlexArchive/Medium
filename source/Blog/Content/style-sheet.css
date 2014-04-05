@@ -229,6 +229,8 @@ article.blog-entry li
     background-color: #FFFFFF;
     color:#222222;
     font-size: 20px;
+    display: inline-block;
+    margin-top: 10px;
 }
 
 .flat-button:hover
@@ -316,6 +318,31 @@ footer a:hover
 }
 
 .credits-footer span:last-of-type
+{
+    float: right;
+}
+
+
+
+/* Development */
+
+.pager
+{
+
+}
+
+.pager .flat-button
+{
+    padding-right: 60px;
+    padding-left: 60px;
+}
+
+.older-posts-button
+{
+    float: left;
+}
+
+.newer-posts-button
 {
     float: right;
 }

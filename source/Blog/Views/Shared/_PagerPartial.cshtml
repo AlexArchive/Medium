@@ -1,15 +1,23 @@
 ﻿@model Blog.Core.Paging.PagedList<Blog.Core.Data.Entities.BlogEntry>
 
-@{
-    if (Model.PageNumber < Model.TotalPageCount)
-    {
-        @Html.ActionLink("Older", "Index", "Blog", new { pageNumber = Model.PageNumber + 1 }, null);
+
+<div class="pager">
+
+    @{
+
+        if (Model.PageNumber < Model.TotalPageCount)
+        {
+            <a href="@Url.Action("Index", "Blog", new { pageNumber = Model.PageNumber + 1 })" class="flat-button older-posts-button">
+                &larr; Older Posts
+            </a>
+        }
+
+        if (Model.PageNumber > 1)
+        {
+            <a href="@Url.Action("Index", "Blog", new { pageNumber = Model.PageNumber - 1 })" class="flat-button newer-posts-button">
+                Newer Posts &rarr;
+            </a>
+        }
     }
 
-    if (Model.PageNumber > 1)
-    {
-        @Html.ActionLink("Newer", "Index", "Blog", new { pageNumber = Model.PageNumber - 1 }, null);
-    }
-
-    <p>Page @Model.PageNumber of @Model.TotalPageCount</p>
-}
+</div>

@@ -5,7 +5,7 @@ namespace Blog.Controllers
 {
     public class BlogController : Controller
     {
-        private const int ENTRIES_PER_PAGE = 6;
+        private const int ENTRIES_PER_PAGE = 5;
 
         private readonly BlogService _service = new BlogService();
 

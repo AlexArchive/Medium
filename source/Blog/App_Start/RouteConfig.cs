@@ -32,6 +32,12 @@ namespace Blog
                 url: "{headerSlug}",
                 defaults: new { controller = "Blog", action = "Entry" }
             );
+            
+            routes.MapRoute(
+                name: "Page",
+                url: "page/{pageNumber}",
+                defaults: new { controller = "Blog", action = "Index" }
+            );
 
             routes.MapRoute(
                 name: "Default",
