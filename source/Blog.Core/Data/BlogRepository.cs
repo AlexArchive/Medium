@@ -1,0 +1,15 @@
+﻿using System.Linq;
+using Blog.Core.Data.Entities;
+
+namespace Blog.Core.Data
+{
+    public class BlogRepository : IBlogRepository
+    {
+        private readonly BlogDatabase _blogDatabase = new BlogDatabase();
+
+        public IQueryable<BlogEntry> All()
+        {
+            return _blogDatabase.BlogEntries.AsQueryable();
+        }
+    }
+}

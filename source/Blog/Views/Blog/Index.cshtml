@@ -1,0 +1,41 @@
+﻿@using Blog.Core.Data.Entities
+@model Blog.Core.Paging.PagedList<BlogEntry>
+
+@{
+    ViewBag.Title = "Blog";
+}
+
+<div class="frame centered-container">
+
+    <div class="bit-10">
+
+        @{
+    if (Model.TotalItemCount > 0)
+    {
+        foreach (var entry in Model)
+        {
+            <article class="blog-entry">
+
+                <h1><a>@entry.Header</a></h1>
+                <small>@entry.PublishDate</small>
+                @Html.Raw(entry.Summary)
+                <button class="flat-button">Continue Reading</button>
+            </article>
+        }
+    }
+    else
+    {
+                <p>No blog entries found!</p>
+            }
+        }
+
+    </div>
+
+    <div class="bit-6">
+        <div class="input-group">
+            <input type="text">
+            <button class="search-button"><i class="fa fa-search"></i></button>
+        </div>
+    </div>
+
+</div>

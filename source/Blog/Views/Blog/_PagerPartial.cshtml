@@ -1,0 +1,15 @@
+﻿@model Blog.Core.Paging.PagedList<Blog.Core.Data.Entities.BlogEntry>
+
+@{
+    if (Model.PageNumber < Model.TotalPageCount)
+    {
+        @Html.ActionLink("Older", "Index", "Blog", new { pageNumber = Model.PageNumber + 1 }, null);
+    }
+
+    if (Model.PageNumber > 1)
+    {
+        @Html.ActionLink("Newer", "Index", "Blog", new { pageNumber = Model.PageNumber - 1 }, null);
+    }
+
+    <p>Page @Model.PageNumber of @Model.TotalPageCount</p>
+}

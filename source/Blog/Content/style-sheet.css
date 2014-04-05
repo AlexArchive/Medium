@@ -1,0 +1,321 @@
+/* General */
+
+body
+{
+    font-family: "Lato", sans-serif;
+}
+
+.centered-container
+{
+    overflow: hidden;
+    margin: auto;
+    width: 1024px;
+}
+
+.text-container
+{
+    max-width: 960px;
+}
+
+
+
+
+/* General Typography */
+
+p
+{
+    margin: 16px 0;
+    font-size: 18px;
+    line-height: 30px;
+}
+
+h2
+{
+    margin-top: 25px;
+    font-size: 30px;
+    line-height: 40px;
+}
+
+
+
+
+
+/* Header */
+
+header
+{
+    margin-bottom: 50px;
+    background-color: #222222;
+}
+
+.header-feature
+{
+    padding: 150px 0;
+    background-color: tomato;
+}
+
+.header-feature > .header-feature-inner
+{
+    margin: auto;
+    padding: 30px;
+    width: 350px;
+    background-color: #222222;
+    font-family: "Raleway", sans-serif;
+}
+
+header h1
+{
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    font-size: 32px;
+}
+
+header h3
+{
+    color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+    font-weight: 300;
+    font-size: 18px;
+}
+
+header h3:before
+{
+    display: block;
+    margin: 20px auto;
+    width: 100px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    content: "";
+}
+
+
+
+
+/* Navigation */
+
+header ul > li
+{
+    display: inline-block;
+    margin: 0;
+    cursor: pointer;
+}
+
+header ul a
+{
+    display: inline-block;
+    padding: 20px 30px;
+    color: #999999;
+}
+
+header ul a:hover
+{
+    background-color: #080808;
+    color: white;
+}
+
+
+
+
+
+/* Blog Entry */
+
+article.blog-entry
+{
+    padding-bottom: 40px;
+}
+
+article.blog-entry:not(:last-of-type)
+{
+    margin-bottom: 40px;
+    border-bottom: 3px solid #EEEEEE;
+}
+
+article.blog-entry > h1
+{
+    margin-bottom: 15px;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 50px;
+}
+
+article.blog-entry > h1 > a:hover
+{
+    color: tomato;
+}
+
+article.blog-entry > small
+{
+    color: #999999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 14px;
+}
+
+article.blog-entry p > a
+{
+    color: tomato;
+}
+
+article.blog-entry p > a:hover
+{
+    text-decoration: underline;
+}
+
+article.blog-entry ul
+{
+    list-style: disc;
+}
+
+article.blog-entry li
+{
+    margin: 0 0 0 50px;
+    font-size: 20px;
+}
+
+.text-container article.blog-entry > small
+{
+    font-size: 17px;
+}
+
+.text-container article.blog-entry > p:first-of-type
+{
+    /* This is a less than ideal hack. Ideally I would apply margin-bottom to the blog-entry header. */
+    margin-top: 30px;
+}
+
+
+
+
+/* Controls */
+
+.input-group
+{
+    position: relative;
+    font-size: 20px;
+}
+
+.input-group *
+{
+    margin: 0;
+}
+
+.input-group > input[type="text"]
+{
+    padding: 12px;
+    background-color: #EEEEEE;
+    color: #555555;
+}
+
+.input-group > button.search-button
+{
+    position: absolute;
+    padding: 12px;
+    background-color: #666666;
+    color: #FFFFFF;
+}
+
+.input-group > button.search-button:hover
+{
+    background-color: #444444;
+}
+
+button.flat-button
+{
+    padding: 10px 25px;
+    border: 3px #222222 solid;
+    background-color: #FFFFFF;
+    color: #222222;
+    font-size: 20px;
+}
+
+button.flat-button:hover
+{
+    background-color: #222222;
+    color: #FFFFFF;
+}
+
+.tag-cloud
+{
+    margin-top: 45px;
+}
+
+button.tag
+{
+    /* Credit to Maarten for these colors, thanks mate! */
+    border: 1px rgb(182, 182, 182) solid;
+    background-color: rgb(224, 224, 224);
+}
+
+
+
+
+/* Footer */
+
+footer
+{
+    margin-top: 50px;
+    padding: 100px 0;
+    background-color: #222222;
+}
+
+footer h3
+{
+    margin-bottom: 20px;
+    color: #EEEEEE;
+    letter-spacing: 1px;
+    font-family: "Raleway", sans-serif;
+}
+
+footer p,
+footer span
+{
+    color: rgb(102, 102, 102);
+    font-size: 16px;
+}
+
+footer a
+{
+    color: tomato;
+}
+
+footer a:hover
+{
+    text-decoration: underline;
+}
+
+.footer-search
+{
+    padding-left: 130px;
+}
+
+.footer-search input[type="text"]
+{
+    background-color: #333333;
+    color: #F9F9F9;
+}
+
+.footer-search button.search-button
+{
+    background-color: #333333;
+    color: tomato;
+}
+
+.credits-footer
+{
+    margin-top: 25px;
+    padding: 25px 0;
+    border-top:  2px solid rgba(255, 255, 255, 0.1);
+}
+
+.credits-footer span:first-of-type
+{
+    float: left;
+}
+
+.credits-footer span:last-of-type
+{
+    float: right;
+}
