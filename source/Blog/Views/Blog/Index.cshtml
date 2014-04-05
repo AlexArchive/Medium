@@ -10,21 +10,20 @@
     <div class="bit-10">
 
         @{
-    if (Model.TotalItemCount > 0)
-    {
-        foreach (var entry in Model)
-        {
-            <article class="blog-entry">
-
-                <h1><a>@entry.Header</a></h1>
-                <small>@entry.PublishDate</small>
-                @Html.Raw(entry.Summary)
-                <button class="flat-button">Continue Reading</button>
-            </article>
-        }
-    }
-    else
-    {
+            if (Model.TotalItemCount > 0)
+            {
+                foreach (var entry in Model)
+                {
+                    <article class="blog-entry">
+                        <h1>@Html.ActionLink(entry.Header, "Entry", "Blog", new { headerSlug = entry.HeaderSlug }, null)</h1>
+                        <small>@entry.PublishDate.ToString("MMMM dd, yyyy")</small>
+                        @Html.Raw(entry.Summary)
+                        @Html.ActionLink("Continue Reading", "Entry", "Blog", new { headerSlug = entry.HeaderSlug }, new { @class = "flat-button" })
+                    </article>
+                }
+            }
+            else
+            {
                 <p>No blog entries found!</p>
             }
         }

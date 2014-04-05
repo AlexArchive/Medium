@@ -14,5 +14,11 @@ namespace Blog.Controllers
             var entries = _service.GetBlogEntries(pageNumber, ENTRIES_PER_PAGE);
             return View(entries);
         }
+
+        public ActionResult Entry(string headerSlug)
+        {
+            var entry = _service.GetBlogEntry(headerSlug);
+            return View(entry);
+        }
     }
 }

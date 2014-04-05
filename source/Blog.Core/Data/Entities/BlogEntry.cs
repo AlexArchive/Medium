@@ -8,15 +8,12 @@ namespace Blog.Core.Data.Entities
     {
         [Key]
         [Required]
-        public int Id { get; set; }
+        [StringLength(250)]
+        public string HeaderSlug { get; set; }
 
         [Required]
         [StringLength(200)]
         public string Header { get; set; }
-
-        [Required]
-        [StringLength(250)]
-        public string HeaderSlug { get; set; }
 
         [Required]
         [StringLength(2000)]

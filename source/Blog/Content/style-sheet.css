@@ -50,7 +50,7 @@ header
 
 .header-feature
 {
-    padding: 150px 0;
+    padding: 125px 0;
     background-color: tomato;
 }
 
@@ -222,16 +222,16 @@ article.blog-entry li
     background-color: #444444;
 }
 
-button.flat-button
+.flat-button
 {
     padding: 10px 25px;
     border: 3px #222222 solid;
     background-color: #FFFFFF;
-    color: #222222;
+    color:#222222;
     font-size: 20px;
 }
 
-button.flat-button:hover
+.flat-button:hover
 {
     background-color: #222222;
     color: #FFFFFF;

@@ -21,5 +21,10 @@ namespace Blog.Core.Service
 
             return something.ToPagedList(pageNumber, pageSize);
         }
+
+        public BlogEntry GetBlogEntry(string headerSlug)
+        {
+            return _repository.Find(headerSlug);
+        }
     }
 }

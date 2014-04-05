@@ -10,15 +10,33 @@ namespace Blog
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "BlogPage",
-                url: "{controller}/{pageNumber}",
-                defaults: new { controller = "Blog", action = "Index", pageNumber = UrlParameter.Optional }
+                name: "About",
+                url: "about-me",
+                defaults: new { controller = "About", action = "Index" }
+            );
+
+            routes.MapRoute(
+                name: "Tags",
+                url: "tags",
+                defaults: new { controller = "Blog", action = "Tags" }
+            );
+
+            routes.MapRoute(
+                name: "Archive",
+                url: "archive",
+                defaults: new { controller = "Blog", action = "Archive" }
+            );
+
+            routes.MapRoute(
+                name: "Entry",
+                url: "{headerSlug}",
+                defaults: new { controller = "Blog", action = "Entry" }
             );
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{pageNumber}",
-                defaults: new { controller = "Blog", action = "Index", pageNumber = UrlParameter.Optional }
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Blog", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

@@ -6,5 +6,6 @@ namespace Blog.Core.Data
     public interface IBlogRepository
     {
         IQueryable<BlogEntry> All();
+        BlogEntry Find(params object[] keyValues);
     }
 }

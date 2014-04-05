@@ -1,0 +1,13 @@
+﻿@model Blog.Core.Data.Entities.BlogEntry
+
+@{
+    ViewBag.Title = Model.Header;
+}
+
+<div class="text-container centered-container">
+    <article class="blog-entry">
+        <h1>@Model.Header</h1>
+        <small>@Model.PublishDate.ToString("MMMM dd, yyyy")</small>
+        @Html.Raw(Model.Content)
+    </article>
+</div>

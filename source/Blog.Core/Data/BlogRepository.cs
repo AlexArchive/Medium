@@ -11,5 +11,10 @@ namespace Blog.Core.Data
         {
             return _blogDatabase.BlogEntries.AsQueryable();
         }
+
+        public BlogEntry Find(params object[] keyValues)
+        {
+            return _blogDatabase.BlogEntries.Find(keyValues);
+        }
     }
 }
