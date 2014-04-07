@@ -44,21 +44,21 @@ h2
 
 header
 {
-    margin-bottom: 50px;
     background-color: #222222;
+    margin-bottom: 50px;
 }
 
-.header-feature
+header > .header-background-image
 {
-    padding: 125px 0;
+    padding: 150px 0;
     background-color: tomato;
 }
 
-.header-feature > .header-feature-inner
+header .header-background-image-inner
 {
     margin: auto;
-    padding: 30px;
-    width: 350px;
+    padding: 30px 0;
+    width: 410px;
     background-color: #222222;
     font-family: "Raleway", sans-serif;
 }
@@ -75,8 +75,9 @@ header h1
 
 header h3
 {
-    color: rgba(255, 255, 255, 0.4);
+    color: #909090;
     text-align: center;
+    letter-spacing: 2px;
     font-weight: 300;
     font-size: 18px;
 }
@@ -87,34 +88,91 @@ header h3:before
     margin: 20px auto;
     width: 100px;
     height: 2px;
-    background: rgba(255, 255, 255, 0.1);
+    background-color: #353535;
     content: "";
 }
-
-
-
-
-/* Navigation */
 
 header ul > li
 {
     display: inline-block;
-    margin: 0;
-    cursor: pointer;
 }
 
-header ul a
+header ul li > a
 {
     display: inline-block;
     padding: 20px 30px;
     color: #999999;
 }
 
-header ul a:hover
+header ul li > a:hover
 {
     background-color: #080808;
     color: white;
 }
+
+header .nav-toggle
+{
+    display: none;
+    padding-left: 18px;
+    color: #999999;
+    font-size: 30px;
+    font-family: "FontAwesome";
+    line-height: 52px;
+}
+
+header .nav-toggle::before
+{
+    content: "\f0c9";
+}
+
+header .nav-toggle:hover
+{
+    color: white;
+}
+
+header .nav-expanded
+{
+    display: block;
+}
+
+@media screen and (max-width: 750px) {
+    header nav
+    {
+        display: none;
+    }
+
+    header nav li
+    {
+        display: list-item;
+    }
+
+    header nav li a
+    {
+        padding: 0;
+        padding: 20px;
+        width: 100%;
+    }
+
+    header .nav-toggle
+    {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    header > .header-background-image
+    {
+        padding: 75px 0;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    header .header-background-image-inner
+    {
+        width: 310px;
+    }
+}
+
 
 
 

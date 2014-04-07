@@ -20,7 +20,7 @@
                         <h1>@Html.ActionLink(entry.Header, "Entry", "Blog", new { headerSlug = entry.HeaderSlug }, null)</h1>
                         <small>@entry.PublishDate.ToString("MMMM dd, yyyy")</small>
                         @Html.Raw(entry.Summary)
-                        @Html.ActionLink("Continue Reading", "Entry", "Blog", new { headerSlug = entry.HeaderSlug }, new { @class = "flat-button" })
+                        @*@Html.ActionLink("Continue Reading", "Entry", "Blog", new { headerSlug = entry.HeaderSlug }, new { @class = "flat-button" })*@
                     </article>
                 }
             }

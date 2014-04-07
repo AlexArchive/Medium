@@ -12,16 +12,16 @@
     <link rel="stylesheet" href="~/Content/style-sheet.css">
 </head>
 <body>
-
     <header>
-        <div class="header-feature">
-            <div class="header-feature-inner">
+        <div class="header-background-image">
+            <div class="header-background-image-inner">
                 <h1>ByteBlast</h1>
-                <h3>Programming Blog</h3>
+                <h3>Software Engineer</h3>
             </div>
         </div>
 
         <div class="centered-container">
+            <button class="nav-toggle" id="nav-toggle"></button>
             <nav>
                 <ul>
                     <li>@Html.ActionLink("Home", "Index", "Blog")</li>
@@ -61,5 +61,7 @@
         </div>
     </footer>
 
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/responsive-navigation.js"></script>
 </body>
 </html>
