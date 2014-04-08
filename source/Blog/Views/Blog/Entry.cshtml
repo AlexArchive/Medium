@@ -4,10 +4,13 @@
     ViewBag.Title = Model.Header;
 }
 
-<div class="text-container centered-container">
+<div class="centered-container">
     <article class="blog-entry">
-        <h1>@Model.Header</h1>
-        <small>@Model.PublishDate.ToString("MMMM dd, yyyy")</small>
+        <div class="entry-header">
+            <h1>@Html.ActionLink(Model.Header, "Entry", "Blog", new { headerSlug = Model.HeaderSlug }, null)</h1>
+            <small><a>@Model.PublishDate.ToString("MMMM dd, yyyy")</a></small>
+            <small><a>ByteBlast</a></small>
+        </div>
         @Html.Raw(Model.Content)
     </article>
 </div>

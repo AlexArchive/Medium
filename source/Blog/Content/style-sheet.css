@@ -1,51 +1,30 @@
-/* General */
-
 body
 {
     font-family: "Lato", sans-serif;
+}
+
+body > .centered-container
+{
+    padding: 75px 0;
 }
 
 .centered-container
 {
     overflow: hidden;
     margin: auto;
-    width: 1024px;
+    max-width: 1024px;
 }
 
-.text-container
-{
-    max-width: 960px;
+@media screen and (max-width: 1050px) {
+    body > .centered-container
+    {
+        padding: 40px 20px;
+    }
 }
-
-
-
-
-/* General Typography */
-
-p
-{
-    margin: 16px 0;
-    font-size: 18px;
-    line-height: 30px;
-}
-
-h2
-{
-    margin-top: 25px;
-    font-size: 30px;
-    line-height: 40px;
-}
-
-
-
-
-
-/* Header */
 
 header
 {
     background-color: #222222;
-    margin-bottom: 50px;
 }
 
 header > .header-background-image
@@ -173,234 +152,104 @@ header .nav-expanded
     }
 }
 
-
-
-
-
-
-/* Blog Entry */
-
-article.blog-entry
+p
 {
-    padding-bottom: 40px;
+    margin-bottom: 22px;
+    font-size: 19px;
+    line-height: 33px;
 }
 
-article.blog-entry:not(:last-of-type)
+.page-caption
 {
-    margin-bottom: 40px;
-    border-bottom: 3px solid #EEEEEE;
+    margin-bottom: 50px;
+    text-align: center;
 }
 
-article.blog-entry > h1
+.page-caption > h3
 {
-    margin-bottom: 15px;
-    font-weight: 700;
-    font-size: 40px;
-    line-height: 50px;
-}
-
-article.blog-entry > h1 > a:hover
-{
-    color: tomato;
-}
-
-article.blog-entry > small
-{
+    display: inline-block;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #EEEEEE;
     color: #999999;
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-size: 14px;
+    font-weight: bold;
 }
 
-article.blog-entry p > a
+.blog-entry:not(:last-of-type)
+{
+    margin-bottom: 65px;
+    padding-bottom: 65px;
+    border-bottom: 4px solid #EEE;
+}
+
+.blog-entry h1
+{
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 45px;
+    line-height: 55px;
+}
+
+.blog-entry h2
+{
+    margin-bottom: 16px;
+    font-weight: bold;
+    font-size: 29px;
+    line-height: 35px;
+}
+
+.blog-entry .entry-header
+{
+    margin-bottom: 40px;
+}
+
+.blog-entry  h1 ~ small
+{
+    color: rgb(153, 153, 153);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 15px;
+}
+
+.blog-entry h1 ~ small:not(:last-of-type):after
+{
+    margin: 0 10px;
+    content: "/";
+}
+
+.blog-entry a:hover
 {
     color: tomato;
 }
 
-article.blog-entry p > a:hover
+.blog-entry ul, ol
 {
-    text-decoration: underline;
-}
-
-article.blog-entry ul
-{
+    margin-left: 26px;
     list-style: disc;
-}
-
-article.blog-entry li
-{
-    margin: 0 0 0 50px;
     font-size: 20px;
 }
 
-.text-container article.blog-entry > small
+.blog-entry ul > li
 {
-    font-size: 17px;
+    margin: 15px 0;
+    font-size: 19px;
+    line-height: 22px;
 }
 
-.text-container article.blog-entry > p:first-of-type
+.blog-entry ul > li:last-of-type
 {
-    /* This is a less than ideal hack. Ideally I would apply margin-bottom to the blog-entry header. */
-    margin-top: 30px;
-}
-
-
-
-
-/* Controls */
-
-.input-group
-{
-    position: relative;
-    font-size: 20px;
-}
-
-.input-group *
-{
-    margin: 0;
-}
-
-.input-group > input[type="text"]
-{
-    padding: 12px;
-    background-color: #EEEEEE;
-    color: #555555;
-}
-
-.input-group > button.search-button
-{
-    position: absolute;
-    padding: 12px;
-    background-color: #666666;
-    color: #FFFFFF;
-}
-
-.input-group > button.search-button:hover
-{
-    background-color: #444444;
+    margin-bottom: 16px;
 }
 
 .flat-button
 {
-    padding: 10px 25px;
-    border: 3px #222222 solid;
-    background-color: #FFFFFF;
-    color:#222222;
-    font-size: 20px;
-    display: inline-block;
-    margin-top: 10px;
+    padding: 15px 20px;
+    background-color: #222222;
+    color: white;
 }
 
 .flat-button:hover
 {
-    background-color: #222222;
-    color: #FFFFFF;
-}
-
-.tag-cloud
-{
-    margin-top: 45px;
-}
-
-button.tag
-{
-    /* Credit to Maarten for these colors, thanks mate! */
-    border: 1px rgb(182, 182, 182) solid;
-    background-color: rgb(224, 224, 224);
-}
-
-
-
-
-/* Footer */
-
-footer
-{
-    margin-top: 50px;
-    padding: 100px 0;
-    background-color: #222222;
-}
-
-footer h3
-{
-    margin-bottom: 20px;
-    color: #EEEEEE;
-    letter-spacing: 1px;
-    font-family: "Raleway", sans-serif;
-}
-
-footer p,
-footer span
-{
-    color: rgb(102, 102, 102);
-    font-size: 16px;
-}
-
-footer a
-{
-    color: tomato;
-}
-
-footer a:hover
-{
-    text-decoration: underline;
-}
-
-.footer-search
-{
-    padding-left: 130px;
-}
-
-.footer-search input[type="text"]
-{
-    background-color: #333333;
-    color: #F9F9F9;
-}
-
-.footer-search button.search-button
-{
-    background-color: #333333;
-    color: tomato;
-}
-
-.credits-footer
-{
-    margin-top: 25px;
-    padding: 25px 0;
-    border-top:  2px solid rgba(255, 255, 255, 0.1);
-}
-
-.credits-footer span:first-of-type
-{
-    float: left;
-}
-
-.credits-footer span:last-of-type
-{
-    float: right;
-}
-
-
-
-/* Development */
-
-.pager
-{
-
-}
-
-.pager .flat-button
-{
-    padding-right: 60px;
-    padding-left: 60px;
-}
-
-.older-posts-button
-{
-    float: left;
-}
-
-.newer-posts-button
-{
-    float: right;
+    background-color: tomato;
 }

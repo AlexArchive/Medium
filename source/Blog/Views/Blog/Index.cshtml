@@ -1,45 +1,24 @@
-﻿@using Blog.Core.Data.Entities
-@model Blog.Core.Paging.PagedList<BlogEntry>
+﻿@model Blog.Core.Paging.PagedList<Blog.Core.Data.Entities.BlogEntry>
 
 @{
     ViewBag.Title = "Blog";
 }
 
-<div class="frame centered-container">
-    
-    
-
-    <div class="bit-10">
-
-        @{
-            if (Model.TotalItemCount > 0)
-            {
-                foreach (var entry in Model)
-                {
-                    <article class="blog-entry">
-                        <h1>@Html.ActionLink(entry.Header, "Entry", "Blog", new { headerSlug = entry.HeaderSlug }, null)</h1>
-                        <small>@entry.PublishDate.ToString("MMMM dd, yyyy")</small>
-                        @Html.Raw(entry.Summary)
-                        @*@Html.ActionLink("Continue Reading", "Entry", "Blog", new { headerSlug = entry.HeaderSlug }, new { @class = "flat-button" })*@
-                    </article>
-                }
+<div class="centered-container">
+    <div class="frame">
+        <div class="bit-11">
+            
+            @if (Model.TotalItemCount == 0) {
+                <p>No Entries Found.</p>
             }
-            else
-            {
-                <p>No blog entries found!</p>
+           
+            @foreach (var entry in Model) {
+                @Html.Partial("_EntryPartial", entry)
             }
-        }
-        
-        @Html.Partial("_PagerPartial", Model)
-        
 
-    </div>
-
-    <div class="bit-6">
-        <div class="input-group">
-            <input type="text">
-            <button class="search-button"><i class="fa fa-search"></i></button>
+        </div>
+        <div class="bit-5">
+            <!-- Widgets here -->
         </div>
     </div>
-
 </div>

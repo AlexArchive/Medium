@@ -87,11 +87,13 @@
     <Content Include="Content\responsive-grid.css" />
     <Content Include="Content\style-sheet.css" />
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Scripts\responsive-navigation.js" />
+    <Content Include="Views\web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Shared\_PagerPartial.cshtml" />
+    <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -102,27 +104,29 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\web.config" />
-    <Content Include="packages.config" />
     <Content Include="Views\Blog\Entry.cshtml" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Helpers\" />
     <Folder Include="Models\" />
-    <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Blog.Core\Blog.Core.csproj">
       <Project>{c5c5db99-c45e-40f3-8948-8b7d95de81f3}</Project>
       <Name>Blog.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_EntryPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
