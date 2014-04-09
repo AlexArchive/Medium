@@ -1,11 +1,11 @@
-﻿@model Blog.Core.Data.Entities.BlogEntry
+﻿@using Blog.Helpers
+@model Blog.Core.Data.Entities.BlogEntry
 
 <article class="blog-entry">
 
     <div class="entry-header">
-        <h1>@Html.ActionLink(Model.Header, "Entry", "Blog", new { headerSlug = Model.HeaderSlug }, null)</h1>
+        <h1>@Html.EntryLink(Model)</h1>
         <small><a>@Model.PublishDate.ToString("MMMM dd, yyyy")</a></small>
-        <small><a>ByteBlast</a></small>
     </div>
 
     @Html.Raw(Model.Summary)

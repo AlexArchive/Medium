@@ -9,7 +9,6 @@
         <div class="entry-header">
             <h1>@Html.ActionLink(Model.Header, "Entry", "Blog", new { headerSlug = Model.HeaderSlug }, null)</h1>
             <small><a>@Model.PublishDate.ToString("MMMM dd, yyyy")</a></small>
-            <small><a>ByteBlast</a></small>
         </div>
         @Html.Raw(Model.Content)
     </article>
