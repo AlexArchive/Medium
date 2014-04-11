@@ -183,7 +183,7 @@ p
     border-bottom: 4px solid #EEE;
 }
 
-.blog-entry h1
+h1
 {
     margin-bottom: 15px;
     font-weight: bold;
@@ -191,7 +191,7 @@ p
     line-height: 55px;
 }
 
-.blog-entry h2
+h2
 {
     margin-bottom: 16px;
     font-weight: bold;
@@ -218,9 +218,16 @@ p
     content: "/";
 }
 
-.blog-entry a:hover
+.blog-entry ul a,
+.blog-entry p a
 {
     color: tomato;
+}
+
+.blog-entry ul a:hover,
+.blog-entry p a:hover
+{
+    text-decoration: underline;
 }
 
 .blog-entry ul, ol
@@ -234,7 +241,6 @@ p
 {
     margin: 15px 0;
     font-size: 19px;
-    line-height: 22px;
 }
 
 .blog-entry ul > li:last-of-type
@@ -242,14 +248,29 @@ p
     margin-bottom: 16px;
 }
 
-.flat-button
+.blog-entry > .tag-cloud
+{
+    padding-top: 20px;
+}
+
+.tag-cloud > a
+{
+    display: inline-block;
+    padding: 15px 25px;
+    background-color: #E0E0E0;
+    border: 1px #B6B6B6 solid;
+    margin-right: 7px;
+    margin-bottom: 10px;
+}
+
+button.flat-button
 {
     padding: 15px 20px;
     background-color: #222222;
     color: white;
 }
 
-.flat-button:hover
+button.flat-button:hover
 {
     background-color: tomato;
 }

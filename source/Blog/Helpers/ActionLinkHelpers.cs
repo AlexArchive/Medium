@@ -13,7 +13,8 @@ namespace Blog.Helpers
                 actionName: "Entry",
                 controllerName: "Blog",
                 routeValues: new { headerSlug = entry.HeaderSlug }, 
-                htmlAttributes: null);
+                htmlAttributes: null
+            );
         }
     }
 }
