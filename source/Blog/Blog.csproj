@@ -88,6 +88,11 @@
     <Content Include="Content\style-sheet.css" />
     <Content Include="Content\syntax-highlighter.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\github.png" />
+    <Content Include="Images\skype.png" />
+    <Content Include="Images\spotify.png" />
+    <Content Include="Images\twitter.png" />
+    <Content Include="Images\youtube.png" />
     <Content Include="Scripts\responsive-navigation.js" />
     <Content Include="Views\web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -109,7 +114,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Helpers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -122,6 +126,7 @@
     <Content Include="Views\Shared\_EntryPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\Shared\_TagsPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

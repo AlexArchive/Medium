@@ -11,8 +11,8 @@ namespace Blog.Controllers
 
         public ActionResult Index(int pageNumber = 1)
         {
-            var entries = _service.GetBlogEntries(pageNumber, ENTRIES_PER_PAGE);
-            return View(entries);
+            var pagedEntries = _service.GetBlogEntries(pageNumber, ENTRIES_PER_PAGE);
+            return View(pagedEntries);
         }
 
         public ActionResult Entry(string headerSlug)

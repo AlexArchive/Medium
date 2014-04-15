@@ -11,5 +11,8 @@
             <small><a>@Model.PublishDate.ToString("MMMM dd, yyyy")</a></small>
         </div>
         @Html.Raw(Model.Content)
+    
+        @*@Html.Partial("_TagsPartial", Model.Tags.ToList())*@
+
     </article>
 </div>

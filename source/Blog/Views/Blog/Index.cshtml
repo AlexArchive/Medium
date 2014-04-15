@@ -4,21 +4,34 @@
     ViewBag.Title = "Blog";
 }
 
-<div class="centered-container">
-    <div class="frame">
-        <div class="bit-11">
-            
-            @if (Model.TotalItemCount == 0) {
-                <p>No Entries Found.</p>
-            }
-           
-            @foreach (var entry in Model) {
-                @Html.Partial("_EntryPartial", entry)
-            }
-
-        </div>
-        <div class="bit-5">
-            <!-- Widgets here -->
-        </div>
+<div class="frame">
+    
+    <div class="bit-11">
+        @if (Model.TotalItemCount == 0) {
+            <p>No Entries Found.</p>
+        }
+       
+        @foreach (var entry in Model) {
+            @Html.Partial("_EntryPartial", entry)
+        }
+        
+        @Html.Partial("_PagerPartial")
     </div>
+
+    <aside class="primary-aside bit-5">
+        <article>
+            <div>
+                <a href="http://stackoverflow.com/users/2015959/byteblast">
+                    <img src="http://stackoverflow.com/users/flair/2015959.png">
+                </a>
+            </div>
+            <div class="social-media-widget">
+                <a href="http://twitter.com/ByteBlastDev"><img src="~/Images/twitter.png"></a>
+                <a href="http://github.com/ByteBlast"><img src="~/Images/github.png" /></a>
+                <a href="skype:cric101"><img src="~/Images/skype.png"></a>
+                <a href="http://youtube.com/TeachComputing"><img src="~/Images/youtube.png"></a>
+            </div>
+        </article>
+    </aside>
+
 </div>

@@ -1,0 +1,7 @@
+﻿@model IEnumerable<Blog.Core.Data.Entities.Tag>
+           
+<div class="tag-cloud">
+    @foreach (var tag in Model) {
+        <a>@tag.Name</a>
+    }
+</div>
