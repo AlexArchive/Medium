@@ -12,7 +12,7 @@ body > .centered-container
 {
     overflow: hidden;
     margin: auto;
-    max-width: 1024px;
+    max-width: 960px;
 }
 
 @media screen and (max-width: 1050px) {

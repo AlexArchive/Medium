@@ -20,5 +20,16 @@ namespace Blog.Controllers
             var entry = _service.GetBlogEntry(headerSlug);
             return View(entry);
         }
+
+        public ActionResult About()
+        {
+            var entry = _service.GetBlogEntry("about-me");
+            if (entry != null)
+            {
+                return View("Entry", entry);
+            }
+
+            return Content("no about-me  defined");
+        }
     }
 }

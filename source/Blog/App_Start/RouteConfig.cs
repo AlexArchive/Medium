@@ -12,7 +12,7 @@ namespace Blog
             routes.MapRoute(
                 name: "About",
                 url: "about-me",
-                defaults: new { controller = "About", action = "Index" }
+                defaults: new { controller = "Blog", action = "About" }
             );
 
             routes.MapRoute(
