@@ -56,7 +56,6 @@ namespace Blog
                 url: "",
                 defaults: new { controller = "Blog", action = "Index" }
             );
-
         }
     }
 }

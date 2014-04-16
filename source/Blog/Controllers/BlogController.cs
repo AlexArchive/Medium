@@ -1,7 +1,4 @@
-﻿using System.IO;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Blog.Core.Service;
 
 namespace Blog.Controllers
@@ -21,22 +18,18 @@ namespace Blog.Controllers
         public ActionResult Entry(string headerSlug)
         {
             var entry = _service.GetBlogEntry(headerSlug);
-            if (entry == null)
+
+            if (entry == null) 
             {
                 return HttpNotFound();
             }
-            return View(entry);
+            
+            return View("Entry", entry);
         }
 
         public ActionResult About()
         {
-            var entry = _service.GetBlogEntry("about-me");
-            if (entry != null)
-            {
-                return View("Entry", entry);
-            }
-
-            return Content("no about-me defined");
+            return Entry("about-me");
         }
     }
 }

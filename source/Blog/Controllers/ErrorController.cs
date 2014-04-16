@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Diagnostics;
+using System.Net;
 using System.Web.Mvc;
 
 namespace Blog.Controllers
@@ -9,7 +10,6 @@ namespace Blog.Controllers
         {
             Response.StatusCode = (int) HttpStatusCode.NotFound;
             ViewBag.FriendlyErrorMessage = "The page you were looking for could not be found.";
-
             return View("Index");
         }
 
@@ -17,7 +17,6 @@ namespace Blog.Controllers
         {
             Response.StatusCode = (int) HttpStatusCode.InternalServerError;
             ViewBag.FriendlyErrorMessage = "An internal server error occurred. Please try again later.";
-
             return View("Index");
         }
     }
