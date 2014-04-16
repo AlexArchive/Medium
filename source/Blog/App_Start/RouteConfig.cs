@@ -9,22 +9,17 @@ namespace Blog
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-
-
             routes.MapRoute(
-                "Error - 404",
-                "NotFound",
+                "Not Found Error",
+                "not-found",
                 new { controller = "Error", action = "NotFound" }
             );
 
             routes.MapRoute(
-                "Error - 500",
-                "ServerError",
+                "Server Error",
+                "server-error",
                 new { controller = "Error", action = "ServerError" }
             );
-
-
-
 
             routes.MapRoute(
                 name: "About",
@@ -61,6 +56,7 @@ namespace Blog
                 url: "",
                 defaults: new { controller = "Blog", action = "Index" }
             );
+
         }
     }
 }

@@ -8,13 +8,17 @@ namespace Blog.Controllers
         public ActionResult NotFound()
         {
             Response.StatusCode = (int) HttpStatusCode.NotFound;
-            return View();
+            ViewBag.FriendlyErrorMessage = "The page you were looking for could not be found.";
+
+            return View("Index");
         }
 
         public ActionResult ServerError()
         {
             Response.StatusCode = (int) HttpStatusCode.InternalServerError;
-            return View();
+            ViewBag.FriendlyErrorMessage = "An internal server error occurred. Please try again later.";
+
+            return View("Index");
         }
     }
 }
