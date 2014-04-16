@@ -1,4 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System.IO;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
 using Blog.Core.Service;
 
 namespace Blog.Controllers
@@ -20,7 +23,7 @@ namespace Blog.Controllers
             var entry = _service.GetBlogEntry(headerSlug);
             if (entry == null)
             {
-                return HttpNotFound("no blog entry found");
+                return HttpNotFound();
             }
             return View(entry);
         }
