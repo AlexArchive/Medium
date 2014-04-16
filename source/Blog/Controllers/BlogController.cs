@@ -18,6 +18,10 @@ namespace Blog.Controllers
         public ActionResult Entry(string headerSlug)
         {
             var entry = _service.GetBlogEntry(headerSlug);
+            if (entry == null)
+            {
+                return HttpNotFound("no blog entry found");
+            }
             return View(entry);
         }
 
@@ -29,7 +33,7 @@ namespace Blog.Controllers
                 return View("Entry", entry);
             }
 
-            return Content("no about-me  defined");
+            return Content("no about-me defined");
         }
     }
 }
