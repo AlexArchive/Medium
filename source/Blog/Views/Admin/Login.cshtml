@@ -1,5 +1,4 @@
-﻿@using System.Reflection.Emit
-@model Blog.Models.AdminModel.LoginModel
+﻿@model Blog.Models.AdminModel.LoginModel
 
 @{
     ViewBag.Title = "Login";
@@ -8,20 +7,14 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
-    <div class="login-validation-summary">
-        @Html.ValidationSummary()
-    </div>
     
-    <div class="login-input-fields">
-        @Html.LabelFor(m => m.Username)
-        @Html.TextBoxFor(m => m.Username)
+    @Html.ValidationSummary()
+    
+    @Html.LabelFor(m => m.Username)
+    @Html.TextBoxFor(m => m.Username)
 
-        @Html.LabelFor(m => m.Password)
-        @Html.PasswordFor(m => m.Password)
+    @Html.LabelFor(m => m.Password)
+    @Html.PasswordFor(m => m.Password)
 
-
-
-        <button type="submit" class="flat-button">Login</button>
-    </div>
+    <button type="submit" class="flat-button">Login</button>
 }

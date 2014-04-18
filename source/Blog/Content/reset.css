@@ -58,8 +58,14 @@ table
 
 
 
-
 /* Anything beyond this point is an extension of Eriks' Reset CSS */
+
+*, *:after, *:before
+{
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box
+}
 
 a
 {
@@ -68,8 +74,16 @@ a
     text-decoration: none;
 }
 
-strong, b {
+b, 
+strong 
+{
     font-weight: bold;
+}
+
+form input,
+form button
+{
+    width: 100%;
 }
 
 button,
@@ -103,18 +117,4 @@ input[type="text"]:focus,
 input[type="password"]:focus
 {
     outline: none;
-}
-
-
-
-form *
-{
-    width: 100%;
-}
-
-*, *:after, *:before
-{
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box
 }

@@ -17,6 +17,11 @@ namespace Blog.Controllers
         [AllowAnonymous]
         public ActionResult Login()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return HttpNotFound();
+            }
+
             return View();
         }
 
@@ -27,13 +32,15 @@ namespace Blog.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (_authProvider.Authenticate(model.Username, model.Password))
+                var authenticated = _authProvider.Authenticate(model.Username, model.Password);
+                if (authenticated)
                 {
                     return Redirect(Request.QueryString["ReturnUrl"]);
                 }
 
-                ModelState.AddModelError(string.Empty, "The user name or password provided is incorrect.");
+                ModelState.AddModelError(string.Empty, "Username or Password Incorrect");
             }
+
             return View(model);
         }
     }
