@@ -1,170 +1,144 @@
-body
-{
+body {
     font-family: "Lato", sans-serif;
 }
 
-body > .centered-container
-{
-    padding: 75px 0;
-}
+    body > .centered-container {
+        padding: 75px 0;
+    }
 
-.centered-container
-{
+.centered-container {
     overflow: hidden;
     margin: auto;
     max-width: 960px;
 }
 
 @media screen and (max-width: 1050px) {
-    body > .centered-container
-    {
+    body > .centered-container {
         padding: 40px 20px;
     }
 }
 
-header
-{
+header {
     background-color: #222222;
 }
 
-header > .header-background-image
-{
-    padding: 150px 0;
-    background-color: tomato;
-}
+    header > .header-background-image {
+        padding: 150px 0;
+        background-color: tomato;
+    }
 
-header .header-background-image-inner
-{
-    margin: auto;
-    padding: 30px 0;
-    width: 410px;
-    background-color: #222222;
-    font-family: "Raleway", sans-serif;
-}
+    header .header-background-image-inner {
+        margin: auto;
+        padding: 30px 0;
+        width: 410px;
+        background-color: #222222;
+        font-family: "Raleway", sans-serif;
+    }
 
-header h1
-{
-    color: white;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 700;
-    font-size: 32px;
-}
+    header h1 {
+        color: white;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 700;
+        font-size: 32px;
+    }
 
-header h3
-{
-    color: #909090;
-    text-align: center;
-    letter-spacing: 2px;
-    font-weight: 300;
-    font-size: 18px;
-}
+    header h3 {
+        color: #909090;
+        text-align: center;
+        letter-spacing: 2px;
+        font-weight: 300;
+        font-size: 18px;
+    }
 
-header h3:before
-{
-    display: block;
-    margin: 20px auto;
-    width: 100px;
-    height: 2px;
-    background-color: #353535;
-    content: "";
-}
+        header h3:before {
+            display: block;
+            margin: 20px auto;
+            width: 100px;
+            height: 2px;
+            background-color: #353535;
+            content: "";
+        }
 
-header ul > li
-{
-    display: inline-block;
-}
+    header ul > li {
+        display: inline-block;
+    }
 
-header ul li > a
-{
-    display: inline-block;
-    padding: 20px 30px;
-    color: #999999;
-}
+    header ul li > a {
+        display: inline-block;
+        padding: 20px 30px;
+        color: #999999;
+    }
 
-header ul li > a:hover
-{
-    background-color: #080808;
-    color: white;
-}
+        header ul li > a:hover {
+            background-color: #080808;
+            color: white;
+        }
 
-header .nav-toggle
-{
-    display: none;
-    padding-left: 18px;
-    color: #999999;
-    font-size: 30px;
-    font-family: "FontAwesome";
-    line-height: 52px;
-}
+    header .nav-toggle {
+        display: none;
+        padding-left: 18px;
+        color: #999999;
+        font-size: 30px;
+        font-family: "FontAwesome";
+        line-height: 52px;
+    }
 
-header .nav-toggle::before
-{
-    content: "\f0c9";
-}
+        header .nav-toggle::before {
+            content: "\f0c9";
+        }
 
-header .nav-toggle:hover
-{
-    color: white;
-}
+        header .nav-toggle:hover {
+            color: white;
+        }
 
-header .nav-expanded
-{
-    display: block;
-}
+    header .nav-expanded {
+        display: block;
+    }
 
 @media screen and (max-width: 750px) {
-    header nav
-    {
+    header nav {
         display: none;
     }
 
-    header nav li
-    {
-        display: list-item;
-    }
+        header nav li {
+            display: list-item;
+        }
 
-    header nav li a
-    {
-        padding: 0;
-        padding: 20px;
-        width: 100%;
-    }
+            header nav li a {
+                padding: 0;
+                padding: 20px;
+                width: 100%;
+            }
 
-    header .nav-toggle
-    {
+    header .nav-toggle {
         display: block;
     }
 }
 
 @media screen and (max-width: 500px) {
-    header > .header-background-image
-    {
+    header > .header-background-image {
         padding: 75px 0;
     }
 }
 
 @media screen and (max-width: 420px) {
-    header .header-background-image-inner
-    {
+    header .header-background-image-inner {
         width: 310px;
     }
 }
 
-aside.primary-aside
-{
+aside.primary-aside {
     padding: 0;
 }
 
-aside.primary-aside div
-{
-    float: right;
-    margin-bottom: 15px;
-}
+    aside.primary-aside div {
+        float: right;
+        margin-bottom: 15px;
+    }
 
-.social-media-widget img
-{
+.social-media-widget img {
     float: right;
     margin-bottom: 5px;
     margin-left: 5px;
@@ -172,22 +146,19 @@ aside.primary-aside div
 }
 
 @media screen and (max-width: 780px) {
-    .primary-aside
-    {
+    .primary-aside {
         padding-top: 50px;
         padding-left: 16px;
     }
 
-    .primary-aside div
-    {
-        float: none;
-        margin-right: 10px;
-        margin-bottom: 0;
-        margin-bottom: 15px;
-    }
+        .primary-aside div {
+            float: none;
+            margin-right: 10px;
+            margin-bottom: 0;
+            margin-bottom: 15px;
+        }
 
-    .social-media-widget img
-    {
+    .social-media-widget img {
         float: none;
         margin: 0;
         margin-right: 10px;
@@ -196,154 +167,177 @@ aside.primary-aside div
     }
 }
 
-article h1
-{
+article h1 {
     margin-bottom: 15px;
     font-weight: bold;
     font-size: 45px;
     line-height: 55px;
 }
 
-article h2
-{
+article h2 {
     margin-bottom: 16px;
     font-weight: bold;
     font-size: 29px;
     line-height: 35px;
 }
 
-article p
-{
+article p {
     margin-bottom: 22px;
     font-size: 19px;
     line-height: 33px;
 }
 
-article p > a,
-article li > a
-{
-    color: tomato;
+    article p > a,
+    article li > a {
+        color: tomato;
+        -webkit-transition: color ease 0.2s;
+        -moz-transition: color ease 0.2s;
+        -o-transition: color ease 0.2s;
+        transition: color ease 0.2s;
+    }
 
-    -webkit-transition: color ease 0.2s;
-       -moz-transition: color ease 0.2s;
-         -o-transition: color ease 0.2s;
-            transition: color ease 0.2s;
-}
+        article p > a:hover,
+        article li > a:hover {
+            color: black;
+        }
 
-article p > a:hover,
-article li > a:hover
-{
-    color: black;
-}
-
-article ul, article ol
-{
+article ul, article ol {
     margin-bottom: 16px;
     margin-left: 26px;
     list-style: disc;
     font-size: 20px;
 }
 
-article ul > li
-{
-    margin: 10px 0;
-    font-size: 19px;
-}
+    article ul > li {
+        margin: 10px 0;
+        font-size: 19px;
+    }
 
-.blog-entry:not(:last-of-type)
-{
+.blog-entry:not(:last-of-type) {
     margin-bottom: 50px;
     padding-bottom: 50px;
     border-bottom: 4px solid #EEE;
 }
 
-.blog-entry:last-of-type
-{
+.blog-entry:last-of-type {
     margin-bottom: 75px;
 }
 
-.blog-entry .entry-header
-{
+.blog-entry .entry-header {
     margin-bottom: 40px;
 }
 
-.blog-entry .entry-header a:hover
-{
-    color: tomato;
-}
+    .blog-entry .entry-header a:hover {
+        color: tomato;
+    }
 
-.blog-entry  h1 ~ small
-{
+.blog-entry h1 ~ small {
     color: rgb(153, 153, 153);
     text-transform: uppercase;
     letter-spacing: 1px;
     font-size: 15px;
 }
 
-.blog-entry h1 ~ small:not(:last-of-type):after
-{
-    margin: 0 10px;
-    content: "/";
-}
+    .blog-entry h1 ~ small:not(:last-of-type):after {
+        margin: 0 10px;
+        content: "/";
+    }
 
-.blog-entry ul > li
-{
+.blog-entry ul > li {
     margin: 15px 0;
 }
 
-.pagination-control
-{
+.pagination-control {
     overflow: hidden;
     padding: 25px 0;
     border-top: 4px solid #EEE;
     border-bottom: 4px solid #EEE;
 }
 
-.pagination-control > .older-posts-link
-{
-    float: left;
-}
+    .pagination-control > .older-posts-link {
+        float: left;
+    }
 
-.pagination-control > .newer-posts-link
-{
-    float: right;
-}
+    .pagination-control > .newer-posts-link {
+        float: right;
+    }
 
-.pagination-control a:hover
-{
-    color: tomato;
-}
+    .pagination-control a:hover {
+        color: tomato;
+    }
 
-.tag-cloud
-{
+.tag-cloud {
     margin-bottom: 50px;
 }
 
-.tag-cloud > a
-{
-    display: inline-block;
-    margin-right: 8px;
-    margin-bottom: 8px;
-    padding: 15px 25px;
-    border: 1px #B6B6B6 solid;
-    background-color: #E0E0E0;
-    color: black;
-}
+    .tag-cloud > a {
+        display: inline-block;
+        margin-right: 8px;
+        margin-bottom: 8px;
+        padding: 15px 25px;
+        border: 1px #B6B6B6 solid;
+        background-color: #E0E0E0;
+        color: black;
+    }
 
-.tag-cloud > a:hover
-{
-    background-color: #C8C8C8;
-}
+        .tag-cloud > a:hover {
+            background-color: #C8C8C8;
+        }
 
-.flat-button
-{
+.flat-button {
     display: inline-block;
     padding: 15px 20px;
     background-color: #222222;
     color: white;
 }
 
-.flat-button:hover
+.flat-button:hover 
 {
     background-color: tomato;
+}
+
+
+
+
+
+
+form input[type="text"],
+form input[type="password"] 
+{
+    padding: 15px;
+    border: 1px solid #e6e2df;
+}
+
+form label
+{
+    margin-bottom: 5px;
+}
+
+form
+{
+    width: 440px;
+}
+
+
+form input
+{
+    margin-bottom: 15px;
+}
+
+.login-validation-summary
+{
+    background-color: #f2dede;
+    border-left: 6px tomato solid;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.login-validation-summary li
+{
+    padding: 8px 0;
+}
+
+.login-validation-summary li:last-of-type
+{
+    margin-bottom: 20px;
 }

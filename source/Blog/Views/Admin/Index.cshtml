@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Admin</h2>
+
+@if (User.Identity.IsAuthenticated || Request.IsAuthenticated)
+{
+    <p>Authenticated</p>
+}
+else
+{
+  <p>Not Authenticated</p>
+}
