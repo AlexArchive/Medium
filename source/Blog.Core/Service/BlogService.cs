@@ -37,7 +37,7 @@ namespace Blog.Core.Service
                 Content = content,
                 PublishDate = DateTime.Now,
                 Published = true,
-                Summary = content.Length < 100 ? content : content.Substring(0, 100),
+                Summary = content.Length < 750 ? content : content.Substring(0, 750),
                 Views = 0
             };
 
