@@ -12,11 +12,18 @@
     
     @Html.ValidationSummary()
     
+    @Html.LabelFor(m => m.Header);
+    <br />
     @Html.TextBoxFor(m => m.Header);
+    <br />
+    
+    @Html.LabelFor(m => m.HeaderSlug);
     <br />
     @Html.TextBoxFor(m => m.HeaderSlug);
     <br />
-
+    
+    @Html.LabelFor(m => m.Content);
+    <br />
     @Html.TextAreaFor(m => m.Content);
     <br />
 

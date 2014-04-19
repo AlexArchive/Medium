@@ -20,9 +20,16 @@ namespace Blog.Core.Data
         public bool Add(BlogEntry entry)
         {
             _blogDatabase.BlogEntries.Add(entry);
-            int entriesAdded = _blogDatabase.SaveChanges();
-
-            return entriesAdded == 1;
+            try
+            {
+                int entriesAdded = _blogDatabase.SaveChanges();
+                return entriesAdded == 1;
+            }
+            catch
+            {
+                return false;
+            }
+               
         }
     }
 }
