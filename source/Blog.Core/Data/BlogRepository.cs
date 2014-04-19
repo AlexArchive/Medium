@@ -16,5 +16,13 @@ namespace Blog.Core.Data
         {
             return _blogDatabase.BlogEntries.Find(keyValues);
         }
+
+        public bool Add(BlogEntry entry)
+        {
+            _blogDatabase.BlogEntries.Add(entry);
+            int entriesAdded = _blogDatabase.SaveChanges();
+
+            return entriesAdded == 1;
+        }
     }
 }

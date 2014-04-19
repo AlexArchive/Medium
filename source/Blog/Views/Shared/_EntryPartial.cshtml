@@ -8,7 +8,7 @@
     </div>
 
     @Html.Raw(Model.Summary)
-    
-    @*<button class="flat-button">Continue Reading</button>*@
+
+
     @Html.ActionLink("Continue Reading", "Entry", "Blog", new { headerSlug = Model.HeaderSlug }, new { @class = "flat-button" })
 </article>

@@ -1,5 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Blog.Core.Security;
+using Blog.Core.Service;
 using Blog.Models.AdminModel;
 
 namespace Blog.Controllers
@@ -8,6 +10,7 @@ namespace Blog.Controllers
     public class AdminController : Controller
     {
         private readonly IAuthenticationProvider _authProvider = new AuthenticationProvider();
+        private readonly BlogService _service = new BlogService();
 
         public ActionResult Index()
         {
@@ -43,5 +46,22 @@ namespace Blog.Controllers
 
             return View(model);
         }
+
+        public ActionResult AddBlogEntry(BlogEntryModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                bool success = _service.AddBlogEntry(model.Header, model.HeaderSlug, model.Content);
+                if (success)
+                {
+                    return RedirectToAction("Index", "Blog");
+                }
+
+                ModelState.AddModelError(string.Empty, "something went wrong andre");
+            }
+
+            return View("Index");
+        }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Diagnostics;
+using System.Net;
 using System.Web.Mvc;
 
 namespace Blog.Controllers
@@ -14,6 +15,9 @@ namespace Blog.Controllers
 
         public ActionResult ServerError()
         {
+            var foo = Server.GetLastError();
+            Debugger.Break();
+            
             Response.StatusCode = (int) HttpStatusCode.InternalServerError;
             ViewBag.FriendlyErrorMessage = "An internal server error occurred. Please try again later.";
             return View("Index");

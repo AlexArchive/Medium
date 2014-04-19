@@ -7,5 +7,6 @@ namespace Blog.Core.Data
     {
         IQueryable<BlogEntry> All();
         BlogEntry Find(params object[] keyValues);
+        bool Add(BlogEntry entry);
     }
 }

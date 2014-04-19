@@ -1,5 +1,24 @@
-﻿@{
+﻿@model Blog.Models.AdminModel.BlogEntryModel
+
+@{
     Layout = null;
 }
 
 <p>Welcome to the Admin Controller.</p>
+
+@using (Html.BeginForm("AddBlogEntry", "Admin"))
+{
+    @Html.AntiForgeryToken()
+    
+    @Html.ValidationSummary()
+    
+    @Html.TextBoxFor(m => m.Header);
+    <br />
+    @Html.TextBoxFor(m => m.HeaderSlug);
+    <br />
+
+    @Html.TextAreaFor(m => m.Content);
+    <br />
+
+    <button type="submit">Post</button>
+}
