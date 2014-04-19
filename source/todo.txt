@@ -1,0 +1,1 @@
+Remove the IRepository and then access the DbContext directly from the Service.
