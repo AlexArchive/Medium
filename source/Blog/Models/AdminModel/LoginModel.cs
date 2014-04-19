@@ -8,10 +8,6 @@ namespace Blog.Models.AdminModel
         public string Username { get; set; }
 
         [Required]
-        [MinLength(6, ErrorMessage = "Passwords must be at least 6 characters.")]
         public string Password { get; set; }
-
-        [Display(Name = "Remember Me?")]
-        public bool RememberMe { get; set; }
     }
 }
