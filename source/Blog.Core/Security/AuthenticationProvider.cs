@@ -9,7 +9,7 @@ namespace Blog.Core.Security
             var authenticated = FormsAuthentication.Authenticate(username, password);
 
             if (authenticated)
-                FormsAuthentication.SetAuthCookie(username, true);
+                FormsAuthentication.SetAuthCookie(username, false);
 
             return authenticated;
         }

@@ -362,11 +362,18 @@ form label
     margin-bottom: 5px;
 }
 
+form textarea,
 form input
 {
     margin-bottom: 15px;
 }
 
+form textarea
+{
+    resize: none;
+}
+
+form textarea,
 form input[type="text"],
 form input[type="password"]
 {

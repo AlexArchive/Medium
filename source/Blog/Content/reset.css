@@ -105,6 +105,7 @@ input[type="button"]:focus
     outline: none;
 }
 
+textarea,
 input[type="text"],
 input[type="password"]
 {
@@ -113,6 +114,7 @@ input[type="password"]
     font-size: inherit;
 }
 
+textarea:focus,
 input[type="text"]:focus,
 input[type="password"]:focus
 {

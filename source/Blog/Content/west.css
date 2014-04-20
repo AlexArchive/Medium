@@ -1,0 +1,87 @@
+﻿* {
+  font-size:100%;
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  list-style-type: none;
+}
+
+body, html {
+  height:100%;
+}
+
+/* Start West Styles */
+.trigger {
+  position:absolute;
+  right:-65px;
+  top:0;
+  background:#222;
+  padding:15px 20px 15px 20px;
+  color:#fff;
+  border:0;
+  font-size:2em;
+  cursor:pointer;
+  outline:none;
+  z-index:10000000000000;
+}
+
+.toggleBtn {
+  width:80%;
+  height:4px;
+  background:#fff;
+  display: block;
+}
+
+.navWrap {
+  position:fixed;
+  left:0;
+  top:0;
+  height:100%;
+  width:250px;
+  background:#222;
+  padding:10px 0px 0px 0px;
+  margin-left:-250px;
+  font-family: "Montserrat", Arial, Helvetica, Helvetica Neue;
+  font-size: 14px;
+  -webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-ms-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease;
+	-webkit-transform-style: preserve-3d;
+	-webkit-backface-visibility: hidden;
+}
+
+.open {
+  margin-left:0px;
+}
+
+.bodyLeft {
+  margin-left:250px;
+  width:100%;
+  overflow: hidden;
+}
+
+.mainList a,a:visited {
+  display:block;
+  padding:20px 20px 20px 30px;
+  color:#bbb;
+  text-decoration: none;
+  -webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-ms-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease;
+}
+
+.mainList a:hover {
+  color:#fff;
+  text-decoration: none;
+  -webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-ms-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease;
+}
