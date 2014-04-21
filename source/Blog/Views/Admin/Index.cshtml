@@ -11,47 +11,20 @@
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:300,400,700">
-    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="~/Content/west.css">
     <link rel="stylesheet" type="text/css" href="~/Content/reset.css">
     <link rel="stylesheet" type="text/css" href="~/Content/style-sheet.css">
-    
     <style>
-        
-
-        input,
-        textarea
-        {
-            margin-top: 10px;
-        }
-
-        form
-        {
+        #editor {
             width: 100%;
+            height: 450px;
+            margin-bottom: 15px;
+            border: 1px solid #e6e2df;
         }
-
-        textarea
-        {
-            width: 100%;
-            height: 340px;
-        }
-
     </style>
-
 </head>
 <body>
-    <nav class="navWrap">
-        <button class="trigger">&#9776;</button>
-        <ul class="mainList">
-            <li><a href="#">New Post</a></li>
-            <li><a href="#">Manage Posts</a></li>
-        </ul>
-    </nav>
 
     <div class="centered-container">
-
-
         @using (Html.BeginForm("AddBlogEntry", "Admin"))
         {
             @Html.AntiForgeryToken()
@@ -65,14 +38,30 @@
             @Html.TextBoxFor(m => m.HeaderSlug);
 
             @Html.LabelFor(m => m.Content);
-            @Html.TextAreaFor(m => m.Content);
+            @Html.HiddenFor(m => m.Content)
+            <pre id="editor"></pre>
+
 
             <button type="submit" class="flat-button">Post</button>
         }
     </div>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="~/Scripts/west.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/html");
+        editor.getSession().setUseWrapMode(true);
+        editor.setHighlightActiveLine(false);
+
+
+        $("form").submit(function () {
+            $("#Content").val(editor.getSession().getValue());
+        });
+
+    </script>
+
 
 </body>
 

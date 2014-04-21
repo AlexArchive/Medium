@@ -120,3 +120,9 @@ input[type="password"]:focus
 {
     outline: none;
 }
+
+textarea
+{
+    resize: none;
+    width: 100%;
+}

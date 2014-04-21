@@ -87,7 +87,6 @@
     <Content Include="Content\responsive-grid.css" />
     <Content Include="Content\style-sheet.css" />
     <Content Include="Content\syntax-highlighter.css" />
-    <Content Include="Content\west.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\github.png" />
     <Content Include="Images\skype.png" />
@@ -95,7 +94,6 @@
     <Content Include="Images\twitter.png" />
     <Content Include="Images\youtube.png" />
     <Content Include="Scripts\responsive-navigation.js" />
-    <Content Include="Scripts\west.js" />
     <Content Include="Views\web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

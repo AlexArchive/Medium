@@ -352,16 +352,6 @@ article ul > li
     background-color: tomato;
 }
 
-form
-{
-    width: 440px;
-}
-
-form label
-{
-    margin-bottom: 5px;
-}
-
 form textarea,
 form input
 {
@@ -370,7 +360,13 @@ form input
 
 form textarea
 {
-    resize: none;
+    height: 450px;
+}
+
+form label
+{
+    display: inline-block;
+    margin-bottom: 5px;
 }
 
 form textarea,
