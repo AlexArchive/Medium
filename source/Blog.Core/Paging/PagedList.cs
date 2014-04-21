@@ -21,8 +21,7 @@ namespace Blog.Core.Paging
 
             TotalItemCount = query.Count();
 
-            // maybe this will yield a small performance benefit because we won't waste time with the pagination logic.
-            //if (TotalItemCount == 0) return;
+            if (TotalItemCount == 0) return;
 
             TotalPageCount = (int) Math.Ceiling((double) TotalItemCount / PageSize);
 
