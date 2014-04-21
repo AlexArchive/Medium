@@ -34,12 +34,16 @@
             @Html.LabelFor(m => m.Header);
             @Html.TextBoxFor(m => m.Header);
 
+            
             @Html.LabelFor(m => m.HeaderSlug);
             @Html.TextBoxFor(m => m.HeaderSlug);
 
+            
             @Html.LabelFor(m => m.Content);
             @Html.HiddenFor(m => m.Content)
             <pre id="editor"></pre>
+            
+
 
 
             <button type="submit" class="flat-button">Post</button>
@@ -51,7 +55,7 @@
     <script>
         var editor = ace.edit("editor");
         editor.setTheme("ace/theme/textmate");
-        editor.getSession().setMode("ace/mode/html");
+        editor.getSession().setMode("ace/mode/markdown");
         editor.getSession().setUseWrapMode(true);
         editor.setHighlightActiveLine(false);
 

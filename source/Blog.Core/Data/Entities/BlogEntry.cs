@@ -9,6 +9,7 @@ namespace Blog.Core.Data.Entities
         [Key]
         [Required]
         [StringLength(250)]
+        /* could we use the fluent API to provide a default value? */
         public string HeaderSlug { get; set; }
 
         [Required]

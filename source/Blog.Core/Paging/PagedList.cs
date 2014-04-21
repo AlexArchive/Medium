@@ -27,7 +27,7 @@ namespace Blog.Core.Paging
             TotalPageCount = (int) Math.Ceiling((double) TotalItemCount / PageSize);
 
             var pagedList = query.Skip((pageNumber - 1) * pageSize).Take(pageSize);
-            _pagedList.AddRange(pagedList);
+            _pagedList.AddRange(pagedList.ToList());
         }
 
         public IEnumerator<T> GetEnumerator()

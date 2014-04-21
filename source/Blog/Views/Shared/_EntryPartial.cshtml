@@ -7,7 +7,11 @@
         <small><a>@Model.PublishDate.ToString("MMMM dd, yyyy")</a></small>
     </div>
 
-    @Html.Raw(Model.Summary)
+
+    @{
+        var markdown = new MarkdownSharp.Markdown();
+        @Html.Raw(markdown.Transform(Model.Summary))
+    }
 
 
     @Html.ActionLink("Continue Reading", "Entry", "Blog", new { headerSlug = Model.HeaderSlug }, new { @class = "flat-button" })

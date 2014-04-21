@@ -9,7 +9,7 @@ namespace Blog.Core.Data
         public IDbSet<Tag> Tags { get; set; }
 
         public BlogDatabase()
-            : base("Blog")
+            : base("MDBlog")
         {
             Configuration.LazyLoadingEnabled = false;
         }
