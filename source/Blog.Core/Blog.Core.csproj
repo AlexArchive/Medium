@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Data\BlogDatabase.cs" />
     <Compile Include="Data\BlogRepository.cs" />
+    <Compile Include="Data\Migrations\Configuration.cs" />
     <Compile Include="Data\Entities\BlogEntry.cs" />
     <Compile Include="Data\Entities\Tag.cs" />
     <Compile Include="Data\IBlogRepository.cs" />

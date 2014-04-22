@@ -1,4 +1,4 @@
-﻿@model Blog.Core.Data.Entities.BlogEntry
+﻿@model Blog.Models.EntryViewModel
 
 <article class="blog-entry">
 
@@ -7,12 +7,8 @@
         <small><a>@Model.PublishDate.ToString("MMMM dd, yyyy")</a></small>
     </div>
 
-
-    @{
-        var markdown = new MarkdownSharp.Markdown();
-        @Html.Raw(markdown.Transform(Model.Summary))
-    }
-
+    @*@Html.Raw(Model.Summary)*@
+    @Html.Raw(Model.Content)
 
     @Html.ActionLink("Continue Reading", "Entry", "Blog", new { headerSlug = Model.HeaderSlug }, new { @class = "flat-button" })
 </article>

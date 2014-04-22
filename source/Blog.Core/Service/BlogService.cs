@@ -10,36 +10,27 @@ namespace Blog.Core.Service
 {
     public class BlogService
     {
-        private readonly IBlogRepository _repository = new BlogRepository();
         private readonly Markdown _markdown = new Markdown();
 
         public PagedList<BlogEntry> GetBlogEntries(int pageNumber, int pageSize)
         {
-            var something =
-                _repository
-                    .All()
-                    .Include(entry => entry.Tags)
-                    .Where(entry => entry.Published)
-                    .OrderByDescending(entry => entry.PublishDate);
+            using (var repository = new BlogRepository())
+            {
+                var something =
+                    repository
+                        .All()
+                        .Include(entry => entry.Tags)
+                        .Where(entry => entry.Published)
+                        .OrderByDescending(entry => entry.PublishDate);
 
-            return something.ToPagedList(pageNumber, pageSize);
+                return something.ToPagedList(pageNumber, pageSize);
+            }
         }
 
-        public BlogEntry GetBlogEntry(string headerSlug)
+        public BlogEntry Get(string headerSlug)
         {
-            var a = _repository.Find(headerSlug);
-
-            return new BlogEntry
-            {
-                Content = _markdown.Transform(a.Content),
-                HeaderSlug = a.HeaderSlug,
-                Header = a.Header,
-                PublishDate = a.PublishDate,
-                Published = a.Published,
-                Summary = a.Summary,
-                Tags = a.Tags,
-                Views = a.Views
-            };
+            using (var repository = new BlogRepository())
+                return repository.Find(headerSlug);
         }
 
         public bool AddBlogEntry(string header, string headerSlug, string content)
@@ -54,9 +45,11 @@ namespace Blog.Core.Service
                 Summary = content.Length < 750 ? content : content.Substring(0, 750),
                 Views = 0
             };
-
-            var success = _repository.Add(entry);
-            return success;
+            using (var repository = new BlogRepository())
+            {
+                var success = repository.Add(entry);
+             return success;
+            }
         }
     }
 }

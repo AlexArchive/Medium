@@ -31,5 +31,10 @@ namespace Blog.Core.Data
             }
                
         }
+
+        public void Dispose()
+        {
+            _blogDatabase.Dispose();
+        }
     }
 }

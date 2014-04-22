@@ -1,5 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Blog.Core.Security;
 using Blog.Core.Service;
 using Blog.Models.AdminModel;
