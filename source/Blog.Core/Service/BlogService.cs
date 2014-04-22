@@ -4,14 +4,11 @@ using System.Linq;
 using Blog.Core.Data;
 using Blog.Core.Data.Entities;
 using Blog.Core.Paging;
-using MarkdownSharp;
 
 namespace Blog.Core.Service
 {
     public class BlogService
     {
-        private readonly Markdown _markdown = new Markdown();
-
         public PagedList<BlogEntry> GetBlogEntries(int pageNumber, int pageSize)
         {
             using (var repository = new BlogRepository())
@@ -30,7 +27,12 @@ namespace Blog.Core.Service
         public BlogEntry Get(string headerSlug)
         {
             using (var repository = new BlogRepository())
-                return repository.Find(headerSlug);
+            {
+                return
+                    repository.All()
+                        .Include(entry => entry.Tags)
+                        .FirstOrDefault(entry => entry.HeaderSlug == headerSlug);
+            }
         }
 
         public bool AddBlogEntry(string header, string headerSlug, string content)
