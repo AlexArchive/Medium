@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
-using System.Net.Mime;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -9,7 +8,6 @@ using Blog.Core.Data.Entities;
 using Blog.Core.Data.Migrations;
 using Blog.Core.Paging;
 using Blog.Models;
-using Blog.Models.AdminModel;
 using MarkdownSharp;
 
 namespace Blog
