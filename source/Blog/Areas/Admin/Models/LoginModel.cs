@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Blog.Models.AdminModel
+namespace Blog.Areas.Admin.Models
 {
     public class LoginModel
     {

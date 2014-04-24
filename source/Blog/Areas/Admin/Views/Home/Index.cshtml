@@ -1,4 +1,4 @@
-﻿@model Blog.Models.AdminModel.BlogEntryModel
+﻿@model Blog.Areas.Admin.Models.BlogEntryModel
 
 @{
     Layout = null;
@@ -28,7 +28,7 @@
 
     <div class="centered-container">
     
-        @using (Html.BeginForm("AddBlogEntry", "Admin"))
+        @using (Html.BeginForm("AddBlogEntry", "Home"))
         {
             @Html.AntiForgeryToken()
 
@@ -45,8 +45,8 @@
             @Html.LabelFor(m => m.Content);
             @Html.HiddenFor(m => m.Content)
             <pre id="editor"></pre>
-
-
+            
+            
             <button type="submit" class="flat-button">Post</button>
         }
     </div>

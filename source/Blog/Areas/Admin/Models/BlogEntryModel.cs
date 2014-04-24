@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace Blog.Models.AdminModel
+namespace Blog.Areas.Admin.Models
 {
     public class BlogEntryModel
     {

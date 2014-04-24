@@ -10,18 +10,6 @@ namespace Blog
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-               "Login",
-               "login",
-               new { controller = "Admin", action = "Login" }
-            );
-
-            routes.MapRoute(
-                "Admin",
-                "admin",
-                new { controller = "Admin", action = "Index" }
-            );
-
-            routes.MapRoute(
                 "Not Found Error",
                 "not-found",
                 new { controller = "Error", action = "NotFound" }

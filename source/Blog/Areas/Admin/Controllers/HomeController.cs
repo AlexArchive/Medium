@@ -1,12 +1,12 @@
 ﻿using System.Web.Mvc;
+using Blog.Areas.Admin.Models;
 using Blog.Core.Security;
 using Blog.Core.Service;
-using Blog.Models.AdminModel;
 
-namespace Blog.Controllers
+namespace Blog.Areas.Admin.Controllers
 {
     [Authorize]
-    public class AdminController : Controller
+    public class HomeController : Controller
     {
         private readonly IAuthenticationProvider _authProvider = new AuthenticationProvider();
         private readonly BlogService _service = new BlogService();
@@ -53,7 +53,7 @@ namespace Blog.Controllers
                 bool success = _service.AddBlogEntry(model.Header, model.HeaderSlug, model.Content);
                 if (success)
                 {
-                    return RedirectToAction("Index", "Blog");
+                    return RedirectToAction("Index", "Blog", new { area = "" });
                 }
 
                 ModelState.AddModelError(string.Empty, "something went wrong andre");
