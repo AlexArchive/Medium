@@ -1,2 +1,3 @@
 Remove the IRepository and then access the DbContext directly from the Service.
-I don't really want a dependency on jQuery just to bind the ACE editor value to the Model.
+Move AutoMapper code somewhere better.
+

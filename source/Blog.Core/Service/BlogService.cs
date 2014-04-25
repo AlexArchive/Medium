@@ -47,10 +47,11 @@ namespace Blog.Core.Service
                 Summary = content.Length < 750 ? content : content.Substring(0, 750),
                 Views = 0
             };
+
             using (var repository = new BlogRepository())
             {
                 var success = repository.Add(entry);
-             return success;
+                return success;
             }
         }
     }

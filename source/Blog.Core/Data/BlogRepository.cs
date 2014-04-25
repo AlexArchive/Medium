@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Data.Entity.Infrastructure;
+using System.Linq;
 using Blog.Core.Data.Entities;
 
 namespace Blog.Core.Data
@@ -25,11 +27,16 @@ namespace Blog.Core.Data
                 int entriesAdded = _blogDatabase.SaveChanges();
                 return entriesAdded == 1;
             }
-            catch
+            catch (DbUpdateException)
             {
                 return false;
             }
-               
+            
+            // if the command fails for another reason (e.g. 
+            // database cannot be found) then  it makes sense 
+            // to let the exception throw and the web server 
+            // display a 500. right?
+
         }
 
         public void Dispose()

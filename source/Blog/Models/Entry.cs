@@ -1,5 +1,4 @@
-﻿using System.Text.RegularExpressions;
-using Blog.Core.Data.Entities;
+﻿using Blog.Core.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -33,6 +32,4 @@ namespace Blog.Models
         [AllowHtml]
         public string Content { get; set; }
     }
-
-
 }

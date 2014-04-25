@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Blog.Core.Service;
 using Blog.Models;
 
@@ -14,21 +15,23 @@ namespace Blog.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(EntryInput input)
+        public ActionResult Add(EntryInput model)
         {
             if (ModelState.IsValid)
             {
-                bool success = _service.AddBlogEntry(input.Header, input.HeaderSlug, input.Content);
+                bool success = _service.AddBlogEntry(model.Header, model.HeaderSlug, model.Content);
                 if (success)
                 {
-                    // TODO: Return to Add View with success message instead.
-                    return RedirectToAction("Index", "Blog", new { area = "" });
+                    ViewBag.SuccessMessage = "Post Added Successfully";
+                    return View();
                 }
 
-                ModelState.AddModelError(string.Empty, "something went wrong andre");
+                ModelState.AddModelError(
+                    string.Empty,
+                    string.Format("You have previously used the header slug \"{0}\". Please choose another one.", model.HeaderSlug));
             }
 
-            return View(input);
+            return View(model);
         }
     }
 }
