@@ -1,3 +1,2 @@
 Remove the IRepository and then access the DbContext directly from the Service.
-Make an "Area" for the Admin Panel.
 I don't really want a dependency on jQuery just to bind the ACE editor value to the Model.

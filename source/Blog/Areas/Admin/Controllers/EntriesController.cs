@@ -4,7 +4,7 @@ using Blog.Models;
 
 namespace Blog.Areas.Admin.Controllers
 {
-    public class PostsController : Controller
+    public class EntriesController : Controller
     {
         private readonly BlogService _service = new BlogService();
 
