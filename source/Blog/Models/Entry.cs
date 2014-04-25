@@ -1,4 +1,5 @@
-﻿using Blog.Core.Data.Entities;
+﻿using System.Text.RegularExpressions;
+using Blog.Core.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -25,6 +26,7 @@ namespace Blog.Models
 
         [Required]
         [Display(Name="Header Slug")]
+        [RegularExpression("[a-zA-Z0-9-]+", ErrorMessage = "Slugs can only contain the alphanumeric characters and hyphens.")]
         public string HeaderSlug { get; set; }
         
         [Required]
