@@ -1,13 +1,21 @@
 ﻿@model Blog.Models.EntryInput
 
 <div class="centered-container">
-    
-    <h1>@ViewBag.SuccessMessage</h1>
+
+    <section>
+        @Html.ValidationSummary()
+        
+        @if (!string.IsNullOrEmpty(ViewBag.LinkToEntry))
+        {
+            <div class="validation-summary-success">
+                <p>Post published. <a href="@ViewBag.LinkToEntry">View Post</a>.</p>
+            </div>
+        }
+
+    </section>
 
     @using (Html.BeginForm())
     {
-        @Html.ValidationSummary()
-
         @Html.LabelFor(m => m.Header);
         @Html.TextBoxFor(m => m.Header);
 
@@ -16,23 +24,27 @@
 
         @Html.LabelFor(m => m.Content);
         @Html.HiddenFor(m => m.Content)
-        <pre id="editor"></pre>
+        <pre id="code-editor"></pre>
 
         <button type="submit" class="flat-button">Post</button>
     }
+
 </div>
 
 <script>
-    var editor = ace.edit("editor");
+    var editor = ace.edit("code-editor");
     editor.setTheme("ace/theme/textmate");
     editor.getSession().setMode("ace/mode/markdown");
     editor.getSession().setUseWrapMode(true);
     editor.setHighlightActiveLine(false);
 
     window.onload = function () {
+        editor.getSession().setValue(document.getElementById("Content").value);
+
         var form = document.querySelector("form");
         form.onsubmit = function () {
             document.getElementById("Content").value = editor.getSession().getValue();
         };
+
     };
 </script>

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Blog.Core.Service;
 using Blog.Models;
 
@@ -22,7 +21,10 @@ namespace Blog.Areas.Admin.Controllers
                 bool success = _service.AddBlogEntry(model.Header, model.HeaderSlug, model.Content);
                 if (success)
                 {
-                    ViewBag.SuccessMessage = "Post Added Successfully";
+                    var helper = new UrlHelper(ControllerContext.RequestContext);
+                    var linkToEntry = helper.Action("Entry", "Blog", new { area = "", headerSlug = model.HeaderSlug});
+                    ViewBag.LinkToEntry = linkToEntry;
+
                     return View();
                 }
 
