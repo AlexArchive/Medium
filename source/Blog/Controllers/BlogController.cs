@@ -18,7 +18,7 @@ namespace Blog.Controllers
             var pagedEntries = 
                 _entryService.GetBlogEntries(pageNumber, ENTRIES_PER_PAGE);
 
-            var model = Mapper.Map<PagedList<EntryViewModel>>(pagedEntries);
+            var model = Mapper.Map<PagedList<Entry>>(pagedEntries);
 
             return View(model);
         }
@@ -34,7 +34,7 @@ namespace Blog.Controllers
                 return HttpNotFound();
             }
 
-            var model = Mapper.Map<EntryViewModel>(entry);
+            var model = Mapper.Map<Entry>(entry);
 
             // need to specify the view name explicitly so that other
             // actions can present blog entries using this action.

@@ -2,14 +2,15 @@
 
 @{
     ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     @Html.ValidationSummary()
-    
+
     @Html.LabelFor(m => m.Username)
     @Html.TextBoxFor(m => m.Username)
 

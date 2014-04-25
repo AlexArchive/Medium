@@ -1,0 +1,39 @@
+﻿@model Blog.Models.EntryInput
+
+<div class="centered-container">
+
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary()
+
+        @Html.LabelFor(m => m.Header);
+        @Html.TextBoxFor(m => m.Header);
+
+
+        @Html.LabelFor(m => m.HeaderSlug);
+        @Html.TextBoxFor(m => m.HeaderSlug);
+
+
+        @Html.LabelFor(m => m.Content);
+        @Html.HiddenFor(m => m.Content)
+        <pre id="editor"></pre>
+
+        <button type="submit" class="flat-button">Post</button>
+    }
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/textmate");
+    editor.getSession().setMode("ace/mode/markdown");
+    editor.getSession().setUseWrapMode(true);
+    editor.setHighlightActiveLine(false);
+
+
+    $("form").submit(function () {
+        $("#Content").val(editor.getSession().getValue());
+    });
+
+</script>

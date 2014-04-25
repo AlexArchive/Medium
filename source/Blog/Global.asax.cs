@@ -18,12 +18,12 @@ namespace Blog
 
         protected void Application_Start()
         {
-            Mapper.CreateMap<BlogEntry, EntryViewModel>()
+            Mapper.CreateMap<BlogEntry, Entry>()
                 .ForMember(entry => entry.Content,
                     expression => expression.ResolveUsing(source => _markdown.Transform(source.Content)));
 
-            Mapper.CreateMap<PagedList<BlogEntry>, PagedList<EntryViewModel>>()
-                .AfterMap((source, destination) => Mapper.Map<List<BlogEntry>, List<EntryViewModel>>(source, destination));
+            Mapper.CreateMap<PagedList<BlogEntry>, PagedList<Entry>>()
+                .AfterMap((source, destination) => Mapper.Map<List<BlogEntry>, List<Entry>>(source, destination));
 
             Mapper.AssertConfigurationIsValid();
 

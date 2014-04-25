@@ -17,7 +17,7 @@ namespace Blog.Areas.Admin
             context.MapRoute(
                 "login",
                 "login",
-                new { controller = "Home", action = "Login", id = UrlParameter.Optional }
+                new { controller = "Login", action = "Index", id = UrlParameter.Optional }
             );
 
             context.MapRoute(
