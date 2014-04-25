@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Blog.Core.Data;
@@ -22,6 +23,17 @@ namespace Blog.Core.Service
 
                 return something.ToPagedList(pageNumber, pageSize);
             }
+        }
+
+        public List<BlogEntry> GetAll()
+        {
+            using (var repository = new BlogRepository())
+            {
+                return repository.All()
+                    .Include(entry => entry.Tags)
+                    .OrderByDescending(entry => entry.PublishDate).ToList();
+            }
+
         }
 
         public BlogEntry Get(string headerSlug)

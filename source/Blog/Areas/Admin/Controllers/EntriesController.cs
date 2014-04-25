@@ -35,5 +35,13 @@ namespace Blog.Areas.Admin.Controllers
 
             return View(model);
         }
+
+        public ActionResult All()
+        {
+            var pagedEntries =
+                _service.GetAll();
+
+            return View(pagedEntries);
+        }
     }
 }

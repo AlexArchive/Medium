@@ -1,0 +1,53 @@
+﻿@model IList<Blog.Core.Data.Entities.BlogEntry>
+
+@{
+    ViewBag.Title = "All";
+}
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(x => x.First().HeaderSlug)
+
+        <th>
+            @Html.DisplayNameFor(model => model.First().Header)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Views)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Published)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().PublishDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HeaderSlug)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Header)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Views)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Published)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublishDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>
