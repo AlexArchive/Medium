@@ -17,7 +17,6 @@ namespace Blog.Core.Service
                 var something =
                     repository
                         .All()
-                        .Include(entry => entry.Tags)
                         .Where(entry => entry.Published)
                         .OrderByDescending(entry => entry.PublishDate);
 
@@ -30,7 +29,6 @@ namespace Blog.Core.Service
             using (var repository = new BlogRepository())
             {
                 return repository.All()
-                    .Include(entry => entry.Tags)
                     .OrderByDescending(entry => entry.PublishDate).ToList();
             }
 
@@ -42,7 +40,6 @@ namespace Blog.Core.Service
             {
                 return
                     repository.All()
-                        .Include(entry => entry.Tags)
                         .FirstOrDefault(entry => entry.HeaderSlug == headerSlug);
             }
         }

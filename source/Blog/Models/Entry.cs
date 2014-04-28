@@ -1,6 +1,4 @@
-﻿using Blog.Core.Data.Entities;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
@@ -15,7 +13,6 @@ namespace Blog.Models
         public int Views { get; set; }
         public bool Published { get; set; }
         public DateTime PublishDate { get; set; }
-        public virtual ICollection<Tag> Tags { get; set; }
     }
 
     public class EntryInput

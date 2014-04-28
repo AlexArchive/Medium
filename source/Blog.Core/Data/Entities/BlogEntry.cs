@@ -27,7 +27,5 @@ namespace Blog.Core.Data.Entities
 
         public bool Published { get; set; }
         public DateTime PublishDate { get; set; }
-
-        public virtual ICollection<Tag> Tags { get; set; }
     }
 }

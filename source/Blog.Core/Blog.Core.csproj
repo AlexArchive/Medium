@@ -54,7 +54,6 @@
     <Compile Include="Data\BlogRepository.cs" />
     <Compile Include="Data\Migrations\Configuration.cs" />
     <Compile Include="Data\Entities\BlogEntry.cs" />
-    <Compile Include="Data\Entities\Tag.cs" />
     <Compile Include="Data\IBlogRepository.cs" />
     <Compile Include="Paging\PagedList.cs" />
     <Compile Include="Paging\PagedListExtensions.cs" />
