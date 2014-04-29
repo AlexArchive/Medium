@@ -72,5 +72,14 @@ namespace Blog.Core.Service
             }
         }
 
+        public void Update(BlogEntry entry)
+        {
+            using (var repository = new BlogRepository())
+            {
+                repository.Update(entry);
+            }
+        }
+
+
     }
 }

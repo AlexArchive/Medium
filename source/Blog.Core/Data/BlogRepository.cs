@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data.Entity.Infrastructure;
+﻿using System.Data.Entity.Infrastructure;
 using System.Linq;
 using Blog.Core.Data.Entities;
 
@@ -49,10 +48,22 @@ namespace Blog.Core.Data
             }
         }
 
-
         public void Dispose()
         {
             _blogDatabase.Dispose();
+        }
+
+        public void Update(BlogEntry updatedEntry)
+        {
+            var original = _blogDatabase.BlogEntries.Find(updatedEntry.HeaderSlug);
+            if (original != null)
+            {
+                original.HeaderSlug = updatedEntry.HeaderSlug;
+                original.Header = updatedEntry.Header;
+                original.Content = updatedEntry.Content;
+
+                _blogDatabase.SaveChanges();
+            }
         }
     }
 }

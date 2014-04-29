@@ -55,7 +55,8 @@ namespace Blog.Areas.Admin.Controllers
 
         public ActionResult Edit(string slug)
         {
-            BlogEntry entry = _service.Get(slug);
+            var entry = _service.Get(slug);
+            
 
             EntryInput input = new EntryInput
             {
@@ -66,6 +67,23 @@ namespace Blog.Areas.Admin.Controllers
 
             return View("Add", input);
         }
+
+
+        [HttpPost]
+        public ActionResult Edit(EntryInput input)
+        {
+            BlogEntry entry = new BlogEntry
+            {
+                HeaderSlug = input.HeaderSlug,
+                Header = input.Header,
+                Content = input.Content
+            };
+
+           _service.Update(entry);
+
+            return View("Add", input);
+        }
+
 
 
     }
