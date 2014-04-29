@@ -1,3 +1,6 @@
 Remove the IRepository and then access the DbContext directly from the Service.
 Move AutoMapper code somewhere better.
+Highlight <code> 
+	Need to somehow differentiate C# from HTML, JS etc.
 
+Provide Manage Posts Grid!

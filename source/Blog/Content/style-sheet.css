@@ -382,8 +382,10 @@ form input[type="password"]
     padding-left: 20px;
     margin-bottom: 20px;
 }
+
 [class*="validation-summary"] p,
-[class*="validation-summary"] li {
+[class*="validation-summary"] li
+{
     padding: 8px 0;
 }
 
@@ -398,6 +400,7 @@ form input[type="password"]
     border-left: 6px blue solid;
     background-color: aliceblue;
 }
+
 .validation-summary-success a
 {
     color: red;
@@ -408,3 +411,59 @@ form input[type="password"]
     color: black;
 }
 
+#code-editor
+{
+    width: 100%;
+    height: 450px;
+    margin-bottom: 15px;
+    border: 1px solid #e6e2df;
+}
+
+nav.vertical-nav
+{
+    background: #222222;
+    color: white;
+    width: 250px;
+    height: 100%;
+    position: fixed;
+}
+
+nav.vertical-nav li
+{
+    display: list-item;
+}
+
+nav.vertical-nav ul li > a
+{
+    display: block;
+    padding: 20px 30px;
+    color: #999999;
+    width: 250px;
+    margin: 0;
+}
+
+nav.vertical-nav ul li >a:hover
+{
+    background-color: #080808;
+    color: white;
+}
+
+table
+{
+    border: 1px solid #cbcbcb;
+}
+
+thead
+{
+    background: #e0e0e0;
+}
+
+th, td
+{
+    border-left: 1px solid #cbcbcb;
+    border-width: 0 0 0 1px;
+    font-size: inherit;
+    margin: 0;
+    overflow: visible;
+    padding: 15px;
+}

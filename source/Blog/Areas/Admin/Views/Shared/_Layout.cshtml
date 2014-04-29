@@ -8,27 +8,25 @@
     <link rel="stylesheet" type="text/css" href="~/Content/reset.css">
     <link rel="stylesheet" type="text/css" href="~/Content/style-sheet.css">
     <link rel="stylesheet" type="text/css" href="~/Content/responsive-grid.css">
-
-    <style>
-        #code-editor {
-            width: 100%;
-            height: 450px;
-            margin-bottom: 15px;
-            border: 1px solid #e6e2df;
-                }
-        th, td {
-            padding: 5px;
-        }
-
-    </style>
     
-
 </head>
     <body>
+        <nav class="vertical-nav">
+            <ul>
+                <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
+                <li>@Html.ActionLink("Compose", "Add", "Entries")</li>
+                <li>@Html.ActionLink("Posts", "All", "Entries")</li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+        </nav>
         
         <script src="http://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js" type="text/javascript" charset="utf-8"></script>
-
-        @RenderBody()
+        
+        <div class="centered-container">
+            @RenderBody()
+        </div>
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
     </body>
 </html>
