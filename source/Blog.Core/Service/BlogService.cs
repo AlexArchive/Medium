@@ -63,5 +63,14 @@ namespace Blog.Core.Service
                 return success;
             }
         }
+
+        public void Delete(string headerSlug)
+        {
+            using (var repository = new BlogRepository())
+            {
+                repository.Delete(headerSlug);
+            }
+        }
+
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
+using Blog.Core.Data.Entities;
 using Blog.Core.Service;
 using Blog.Models;
 
@@ -43,5 +45,28 @@ namespace Blog.Areas.Admin.Controllers
 
             return View(pagedEntries);
         }
+
+        public ActionResult Delete(string slug)
+        {
+            _service.Delete(slug);
+            return RedirectToAction("All");
+        }
+
+
+        public ActionResult Edit(string slug)
+        {
+            BlogEntry entry = _service.Get(slug);
+
+            EntryInput input = new EntryInput
+            {
+                HeaderSlug = entry.HeaderSlug,
+                Header = entry.Header,
+                Content = entry.Content
+            };
+
+            return View("Add", input);
+        }
+
+
     }
 }

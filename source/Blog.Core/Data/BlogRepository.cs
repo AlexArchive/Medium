@@ -39,6 +39,17 @@ namespace Blog.Core.Data
 
         }
 
+        public void Delete(string headerSlug)
+        {
+            var entry = _blogDatabase.BlogEntries.Find(headerSlug);
+            if (entry != null)
+            {
+                _blogDatabase.BlogEntries.Remove(entry);
+                _blogDatabase.SaveChanges();
+            }
+        }
+
+
         public void Dispose()
         {
             _blogDatabase.Dispose();

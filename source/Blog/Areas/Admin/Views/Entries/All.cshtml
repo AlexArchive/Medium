@@ -46,9 +46,10 @@
                     @Html.DisplayFor(modelItem => item.PublishDate)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Delete", "Delete", new { slug = item.HeaderSlug }) | 
+                    @Html.ActionLink("Preview", "Entry", "Blog", new { area = "", headerSlug = item.HeaderSlug }, new { }) |
+                    @Html.ActionLink("Edit", "Edit", new { slug = item.HeaderSlug }) |
+
                 </td>
             </tr>
         }
