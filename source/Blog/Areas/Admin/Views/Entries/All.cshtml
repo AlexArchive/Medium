@@ -18,9 +18,6 @@
                 @Html.DisplayNameFor(model => model.First().Views)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.First().Published)
-            </th>
-            <th>
                 @Html.DisplayNameFor(x => x.First().PublishDate)
             <th>
         </tr>
@@ -39,9 +36,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Views)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Published)
                 </td>
                 <td>
                     @item.PublishDate.Humanize()

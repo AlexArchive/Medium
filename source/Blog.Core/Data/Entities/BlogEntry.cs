@@ -25,7 +25,6 @@ namespace Blog.Core.Data.Entities
 
         public int Views { get; set; }
 
-        public bool Published { get; set; }
         public DateTime PublishDate { get; set; }
     }
 }

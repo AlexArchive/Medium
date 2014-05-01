@@ -11,7 +11,6 @@ namespace Blog.Models
         public string Summary { get; set; }
         public string Content { get; set; }
         public int Views { get; set; }
-        public bool Published { get; set; }
         public DateTime PublishDate { get; set; }
     }
 

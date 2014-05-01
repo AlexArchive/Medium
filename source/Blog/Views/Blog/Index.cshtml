@@ -12,9 +12,7 @@
         }
        
         @foreach (var entry in Model) {
-            if (entry.Published) {
                 @Html.Partial("_EntryPartial", entry)
-            }
         }
         
         @Html.Partial("_PagerPartial")

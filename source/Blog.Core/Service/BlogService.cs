@@ -17,7 +17,6 @@ namespace Blog.Core.Service
                 var something =
                     repository
                         .All()
-                        .Where(entry => entry.Published)
                         .OrderByDescending(entry => entry.PublishDate);
 
                 return something.ToPagedList(pageNumber, pageSize);
@@ -52,7 +51,6 @@ namespace Blog.Core.Service
                 HeaderSlug = headerSlug,
                 Content = content,
                 PublishDate = DateTime.Now,
-                Published = true,
                 Summary = content.Length < 750 ? content : content.Substring(0, 750),
                 Views = 0
             };
