@@ -81,6 +81,10 @@ namespace Blog.Areas.Admin.Controllers
 
            _service.Update(entry);
 
+           var helper = new UrlHelper(ControllerContext.RequestContext);
+           var linkToEntry = helper.Action("Entry", "Blog", new { area = "", headerSlug = entry.HeaderSlug });
+           ViewBag.LinkToEntry = linkToEntry;
+
             return View("Add", input);
         }
 
