@@ -1,4 +1,5 @@
-﻿@model IList<Blog.Core.Data.Entities.BlogEntry>
+﻿@using Blog.Helpers
+@model IList<Blog.Core.Data.Entities.BlogEntry>
 
 @{
     ViewBag.Title = "All";
@@ -43,7 +44,7 @@
                     @Html.DisplayFor(modelItem => item.Published)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PublishDate)
+                    @item.PublishDate.Humanize()
                 </td>
                 <td>
                     @Html.ActionLink("Delete", "Delete", new { slug = item.HeaderSlug }) | 
