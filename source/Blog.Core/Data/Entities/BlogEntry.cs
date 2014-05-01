@@ -30,5 +30,7 @@ namespace Blog.Core.Data.Entities
 
         [Display(Name = "Published")]
         public DateTime PublishDate { get; set; }
+
+       
     }
 }

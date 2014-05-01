@@ -37,9 +37,18 @@ namespace Blog.Core.Service
         {
             using (var repository = new BlogRepository())
             {
-                return
+                var entry = 
                     repository.All()
-                        .FirstOrDefault(entry => entry.HeaderSlug == headerSlug);
+                        .FirstOrDefault(e => e.HeaderSlug == headerSlug);
+
+
+                if (entry != null)
+                {
+                    repository.IncrementView(entry);
+                }
+
+                return entry;
+
             }
         }
 

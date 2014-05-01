@@ -65,5 +65,11 @@ namespace Blog.Core.Data
                 _blogDatabase.SaveChanges();
             }
         }
+
+        public void IncrementView(BlogEntry updatedEntry)
+        {
+            updatedEntry.Views ++;
+            Update(updatedEntry);
+        }
     }
 }
