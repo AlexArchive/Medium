@@ -9,6 +9,8 @@ namespace Blog.Core.Data.Entities
         [Key]
         [Required]
         [StringLength(250)]
+        [Display(Name = "Slug")]
+
         /* could we use the fluent API to provide a default value? */
         public string HeaderSlug { get; set; }
 
@@ -23,8 +25,10 @@ namespace Blog.Core.Data.Entities
         [Required]
         public string Content { get; set; }
 
+        [Display(Name = "Approximate Views")]
         public int Views { get; set; }
 
+        [Display(Name = "Published")]
         public DateTime PublishDate { get; set; }
     }
 }

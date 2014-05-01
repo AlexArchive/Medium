@@ -40,6 +40,8 @@
                 <td>
                     @item.PublishDate.Humanize()
                 </td>
+
+
                 <td>
                     @Html.ActionLink("Delete", "Delete", new { slug = item.HeaderSlug }) | 
                     @Html.ActionLink("Preview", "Entry", "Blog", new { area = "", headerSlug = item.HeaderSlug }, new { }) |
