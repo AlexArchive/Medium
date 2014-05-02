@@ -5,6 +5,4 @@ Highlight <code>
 
 View Count
 Consideration for Not Published / Draft
-Preview
-Change PublishDate to Published X Y Ago (Mouseover for Date)
 Fix routing.

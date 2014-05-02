@@ -1,5 +1,5 @@
 ﻿<!doctype html>
-<html lang="en">
+<html lang="en" >
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="~/Content/responsive-grid.css">
     <link rel="stylesheet" href="~/Content/syntax-highlighter.css">
     <link rel="stylesheet" href="~/Content/style-sheet.css">
+    <link rel="stylesheet" href="~/Content/prism.css" />
+
 </head>
 <body>
     <header>
@@ -31,11 +33,12 @@
             </nav>
         </div>
     </header>
-    
+
     <div class="centered-container">
         @RenderBody()
     </div>
 
+    <script src="~/Scripts/prism.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="~/Scripts/responsive-navigation.js"></script>
 </body>

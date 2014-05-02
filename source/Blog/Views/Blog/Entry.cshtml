@@ -1,18 +1,17 @@
 ﻿@model Blog.Models.Entry
-
 @{
     ViewBag.Title = Model.Header;
 }
 
-<div class="centered-container">
-    <article class="blog-entry">
-        <div class="entry-header">
-            <h1>@Model.Header</h1>
-            <small>@Model.PublishDate.ToString("MMMM dd, yyyy")</small>
-        </div>
-        @Html.Raw(Model.Content)
-        
-        @*@Html.Partial("_TagsPartial", Model.Tags)*@
+<div class="centered-container language-csharp">
+    <article class=" blog-entry">
+
+    <div class="entry-header">
+        <h1>@Model.Header</h1>
+        <small>@Model.PublishDate.ToString("MMMM dd, yyyy")</small>
+    </div>
+
+    @Html.Raw(Model.Content)
 
     </article>
 </div>

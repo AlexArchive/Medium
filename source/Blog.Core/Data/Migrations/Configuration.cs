@@ -6,7 +6,7 @@ using Blog.Core.Data.Entities;
 
 namespace Blog.Core.Data.Migrations
 {
-    public class Configuration : DropCreateDatabaseAlways<BlogDatabase>
+    public class Configuration : DropCreateDatabaseIfModelChanges<BlogDatabase>
     {
         protected override void Seed(BlogDatabase context)
         {
@@ -22,9 +22,9 @@ namespace Blog.Core.Data.Migrations
                     Views = 0
                 };
 
-                // Wait a second so that the PublishDate better reflects the order in which
+                // Wait a little bit so that the PublishDate better reflects the order in which
                 // the entries where inserted.
-                Thread.Sleep(1000);
+                Thread.Sleep(50);
 
                 context.BlogEntries.Add(entry);
 
