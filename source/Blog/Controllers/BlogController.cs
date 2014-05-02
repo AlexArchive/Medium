@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.Web;
 using AutoMapper;
 using Blog.Core.Paging;
 using Blog.Core.Service;
@@ -28,16 +30,35 @@ namespace Blog.Controllers
             if (headerSlug == null)
                 throw new ArgumentNullException("headerSlug");
 
+
             var entry = _entryService.Get(headerSlug);
             if (entry == null) 
             {
                 return HttpNotFound();
             }
 
+            var cookie = Request.Cookies["ViewedPage"];
+            if (cookie == null)
+            {
+                cookie = new HttpCookie("ViewedPage");
+                cookie.Expires = DateTime.Now.AddHours(1);
+            }
+
+            if (cookie["slug_" + entry.HeaderSlug] == null)
+            {
+                cookie["slug_" + entry.HeaderSlug] = "1";
+                Response.Cookies.Add(cookie);
+
+                entry.Views ++;
+                _entryService.Update(entry);
+                Debug.Print("Entry(): Incrementing view count for {0}", entry.HeaderSlug);
+            }
+            else
+            {
+                Debug.Print("Entry(): Already incremented view for {0}. Not doing it again lol.", entry.HeaderSlug);
+            }
             var model = Mapper.Map<Entry>(entry);
 
-            // need to specify the view name explicitly so that other
-            // actions can present blog entries using this action.
             return View("Entry", model);
         }
 

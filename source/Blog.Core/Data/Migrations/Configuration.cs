@@ -6,7 +6,7 @@ using Blog.Core.Data.Entities;
 
 namespace Blog.Core.Data.Migrations
 {
-    public class Configuration : DropCreateDatabaseIfModelChanges<BlogDatabase>
+    public class Configuration : DropCreateDatabaseAlways<BlogDatabase>
     {
         protected override void Seed(BlogDatabase context)
         {

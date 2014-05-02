@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Web;
 using Blog.Core.Data;
 using Blog.Core.Data.Entities;
 using Blog.Core.Paging;
@@ -40,12 +41,6 @@ namespace Blog.Core.Service
                 var entry = 
                     repository.All()
                         .FirstOrDefault(e => e.HeaderSlug == headerSlug);
-
-
-                if (entry != null)
-                {
-                    repository.IncrementView(entry);
-                }
 
                 return entry;
 

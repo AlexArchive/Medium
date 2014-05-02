@@ -61,15 +61,10 @@ namespace Blog.Core.Data
                 original.HeaderSlug = updatedEntry.HeaderSlug;
                 original.Header = updatedEntry.Header;
                 original.Content = updatedEntry.Content;
+                original.Views = updatedEntry.Views;
 
                 _blogDatabase.SaveChanges();
             }
-        }
-
-        public void IncrementView(BlogEntry updatedEntry)
-        {
-            updatedEntry.Views ++;
-            Update(updatedEntry);
         }
     }
 }
