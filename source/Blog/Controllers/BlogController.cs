@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Web;
 using AutoMapper;
+using Blog.Core.Data.Entities;
 using Blog.Core.Paging;
 using Blog.Core.Service;
 using Blog.Models;
@@ -17,10 +18,10 @@ namespace Blog.Controllers
 
         public ActionResult Index(int pageNumber = 1)
         {
-            var pagedEntries = 
+            PagedList<BlogEntry> pagedEntries = 
                 _entryService.GetBlogEntries(pageNumber, ENTRIES_PER_PAGE);
 
-            var model = Mapper.Map<PagedList<Entry>>(pagedEntries);
+            PagedList<Entry> model = Mapper.Map<PagedList<Entry>>(pagedEntries);
 
             return View(model);
         }
@@ -57,6 +58,7 @@ namespace Blog.Controllers
             {
                 Debug.Print("Entry(): Already incremented view for {0}. Not doing it again lol.", entry.HeaderSlug);
             }
+
             var model = Mapper.Map<Entry>(entry);
 
             return View("Entry", model);

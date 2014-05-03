@@ -18,19 +18,30 @@ namespace Blog
 
         protected void Application_Start()
         {
-            Mapper.CreateMap<BlogEntry, Entry>()
-                .ForMember(entry => entry.Content,
-                    expression => expression.ResolveUsing(source => _markdown.Transform(source.Content)));
+            AutoMapper();
 
-            Mapper.CreateMap<PagedList<BlogEntry>, PagedList<Entry>>()
-                .AfterMap((source, destination) => Mapper.Map<List<BlogEntry>, List<Entry>>(source, destination));
 
             Mapper.AssertConfigurationIsValid();
 
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            //HibernatingRhinos.Profiler.Appender.EntityFramework.EntityFrameworkProfiler.Initialize();
             Database.SetInitializer(new Configuration());
+        }
+
+        private void AutoMapper()
+        {
+
+            Mapper.CreateMap<BlogEntry, Entry>()
+                .ForMember(entry => entry.Content, 
+                    expression => expression.ResolveUsing(source => _markdown.Transform(source.Content)))                .ForMember(entry => entry.Summary,
+                    expression => expression.ResolveUsing(source => _markdown.Transform(source.Summary)));
+
+            //Mapper.CreateMap<BlogEntry, Entry>()
+            //    .ForMember(entry => entry.Summary,
+            //        expression => expression.ResolveUsing(source => _markdown.Transform(source.Summary)));
+
+            Mapper.CreateMap<PagedList<BlogEntry>, PagedList<Entry>>()
+                .AfterMap((entitiy, viewModel) => Mapper.Map<List<BlogEntry>, List<Entry>>(entitiy, viewModel));
         }
     }
 

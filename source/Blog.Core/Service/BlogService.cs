@@ -55,7 +55,7 @@ namespace Blog.Core.Service
                 HeaderSlug = headerSlug,
                 Content = content,
                 PublishDate = DateTime.Now,
-                Summary = content.Length < 750 ? content : content.Substring(0, 750),
+                Summary = MakeSummary(content),
                 Views = 0
             };
 
@@ -64,6 +64,11 @@ namespace Blog.Core.Service
                 var success = repository.Add(entry);
                 return success;
             }
+        }
+
+        private static string MakeSummary(string content)
+        {
+            return content.Length < 750 ? content : content.Substring(0, 750) + "...";
         }
 
         public void Delete(string headerSlug)
