@@ -8,9 +8,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Core", "Blog.Core\Blog.Core.csproj", "{C5C5DB99-C45E-40F3-8948-8B7D95DE81F3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D3AB1504-A4D3-4128-AA11-2EA604CBBE31}"
-	ProjectSection(SolutionItems) = preProject
-		WebEssentials-Settings.json = WebEssentials-Settings.json
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{F5B1635B-E862-467E-8871-19B7A4BE132A}"
 	ProjectSection(SolutionItems) = preProject

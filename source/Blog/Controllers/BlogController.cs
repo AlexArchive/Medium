@@ -68,5 +68,11 @@ namespace Blog.Controllers
         {
             return Entry("about-me");
         }
+
+        public ActionResult Archive()
+        {
+            var entries = _entryService.GetAll();
+            return View(entries);
+        }
     }
 }

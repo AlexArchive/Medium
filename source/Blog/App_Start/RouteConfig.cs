@@ -28,12 +28,6 @@ namespace Blog
             );
 
             routes.MapRoute(
-                name: "Tags",
-                url: "tags",
-                defaults: new { controller = "Blog", action = "Tags" }
-            );
-
-            routes.MapRoute(
                 name: "Archive",
                 url: "archive",
                 defaults: new { controller = "Blog", action = "Archive" }
