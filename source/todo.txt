@@ -2,7 +2,6 @@ Remove the IRepository and then access the DbContext directly from the Service.
 Move AutoMapper code somewhere better.
 
 Consideration for Not Published / Draft
-Fix routing.
 
 Instead of storing the Summary, calculate it when it is read?
 
