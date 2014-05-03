@@ -254,6 +254,11 @@ article ul > li
     font-size: 19px;
 }
 
+.blog-entry
+{
+    text-align: justify;
+}
+
 .blog-entry:not(:last-of-type)
 {
     margin-bottom: 50px;

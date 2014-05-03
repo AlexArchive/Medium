@@ -14,10 +14,17 @@ namespace Blog
 {
     public class MvcApplication : HttpApplication
     {
-        private readonly Markdown _markdown = new Markdown();
+        private Markdown _markdown;
 
         protected void Application_Start()
         {
+
+            MarkdownOptions options = new MarkdownOptions()
+            {
+                AutoHyperlink = true
+            };
+            _markdown = new Markdown(options);
+
             AutoMapper();
 
 
