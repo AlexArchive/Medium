@@ -1,14 +1,11 @@
 Remove the IRepository and then access the DbContext directly from the Service.
 Move AutoMapper code somewhere better.
 
-View Count
 Consideration for Not Published / Draft
 Fix routing.
-
-Contain <code> tags intended as code blocks in <pre> tags.
-Figure out how to specify a programming language. I like the sytnax "``` language-xxx" where "language-css" is the prism class to add.
-
 
 Instead of storing the Summary, calculate it when it is read?
 
 Bundle client-side dependencies.
+
+Make about-me a default page you cannot remove.
