@@ -158,6 +158,7 @@
     <Content Include="Areas\Admin\Views\Entries\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Entries\All.cshtml" />
     <Content Include="Views\Blog\Archive.cshtml" />
+    <Content Include="Views\Shared\_Disqus.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -3,13 +3,16 @@
     ViewBag.Title = Model.Header;
 }
 
-    <article class=" blog-entry">
+<article class=" blog-entry">
 
     <div class="entry-header">
         <h1>@Model.Header</h1>
         <small>@Model.PublishDate.ToString("MMMM dd, yyyy")</small>
+        <small><a href="@string.Format("{0}#disqus_thread", Url.RouteUrl(new { controller="Blog", action = "Entry", headerSlug = Model.HeaderSlug }))"></a></small>
     </div>
 
     @Html.Raw(Model.Content)
+    
+    @Html.Partial("_Disqus")
 
-    </article>
+</article>

@@ -8,3 +8,7 @@ Instead of storing the Summary, calculate it when it is read?
 Bundle client-side dependencies.
 
 Make about-me a default page you cannot remove.
+
+
+Search
+If the admin is logged in, show edit and delete links on the blog entry.
