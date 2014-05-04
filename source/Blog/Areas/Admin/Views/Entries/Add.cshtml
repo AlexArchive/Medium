@@ -32,6 +32,9 @@
     editor.getSession().setMode("ace/mode/markdown");
     editor.getSession().setUseWrapMode(true);
     editor.setHighlightActiveLine(false);
+    editor.setPrintMarginColumn(70);
+
+
 
     window.onload = function () {
         editor.getSession().setValue(document.getElementById("Content").value);

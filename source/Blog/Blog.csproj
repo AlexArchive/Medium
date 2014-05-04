@@ -102,6 +102,7 @@
     <Content Include="Content\style-sheet.css" />
     <Content Include="Content\syntax-highlighter.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\cover.jpg" />
     <Content Include="Images\github.png" />
     <Content Include="Images\skype.png" />
     <Content Include="Images\spotify.png" />
@@ -159,6 +160,7 @@
     <Content Include="Areas\Admin\Views\Entries\All.cshtml" />
     <Content Include="Views\Blog\Archive.cshtml" />
     <Content Include="Views\Shared\_Disqus.cshtml" />
+    <None Include="Properties\PublishProfiles\Blopg.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

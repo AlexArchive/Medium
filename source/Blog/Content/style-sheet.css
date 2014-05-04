@@ -1,3 +1,7 @@
+::selection
+{
+    color:#222;background:#D6EDFF;text-shadow:none;
+}
 body
 {
     font-family: "Lato", sans-serif;
@@ -31,7 +35,7 @@ header
 header > .header-background-image
 {
     padding: 150px 0;
-    background-color: tomato;
+    background-color: #303538;
 }
 
 header .header-background-image-inner
@@ -227,7 +231,7 @@ article p
 article p > a,
 article li > a
 {
-    color: tomato;
+    color: #57A3E8;
     -webkit-transition: color ease 0.2s;
     -moz-transition: color ease 0.2s;
     -o-transition: color ease 0.2s;
@@ -273,7 +277,7 @@ article ul > li
 
 .blog-entry .entry-header a:hover
 {
-    color: tomato;
+    color: #57A3E8;
 }
 
 .blog-entry h1 ~ small
@@ -315,7 +319,7 @@ article ul > li
 
 .pagination-control a:hover
 {
-    color: tomato;
+    color: #57A3E8;
 }
 
 .tag-cloud
@@ -349,7 +353,7 @@ article ul > li
 
 .flat-button:hover
 {
-    background-color: tomato;
+    background-color: #57A3E8;
 }
 
 form textarea,
@@ -467,3 +471,4 @@ th, td
     overflow: visible;
     padding: 15px;
 }
+
