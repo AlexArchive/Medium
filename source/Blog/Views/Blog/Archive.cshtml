@@ -1,0 +1,27 @@
+﻿@using Blog.Models
+@model List<Blog.Core.Data.Entities.BlogEntry>
+
+@{
+    ViewBag.Title = "title";
+}
+
+
+@{
+    var entriesByYear = Model.GroupBy(entry => entry.PublishDate.Year);
+}
+
+<article>
+
+    @foreach (var entry in entriesByYear)
+    {
+        <h2>@entry.Key</h2>
+        <ul>
+            @foreach (var blogEntry in entry)
+            {
+                <li>
+                    @Html.ActionLink(blogEntry.Header, "Entry", "Blog", new { headerSlug = blogEntry.HeaderSlug }, null)
+                </li>
+            }
+        </ul>
+    }
+</article>
