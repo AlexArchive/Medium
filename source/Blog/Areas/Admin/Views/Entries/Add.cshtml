@@ -1,48 +1,50 @@
 ﻿@model Blog.Models.EntryInput
 
-    <section>
-        @Html.ValidationSummary()
-        
-        @if (!string.IsNullOrEmpty(ViewBag.LinkToEntry))
-        {
-            <div class="validation-summary-success">
-                <p>Post published. <a href="@ViewBag.LinkToEntry">View Post</a>.</p>
-            </div>
-        }
-    </section>
-
-    @using (Html.BeginForm())
+<section>
+    @Html.ValidationSummary()
+    
+    @if (!string.IsNullOrEmpty(ViewBag.LinkToEntry))
     {
-        @Html.LabelFor(m => m.Header);
-        @Html.TextBoxFor(m => m.Header);
-
-        @Html.LabelFor(m => m.HeaderSlug);
-        @Html.TextBoxFor(m => m.HeaderSlug);
-
-        @Html.LabelFor(m => m.Content);
-        @Html.HiddenFor(m => m.Content)
-        <pre id="code-editor"></pre>
-
-        <button type="submit" class="flat-button">Post</button>
+        <div class="validation-summary-success">
+            <p>Post published. <a href="@ViewBag.LinkToEntry">View Post</a>.</p>
+        </div>
     }
+</section>
 
-<script>
-    var editor = ace.edit("code-editor");
-    editor.setTheme("ace/theme/textmate");
-    editor.getSession().setMode("ace/mode/markdown");
-    editor.getSession().setUseWrapMode(true);
-    editor.setHighlightActiveLine(false);
-    editor.setPrintMarginColumn(70);
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(m => m.Header);
+    @Html.TextBoxFor(m => m.Header);
 
+    @Html.LabelFor(m => m.HeaderSlug);
+    @Html.TextBoxFor(m => m.HeaderSlug);
 
+    @Html.LabelFor(m => m.Content);
+    @Html.HiddenFor(m => m.Content)
+    <pre id="code-editor"></pre>
 
-    window.onload = function () {
-        editor.getSession().setValue(document.getElementById("Content").value);
+    <button type="submit" class="flat-button">Post</button>
+}
 
-        var form = document.querySelector("form");
-        form.onsubmit = function () {
-            document.getElementById("Content").value = editor.getSession().getValue();
+@section scripts
+{
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        var editor = ace.edit("code-editor");
+        editor.setTheme("ace/theme/textmate");
+        editor.getSession().setMode("ace/mode/markdown");
+        editor.getSession().setUseWrapMode(true);
+        editor.setHighlightActiveLine(false);
+        editor.setPrintMarginColumn(70);
+
+        window.onload = function () {
+            editor.getSession().setValue(document.getElementById("Content").value);
+
+            var form = document.querySelector("form");
+            form.onsubmit = function () {
+                document.getElementById("Content").value = editor.getSession().getValue();
+            };
+
         };
-
-    };
-</script>
+    </script>
+}

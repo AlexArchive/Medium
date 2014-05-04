@@ -20,13 +20,11 @@
             </ul>
         </nav>
         
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js" type="text/javascript" charset="utf-8"></script>
-        
         <div class="centered-container">
             @RenderBody()
         </div>
         
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
+        @RenderSection("scripts", false);
     </body>
 </html>

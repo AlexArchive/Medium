@@ -15,3 +15,5 @@ If the admin is logged in, show edit and delete links on the blog entry.
 Make Disqus more robust according to that Indian guy.
 
 updating blog entry does not update the summary lol!
+
+need a nice font.
