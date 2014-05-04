@@ -472,3 +472,7 @@ th, td
     padding: 15px;
 }
 
+#progress
+{
+    display: none;
+}
