@@ -102,16 +102,14 @@
     <Content Include="Content\style-sheet.css" />
     <Content Include="Content\syntax-highlighter.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\progress-indicator.gif" />
     <Content Include="Images\cover.jpg" />
     <Content Include="Images\github.png" />
     <Content Include="Images\skype.png" />
     <Content Include="Images\spotify.png" />
     <Content Include="Images\twitter.png" />
     <Content Include="Images\youtube.png" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\prism.js" />
     <Content Include="Scripts\responsive-navigation.js" />
     <Content Include="Views\web.config" />
@@ -164,7 +162,6 @@
     <Content Include="Areas\Admin\Views\Entries\All.cshtml" />
     <Content Include="Views\Blog\Archive.cshtml" />
     <Content Include="Views\Shared\_Disqus.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\AddEdit_Partial.cshtml" />
     <None Include="Properties\PublishProfiles\Blopg.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

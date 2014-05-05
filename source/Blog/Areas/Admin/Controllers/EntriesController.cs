@@ -1,8 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Blog.Core.Data.Entities;
 using Blog.Core.Service;
 using Blog.Models;
@@ -10,10 +6,9 @@ using Blog.Models;
 namespace Blog.Areas.Admin.Controllers
 {
     [Authorize]
-
     public class EntriesController : Controller
     {
-        private readonly BlogService _service = new BlogService();
+        private readonly BlogService _entryService = new BlogService();
 
         public ActionResult Add()
         {
@@ -25,47 +20,44 @@ namespace Blog.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool success = _service.AddBlogEntry(model.Header, model.HeaderSlug, model.Content);
+                bool success = _entryService.AddBlogEntry(model.Header, model.HeaderSlug, model.Content);
                 if (success)
                 {
-                    var helper = new UrlHelper(ControllerContext.RequestContext);
-                    var linkToEntry = helper.Action("Entry", "Blog", new {area = "", headerSlug = model.HeaderSlug});
-                
-                    ViewBag.LinkToEntry = linkToEntry;
-                    return PartialView("AddEdit_Partial");
+                    var entryLink = LinkToEntry(model.HeaderSlug);
+                    return Json("Entry Published. You can view the entry here: " + entryLink);
                 }
 
-                ViewBag.ErrorMessage =
-                    string.Format(
-                        "You have previously used the header slug \"{0}\". Please choose another one.",
-                        model.HeaderSlug);
-                
-                return PartialView("AddEdit_Partial", model);
+                return Json("You have previously published a blog entry with this slug. Please choose another one.");
             }
 
-            ViewBag.ErrorMessage = "failed validation.";
-
-            return PartialView("AddEdit_Partial", model);
+            return Json("Ensure that your input is valid.");
         }
+
+        private string LinkToEntry(string headerSlug)
+        {
+            var helper = new UrlHelper(ControllerContext.RequestContext);
+            return helper.Action("Entry", "Blog", new { area = "", headerSlug = headerSlug });
+        }
+
 
         public ActionResult All()
         {
             var pagedEntries =
-                _service.GetAll();
+                _entryService.GetAll();
 
             return View(pagedEntries);
         }
 
         public ActionResult Delete(string slug)
         {
-            _service.Delete(slug);
+            _entryService.Delete(slug);
             return RedirectToAction("All");
         }
 
 
         public ActionResult Edit(string slug)
         {
-            var entry = _service.Get(slug);
+            var entry = _entryService.Get(slug);
             
 
             EntryInput input = new EntryInput
@@ -89,7 +81,7 @@ namespace Blog.Areas.Admin.Controllers
                 Content = input.Content
             };
 
-           _service.Update(entry);
+           _entryService.Update(entry);
 
            var helper = new UrlHelper(ControllerContext.RequestContext);
            var linkToEntry = helper.Action("Entry", "Blog", new { area = "", headerSlug = entry.HeaderSlug });

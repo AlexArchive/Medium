@@ -1,6 +1,27 @@
 ﻿@model Blog.Models.EntryInput
 
-@Html.Partial("AddEdit_Partial")
+<div class="validation-summary-success">
+    <p id="validation-message"> </p>
+</div>
+
+@using (Ajax.BeginForm("Add", "Entries", new AjaxOptions { LoadingElementId = "progress-indicator", UpdateTargetId = "validation-message", InsertionMode = InsertionMode.Replace }))
+{
+    @Html.LabelFor(m => m.Header);
+    @Html.TextBoxFor(m => m.Header);
+
+    @Html.LabelFor(m => m.HeaderSlug);
+    @Html.TextBoxFor(m => m.HeaderSlug);
+
+    @Html.LabelFor(m => m.Content);
+    @Html.HiddenFor(m => m.Content)
+    <pre id="code-editor"></pre>
+
+    <button type="submit" class="flat-button">Post</button>
+}
+
+<div id="progress-indicator">
+    <img src="~/Images/progress-indicator.gif" alt="Publishing..." />
+</div>
 
 @section scripts
 {
