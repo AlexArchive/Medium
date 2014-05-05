@@ -164,6 +164,7 @@
     <Content Include="Areas\Admin\Views\Entries\All.cshtml" />
     <Content Include="Views\Blog\Archive.cshtml" />
     <Content Include="Views\Shared\_Disqus.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\AddEdit_Partial.cshtml" />
     <None Include="Properties\PublishProfiles\Blopg.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

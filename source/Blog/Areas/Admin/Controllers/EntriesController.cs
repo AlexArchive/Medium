@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 using System.Web.Mvc;
 using Blog.Core.Data.Entities;
@@ -27,18 +29,23 @@ namespace Blog.Areas.Admin.Controllers
                 if (success)
                 {
                     var helper = new UrlHelper(ControllerContext.RequestContext);
-                    var linkToEntry = helper.Action("Entry", "Blog", new { area = "", headerSlug = model.HeaderSlug});
+                    var linkToEntry = helper.Action("Entry", "Blog", new {area = "", headerSlug = model.HeaderSlug});
+                
                     ViewBag.LinkToEntry = linkToEntry;
-
-                    return View();
+                    return PartialView("AddEdit_Partial");
                 }
 
-                ModelState.AddModelError(
-                    string.Empty,
-                    string.Format("You have previously used the header slug \"{0}\". Please choose another one.", model.HeaderSlug));
+                ViewBag.ErrorMessage =
+                    string.Format(
+                        "You have previously used the header slug \"{0}\". Please choose another one.",
+                        model.HeaderSlug);
+                
+                return PartialView("AddEdit_Partial", model);
             }
 
-            return View(model);
+            ViewBag.ErrorMessage = "failed validation.";
+
+            return PartialView("AddEdit_Partial", model);
         }
 
         public ActionResult All()

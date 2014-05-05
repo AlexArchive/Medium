@@ -1,60 +1,9 @@
 ﻿@model Blog.Models.EntryInput
 
-<section>
-    @Html.ValidationSummary()
-
-    @if (!string.IsNullOrEmpty(ViewBag.LinkToEntry))
-    {
-        <div class="validation-summary-success">
-            <p>Post published. <a href="@ViewBag.LinkToEntry">View Post</a>.</p>
-        </div>
-    }
-</section>
-
-@using (Ajax.BeginForm("Add", "Entries", new AjaxOptions { LoadingElementId = "progress", OnComplete= "success"}))
-{
-    <script type="text/javascript">
-        function success() {
-            alert("published entry");
-        }
-    </script>
-    
-    @Html.LabelFor(m => m.Header);
-    @Html.TextBoxFor(m => m.Header);
-    
-    @Html.LabelFor(m => m.HeaderSlug);
-    @Html.TextBoxFor(m => m.HeaderSlug);
-
-    @Html.LabelFor(m => m.Content);
-    @Html.HiddenFor(m => m.Content)
-    <pre id="code-editor"></pre>
-
-    <button type="submit" class="flat-button">Post</button>
-}
-
-<div id="progress">
-    <p>Publishing...</p>
-</div>
-
-@*@using (Html.BeginForm())
-    {
-        @Html.LabelFor(m => m.Header);
-        @Html.TextBoxFor(m => m.Header);
-
-        @Html.LabelFor(m => m.HeaderSlug);
-        @Html.TextBoxFor(m => m.HeaderSlug);
-
-        @Html.LabelFor(m => m.Content);
-        @Html.HiddenFor(m => m.Content)
-        <pre id="code-editor"></pre>
-
-        <button type="submit" class="flat-button">Post</button>
-    }*@
+@Html.Partial("AddEdit_Partial")
 
 @section scripts
 {
-
-
     <script src="http://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js" type="text/javascript" charset="utf-8"></script>
     <script>
         var editor = ace.edit("code-editor");
