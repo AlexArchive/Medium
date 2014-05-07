@@ -15,6 +15,11 @@ namespace Blog.Core.Infrastructure.Persistence
             _context = context;
         }
 
+        public Repository()
+            : this (new BlogDatabase())
+        {
+        }
+
         public TEntity Single(Expression<Func<TEntity, bool>> predicate)
         {
             return _context.Set<TEntity>().SingleOrDefault(predicate);

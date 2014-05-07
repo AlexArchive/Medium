@@ -12,13 +12,13 @@ namespace Blog.Controllers
 {
     public class BlogController : Controller
     {
-        private readonly BlogService _entryService = new BlogService();
+        private readonly EntryService _entryService = new EntryService();
         private const int ENTRIES_PER_PAGE = 5;
 
         public ActionResult Index(int pageNumber = 1)
         {
             PagedList<BlogEntry> pagedEntries = 
-                _entryService.GetBlogEntries(pageNumber, ENTRIES_PER_PAGE);
+                _entryService.ListPaginated(pageNumber, ENTRIES_PER_PAGE);
 
             PagedList<Entry> model = Mapper.Map<PagedList<Entry>>(pagedEntries);
 
@@ -70,7 +70,7 @@ namespace Blog.Controllers
 
         public ActionResult Archive()
         {
-            var entries = _entryService.GetAll();
+            var entries = _entryService.List();
             return View(entries);
         }
     }

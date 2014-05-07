@@ -8,7 +8,7 @@ namespace Blog.Areas.Admin.Controllers
     [Authorize]
     public class EntriesController : Controller
     {
-        private readonly BlogService _entryService = new BlogService();
+        private readonly EntryService _entryService = new EntryService();
 
         public ActionResult Add()
         {
@@ -20,7 +20,7 @@ namespace Blog.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool success = _entryService.AddBlogEntry(model.Header, model.HeaderSlug, model.Content);
+                bool success = _entryService.Add(model.Header, model.HeaderSlug, model.Content);
                 if (success)
                 {
                     var entryLink = LinkToEntry(model.HeaderSlug);
@@ -43,7 +43,7 @@ namespace Blog.Areas.Admin.Controllers
         public ActionResult All()
         {
             var pagedEntries =
-                _entryService.GetAll();
+                _entryService.List();
 
             return View(pagedEntries);
         }
