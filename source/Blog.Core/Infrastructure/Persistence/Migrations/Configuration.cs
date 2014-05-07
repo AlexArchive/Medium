@@ -2,13 +2,13 @@
 using System.Data.Entity;
 using System.Globalization;
 using System.Threading;
-using Blog.Core.Data.Entities;
+using Blog.Core.Infrastructure.Persistence.Entities;
 
-namespace Blog.Core.Data.Migrations
+namespace Blog.Core.Infrastructure.Persistence.Migrations
 {
     public class Configuration : DropCreateDatabaseIfModelChanges<BlogDatabase>
     {
-        protected override void Seed(BlogDatabase context)
+        protected override void Seed(BlogDatabase database)
         {
             for (int i = 0; i < 15; i++)
             {
@@ -26,13 +26,13 @@ namespace Blog.Core.Data.Migrations
                 // the entries where inserted.
                 Thread.Sleep(50);
 
-                context.BlogEntries.Add(entry);
+                database.BlogEntries.Add(entry);
 
             }
 
-            context.SaveChanges();
+            database.SaveChanges();
 
-            base.Seed(context);
+            base.Seed(database);
         }
     }
 }

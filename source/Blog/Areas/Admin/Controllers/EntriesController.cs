@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using Blog.Core.Data.Entities;
+using Blog.Core.Infrastructure.Persistence.Entities;
 using Blog.Core.Service;
 using Blog.Models;
 

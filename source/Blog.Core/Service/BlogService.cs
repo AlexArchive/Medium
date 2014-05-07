@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Web;
-using Blog.Core.Data;
-using Blog.Core.Data.Entities;
+using Blog.Core.Infrastructure.Persistence;
+using Blog.Core.Infrastructure.Persistence.Entities;
 using Blog.Core.Paging;
 
 namespace Blog.Core.Service
@@ -13,7 +11,7 @@ namespace Blog.Core.Service
     {
         public PagedList<BlogEntry> GetBlogEntries(int pageNumber, int pageSize)
         {
-            using (var repository = new BlogRepository())
+            using (var repository = new Repository<BlogEntry>(new BlogDatabase()))
             {
                 var something =
                     repository
@@ -26,7 +24,7 @@ namespace Blog.Core.Service
 
         public List<BlogEntry> GetAll()
         {
-            using (var repository = new BlogRepository())
+            using (var repository = new Repository<BlogEntry>(new BlogDatabase()))
             {
                 return repository.All()
                     .OrderByDescending(entry => entry.PublishDate).ToList();
@@ -36,7 +34,7 @@ namespace Blog.Core.Service
 
         public BlogEntry Get(string headerSlug)
         {
-            using (var repository = new BlogRepository())
+            using (var repository = new Repository<BlogEntry>(new BlogDatabase()))
             {
                 var entry = 
                     repository.All()
@@ -59,10 +57,12 @@ namespace Blog.Core.Service
                 Views = 0
             };
 
-            using (var repository = new BlogRepository())
+            using (var repository = new Repository<BlogEntry>(new BlogDatabase()))
             {
                 var success = repository.Add(entry);
-                return success;
+                //return success;
+                return true;
+                //todo: handle exceptions here instead.
             }
         }
 
@@ -73,17 +73,18 @@ namespace Blog.Core.Service
 
         public void Delete(string headerSlug)
         {
-            using (var repository = new BlogRepository())
+            using (var repository = new Repository<BlogEntry>(new BlogDatabase()))
             {
-                repository.Delete(headerSlug);
+                var entry = repository.Find(headerSlug);
+                repository.Delete(entry);
             }
         }
 
         public void Update(BlogEntry entry)
         {
-            using (var repository = new BlogRepository())
+            using (var repository = new Repository<BlogEntry>(new BlogDatabase()))
             {
-                repository.Update(entry);
+                repository.Update(entry, entry.HeaderSlug);
             }
         }
 

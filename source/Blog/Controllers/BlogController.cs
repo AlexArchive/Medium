@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Web;
 using AutoMapper;
-using Blog.Core.Data.Entities;
+using Blog.Core.Infrastructure.Persistence.Entities;
 using Blog.Core.Paging;
 using Blog.Core.Service;
 using Blog.Models;

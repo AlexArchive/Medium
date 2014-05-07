@@ -17,3 +17,5 @@ Make Disqus more robust according to that Indian guy.
 updating blog entry does not update the summary lol!
 
 need a nice font.
+
+Edit view is broke.

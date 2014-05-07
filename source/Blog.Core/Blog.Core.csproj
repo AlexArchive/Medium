@@ -50,11 +50,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\BlogDatabase.cs" />
-    <Compile Include="Data\BlogRepository.cs" />
-    <Compile Include="Data\Migrations\Configuration.cs" />
-    <Compile Include="Data\Entities\BlogEntry.cs" />
-    <Compile Include="Data\IBlogRepository.cs" />
+    <Compile Include="Infrastructure\Persistence\BlogDatabase.cs" />
+    <Compile Include="Infrastructure\Persistence\IRepository.cs" />
+    <Compile Include="Infrastructure\Persistence\Migrations\Configuration.cs" />
+    <Compile Include="Infrastructure\Persistence\Entities\BlogEntry.cs" />
+    <Compile Include="Infrastructure\Persistence\Repository.cs" />
     <Compile Include="Paging\PagedList.cs" />
     <Compile Include="Paging\PagedListExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

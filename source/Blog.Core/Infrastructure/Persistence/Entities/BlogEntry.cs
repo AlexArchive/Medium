@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Blog.Core.Data.Entities
+namespace Blog.Core.Infrastructure.Persistence.Entities
 {
     public class BlogEntry
     {
@@ -30,7 +29,5 @@ namespace Blog.Core.Data.Entities
 
         [Display(Name = "Published")]
         public DateTime PublishDate { get; set; }
-
-       
     }
 }
