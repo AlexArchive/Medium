@@ -102,7 +102,6 @@
     <Content Include="Content\style-sheet.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\progress-indicator.gif" />
-    <Content Include="Images\cover.jpg" />
     <Content Include="Images\github.png" />
     <Content Include="Images\skype.png" />
     <Content Include="Images\spotify.png" />
@@ -131,6 +130,9 @@
     </Compile>
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Helpers\DateTimeExtensions.cs" />
+    <Compile Include="Infrastructure\AutoMapper\AutoMapperConfiguration.cs" />
+    <Compile Include="Infrastructure\AutoMapper\Profiles\EntryMapperProfile.cs" />
+    <Compile Include="Infrastructure\AutoMapper\Profiles\PagedListMapperProfile.cs" />
     <Compile Include="Models\Entry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
