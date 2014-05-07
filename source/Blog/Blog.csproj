@@ -110,6 +110,8 @@
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\prism.js" />
     <Content Include="Scripts\responsive-navigation.js" />
+    <Content Include="Views\Error\404.htm" />
+    <Content Include="Views\Error\500.htm" />
     <Content Include="Views\web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -124,12 +126,11 @@
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
-    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
-    <Compile Include="Helpers\DateTimeExtensions.cs" />
+    <Compile Include="Infrastructure\Common\DateTimeExtensions.cs" />
     <Compile Include="Infrastructure\AutoMapper\AutoMapperConfiguration.cs" />
     <Compile Include="Infrastructure\AutoMapper\Profiles\EntryMapperProfile.cs" />
     <Compile Include="Infrastructure\AutoMapper\Profiles\PagedListMapperProfile.cs" />
@@ -153,7 +154,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_TagsPartial.cshtml" />
-    <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />

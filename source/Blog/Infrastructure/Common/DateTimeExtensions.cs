@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Blog.Helpers
+namespace Blog.Infrastructure.Common
 {
     public static class DateTimeExtensions
     {
