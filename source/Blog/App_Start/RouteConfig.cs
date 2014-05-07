@@ -10,15 +10,15 @@ namespace Blog
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                "Not Found Error",
-                "not-found",
-                new { controller = "Error", action = "NotFound" }
+                name: "Not Found Error",
+                url: "not-found",
+                defaults: new { controller = "Error", action = "NotFound" }
             );
 
             routes.MapRoute(
-                "Server Error",
-                "server-error",
-                new { controller = "Error", action = "ServerError" }
+                name: "Server Error",
+                url: "server-error",
+                defaults: new { controller = "Error", action = "ServerError" }
             );
 
             routes.MapRoute(
