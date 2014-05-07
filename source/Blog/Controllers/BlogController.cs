@@ -17,6 +17,9 @@ namespace Blog.Controllers
 
         public ActionResult Index(int pageNumber = 1)
         {
+
+            //return Content(FormsAuthentication.HashPasswordForStoringInConfigFile("password", "SHA1"))
+
             PagedList<BlogEntry> pagedEntries = 
                 _entryService.ListPaginated(pageNumber, ENTRIES_PER_PAGE);
 
