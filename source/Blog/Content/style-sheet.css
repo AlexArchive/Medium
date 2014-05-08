@@ -490,11 +490,9 @@ nav.vertical-nav ul li >a:hover
 }*/
 
 
-body.vertical-aside-body
+.admin-container
 {
-    margin-left:250px;
-    width:100%;
-    overflow: hidden;
+    margin-left: 250px;
 }
 
 .vertical-aside
@@ -564,3 +562,4 @@ body.vertical-aside-body
     padding: 3px;
     border-radius: 5px;
 }
+

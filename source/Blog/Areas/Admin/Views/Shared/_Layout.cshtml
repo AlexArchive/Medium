@@ -12,13 +12,10 @@
         <link rel="stylesheet" type="text/css" href="~/Content/reset.css">
         <link rel="stylesheet" type="text/css" href="~/Content/style-sheet.css">
         <link rel="stylesheet" type="text/css" href="~/Content/responsive-grid.css">
-        <style type="text/css">
-
-        </style>
     </head>
 
 
-    <body class="vertical-aside-body">
+    <body>
         <div class="vertical-aside">
             <div class="header">
                 <h1>Blog Engine</h1>
@@ -34,27 +31,17 @@
                 </ul>
             </nav>
         </div>
-
-        @*<nav class="vertical-nav">
-            <ul>
-                <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
-                <li>@Html.ActionLink("Compose", "Add", "Entries")</li>
-                <li>@Html.ActionLink("Posts", "All", "Entries")</li>
-                <li><a href="#">Settings</a></li>
-            </ul>
-        </nav>*@
         
-        <div class="admin-centered-container">
-            @RenderBody()
+        <div class="admin-container">
+            <div class="centered-container">
+                @RenderBody()
+            </div>
         </div>
 
-        
-        
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="~\Scripts/jquery.unobtrusive-ajax.min.js"></script>
         @RenderSection("scripts", false);
-        
 
     </body>
 </html>
