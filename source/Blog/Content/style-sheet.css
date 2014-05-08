@@ -423,6 +423,13 @@ form input[type="password"]
     border: 1px solid #e6e2df;
 }
 
+.vertical-nav-body
+{
+    margin-left:250px;
+    width:100%;
+    overflow: hidden;
+}
+
 nav.vertical-nav
 {
     background: #222222;
@@ -430,6 +437,8 @@ nav.vertical-nav
     width: 250px;
     height: 100%;
     position: fixed;
+    left: 0;
+    top: 0;
 }
 
 nav.vertical-nav li
@@ -476,3 +485,4 @@ th, td
 {
     display: none;
 }
+

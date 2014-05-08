@@ -9,8 +9,12 @@
     <link rel="stylesheet" type="text/css" href="~/Content/style-sheet.css">
     <link rel="stylesheet" type="text/css" href="~/Content/responsive-grid.css">
     
+    
+
+
+    
 </head>
-    <body>
+    <body class="vertical-nav-body">
         <nav class="vertical-nav">
             <ul>
                 <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
@@ -20,9 +24,7 @@
             </ul>
         </nav>
         
-        <div class="centered-container">
             @RenderBody()
-        </div>
         
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="~\Scripts/jquery.unobtrusive-ajax.min.js"></script>
