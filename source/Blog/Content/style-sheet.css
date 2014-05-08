@@ -423,7 +423,35 @@ form input[type="password"]
     border: 1px solid #e6e2df;
 }
 
-.vertical-nav-body
+
+table
+{
+    border: 1px solid #cbcbcb;
+}
+
+thead
+{
+    background: #e0e0e0;
+}
+
+th, td
+{
+    border-left: 1px solid #cbcbcb;
+    border-width: 0 0 0 1px;
+    font-size: inherit;
+    margin: 0;
+    overflow: visible;
+    padding: 15px;
+}
+
+#progress-indicator
+{
+    display: none;
+}
+
+
+
+/*.vertical-nav-body
 {
     margin-left:250px;
     width:100%;
@@ -459,30 +487,80 @@ nav.vertical-nav ul li >a:hover
 {
     background-color: #080808;
     color: white;
+}*/
+
+
+body.vertical-aside-body
+{
+    margin-left:250px;
+    width:100%;
+    overflow: hidden;
 }
 
-table
+.vertical-aside
 {
-    border: 1px solid #cbcbcb;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 250px;
+    background: #222;
+    margin-left: -250px;
+    margin-left: 0px;
 }
 
-thead
+.vertical-aside .header
 {
-    background: #e0e0e0;
+    padding: 20px 20px;
+    padding-right: 0;
+    background-color: #262626;
+    color: white;
 }
 
-th, td
+.vertical-aside .header h1
 {
-    border-left: 1px solid #cbcbcb;
-    border-width: 0 0 0 1px;
-    font-size: inherit;
-    margin: 0;
-    overflow: visible;
+    color: #BBBBBB;
+    letter-spacing: 2px;
+    font-weight: 400;
+    font-size: 20px;
+    display: inline-block;
+}
+
+.vertical-aside .header .home-button
+{
+    float: right;
+    margin-right: 25px;
+    color: #BBBBBB;
+    background-color: #181818;
+    border: 2px #2D2D2D solid;
+    padding: 5px;
+}
+
+.vertical-aside nav a
+{
+    display:block;
+    color:#BBBBBB;
+    text-decoration: none;
     padding: 15px;
 }
 
-#progress-indicator
+.vertical-aside nav a:hover
 {
-    display: none;
+    background-color: #080808;
+    color: white;
 }
 
+.vertical-aside nav a i
+{
+    margin-right: 5px;
+}
+
+.vertical-aside nav .notification
+{
+    font-size: 13px;
+    float: right;
+    margin-right: 25px;
+    background-color: gray;
+    padding: 3px;
+    border-radius: 5px;
+}

@@ -1,33 +1,61 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>@ViewBag.Title</title>
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:300,400,700">
-    <link rel="stylesheet" type="text/css" href="~/Content/reset.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/style-sheet.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/responsive-grid.css">
     
-    
+    <head>
+        <title>@ViewBag.Title</title>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:300,400,700">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Raleway:400,100,200,300">
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+
+        <link rel="stylesheet" type="text/css" href="~/Content/reset.css">
+        <link rel="stylesheet" type="text/css" href="~/Content/style-sheet.css">
+        <link rel="stylesheet" type="text/css" href="~/Content/responsive-grid.css">
+    </head>
 
 
-    
-</head>
-    <body class="vertical-nav-body">
-        <nav class="vertical-nav">
+    <body class="vertical-aside-body">
+        
+        
+        <div class="vertical-aside">
+
+            <div class="header">
+                <h1>Blog Engine</h1>
+                <a href="" class="home-button"><i class="fa fa-home"></i></a>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href=""><i class="fa fa-home fa-fw"></i>Dashboard</a></li>
+                    <li><a href=""><i class="fa fa-pencil fa-fw"></i>Compose</a></li>
+                    <li><a href=""><i class="fa fa-copy fa-fw"></i>Posts<span class="notification">549</span></a></li>
+                    <li><a href=""><i class="fa fa-cog fa-fw"></i>Settings</a></li>
+                </ul>
+            </nav>
+
+        </div>
+
+        @*<nav class="vertical-nav">
             <ul>
                 <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
                 <li>@Html.ActionLink("Compose", "Add", "Entries")</li>
                 <li>@Html.ActionLink("Posts", "All", "Entries")</li>
                 <li><a href="#">Settings</a></li>
             </ul>
-        </nav>
+        </nav>*@
         
+        <div class="admin-centered-container">
             @RenderBody()
+        </div>
+
         
+        
+
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="~\Scripts/jquery.unobtrusive-ajax.min.js"></script>
         @RenderSection("scripts", false);
+        
+
     </body>
 </html>
