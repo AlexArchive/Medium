@@ -101,7 +101,6 @@
     <Content Include="Content\responsive-grid.css" />
     <Content Include="Content\style-sheet.css" />
     <Content Include="Global.asax" />
-    <Content Include="Images\progress-indicator.gif" />
     <Content Include="Images\github.png" />
     <Content Include="Images\skype.png" />
     <Content Include="Images\spotify.png" />

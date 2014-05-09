@@ -19,3 +19,5 @@ need a nice font.
 Edit view is broke.
 
 Error messages are needed.
+
+Delete Confirmation

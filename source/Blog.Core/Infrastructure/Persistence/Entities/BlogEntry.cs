@@ -9,7 +9,6 @@ namespace Blog.Core.Infrastructure.Persistence.Entities
         [Required]
         [StringLength(250)]
         [Display(Name = "Slug")]
-
         /* could we use the fluent API to provide a default value? */
         public string HeaderSlug { get; set; }
 

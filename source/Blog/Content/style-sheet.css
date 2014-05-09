@@ -517,12 +517,18 @@ nav.vertical-nav ul li >a:hover
     padding: 5px;
 }
 
+.vertical-aside .header .home-button:hover
+{
+    background-color: #252525;
+}
+
 .vertical-aside nav a
 {
     display:block;
     color:#BBBBBB;
     text-decoration: none;
     padding: 15px;
+    padding-right: 0;
 }
 
 .vertical-aside nav a:hover

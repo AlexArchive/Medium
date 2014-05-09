@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -60,7 +59,7 @@ namespace Blog.Core.Infrastructure.Persistence
             return existing;
         }
 
-        public void Update(TEntity updatedEntity, params Expression<Func<TEntity, object>>[] properties)
+        public void UpdatePartial(TEntity updatedEntity, params Expression<Func<TEntity, object>>[] properties)
         {
             _context.Configuration.ValidateOnSaveEnabled = false;
 

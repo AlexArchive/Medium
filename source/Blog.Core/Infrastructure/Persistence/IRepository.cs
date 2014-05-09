@@ -13,7 +13,7 @@ namespace Blog.Core.Infrastructure.Persistence
         IQueryable<TEntity> All();
         TEntity Add(TEntity entity);
         TEntity Update(TEntity updatedEntity, object key);
-        void Update(TEntity updatedEntity, params Expression<Func<TEntity, object>>[] properties);
+        void UpdatePartial(TEntity updatedEntity, params Expression<Func<TEntity, object>>[] properties);
         void Delete(TEntity entity);
     }
 }

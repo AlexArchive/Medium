@@ -27,7 +27,7 @@ namespace Blog.Areas.Admin.Controllers
                     return View();
                 }
 
-                ModelState.AddModelError("","You have previously published a blog entry with this slug. Please choose another one.");
+                ModelState.AddModelError("", "You have previously published a blog entry with this slug. Please choose another one.");
             }
 
             return View(model);
@@ -35,11 +35,7 @@ namespace Blog.Areas.Admin.Controllers
 
 
 
-        private string LinkToEntry(string headerSlug)
-        {
-            var helper = new UrlHelper(ControllerContext.RequestContext);
-            return helper.Action("Entry", "Blog", new { area = "", headerSlug = headerSlug });
-        }
+
 
 
         public ActionResult All()
@@ -60,7 +56,7 @@ namespace Blog.Areas.Admin.Controllers
         public ActionResult Edit(string slug)
         {
             var entry = _entryService.Get(slug);
-            
+
 
             EntryInput input = new EntryInput
             {
@@ -83,13 +79,17 @@ namespace Blog.Areas.Admin.Controllers
                 Content = input.Content
             };
 
-           _entryService.Update(entry);
+            _entryService.Update(entry);
 
-           var helper = new UrlHelper(ControllerContext.RequestContext);
-           var linkToEntry = helper.Action("Entry", "Blog", new { area = "", headerSlug = entry.HeaderSlug });
-           ViewBag.LinkToEntry = linkToEntry;
+            ViewBag.EntryLink = LinkToEntry(entry.HeaderSlug);
 
             return View("Add", input);
+        }
+
+        private string LinkToEntry(string headerSlug)
+        {
+            var helper = new UrlHelper(ControllerContext.RequestContext);
+            return helper.Action("Entry", "Blog", new { area = "", headerSlug });
         }
 
 
