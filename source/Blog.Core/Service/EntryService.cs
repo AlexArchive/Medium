@@ -23,6 +23,14 @@ namespace Blog.Core.Service
             }
         }
 
+        public int EntriesCount()
+        {
+            using (var repository = new Repository<BlogEntry>())
+            {
+                return repository.All().Count();
+            }
+        }
+
         public List<BlogEntry> List()
         {
             using (var repository = new Repository<BlogEntry>())

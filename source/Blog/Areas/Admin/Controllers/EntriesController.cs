@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Runtime.InteropServices;
+using System.Web.Mvc;
 using Blog.Core.Infrastructure.Persistence.Entities;
 using Blog.Core.Service;
 using Blog.Models;
@@ -9,6 +10,11 @@ namespace Blog.Areas.Admin.Controllers
     public class EntriesController : Controller
     {
         private readonly EntryService _entryService = new EntryService();
+
+        public EntriesController()
+        {
+            ViewBag.EntryCount = _entryService.EntriesCount();
+        }
 
         public ActionResult Add()
         {
@@ -24,6 +30,7 @@ namespace Blog.Areas.Admin.Controllers
                 if (success)
                 {
                     ViewBag.EntryLink = LinkToEntry(model.HeaderSlug);
+                    ViewBag.EntryCount = _entryService.EntriesCount();
                     return View();
                 }
 
@@ -32,11 +39,6 @@ namespace Blog.Areas.Admin.Controllers
 
             return View(model);
         }
-
-
-
-
-
 
         public ActionResult All()
         {

@@ -25,7 +25,7 @@
 
             <nav>
                 <ul>
-                    <li><a href="@Url.Action("All", "Entries")"><i class="fa fa-copy fa-fw"></i>Posts<span class="notification">549</span></a></li>
+                    <li><a href="@Url.Action("All", "Entries")"><i class="fa fa-copy fa-fw"></i>Posts<span class="notification">@ViewBag.EntryCount</span></a></li>
                     <li><a href="@Url.Action("Add", "Entries")"><i class=" fa fa-pencil fa-fw"></i>Compose</a></li>
                 </ul>
             </nav>
