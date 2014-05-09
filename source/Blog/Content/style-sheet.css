@@ -515,6 +515,16 @@ nav.vertical-nav ul li >a:hover
     color: white;
 }
 
+.page-header
+{
+    background-color: #EFEFEF;
+    border-bottom: 1px #BFBFBF solid;
+    padding: 30px 20px;
+    margin-bottom: 30px;
+    background: #f7f7f7;
+    border-bottom: 1px solid #d3d7db;
+}
+
 .vertical-aside .header h1
 {
     color: #BBBBBB;

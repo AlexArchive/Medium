@@ -16,6 +16,7 @@
 
 
     <body>
+        
         <div class="vertical-aside">
             <div class="header">
                 <h1>Blog Engine</h1>
@@ -24,14 +25,18 @@
 
             <nav>
                 <ul>
-                    <li><a href="@Url.Action("Index", "Dashboard")"><i class="fa fa-home fa-fw"></i>Dashboard</a></li>
-                    <li><a href="@Url.Action("Add", "Entries")"><i class=" fa fa-pencil fa-fw"></i>Compose</a></li>
                     <li><a href="@Url.Action("All", "Entries")"><i class="fa fa-copy fa-fw"></i>Posts<span class="notification">549</span></a></li>
-                    <li><a href=""><i class="fa fa-cog fa-fw"></i>Settings</a></li>
+                    <li><a href="@Url.Action("Add", "Entries")"><i class=" fa fa-pencil fa-fw"></i>Compose</a></li>
                 </ul>
             </nav>
         </div>
         
+        
+        <div class="page-header">
+            
+        </div>
+
+
         <div class="admin-container">
             <div class="centered-container">
                 @RenderBody()

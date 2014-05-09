@@ -23,7 +23,7 @@ namespace Blog.Areas.Admin
             context.MapRoute(
                 "Admin_default",
                 "admin/{controller}/{action}/{id}",
-                new { controller = "Dashboard", action = "Index", id = UrlParameter.Optional }
+                new { controller = "Entries", action = "All", id = UrlParameter.Optional }
             );
         }
     }
