@@ -421,16 +421,8 @@ form input[type="password"]
     height: 450px;
     margin-bottom: 15px;
     border: 1px solid #e6e2df;
+    font-size: 16px;
 }
-
-
-
-#progress-indicator
-{
-    display: none;
-}
-
-
 
 /*.vertical-nav-body
 {

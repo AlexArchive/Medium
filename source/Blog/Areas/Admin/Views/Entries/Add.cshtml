@@ -1,10 +1,16 @@
 ﻿@model Blog.Models.EntryInput
 
+@Html.ValidationSummary()
+
 <div class="validation-summary-success">
-    <p id="validation-message"> </p>
+    @if (ViewBag.EntryLink != null)
+{
+    <p>Your post has been published and is available <a href="@ViewBag.EntryLink">here</a>.</p>
+}
+        
 </div>
 
-@using (Ajax.BeginForm("Add", "Entries", new AjaxOptions { LoadingElementId = "progress-indicator", UpdateTargetId = "validation-message", InsertionMode = InsertionMode.Replace }))
+@using (Html.BeginForm())
 {
     @Html.LabelFor(m => m.Header);
     @Html.TextBoxFor(m => m.Header);
@@ -18,10 +24,6 @@
 
     <button type="submit" class="flat-button">Post</button>
 }
-
-<div id="progress-indicator">
-    <img src="~/Images/progress-indicator.gif" alt="Publishing..." />
-</div>
 
 @section scripts
 {

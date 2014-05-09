@@ -23,15 +23,17 @@ namespace Blog.Areas.Admin.Controllers
                 bool success = _entryService.Add(model.Header, model.HeaderSlug, model.Content);
                 if (success)
                 {
-                    var entryLink = LinkToEntry(model.HeaderSlug);
-                    return Json("Entry Published. You can view the entry here: " + entryLink);
+                    ViewBag.EntryLink = LinkToEntry(model.HeaderSlug);
+                    return View();
                 }
 
-                return Json("You have previously published a blog entry with this slug. Please choose another one.");
+                ModelState.AddModelError("","You have previously published a blog entry with this slug. Please choose another one.");
             }
 
-            return Json("Ensure that your input is valid.");
+            return View(model);
         }
+
+
 
         private string LinkToEntry(string headerSlug)
         {
