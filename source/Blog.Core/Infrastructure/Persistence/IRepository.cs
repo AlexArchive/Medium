@@ -12,7 +12,8 @@ namespace Blog.Core.Infrastructure.Persistence
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
         IQueryable<TEntity> All();
         TEntity Add(TEntity entity);
-        TEntity Update(TEntity entity, object key);
+        TEntity Update(TEntity updatedEntity, object key);
+        void Update(TEntity updatedEntity, params Expression<Func<TEntity, object>>[] properties);
         void Delete(TEntity entity);
     }
 }

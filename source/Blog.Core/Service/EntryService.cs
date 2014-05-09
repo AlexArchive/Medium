@@ -14,7 +14,7 @@ namespace Blog.Core.Service
         {
             using (var repository = new Repository<BlogEntry>())
             {
-                var entries = 
+                var entries =
                     repository
                         .All()
                         .OrderByDescending(e => e.PublishDate);
@@ -38,7 +38,7 @@ namespace Blog.Core.Service
         {
             using (var repository = new Repository<BlogEntry>())
             {
-                var entry = 
+                var entry =
                     repository
                         .All()
                         .FirstOrDefault(e => e.HeaderSlug == slug);
@@ -78,7 +78,7 @@ namespace Blog.Core.Service
         {
             using (var repository = new Repository<BlogEntry>())
             {
-                repository.Update(entity: entry, key: entry.HeaderSlug);
+                repository.Update(entry, e => e.HeaderSlug, e => e.Header, e => e.Content);
             }
         }
 

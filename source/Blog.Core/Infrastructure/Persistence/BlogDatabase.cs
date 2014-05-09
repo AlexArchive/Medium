@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using Blog.Core.Infrastructure.Persistence.Entities;
 
 namespace Blog.Core.Infrastructure.Persistence

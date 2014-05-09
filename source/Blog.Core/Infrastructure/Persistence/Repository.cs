@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -47,15 +48,31 @@ namespace Blog.Core.Infrastructure.Persistence
             return entity;
         }
 
-        public TEntity Update(TEntity entity, object key)
+        public TEntity Update(TEntity updatedEntity, object key)
         {
             var existing = Find(key);
+
             if (existing != null)
             {
-                _context.Entry(existing).CurrentValues.SetValues(entity);
+                _context.Entry(existing).CurrentValues.SetValues(updatedEntity);
                 _context.SaveChanges();
             }
             return existing;
+        }
+
+        public void Update(TEntity updatedEntity, params Expression<Func<TEntity, object>>[] properties)
+        {
+            _context.Configuration.ValidateOnSaveEnabled = false;
+
+            _context.Set<TEntity>().Attach(updatedEntity);
+            var entry = _context.Entry(updatedEntity);
+
+            foreach (var selector in properties)
+                entry.Property(selector).IsModified = true;
+
+            _context.SaveChanges();
+
+            _context.Configuration.ValidateOnSaveEnabled = true;
         }
 
         public void Delete(TEntity entity)
