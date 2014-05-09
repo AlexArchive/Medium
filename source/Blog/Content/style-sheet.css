@@ -424,25 +424,6 @@ form input[type="password"]
 }
 
 
-table
-{
-    border: 1px solid #cbcbcb;
-}
-
-thead
-{
-    background: #e0e0e0;
-}
-
-th, td
-{
-    border-left: 1px solid #cbcbcb;
-    border-width: 0 0 0 1px;
-    font-size: inherit;
-    margin: 0;
-    overflow: visible;
-    padding: 15px;
-}
 
 #progress-indicator
 {
@@ -493,6 +474,7 @@ nav.vertical-nav ul li >a:hover
 .admin-container
 {
     margin-left: 250px;
+    padding: 30px;
 }
 
 .vertical-aside
@@ -520,7 +502,6 @@ nav.vertical-nav ul li >a:hover
     background-color: #EFEFEF;
     border-bottom: 1px #BFBFBF solid;
     padding: 30px 20px;
-    margin-bottom: 30px;
     background: #f7f7f7;
     border-bottom: 1px solid #d3d7db;
 }
@@ -573,3 +554,25 @@ nav.vertical-nav ul li >a:hover
     border-radius: 5px;
 }
 
+
+table
+{
+    border: 1px solid #cbcbcb;
+    table-layout: fixed;
+    width: 100%;
+}
+
+thead
+{
+    background: #e0e0e0;
+}
+
+th, td
+{
+    border-left: 1px solid #cbcbcb;
+    border-width: 0 0 0 1px;
+    font-size: inherit;
+    margin: 0;
+    overflow: visible;
+    padding: 15px;
+}

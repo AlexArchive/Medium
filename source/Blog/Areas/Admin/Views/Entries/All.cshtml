@@ -1,47 +1,42 @@
-﻿@using Blog.Infrastructure.Common
-@model IList<Blog.Core.Infrastructure.Persistence.Entities.BlogEntry>
+﻿@using Blog.Core.Infrastructure.Persistence.Entities
+@using Blog.Infrastructure.Common
+@model IEnumerable<BlogEntry>
 
 @{
     ViewBag.Title = "All";
 }
 
 <table>
-    
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.First().Header)
+                @Html.DisplayNameFor(model => model.Header)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.First().Views)
+                @Html.DisplayNameFor(model => model.Views)
             </th>
             <th>
-                @Html.DisplayNameFor(x => x.First().PublishDate)
+                @Html.DisplayNameFor(x => x.PublishDate)
             <th>
         </tr>
     </thead>
     
     <tbody>
-
-        @foreach (var item in Model)
-        {
+        @foreach (var entry in Model) {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Header)
+                     @Html.DisplayFor(_ => entry.Header)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Views)
+                    @Html.DisplayFor(_ => entry.Views)
                 </td>
                 <td>
-                    @item.PublishDate.Humanize()
+                    @entry.PublishDate.Humanize()
                 </td>
-
-
                 <td>
-                    @Html.ActionLink("Delete", "Delete", new { slug = item.HeaderSlug }) | 
-                    @Html.ActionLink("Preview", "Entry", "Blog", new { area = "", headerSlug = item.HeaderSlug }, new { }) |
-                    @Html.ActionLink("Edit", "Edit", new { slug = item.HeaderSlug })
-
+                    @Html.ActionLink("Delete", "Delete", new { slug = entry.HeaderSlug }) |
+                    @Html.ActionLink("Preview", "Entry", "Blog", new { area = "", headerSlug = entry.HeaderSlug }, new {}) |
+                    @Html.ActionLink("Edit", "Edit", new { slug = entry.HeaderSlug })
                 </td>
             </tr>
         }
