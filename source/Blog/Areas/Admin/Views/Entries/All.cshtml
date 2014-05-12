@@ -16,7 +16,7 @@
                 @Html.DisplayNameFor(model => model.Views)
             </th>
             <th>
-                @Html.DisplayNameFor(x => x.PublishDate)
+            @Html.DisplayNameFor(x => x.PublishDate)
             <th>
         </tr>
     </thead>
@@ -25,7 +25,7 @@
         @foreach (var entry in Model) {
             <tr>
                 <td>
-                     @Html.DisplayFor(_ => entry.Header)
+                    @Html.DisplayFor(_ => entry.Header)
                 </td>
                 <td>
                     @Html.DisplayFor(_ => entry.Views)
@@ -34,12 +34,29 @@
                     @entry.PublishDate.Humanize()
                 </td>
                 <td>
-                    @Html.ActionLink("Delete", "Delete", new { slug = entry.HeaderSlug }) |
-                    @Html.ActionLink("Preview", "Entry", "Blog", new { area = "", headerSlug = entry.HeaderSlug }, new {}) |
+                    @Html.ActionLink("Delete", "Delete", new { slug = entry.HeaderSlug }, new { data_confirmation_msg = "Are you sure you want to delete this entry? There is no going back." }) |
+                    @Html.ActionLink("Preview", "Entry", "Blog", new { area = "", headerSlug = entry.HeaderSlug }) |
                     @Html.ActionLink("Edit", "Edit", new { slug = entry.HeaderSlug })
                 </td>
             </tr>
         }
     </tbody>
-
 </table>
+
+@section scripts
+{
+    <script>
+        window.onload = function () {
+            var targets = document.querySelectorAll("[data-confirmation-msg]");
+
+            for (var i = 0; i < targets.length; i++) {
+                var confirmText = targets[i].getAttribute("data-confirmation-msg");
+                targets[i].onclick = function () {
+                    if (!confirm(confirmText)) {
+                        event.preventDefault();
+                    }
+                };
+            }
+        };
+    </script>
+}

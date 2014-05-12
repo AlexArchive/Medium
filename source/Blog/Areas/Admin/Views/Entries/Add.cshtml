@@ -4,9 +4,9 @@
 
 <div class="validation-summary-success">
     @if (ViewBag.EntryLink != null)
-{
-    <p>Your post has been published and is available <a href="@ViewBag.EntryLink">here</a>.</p>
-}
+    {
+        <p>Your post has been published and is available <a href="@ViewBag.EntryLink">here</a>.</p>
+    }
         
 </div>
 
@@ -43,7 +43,6 @@
             form.onsubmit = function () {
                 document.getElementById("Content").value = editor.getSession().getValue();
             };
-
         };
     </script>
 }

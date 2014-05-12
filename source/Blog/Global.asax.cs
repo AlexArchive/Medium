@@ -15,7 +15,7 @@ namespace Blog
 
             AutoMapperConfiguration.Configure();
 
-            // Database.SetInitializer(new Configuration());
+            //Database.SetInitializer(new Configuration());
         }
     }
 
