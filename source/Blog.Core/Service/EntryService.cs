@@ -55,9 +55,9 @@ namespace Blog.Core.Service
             }
         }
 
-        public bool Add(string header, string headerSlug, string content)
+        public bool Add(string header, string headerSlug, string content, bool published)
         {
-            var entry = MakeBlogEntry(header, headerSlug, content);
+            var entry = MakeBlogEntry(header, headerSlug, content, published);
 
             using (var repository = new Repository<BlogEntry>())
             {
@@ -90,13 +90,14 @@ namespace Blog.Core.Service
             }
         }
 
-        private static BlogEntry MakeBlogEntry(string header, string headerSlug, string content)
+        private static BlogEntry MakeBlogEntry(string header, string headerSlug, string content, bool published)
         {
             var entry = new BlogEntry
             {
                 Header = header,
                 HeaderSlug = headerSlug,
                 Content = content,
+                Published  = published,
                 PublishDate = DateTime.Now,
                 Summary = MakeSummary(content),
                 Views = 0

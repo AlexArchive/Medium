@@ -26,10 +26,12 @@ namespace Blog.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool success = _entryService.Add(model.Header, model.HeaderSlug, model.Content);
+                string slug = model.Header.ToLower().Replace(' ', '-');
+
+                bool success = _entryService.Add(model.Header, slug, model.Content, model.Published);
                 if (success)
                 {
-                    ViewBag.EntryLink = LinkToEntry(model.HeaderSlug);
+                    ViewBag.EntryLink = LinkToEntry(slug);
                     ViewBag.EntryCount = _entryService.EntriesCount();
                     return View();
                 }
@@ -55,38 +57,38 @@ namespace Blog.Areas.Admin.Controllers
         }
 
 
-        public ActionResult Edit(string slug)
-        {
-            var entry = _entryService.Get(slug);
+        //public ActionResult Edit(string slug)
+        //{
+        //    var entry = _entryService.Get(slug);
 
 
-            EntryInput input = new EntryInput
-            {
-                HeaderSlug = entry.HeaderSlug,
-                Header = entry.Header,
-                Content = entry.Content
-            };
+        //    EntryInput input = new EntryInput
+        //    {
+        //        HeaderSlug = entry.HeaderSlug,
+        //        Header = entry.Header,
+        //        Content = entry.Content
+        //    };
 
-            return View("Add", input);
-        }
+        //    return View("Add", input);
+        //}
 
 
-        [HttpPost]
-        public ActionResult Edit(EntryInput input)
-        {
-            BlogEntry entry = new BlogEntry
-            {
-                HeaderSlug = input.HeaderSlug,
-                Header = input.Header,
-                Content = input.Content
-            };
+        //[HttpPost]
+        //public ActionResult Edit(EntryInput input)
+        //{
+        //    BlogEntry entry = new BlogEntry
+        //    {
+        //        HeaderSlug = input.HeaderSlug,
+        //        Header = input.Header,
+        //        Content = input.Content
+        //    };
 
-            _entryService.Update(entry);
+        //    _entryService.Update(entry);
 
-            ViewBag.EntryLink = LinkToEntry(entry.HeaderSlug);
+        //    ViewBag.EntryLink = LinkToEntry(entry.HeaderSlug);
 
-            return View("Add", input);
-        }
+        //    return View("Add", input);
+        //}
 
         private string LinkToEntry(string headerSlug)
         {

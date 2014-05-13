@@ -26,6 +26,8 @@ namespace Blog.Core.Infrastructure.Persistence.Entities
         [Display(Name = "Approximate Views")]
         public int Views { get; set; }
 
+        public bool Published { get; set; }
+
         [Display(Name = "Published")]
         public DateTime PublishDate { get; set; }
     }

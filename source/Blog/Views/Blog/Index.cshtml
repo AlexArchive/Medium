@@ -7,12 +7,15 @@
 <div class="frame">
     
     <div class="bit-11">
-        @if (Model.TotalItemCount == 0) {
+        @if (Model.TotalItemCount == 0 || Model.All(e => !e.Published)) {
             <p>No Entries Found.</p>
         }
        
         @foreach (var entry in Model) {
+            if (entry.Published)
+            {
                 @Html.Partial("_EntryPartial", entry)
+            }
         }
         
         @Html.Partial("_PagerPartial")

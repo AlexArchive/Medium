@@ -7,22 +7,40 @@
     {
         <p>Your post has been published and is available <a href="@ViewBag.EntryLink">here</a>.</p>
     }
-        
+
 </div>
 
 @using (Html.BeginForm())
 {
-    @Html.LabelFor(m => m.Header);
-    @Html.TextBoxFor(m => m.Header);
 
-    @Html.LabelFor(m => m.HeaderSlug);
-    @Html.TextBoxFor(m => m.HeaderSlug);
+    <div class="lhs">
+        @Html.LabelFor(m => m.Header)
+        @Html.TextBoxFor(m => m.Header)
 
-    @Html.LabelFor(m => m.Content);
-    @Html.HiddenFor(m => m.Content)
-    <pre id="code-editor"></pre>
+        @Html.LabelFor(m => m.Content)
+        @Html.HiddenFor(m => m.Content)
+        <pre id="code-editor"></pre>
 
-    <button type="submit" class="flat-button">Post</button>
+        <button type="submit" class="flat-button">Post</button>
+    </div>
+
+    <div class="rhs">
+
+        <div class="publish-options">
+            <h3>Options</h3>
+            
+            
+
+            <label>
+                @Html.CheckBoxFor(m => m.Published)
+                Publish
+            </label>
+
+
+        </div>
+    </div>
+
+
 }
 
 @section scripts
@@ -39,7 +57,7 @@
         $(document).ready(function () {
             editor.getSession().setValue(document.getElementById("Content").value);
 
-            $("form").submit(function() {
+            $("form").submit(function () {
                 document.getElementById("Content").value = editor.getSession().getValue();
             });
         });

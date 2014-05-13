@@ -1,6 +1,7 @@
-Consideration for Not Published / Draft
+Clearly there is some discrepancy with the blog entry model and entity. There shouldn't be annotations relating to the
+view on the Entry entity.
 
-Instead of storing the Summary, calculate it when it is read?
+Consideration for Not Published / Draft
 
 Bundle client-side dependencies.
 
@@ -12,12 +13,11 @@ If the admin is logged in, show edit and delete links on the blog entry.
 
 Make Disqus more robust according to that Indian guy.
 
+Error messages are needed.
+
+Instead of storing the Summary, calculate it when it is read?
 updating blog entry does not update the summary lol
 
 need a nice font.
 
-Edit view is broke.
-
-Error messages are needed.
-
-Delete Confirmation
+view count is broke.
