@@ -36,13 +36,13 @@
         editor.setHighlightActiveLine(false);
         editor.setPrintMarginColumn(70);
 
-        window.onload = function () {
+        $(document).ready(function () {
             editor.getSession().setValue(document.getElementById("Content").value);
 
-            var form = document.querySelector("form");
-            form.onsubmit = function () {
+            $("form").submit(function() {
                 document.getElementById("Content").value = editor.getSession().getValue();
-            };
-        };
+            });
+        });
+
     </script>
 }
