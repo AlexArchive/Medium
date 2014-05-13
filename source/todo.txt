@@ -21,3 +21,6 @@ updating blog entry does not update the summary lol
 need a nice font.
 
 view count is broke.
+
+
+Make AutoMapper use the slug converter.
