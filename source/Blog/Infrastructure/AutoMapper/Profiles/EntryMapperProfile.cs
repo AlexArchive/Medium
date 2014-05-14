@@ -17,10 +17,10 @@ namespace Blog.Infrastructure.AutoMapper.Profiles
         protected override void Configure()
         {
             Mapper.CreateMap<BlogEntry, Entry>()
-                // convert content markdown
+                // convert content from markdown to html
                 .ForMember(entry => entry.Content,
                     expression => expression.ResolveUsing(source => _markdown.Transform(source.Content)))
-                // convert summary markdown
+                // convert summary from markdown to html
                 .ForMember(entry => entry.Summary,
                     expression => expression.ResolveUsing(source => _markdown.Transform(source.Summary)));
         }

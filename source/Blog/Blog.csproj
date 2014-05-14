@@ -125,10 +125,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
+    <Compile Include="Infrastructure\AutoMapper\Profiles\EntryInputMapperProfile.cs" />
     <Compile Include="Infrastructure\Common\DateTimeExtensions.cs" />
     <Compile Include="Infrastructure\AutoMapper\AutoMapperConfiguration.cs" />
     <Compile Include="Infrastructure\AutoMapper\Profiles\EntryMapperProfile.cs" />
     <Compile Include="Infrastructure\AutoMapper\Profiles\PagedListMapperProfile.cs" />
+    <Compile Include="Infrastructure\Common\SlugConverter.cs" />
     <Compile Include="Models\Entry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

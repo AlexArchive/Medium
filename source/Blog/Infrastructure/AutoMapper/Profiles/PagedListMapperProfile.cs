@@ -11,8 +11,7 @@ namespace Blog.Infrastructure.AutoMapper.Profiles
         protected override void Configure()
         {
             Mapper.CreateMap<PagedList<BlogEntry>, PagedList<Entry>>()
-                .AfterMap((entity, model) => 
-                    Mapper.Map<List<BlogEntry>, List<Entry>>(entity, model));
+                .AfterMap((entity, model) => Mapper.Map<List<BlogEntry>, List<Entry>>(entity, model));
         }
     }
 }

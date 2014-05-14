@@ -10,7 +10,7 @@ namespace Blog.Core.Service
 {
     public class EntryService
     {
-        public PagedList<BlogEntry> ListPaginated(int pageNumber, int pageSize)
+        public PagedList<BlogEntry> PaginatedList(int pageNumber, int pageSize)
         {
             using (var repository = new Repository<BlogEntry>())
             {
@@ -55,23 +55,39 @@ namespace Blog.Core.Service
             }
         }
 
-        public bool Add(string header, string headerSlug, string content, bool published)
+        public bool Add(BlogEntry entry)
         {
-            var entry = MakeBlogEntry(header, headerSlug, content, published);
-
-            using (var repository = new Repository<BlogEntry>())
+            try
             {
-                try
+                using (var repository = new Repository<BlogEntry>())
                 {
                     repository.Add(entry);
                     return true;
                 }
-                catch (DbUpdateException)
-                {
-                    return false;
-                }
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
+
+        //public bool Add(string header, string headerSlug, string content, bool published)
+        //{
+        //    var entry = MakeBlogEntry(header, headerSlug, content, published);
+
+        //    using (var repository = new Repository<BlogEntry>())
+        //    {
+        //        try
+        //        {
+        //            repository.Add(entry);
+        //            return true;
+        //        }
+        //        catch (DbUpdateException)
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //}
 
         public void Delete(string slug)
         {
@@ -90,24 +106,21 @@ namespace Blog.Core.Service
             }
         }
 
-        private static BlogEntry MakeBlogEntry(string header, string headerSlug, string content, bool published)
-        {
-            var entry = new BlogEntry
-            {
-                Header = header,
-                HeaderSlug = headerSlug,
-                Content = content,
-                Published = published,
-                PublishDate = DateTime.Now,
-                Summary = MakeSummary(content),
-                Views = 0
-            };
-            return entry;
-        }
+        //private static BlogEntry MakeBlogEntry(string header, string headerSlug, string content, bool published)
+        //{
+        //    var entry = new BlogEntry
+        //    {
+        //        Header = header,
+        //        HeaderSlug = headerSlug,
+        //        Content = content,
+        //        Published = published,
+        //        PublishDate = DateTime.Now,
+        //        Summary = MakeSummary(content),
+        //        Views = 0
+        //    };
+        //    return entry;
+        //}
 
-        private static string MakeSummary(string content)
-        {
-            return content.Length < 750 ? content : content.Substring(0, 750) + "...";
-        }
+
     }
 }

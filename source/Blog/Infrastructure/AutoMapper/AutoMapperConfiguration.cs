@@ -9,6 +9,7 @@ namespace Blog.Infrastructure.AutoMapper
         {
             Mapper.AddProfile(new EntryMapperProfile());
             Mapper.AddProfile(new PagedListMapperProfile());
+            Mapper.AddProfile(new EntryInputMapperProfile());
         }
     }
 }

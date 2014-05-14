@@ -18,7 +18,7 @@ namespace Blog.Controllers
         public ActionResult Index(int pageNumber = 1)
         {
             var entries = 
-               _entryService.ListPaginated(pageNumber, ENTRIES_PER_PAGE);
+               _entryService.PaginatedList(pageNumber, ENTRIES_PER_PAGE);
 
             var model = Mapper.Map<PagedList<Entry>>(entries);
         

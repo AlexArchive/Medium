@@ -1,5 +1,7 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Web.Mvc;
+using AutoMapper;
 using Blog.Core.Infrastructure.Persistence.Entities;
 using Blog.Core.Service;
 using Blog.Models;
@@ -26,13 +28,13 @@ namespace Blog.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                string slug = model.Header.ToLower().Replace(' ', '-');
+                var entity = Mapper.Map<BlogEntry>(model);
+                bool success = _entryService.Add(entity);
 
-                bool success = _entryService.Add(model.Header, slug, model.Content, model.Published);
                 if (success)
                 {
-                    ViewBag.EntryLink = LinkToEntry(slug);
-                    ViewBag.EntryCount = _entryService.EntriesCount();
+                    ViewBag.EntryLink = LinkToEntry(entity.HeaderSlug);
+                    ViewBag.EntryCount = _entryService.EntriesCount(); // for some reason the .ctor doesn't work here.
                     return View();
                 }
 
