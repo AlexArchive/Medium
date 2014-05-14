@@ -13,6 +13,8 @@ namespace Blog.Infrastructure.Common
 
             title = Regex.Replace(title, "\\s+", "-");
 
+            title = Regex.Replace(title, "[^\\w\\s]", "-");
+
             title = title.Trim('-');
 
             return title;
