@@ -1,26 +1,26 @@
-Clearly there is some discrepancy with the blog entry model and entity. There shouldn't be annotations relating to the
-view on the Entry entity.
+Feature
+	Support 4 Tags
+	Publish Options
+		Draft
+		Visibility (Public, Private, Password Protected).
+		Publish Date (Immediately, Future).
+	When the user submits an entry take them to the edit Form.
+	Add Bulk Options (Delete, Edit) on All Table.
+	Improve the All Table (Comment Count, Password Protected? Comments Allowed? Tags, Draft?)
+	Improve the Add/Edit View to display relevant text (e.g. "Add Post" or "Update Post").
+	Code Editor
+		Spell Check.
+		Preview Like GH.
+	Authentication
+		Add Remember Password Option.
+		Replace FormsAuth with Membership.
+	Show Editor Word Count.
+	
+Concerns
+	Clearly there is some discrepancy with the entry "models".
+	Disqus comments system needs refactoring and improving (according to JustBlog.)
+	Completely violating DRY in many cases (especially updating and adding posts.)
 
-Consideration for Not Published / Draft
-
-Bundle client-side dependencies.
-
-Make about-me a default page you cannot remove.
-
-Search
-
-If the admin is logged in, show edit and delete links on the blog entry.
-
-Make Disqus more robust according to that Indian guy.
-
-Error messages are needed.
-
-Instead of storing the Summary, calculate it when it is read?
-updating blog entry does not update the summary lol
-
-need a nice font.
-
-view count is broke.
-
-
-Make AutoMapper use the slug converter.
+Bugs
+	View count doesn't work.
+	Updating a blog entry does not update the summary lol
