@@ -29,11 +29,18 @@
         <div class="publish-options">
             <h3>Options</h3>
             
-            
-
             <label>
                 @Html.CheckBoxFor(m => m.Published)
                 Publish
+            </label>
+            
+            <label>
+                <p>Date: <input type="text" id="datepicker"></p>
+            </label>
+            
+            <label>
+                @Html.CheckBoxFor(m => m.Published)
+                Allow Comments
             </label>
 
 
@@ -45,7 +52,10 @@
 
 @section scripts
 {
+    <link href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    
     <script>
         var editor = ace.edit("code-editor");
         editor.setTheme("ace/theme/textmate");
@@ -60,6 +70,9 @@
             $("form").submit(function () {
                 document.getElementById("Content").value = editor.getSession().getValue();
             });
+
+            $("#datepicker").datepicker();
+
         });
 
     </script>

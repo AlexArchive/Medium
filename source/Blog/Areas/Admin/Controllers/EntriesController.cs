@@ -65,7 +65,8 @@ namespace Blog.Areas.Admin.Controllers
             EntryInput input = new EntryInput
             {
                 Header = entry.Header,
-                Content = entry.Content
+                Content = entry.Content,
+                Published = entry.Published
             };
 
             return View("Add", input);
@@ -79,7 +80,8 @@ namespace Blog.Areas.Admin.Controllers
             {
                 HeaderSlug =  input.Header.ToLower().Replace(' ', '-'),
                 Header = input.Header,
-                Content = input.Content
+                Content = input.Content,
+                Published = input.Published
             };
 
             _entryService.Update(entry);

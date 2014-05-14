@@ -86,7 +86,7 @@ namespace Blog.Core.Service
         {
             using (var repository = new Repository<BlogEntry>())
             {
-                repository.UpdatePartial(entry, e => e.HeaderSlug, e => e.Header, e => e.Content);
+                repository.UpdatePartial(entry, e => e.HeaderSlug, e => e.Header, e => e.Content, e => e.Published);
             }
         }
 
@@ -97,7 +97,7 @@ namespace Blog.Core.Service
                 Header = header,
                 HeaderSlug = headerSlug,
                 Content = content,
-                Published  = published,
+                Published = published,
                 PublishDate = DateTime.Now,
                 Summary = MakeSummary(content),
                 Views = 0

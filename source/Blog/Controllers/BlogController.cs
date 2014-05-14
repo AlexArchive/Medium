@@ -31,7 +31,7 @@ namespace Blog.Controllers
                 throw new ArgumentNullException("headerSlug");
 
             var entry = _entryService.Get(headerSlug);
-            if (entry == null) 
+            if (entry == null || !entry.Published) 
             {
                 return HttpNotFound();
             }
