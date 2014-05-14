@@ -1,4 +1,6 @@
-﻿using Blog.Infrastructure.AutoMapper;
+﻿using System.Data.Entity;
+using Blog.Core.Infrastructure.Persistence.Migrations;
+using Blog.Infrastructure.AutoMapper;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -15,7 +17,7 @@ namespace Blog
 
             AutoMapperConfiguration.Configure();
 
-            //Database.SetInitializer(new Configuration());
+            Database.SetInitializer(new Configuration());
         }
     }
 

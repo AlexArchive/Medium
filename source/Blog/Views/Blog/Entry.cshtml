@@ -12,7 +12,10 @@
     </div>
 
     @Html.Raw(Model.Content)
-    
-    @Html.Partial("_Disqus")
+
+    @if (Model.AllowComments)
+    {
+        @Html.Partial("_Disqus")
+    }
 
 </article>

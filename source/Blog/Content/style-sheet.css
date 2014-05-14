@@ -596,13 +596,6 @@ th, td
     border: 1px solid #e6e2df;
 }
 
-.publish-options
-{
-    margin-top: 20px;
-    padding: 15px;
-    border: 1px solid #e6e2df;
-}
-
 .rhs h3
 {
     font-size: 20px;
@@ -617,4 +610,21 @@ th, td
     margin: 0;
     padding: 0;
     width: inherit;
+}
+.publish-options
+{
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #e6e2df;
+}
+
+.publish-options input[type="checkbox"] {
+    margin: 0;
+    padding: 0;
+    width: inherit;
+}
+.publish-options label
+{
+    display: block;
+    margin-bottom: 10px;
 }

@@ -63,12 +63,12 @@ namespace Blog.Areas.Admin.Controllers
         {
             var entry = _entryService.Get(slug);
 
-
-            EntryInput input = new EntryInput
+            var input = new EntryInput
             {
                 Header = entry.Header,
                 Content = entry.Content,
-                Published = entry.Published
+                Published = entry.Published,
+                AllowComments = entry.AllowComments
             };
 
             return View("Add", input);
@@ -83,7 +83,8 @@ namespace Blog.Areas.Admin.Controllers
                 HeaderSlug =  input.Header.ToLower().Replace(' ', '-'),
                 Header = input.Header,
                 Content = input.Content,
-                Published = input.Published
+                Published = input.Published,
+                AllowComments = input.AllowComments
             };
 
             _entryService.Update(entry);

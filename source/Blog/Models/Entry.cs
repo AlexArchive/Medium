@@ -15,6 +15,7 @@ namespace Blog.Models
         public bool Published { get; set; }
         [Display(Name = "Published")]
         public DateTime PublishDate { get; set; }
+        public bool AllowComments { get; set; }
     }
 
     public class EntryInput
@@ -27,5 +28,6 @@ namespace Blog.Models
         public string Content { get; set; }
 
         public bool Published { get; set; }
+        public bool AllowComments { get; set; }
     }
 }

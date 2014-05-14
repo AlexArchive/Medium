@@ -31,15 +31,15 @@
             
             <label>
                 @Html.CheckBoxFor(m => m.Published)
-                Publish
+                Publish immediately
             </label>
             
-            <label>
+            @*<label>
                 <p>Date: <input type="text" id="datepicker"></p>
-            </label>
+            </label>*@
             
             <label>
-                @Html.CheckBoxFor(m => m.Published)
+                @Html.CheckBoxFor(m => m.AllowComments)
                 Allow Comments
             </label>
 

@@ -30,5 +30,8 @@ namespace Blog.Core.Infrastructure.Persistence.Entities
 
         [Display(Name = "Published")]
         public DateTime PublishDate { get; set; }
+
+        public bool AllowComments { get; set; }
+
     }
 }
