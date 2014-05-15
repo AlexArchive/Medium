@@ -148,9 +148,10 @@
   <ItemGroup>
     <Content Include="Views\Shared\_TagsPartial.cshtml" />
     <Content Include="Views\Blog\Archive.cshtml" />
-    <Content Include="Views\Shared\_Disqus.cshtml" />
+    <Content Include="Views\Shared\_CommentsPartial.cshtml" />
     <None Include="Properties\PublishProfiles\Blopg.pubxml" />
     <None Include="Properties\PublishProfiles\Niek.pubxml" />
+    <Content Include="Views\Shared\_EntryHeaderPartial.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

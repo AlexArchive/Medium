@@ -1,12 +1,9 @@
 ﻿@model Blog.Models.EntryViewModel
 
 <article class="blog-entry">
+    
+    @Html.Partial("_EntryHeaderPartial")
 
-    <div class="entry-header">
-        <h1>@Html.ActionLink(@Model.Header, "Entry", "Blog", new { headerSlug = Model.Slug }, null)</h1>
-        <small><a>@Model.PublishedAt.ToString("MMMM dd, yyyy")</a></small>
-        <small><a href="@string.Format("{0}#disqus_thread", Url.RouteUrl(new { controller="Blog", action = "Entry", headerSlug = Model.Slug }))"></a></small>
-    </div>
 
     @*@Html.Raw(Model.Summary)*@
     @Html.Raw(Model.Summary)
