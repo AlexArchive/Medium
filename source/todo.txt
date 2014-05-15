@@ -24,3 +24,4 @@ Concerns
 Bugs
 	View count doesn't work.
 	Updating a blog entry does not update the summary lol
+	Non-published posts are displayed regardless.
