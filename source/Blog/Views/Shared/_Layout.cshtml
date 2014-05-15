@@ -13,34 +13,35 @@
     <link rel="stylesheet" href="~/Content/prism-syntax-highlighting.css" />
 
 </head>
-<body class="language-csharp">
-    <header>
-        <div class="header-background-image">
-            <div class="header-background-image-inner">
-                <h1>ByteBlast</h1>
-                <h3>Jon Skeet Is My Hero</h3>
-            </div>
-        </div>
 
-        <div class="centered-container">
-            <button class="nav-toggle" id="nav-toggle"></button>
-            <nav>
-                <ul>
-                    <li>@Html.ActionLink("Home", "Index", "Blog")</li>
-                    <li>@Html.ActionLink("Archive", "Archive", "Blog")</li>
-                    <li>@Html.ActionLink("About", "About", "Blog")</li>
-                </ul>
-            </nav>
+<body class="language-csharp" >
+<header>
+    <div class="header-background-image">
+        <div class="header-background-image-inner">
+            <h1>ByteBlast</h1>
+            <h3>Jon Skeet Is My Hero</h3>
         </div>
-    </header>
-
-    <div class="centered-container">
-        @RenderBody()
     </div>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="~/Scripts/prism-syntax-highlighting.js"></script>
-    <script src="~/Scripts/responsive-navigation.js"></script>
-    @RenderSection("Scripts", false);
+    <div class="centered-container">
+        <button class="nav-toggle" id="nav-toggle"></button>
+        <nav>
+            <ul>
+                <li>@Html.ActionLink("Home", "Index", "Blog")</li>
+                <li>@Html.ActionLink("Archive", "Archive", "Blog")</li>
+                <li>@Html.ActionLink("About", "About", "Blog")</li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="centered-container">
+    @RenderBody()
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="~/Scripts/prism-syntax-highlighting.js"></script>
+<script src="~/Scripts/responsive-navigation.js"></script>
+@RenderSection("Scripts", false);
 </body>
 </html>

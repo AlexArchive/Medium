@@ -3,14 +3,11 @@
 
 <div class="entry-header">
 
-    <h1>@Html.ActionLink(Model.Header, "Entry", "Blog", new { slug = Model.Slug }, null)</h1>
+    <h1>@Html.LinkToEntry(Model)</h1>
 
     <small><a>@Model.PublishedAt.Humanize()</a></small>
 
     <small>
-        @{
-            var entryLink = Url.RouteUrl(new { controller = "Blog", action = "Entry", slug = Model.Slug }) + "#disqus_thread";
-            <a href="@entryLink"></a>
-        }
+        <a href="@(Url.LinkToEntry(Model) + "#disqus_thread")"></a>
     </small>
 </div>

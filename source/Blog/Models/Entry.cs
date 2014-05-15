@@ -6,7 +6,6 @@ namespace Blog.Models
 {
     public class EntryViewModel
     {
-        [Display(Name="Slug")]
         public string Slug { get; set; }
 
         public string Header { get; set; }
@@ -15,7 +14,6 @@ namespace Blog.Models
 
         public string Content { get; set; }
 
-        [Display(Name = "Published")]
         public DateTime PublishedAt { get; set; }
 
         public bool AllowComments { get; set; }
@@ -31,6 +29,7 @@ namespace Blog.Models
         public string Content { get; set; }
 
         public bool Published { get; set; }
+
         public bool AllowComments { get; set; }
     }
 }
