@@ -16,7 +16,7 @@
                 @Html.DisplayNameFor(model => model.Views)
             </th>
             <th>
-            @Html.DisplayNameFor(x => x.PublishDate)
+            @Html.DisplayNameFor(x => x.PublishedAt)
             <th>
         </tr>
     </thead>
@@ -31,12 +31,12 @@
                     @Html.DisplayFor(_ => entry.Views)
                 </td>
                 <td>
-                    @entry.PublishDate.Humanize()
+                    @entry.PublishedAt.Humanize()
                 </td>
                 <td>
-                    @Html.ActionLink("Delete", "Delete", new { slug = entry.HeaderSlug }, new { data_confirmation_msg = "Are you sure you want to delete this entry? There is no going back." }) |
-                    @Html.ActionLink("Preview", "Entry", "Blog", new { area = "", headerSlug = entry.HeaderSlug }) |
-                    @Html.ActionLink("Edit", "Edit", new { slug = entry.HeaderSlug })
+                    @Html.ActionLink("Delete", "Delete", new { slug = entry.Slug }, new { data_confirmation_msg = "Are you sure you want to delete this entry? There is no going back." }) |
+                    @Html.ActionLink("Preview", "Entry", "Blog", new { area = "", headerSlug = entry.Slug }) |
+                    @Html.ActionLink("Edit", "Edit", new { slug = entry.Slug })
                 </td>
             </tr>
         }

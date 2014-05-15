@@ -8,9 +8,7 @@ namespace Blog.Core.Infrastructure.Persistence.Entities
         [Key]
         [Required]
         [StringLength(250)]
-        [Display(Name = "Slug")]
-        /* could we use the fluent API to provide a default value? */
-        public string HeaderSlug { get; set; }
+        public string Slug { get; set; }
 
         [Required]
         [StringLength(200)]
@@ -23,15 +21,21 @@ namespace Blog.Core.Infrastructure.Persistence.Entities
         [Required]
         public string Content { get; set; }
 
-        [Display(Name = "Approximate Views")]
-        public int Views { get; set; }
+        [Required]
+        public DateTime CreatedAt { get; set; }
 
-        public bool Published { get; set; }
-
-        [Display(Name = "Published")]
-        public DateTime PublishDate { get; set; }
+        [Required]
+        public DateTime PublishedAt { get; set; }
 
         public bool AllowComments { get; set; }
 
+        public bool Draft { get; set; }
+
+        public int Views { get; set; }
+
+        public bool Published
+        {
+            get { return !Draft && PublishedAt <= DateTime.Now; }
+        }
     }
 }

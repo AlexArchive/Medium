@@ -12,14 +12,9 @@ namespace Blog
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-
             AutoMapperConfiguration.Configure();
-
             Database.SetInitializer(new Configuration());
         }
     }
-
-
 }

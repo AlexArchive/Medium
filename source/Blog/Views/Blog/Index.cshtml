@@ -1,4 +1,4 @@
-﻿@model Blog.Core.Paging.PagedList<Blog.Models.Entry>
+﻿@model Blog.Core.Paging.PagedList<Blog.Models.EntryViewModel>
 
 @{
     ViewBag.Title = "Blog";
@@ -7,15 +7,12 @@
 <div class="frame">
     
     <div class="bit-11">
-        @if (Model.TotalItemCount == 0 || Model.All(e => !e.Published)) {
+        @if (Model.TotalItemCount == 0) {
             <p>No Entries Found.</p>
         }
        
         @foreach (var entry in Model) {
-            if (entry.Published)
-            {
-                @Html.Partial("_EntryPartial", entry)
-            }
+            @Html.Partial("_EntryPartial", entry)
         }
         
         @Html.Partial("_PagerPartial")

@@ -8,7 +8,7 @@ namespace Blog.Core.Infrastructure.Persistence
         public DbSet<BlogEntry> BlogEntries { get; set; }
 
         public BlogDatabase()
-            : base("BlogProductionDatabase5")
+            : base("NiekGay")
         {
             Configuration.LazyLoadingEnabled = false;
         }

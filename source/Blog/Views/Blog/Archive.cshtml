@@ -1,26 +1,26 @@
-﻿@model List<Blog.Core.Infrastructure.Persistence.Entities.BlogEntry>
+﻿@model List<Blog.Models.EntryViewModel>
 
 @{
-    ViewBag.Title = "title";
-}
-
-
-@{
-    var entriesByYear = Model.GroupBy(entry => entry.PublishDate.Year);
+    ViewBag.Title = "Archive";
 }
 
 <article>
-
-    @foreach (var entry in entriesByYear)
-    {
-        <h2>@entry.Key</h2>
-        <ul>
-            @foreach (var blogEntry in entry)
-            {
-                <li>
-                    @Html.ActionLink(blogEntry.Header, "Entry", "Blog", new { headerSlug = blogEntry.HeaderSlug }, null)
-                </li>
-            }
-        </ul>
+    
+    @{
+        var entriesByYearGrouping = Model.GroupBy(entry => entry.PublishedAt.Year);
+        
+        foreach (var grouping in entriesByYearGrouping)
+        {
+            <h2>@grouping.Key</h2>
+            <ul>
+                @foreach (var entry in grouping)
+                {
+                    <li>
+                        @Html.ActionLink(entry.Header, "Entry", "Blog", new { slug = entry.Slug }, null)
+                    </li>
+                }
+            </ul>
+        }
     }
+    
 </article>

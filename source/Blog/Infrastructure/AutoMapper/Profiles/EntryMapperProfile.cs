@@ -16,7 +16,7 @@ namespace Blog.Infrastructure.AutoMapper.Profiles
 
         protected override void Configure()
         {
-            Mapper.CreateMap<BlogEntry, Entry>()
+            Mapper.CreateMap<BlogEntry, EntryViewModel>()
                 // convert content from markdown to html
                 .ForMember(entry => entry.Content,
                     expression => expression.ResolveUsing(source => _markdown.Transform(source.Content)))

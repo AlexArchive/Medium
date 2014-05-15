@@ -33,7 +33,7 @@ namespace Blog.Areas.Admin.Controllers
 
                 if (success)
                 {
-                    ViewBag.EntryLink = LinkToEntry(entity.HeaderSlug);
+                    ViewBag.EntryLink = LinkToEntry(entity.Slug);
                     ViewBag.EntryCount = _entryService.EntriesCount(); // for some reason the .ctor doesn't work here.
                     return View();
                 }
@@ -80,7 +80,7 @@ namespace Blog.Areas.Admin.Controllers
         {
             BlogEntry entry = new BlogEntry
             {
-                HeaderSlug =  input.Header.ToLower().Replace(' ', '-'),
+                Slug =  input.Header.ToLower().Replace(' ', '-'),
                 Header = input.Header,
                 Content = input.Content,
                 Published = input.Published,
@@ -89,7 +89,7 @@ namespace Blog.Areas.Admin.Controllers
 
             _entryService.Update(entry);
 
-            ViewBag.EntryLink = LinkToEntry(entry.HeaderSlug);
+            ViewBag.EntryLink = LinkToEntry(entry.Slug);
 
             return View("Add", input);
         }

@@ -3,7 +3,6 @@ using Blog.Core.Infrastructure.Persistence.Entities;
 using Blog.Core.Paging;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 
 namespace Blog.Core.Service
@@ -17,7 +16,7 @@ namespace Blog.Core.Service
                 var entries =
                     repository
                         .All()
-                        .OrderByDescending(e => e.PublishDate);
+                        .OrderByDescending(e => e.PublishedAt);
 
                 return entries.ToPagedList(pageNumber, pageSize);
             }
@@ -38,18 +37,18 @@ namespace Blog.Core.Service
                 return
                     repository
                         .All()
-                        .OrderByDescending(e => e.PublishDate).ToList();
+                        .OrderByDescending(e => e.PublishedAt).ToList();
             }
         }
 
-        public BlogEntry Get(string slug)
+        public BlogEntry Single(string slug)
         {
             using (var repository = new Repository<BlogEntry>())
             {
                 var entry =
                     repository
                         .All()
-                        .FirstOrDefault(e => e.HeaderSlug == slug);
+                        .FirstOrDefault(e => e.Slug == slug);
 
                 return entry;
             }
@@ -71,23 +70,6 @@ namespace Blog.Core.Service
             }
         }
 
-        //public bool Add(string header, string headerSlug, string content, bool published)
-        //{
-        //    var entry = MakeBlogEntry(header, headerSlug, content, published);
-
-        //    using (var repository = new Repository<BlogEntry>())
-        //    {
-        //        try
-        //        {
-        //            repository.Add(entry);
-        //            return true;
-        //        }
-        //        catch (DbUpdateException)
-        //        {
-        //            return false;
-        //        }
-        //    }
-        //}
 
         public void Delete(string slug)
         {
@@ -102,7 +84,7 @@ namespace Blog.Core.Service
         {
             using (var repository = new Repository<BlogEntry>())
             {
-                repository.UpdatePartial(entry, e => e.HeaderSlug, e => e.Header, e => e.Content, e => e.Published, e=> e.AllowComments);
+                repository.UpdatePartial(entry, e => e.Slug, e => e.Header, e => e.Content, e=> e.AllowComments);
             }
         }
 

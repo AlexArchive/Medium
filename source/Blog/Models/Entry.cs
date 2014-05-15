@@ -4,17 +4,20 @@ using System.Web.Mvc;
 
 namespace Blog.Models
 {
-    public class Entry
+    public class EntryViewModel
     {
         [Display(Name="Slug")]
-        public string HeaderSlug { get; set; }
+        public string Slug { get; set; }
+
         public string Header { get; set; }
+
         public string Summary { get; set; }
+
         public string Content { get; set; }
-        public int Views { get; set; }
-        public bool Published { get; set; }
+
         [Display(Name = "Published")]
-        public DateTime PublishDate { get; set; }
+        public DateTime PublishedAt { get; set; }
+
         public bool AllowComments { get; set; }
     }
 

@@ -96,7 +96,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\prism.css" />
+    <Content Include="Content\prism-syntax-highlighting.css" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\responsive-grid.css" />
     <Content Include="Content\style-sheet.css" />
@@ -117,14 +117,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\EntriesController.cs" />
-    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Infrastructure\AutoMapper\Profiles\EntryInputMapperProfile.cs" />
     <Compile Include="Infrastructure\Common\DateTimeExtensions.cs" />
     <Compile Include="Infrastructure\AutoMapper\AutoMapperConfiguration.cs" />
@@ -151,15 +147,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_TagsPartial.cshtml" />
-    <Content Include="Areas\Admin\Views\web.config" />
-    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Entries\Add.cshtml" />
-    <Content Include="Areas\Admin\Views\Entries\All.cshtml" />
     <Content Include="Views\Blog\Archive.cshtml" />
     <Content Include="Views\Shared\_Disqus.cshtml" />
     <None Include="Properties\PublishProfiles\Blopg.pubxml" />
+    <None Include="Properties\PublishProfiles\Niek.pubxml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
