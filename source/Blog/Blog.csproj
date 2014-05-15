@@ -143,10 +143,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_EntryPartial.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\_TagsPartial.cshtml" />
     <Content Include="Views\Blog\Archive.cshtml" />
     <Content Include="Views\Shared\_CommentsPartial.cshtml" />
     <None Include="Properties\PublishProfiles\Blopg.pubxml" />

@@ -33,4 +33,13 @@ namespace Blog.Models
         public bool Published { get; set; }
         public bool AllowComments { get; set; }
     }
+
+
+    public static class Extensions
+    {
+        public static string Href(this EntryViewModel post, UrlHelper helper)
+        {
+            return helper.RouteUrl(new { controller = "Blog", action = "Entry", slug = post.Slug });
+        }
+    }
 }
