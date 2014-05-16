@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using AutoMapper;
+﻿using AutoMapper;
 using Blog.Core.Infrastructure.Persistence.Entities;
 using Blog.Core.Service;
 using Blog.Infrastructure.AutoMapper;
@@ -45,18 +44,6 @@ namespace Blog.Areas.Admin.Controllers
             return View(model);
         }
 
-        public ActionResult All()
-        {
-            var entries = _entryService.List();
-            return View(entries);
-        }
-
-        public ActionResult Delete(string slug)
-        {
-            _entryService.Delete(slug);
-            return RedirectToAction("All");
-        }
-
         public ActionResult Edit(string slug)
         {
             var entry = _entryService.Single(slug);
@@ -71,11 +58,23 @@ namespace Blog.Areas.Admin.Controllers
         {
             var entry = _entryService.Single(input.Slug);
             input.MapPropertiesToInstance(entry);
-            
+
             _entryService.Update(entry);
             ViewBag.EntryLink = LinkToEntry(entry.Slug);
 
             return View("Add", input);
+        }
+
+        public ActionResult All()
+        {
+            var entries = _entryService.List();
+            return View(entries);
+        }
+
+        public ActionResult Delete(string slug)
+        {
+            _entryService.Delete(slug);
+            return RedirectToAction("All");
         }
 
         private string LinkToEntry(string slug)
