@@ -1,4 +1,5 @@
-﻿@model Blog.Core.Paging.PagedList<Blog.Models.EntryViewModel>
+﻿@using Blog.Infrastructure.Common
+@model Blog.Core.Paging.PagedList<Blog.Models.EntryViewModel>
 
 @{
     ViewBag.Title = "Blog";
@@ -19,8 +20,8 @@
                 @Html.Partial("_EntryHeaderPartial", entry)
 
                 @Html.Raw(entry.Summary)
-
-                @Html.ActionLink("Continue Reading", "Entry", "Blog", new { slug = entry.Slug }, new { @class = "flat-button" })
+                
+                @Html.LinkToEntry(entry, new { @class = "flat-button" });
             </article>
         }
 
@@ -42,11 +43,11 @@
             </div>
         </article>
     </aside>
+
 </div>
 
 @section Scripts
 {
-    <!-- Disqus Comment Count-->
     <script type="text/javascript">
         var disqus_shortname = 'blogenginebyteblast';
 

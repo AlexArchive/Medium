@@ -96,7 +96,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\prism-syntax-highlighting.css" />
+    <Content Include="Content\syntax-highlighting.css" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\responsive-grid.css" />
     <Content Include="Content\style-sheet.css" />
@@ -106,7 +106,7 @@
     <Content Include="Images\spotify.png" />
     <Content Include="Images\twitter.png" />
     <Content Include="Images\youtube.png" />
-    <Content Include="Scripts\prism-syntax-highlighting.js" />
+    <Content Include="Scripts\syntax-highlighting.js" />
     <Content Include="Scripts\responsive-navigation.js" />
     <Content Include="Views\web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -117,8 +117,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\EntriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Models\Login.cs" />
     <Compile Include="Controllers\BlogController.cs" />
-    <Compile Include="Extensions.cs" />
+    <Compile Include="Infrastructure\AutoMapper\AutoMapperExtensions.cs" />
+    <Compile Include="Infrastructure\Common\LinkExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -146,6 +151,12 @@
   <ItemGroup>
     <Content Include="Views\Blog\Archive.cshtml" />
     <Content Include="Views\Shared\_CommentsPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Entries\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Entries\All.cshtml" />
+    <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <None Include="Properties\PublishProfiles\Blopg.pubxml" />
     <None Include="Properties\PublishProfiles\Niek.pubxml" />
     <Content Include="Views\Shared\_EntryHeaderPartial.cshtml" />

@@ -84,7 +84,7 @@ namespace Blog.Core.Service
         {
             using (var repository = new Repository<BlogEntry>())
             {
-                repository.UpdatePartial(entry, e => e.Slug, e => e.Header, e => e.Content, e=> e.AllowComments);
+                repository.Update(entry, entry.Slug);
             }
         }
 

@@ -1,10 +1,11 @@
 ﻿using System.Diagnostics;
-using System.Runtime.InteropServices;
-using System.Web.Mvc;
 using AutoMapper;
 using Blog.Core.Infrastructure.Persistence.Entities;
 using Blog.Core.Service;
+using Blog.Infrastructure.AutoMapper;
+using Blog.Infrastructure.Common;
 using Blog.Models;
+using System.Web.Mvc;
 
 namespace Blog.Areas.Admin.Controllers
 {
@@ -15,7 +16,7 @@ namespace Blog.Areas.Admin.Controllers
 
         public EntriesController()
         {
-            ViewBag.EntryCount = _entryService.EntriesCount();
+            RefreshEntryCount();
         }
 
         public ActionResult Add()
@@ -28,16 +29,16 @@ namespace Blog.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var entity = Mapper.Map<BlogEntry>(model);
-                bool success = _entryService.Add(entity);
+                var entry = Mapper.Map<BlogEntry>(model);
+
+                var success = _entryService.Add(entry);
 
                 if (success)
                 {
-                    ViewBag.EntryLink = LinkToEntry(entity.Slug);
-                    ViewBag.EntryCount = _entryService.EntriesCount(); // for some reason the .ctor doesn't work here.
+                    ViewBag.EntryLink = LinkToEntry(entry.Slug);
+                    RefreshEntryCount();
                     return View();
                 }
-
                 ModelState.AddModelError("", "You have previously published a blog entry with this slug. Please choose another one.");
             }
 
@@ -46,10 +47,8 @@ namespace Blog.Areas.Admin.Controllers
 
         public ActionResult All()
         {
-            var pagedEntries =
-                _entryService.List();
-
-            return View(pagedEntries);
+            var entries = _entryService.List();
+            return View(entries);
         }
 
         public ActionResult Delete(string slug)
@@ -58,46 +57,36 @@ namespace Blog.Areas.Admin.Controllers
             return RedirectToAction("All");
         }
 
-
         public ActionResult Edit(string slug)
         {
-            var entry = _entryService.Get(slug);
+            var entry = _entryService.Single(slug);
 
-            var input = new EntryInput
-            {
-                Header = entry.Header,
-                Content = entry.Content,
-                Published = entry.Published,
-                AllowComments = entry.AllowComments
-            };
+            var model = Mapper.Map<EntryInput>(entry);
 
-            return View("Add", input);
+            return View("Add", model);
         }
-
 
         [HttpPost]
         public ActionResult Edit(EntryInput input)
         {
-            BlogEntry entry = new BlogEntry
-            {
-                Slug =  input.Header.ToLower().Replace(' ', '-'),
-                Header = input.Header,
-                Content = input.Content,
-                Published = input.Published,
-                AllowComments = input.AllowComments
-            };
-
+            var entry = _entryService.Single(input.Slug);
+            input.MapPropertiesToInstance(entry);
+            
             _entryService.Update(entry);
-
             ViewBag.EntryLink = LinkToEntry(entry.Slug);
 
             return View("Add", input);
         }
 
-        private string LinkToEntry(string headerSlug)
+        private string LinkToEntry(string slug)
         {
             var helper = new UrlHelper(ControllerContext.RequestContext);
-            return helper.Action("Entry", "Blog", new { area = "", headerSlug });
+            return helper.LinkToEntry(slug);
+        }
+
+        private void RefreshEntryCount()
+        {
+            ViewBag.EntryCount = _entryService.EntriesCount();
         }
     }
 }

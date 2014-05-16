@@ -20,6 +20,7 @@ Concerns
 	Clearly there is some discrepancy with the entry "models".
 	Disqus comments system needs refactoring and improving (according to JustBlog.)
 	Completely violating DRY in many cases (especially updating and adding posts.)
+	Repository should better indicate success or failure.
 
 Bugs
 	View count doesn't work.

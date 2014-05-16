@@ -21,6 +21,9 @@ namespace Blog.Models
 
     public class EntryInput
     {
+        [HiddenInput]
+        public string Slug { get; set; }
+
         [Required]
         public string Header { get; set; }
 
