@@ -13,6 +13,7 @@ namespace Blog.Infrastructure.AutoMapper.Profiles
             Mapper.CreateMap<EntryInput, BlogEntry>()
                 .ForMember(entry => entry.Slug, expression => expression.MapFrom(entry => SlugConverter.Convert(entry.Header)))
                 .ForMember(entry => entry.PublishedAt, expression => expression.MapFrom(entry => DateTime.Now))
+                .ForMember(entry => entry.CreatedAt, expression => expression.MapFrom(entry => DateTime.Now))
                 .ForMember(entry => entry.Summary, expression => expression.MapFrom(entry => MakeSummary(entry.Content)));
         }
 
