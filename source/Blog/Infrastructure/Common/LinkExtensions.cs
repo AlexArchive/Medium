@@ -13,7 +13,7 @@ namespace Blog.Infrastructure.Common
 
         public static string LinkToEntry(this UrlHelper helper, string slug)
         {
-            return helper.RouteUrl(new {controller = "Blog", action = "Entry", slug});
+            return helper.RouteUrl(new {area = "", controller = "Blog", action = "Entry", slug});
         }
     }
 }
