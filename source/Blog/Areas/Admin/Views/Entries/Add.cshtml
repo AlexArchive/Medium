@@ -1,5 +1,9 @@
 ﻿@model Blog.Models.EntryInput
 
+@{
+    ViewBag.Title = "Add";
+}
+
 @Html.ValidationSummary()
 
 <div class="validation-summary-success">
@@ -12,68 +16,60 @@
 
 @using (Html.BeginForm())
 {
+    @Html.TextBoxFor(m => m.Header, new { placeholder = "Title"})
+    
+    <div class="wmd-panel">
+        <div id="wmd-button-bar"></div>
+        <textarea class="wmd-input" id="wmd-input"></textarea>
+    </div>
+    <article>
+        <div id="wmd-preview" class="wmd-panel wmd-preview"></div>
+    </article>
 
-    <div class="lhs">
-        @Html.LabelFor(m => m.Header)
-        @Html.TextBoxFor(m => m.Header)
-
-        @Html.LabelFor(m => m.Content)
-        @Html.HiddenFor(m => m.Content)
-        <pre id="code-editor"></pre>
+        @Html.HiddenFor(m=>m.Content);
 
         <button type="submit" class="flat-button">Post</button>
-    </div>
+        }
 
-    <div class="rhs">
+        @section Scripts {
+            <script src="~/Scripts/Markdown.Converter.js"></script>
+            <script src="~/Scripts/Markdown.Sanitizer.js"></script>
+            <script src="~/Scripts/Markdown.Editor.js"></script>
+            <script src="~/Scripts/syntax-highlighting.js"></script>
 
-        <div class="publish-options">
-            <h3>Options</h3>
-            
-            <label>
-                @Html.CheckBoxFor(m => m.Published)
-                Publish immediately
-            </label>
-            
-            @*<label>
-                <p>Date: <input type="text" id="datepicker"></p>
-            </label>*@
-            
-            <label>
-                @Html.CheckBoxFor(m => m.AllowComments)
-                Allow Comments
-            </label>
+            <script>
 
+                $(document).ready(function () {
 
-        </div>
-    </div>
+                    $("#wmd-input").val($("#Content").val());
 
+                    $("form").submit(function () {
+                        $("#Content").val($("#wmd-input").val());
+                    });
+                });
 
-}
+            </script>
 
-@section scripts
-{
-    <link href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js" type="text/javascript" charset="utf-8"></script>
-    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-    
-    <script>
-        var editor = ace.edit("code-editor");
-        editor.setTheme("ace/theme/textmate");
-        editor.getSession().setMode("ace/mode/markdown");
-        editor.getSession().setUseWrapMode(true);
-        editor.setHighlightActiveLine(false);
-        editor.setPrintMarginColumn(70);
+            <script>
+                (function () {
+                    var converter = Markdown.getSanitizingConverter();
 
-        $(document).ready(function () {
-            editor.getSession().setValue(document.getElementById("Content").value);
+                    converter.hooks.chain("preBlockGamut", function (text, rbg) {
+                        return text.replace(/^ {0,3}""" *\n((?:.*?\n)+?) {0,3}""" *$/gm, function (whole, inner) {
+                            return "<blockquote>" + rbg(inner) + "</blockquote>\n";
+                        });
+                    });
 
-            $("form").submit(function () {
-                document.getElementById("Content").value = editor.getSession().getValue();
-            });
+                    var editor = new Markdown.Editor(converter);
+                    editor.hooks.chain("onPreviewRefresh", function () {
+                        Prism.highlightAll();
+                    });
 
-            $("#datepicker").datepicker();
+                    editor.run();
+                })();
+            </script>
+        }
 
-        });
-
-    </script>
-}
+        @section Styles {
+            <link rel="stylesheet" href="~/Content/syntax-highlighting.css" />
+        }

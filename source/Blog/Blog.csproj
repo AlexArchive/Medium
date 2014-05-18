@@ -105,7 +105,11 @@
     <Content Include="Images\skype.png" />
     <Content Include="Images\spotify.png" />
     <Content Include="Images\twitter.png" />
+    <Content Include="Images\wmd-buttons.png" />
     <Content Include="Images\youtube.png" />
+    <Content Include="Scripts\Markdown.Converter.js" />
+    <Content Include="Scripts\Markdown.Editor.js" />
+    <Content Include="Scripts\Markdown.Sanitizer.js" />
     <Content Include="Scripts\syntax-highlighting.js" />
     <Content Include="Scripts\responsive-navigation.js" />
     <Content Include="Views\web.config" />

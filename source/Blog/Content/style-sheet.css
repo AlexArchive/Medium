@@ -2,6 +2,7 @@
 {
     color:#222;background:#D6EDFF;text-shadow:none;
 }
+
 body
 {
     font-family: "Lato", sans-serif;
@@ -81,14 +82,14 @@ header ul > li
     display: inline-block;
 }
 
-header ul li > a
+header  a
 {
     display: inline-block;
     padding: 20px 30px;
     color: #999999;
 }
 
-header ul li > a:hover
+header  a:hover
 {
     background-color: #080808;
     color: white;
@@ -401,157 +402,20 @@ form input[type="password"]
 
 .validation-summary-success
 {
-    border-left: 6px blue solid;
-    background-color: aliceblue;
+    border-left: 10px #8fa950 solid;
+    background-color: #9fbb58;
+    color: white;
 }
 
 .validation-summary-success a
 {
-    color: red;
+    text-decoration: underline;
 }
 
 .validation-summary-success a:hover
 {
     color: black;
 }
-
-#code-editor
-{
-    width: 100%;
-    height: 450px;
-    margin-bottom: 15px;
-    border: 1px solid #e6e2df;
-    font-size: 16px;
-}
-
-/*.vertical-nav-body
-{
-    margin-left:250px;
-    width:100%;
-    overflow: hidden;
-}
-
-nav.vertical-nav
-{
-    background: #222222;
-    color: white;
-    width: 250px;
-    height: 100%;
-    position: fixed;
-    left: 0;
-    top: 0;
-}
-
-nav.vertical-nav li
-{
-    display: list-item;
-}
-
-nav.vertical-nav ul li > a
-{
-    display: block;
-    padding: 20px 30px;
-    color: #999999;
-    width: 250px;
-    margin: 0;
-}
-
-nav.vertical-nav ul li >a:hover
-{
-    background-color: #080808;
-    color: white;
-}*/
-
-
-.admin-container
-{
-    margin-left: 250px;
-    padding: 30px;
-}
-
-.vertical-aside
-{
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 250px;
-    background: #222;
-    margin-left: -250px;
-    margin-left: 0px;
-}
-
-.vertical-aside .header
-{
-    padding: 20px 20px;
-    padding-right: 0;
-    background-color: #262626;
-    color: white;
-}
-
-.page-header
-{
-    background-color: #EFEFEF;
-    border-bottom: 1px #BFBFBF solid;
-    padding: 30px 20px;
-    background: #f7f7f7;
-    border-bottom: 1px solid #d3d7db;
-}
-
-.vertical-aside .header h1
-{
-    color: #BBBBBB;
-    letter-spacing: 2px;
-    font-weight: 400;
-    font-size: 20px;
-    display: inline-block;
-}
-
-.vertical-aside .header .home-button
-{
-    float: right;
-    margin-right: 25px;
-    color: #BBBBBB;
-    background-color: #181818;
-    border: 2px #2D2D2D solid;
-    padding: 5px;
-}
-
-.vertical-aside .header .home-button:hover
-{
-    background-color: #252525;
-}
-
-.vertical-aside nav a
-{
-    display:block;
-    color:#BBBBBB;
-    text-decoration: none;
-    padding: 15px;
-    padding-right: 0;
-}
-
-.vertical-aside nav a:hover
-{
-    background-color: #080808;
-    color: white;
-}
-
-.vertical-aside nav a i
-{
-    margin-right: 5px;
-}
-
-.vertical-aside nav .notification
-{
-    font-size: 13px;
-    float: right;
-    margin-right: 25px;
-    background-color: gray;
-    padding: 3px;
-    border-radius: 5px;
-}
-
 
 table
 {
@@ -575,56 +439,129 @@ th, td
     padding: 15px;
 }
 
-/* experimental */
-.lhs
+header
 {
-    width: 60%;
-    float: left;
-    padding-right: 30px;
+    overflow: hidden;
 }
 
-.rhs
+header nav
 {
-    float: right;
-    width: 40%;
+    position: relative;
 }
 
-.tag-box
+
+blockquote {
+    border-left: 2px dotted #888;
+    padding-left: 5px;
+    background: #d0f0ff;
+}
+
+
+.wmd-button-bar
 {
-    margin-top: 20px;
-    padding: 15px;
+    width: 100%;
+    background-color: Silver;
+}
+
+.wmd-input
+{
+    height: 300px;
+    width: 100%;
     border: 1px solid #e6e2df;
-}
-
-.rhs h3
-{
-    font-size: 20px;
-    margin: 0;
-    padding: 10px;
-    background-color:  #e6e2df;
-    margin-bottom: 15px;
-}
-
-.swag-box
-{
-    margin: 0;
-    padding: 0;
-    width: inherit;
-}
-.publish-options
-{
-    margin-top: 20px;
-    padding: 15px;
-    border: 1px solid #e6e2df;
-}
-
-.publish-options input[type="checkbox"] {
-    margin: 0;
-    padding: 0;
-    width: inherit;
-}
-.publish-options label
-{
-    display: block;
     margin-bottom: 10px;
+}
+
+.wmd-preview
+{
+    padding: 10px;
+    border: 2px dotted #e6e2df;
+    word-wrap: break-word;
+    margin-bottom: 10px;
+
+}
+
+.wmd-button-row
+{
+    position: relative;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    padding: 0px;
+    height: 20px;
+}
+
+.wmd-spacer
+{
+    width: 1px;
+    height: 20px;
+    margin-left: 14px;
+
+    position: absolute;
+    background-color: Silver;
+    display: inline-block;
+    list-style: none;
+}
+
+.wmd-button {
+    width: 20px;
+    height: 20px;
+    padding-left: 2px;
+    padding-right: 3px;
+    position: absolute;
+    display: inline-block;
+    list-style: none;
+    cursor: pointer;
+}
+
+.wmd-button > span {
+    background-image: url(../images/wmd-buttons.png);
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.wmd-spacer1
+{
+    left: 50px;
+}
+.wmd-spacer2
+{
+    left: 175px;
+}
+.wmd-spacer3
+{
+    left: 300px;
+}
+
+
+.wmd-prompt-background
+{
+    background-color: Black;
+}
+
+.wmd-prompt-dialog
+{
+    border: 1px solid #999999;
+    background-color: #F5F5F5;
+}
+
+.wmd-prompt-dialog > div {
+    font-size: 0.8em;
+    font-family: arial, helvetica, sans-serif;
+}
+
+
+.wmd-prompt-dialog > form > input[type="text"] {
+    border: 1px solid #999999;
+    color: black;
+}
+
+.wmd-prompt-dialog > form > input[type="button"]{
+    border: 1px solid #888888;
+    font-family: trebuchet MS, helvetica, sans-serif;
+    font-size: 0.8em;
+    font-weight: bold;
 }
