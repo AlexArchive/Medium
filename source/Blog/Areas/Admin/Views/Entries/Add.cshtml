@@ -14,62 +14,74 @@
 
 </div>
 
-@using (Html.BeginForm())
-{
-    @Html.TextBoxFor(m => m.Header, new { placeholder = "Title"})
+<div class="frame">
     
-    <div class="wmd-panel">
-        <div id="wmd-button-bar"></div>
-        <textarea class="wmd-input" id="wmd-input"></textarea>
+    <div class="bit-8">
+        @using (Html.BeginForm())
+        {
+            @Html.TextBoxFor(m => m.Header, new { placeholder = "Title", @class="big" })
+
+            <div class="wmd-panel">
+                @*<div id="wmd-button-bar"></div>*@
+                <textarea class="wmd-input" id="wmd-input"></textarea>
+            </div>
+            @Html.HiddenFor(m => m.Content)
+    <button type="submit" class="flat-button">
+        Publish Now
+
+</button>
+        }
     </div>
-    <article>
-        <div id="wmd-preview" class="wmd-panel wmd-preview"></div>
-    </article>
+    <div class="bit-8">
+        <article>
+            <div id="wmd-preview" class="wmd-panel wmd-preview"></div>
+        </article>
+    </div>
 
-        @Html.HiddenFor(m=>m.Content);
+</div>
 
-        <button type="submit" class="flat-button">Post</button>
-        }
 
-        @section Scripts {
-            <script src="~/Scripts/Markdown.Converter.js"></script>
-            <script src="~/Scripts/Markdown.Sanitizer.js"></script>
-            <script src="~/Scripts/Markdown.Editor.js"></script>
-            <script src="~/Scripts/syntax-highlighting.js"></script>
 
-            <script>
 
-                $(document).ready(function () {
+@section Scripts {
+    <script src="~/Scripts/Markdown.Converter.js"></script>
+    <script src="~/Scripts/Markdown.Sanitizer.js"></script>
+    <script src="~/Scripts/Markdown.Editor.js"></script>
+    <script src="~/Scripts/syntax-highlighting.js"></script>
 
-                    $("#wmd-input").val($("#Content").val());
+    <script>
 
-                    $("form").submit(function () {
-                        $("#Content").val($("#wmd-input").val());
-                    });
+        $(document).ready(function() {
+
+            $("#wmd-input").val($("#Content").val());
+
+            $("form").submit(function() {
+                $("#Content").val($("#wmd-input").val());
+            });
+        });
+
+    </script>
+
+    <script>
+        (function() {
+            var converter = Markdown.getSanitizingConverter();
+
+            converter.hooks.chain("preBlockGamut", function(text, rbg) {
+                return text.replace(/^ {0,3}""" *\n((?:.*?\n)+?) {0,3}""" *$/gm, function(whole, inner) {
+                    return "<blockquote>" + rbg(inner) + "</blockquote>\n";
                 });
+            });
 
-            </script>
+            var editor = new Markdown.Editor(converter);
+            editor.hooks.chain("onPreviewRefresh", function() {
+                Prism.highlightAll();
+            });
 
-            <script>
-                (function () {
-                    var converter = Markdown.getSanitizingConverter();
+            editor.run();
+        })();
+    </script>
+}
 
-                    converter.hooks.chain("preBlockGamut", function (text, rbg) {
-                        return text.replace(/^ {0,3}""" *\n((?:.*?\n)+?) {0,3}""" *$/gm, function (whole, inner) {
-                            return "<blockquote>" + rbg(inner) + "</blockquote>\n";
-                        });
-                    });
-
-                    var editor = new Markdown.Editor(converter);
-                    editor.hooks.chain("onPreviewRefresh", function () {
-                        Prism.highlightAll();
-                    });
-
-                    editor.run();
-                })();
-            </script>
-        }
-
-        @section Styles {
-            <link rel="stylesheet" href="~/Content/syntax-highlighting.css" />
-        }
+@section Styles {
+    <link rel="stylesheet" href="~/Content/syntax-highlighting.css" />
+}

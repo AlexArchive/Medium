@@ -13,6 +13,13 @@
     <link rel="stylesheet" type="text/css" href="~/Content/style-sheet.css">
     <link rel="stylesheet" type="text/css" href="~/Content/responsive-grid.css">
     @RenderSection("Styles", false)
+    
+    <style>
+        body {
+            background-color: #f0f0f0;
+        }
+    </style>
+
 
 </head>
 
@@ -33,9 +40,7 @@
         </nav>
     </header>
     
-    <div class="centered-container">
         @RenderBody()
-    </div>
 
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
