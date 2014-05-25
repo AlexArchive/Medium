@@ -8,13 +8,11 @@ Feature
 	Add Bulk Options (Delete, Edit) on All Table.
 	Improve the All Table (Comment Count, Password Protected? Comments Allowed? Tags, Draft?)
 	Improve the Add/Edit View to display relevant text (e.g. "Add Post" or "Update Post").
-	Code Editor
-		Spell Check.
-		Preview Like GH.
 	Authentication
 		Add Remember Password Option.
 		Replace FormsAuth with Membership.
 	Show Editor Word Count.
+	Add Deletion Success message.
 	
 Concerns
 	Clearly there is some discrepancy with the entry "models".

@@ -26,6 +26,7 @@
                 <textarea class="wmd-input" id="wmd-input"></textarea>
             </div>
             @Html.HiddenFor(m => m.Content)
+            
     <button type="submit" class="flat-button">
         Publish Now
 
@@ -58,6 +59,16 @@
             $("form").submit(function() {
                 $("#Content").val($("#wmd-input").val());
             });
+
+            $("#wmd-input").scroll(function () {
+
+                // this logic is so bad.
+                $("#wmd-preview")
+                    .scrollTop($("#wmd-input").scrollTop() + 400);
+
+            });
+
+
         });
 
     </script>

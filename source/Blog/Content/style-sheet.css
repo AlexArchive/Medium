@@ -404,9 +404,8 @@ blockquote {
     word-wrap: break-word;
     margin-bottom: 10px;
     background-color: #F9F9F9;
-    max-height: 920px;
+    max-height: 880px;
     overflow: auto;
-
 }
 
 .wmd-button-row {
