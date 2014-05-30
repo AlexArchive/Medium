@@ -494,3 +494,11 @@ blockquote {
     {
         font-size: 25px !important;
     }
+
+    .options
+    {
+        border: 1px solid #e6e2df;
+        background-color: #F9F9F9;
+        padding: 10px;
+        margin-bottom: 16px;
+    }

@@ -12,6 +12,8 @@
     <link rel="stylesheet" type="text/css" href="~/Content/reset.css">
     <link rel="stylesheet" type="text/css" href="~/Content/style-sheet.css">
     <link rel="stylesheet" type="text/css" href="~/Content/responsive-grid.css">
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+
     @RenderSection("Styles", false)
     
     <style>
@@ -28,14 +30,14 @@
     <header>
         <nav>
             <div class="pull-left">
-                <a href="@Url.Action("Add", "Entries")"><i class=" fa fa-pencil fa-fw"></i></a>
-                <a href="@Url.Action("All", "Entries")"><i class="fa fa-copy fa-fw"></i></a>
+                <a href="@Url.Action("Add", "Entries")" title="Compose Post"><i class=" fa fa-pencil fa-fw"></i></a>
+                <a href="@Url.Action("All", "Entries")" title="All Posts"><i class="fa fa-copy fa-fw"></i></a>
             </div>
 
             <div class="pull-right">
-                <a href=""><i class="fa fa-gear fa-fw"></i></a>
-                <a href="@Url.Action("Index", "Blog", new {area=""})"><i class="fa fa-home fa-fw"></i></a>
-                <a href="@Url.Action("SignOut", "Login")"><i class="fa fa-sign-out fa-fw"></i></a>
+                <a href="" title="Blog Settings"><i class="fa fa-gear fa-fw"></i></a>
+                <a href="@Url.Action("Index", "Blog", new {area=""})" title="Go to Blog"><i class="fa fa-home fa-fw"></i></a>
+                <a href="@Url.Action("SignOut", "Login")" title="Sign Out"><i class="fa fa-sign-out fa-fw"></i></a>
             </div>
         </nav>
     </header>
@@ -44,6 +46,12 @@
 
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script>
+        $(function() {
+            $(document).tooltip();
+        });
+    </script>
     @RenderSection("scripts", false)
 
 </body>

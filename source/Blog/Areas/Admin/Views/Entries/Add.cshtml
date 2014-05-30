@@ -7,11 +7,9 @@
 @Html.ValidationSummary()
 
 <div class="validation-summary-success">
-    @if (ViewBag.EntryLink != null)
-    {
+    @if (ViewBag.EntryLink != null) {
         <p>Your post has been published and is available <a href="@ViewBag.EntryLink">here</a>.</p>
     }
-
 </div>
 
 <div class="frame">
@@ -19,18 +17,22 @@
     <div class="bit-8">
         @using (Html.BeginForm())
         {
-            @Html.TextBoxFor(m => m.Header, new { placeholder = "Title", @class="big" })
+            @Html.TextBoxFor(m => m.Header, new {placeholder = "Title", @class = "big"})
 
             <div class="wmd-panel">
                 @*<div id="wmd-button-bar"></div>*@
                 <textarea class="wmd-input" id="wmd-input"></textarea>
             </div>
             @Html.HiddenFor(m => m.Content)
-            
-    <button type="submit" class="flat-button">
-        Publish Now
 
-</button>
+            <div class="options">
+                Hello
+            </div>
+            
+            
+            <button type="submit" class="flat-button">
+                Publish Now
+            </button>
         }
     </div>
     <div class="bit-8">
@@ -60,7 +62,7 @@
                 $("#Content").val($("#wmd-input").val());
             });
 
-            $("#wmd-input").scroll(function () {
+            $("#wmd-input").scroll(function() {
 
                 // this logic is so bad.
                 $("#wmd-preview")
