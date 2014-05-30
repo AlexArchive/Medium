@@ -26,11 +26,14 @@
             @Html.HiddenFor(m => m.Content)
 
             <div class="options">
-                Hello
+                <div id="action-options">
+                    <input type="radio" id="publish" name="radio" checked="checked" /><label for="publish">Publish</label>
+                    <input type="radio" id="save-as-draft" name="radio"  /><label for="save-as-draft">Save as Draft</label>
+                </div>
             </div>
             
             
-            <button type="submit" class="flat-button">
+            <button id="publish-button" type="submit" class="flat-button">
                 Publish Now
             </button>
         }
@@ -54,7 +57,15 @@
 
     <script>
 
-        $(document).ready(function() {
+        $(document).ready(function () {
+
+
+            $("#action-options input").click(function () {
+                var buttonText = $("label[for='" + $(this).attr('id') + "']").text();
+                $("#publish-button").text(buttonText);
+            });
+
+            $("#action-options").buttonset();
 
             $("#wmd-input").val($("#Content").val());
 
