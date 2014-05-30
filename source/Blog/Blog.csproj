@@ -39,10 +39,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper">
-      <HintPath>..\packages\AutoMapper.3.2.0\lib\net40\AutoMapper.dll</HintPath>
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="AutoMapper.Net4">
-      <HintPath>..\packages\AutoMapper.3.2.0\lib\net40\AutoMapper.Net4.dll</HintPath>
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
@@ -53,8 +53,7 @@
     <Reference Include="HibernatingRhinos.Profiler.Appender">
       <HintPath>C:\Users\ByteBlast\Desktop\HibernatingRhinos.Profiler.Appender.dll</HintPath>
     </Reference>
-    <Reference Include="MarkdownSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="MarkdownSharp">
       <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -161,6 +160,7 @@
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\Blopg.pubxml" />
     <None Include="Properties\PublishProfiles\Niek.pubxml" />
     <Content Include="Views\Shared\_EntryHeaderPartial.cshtml" />
@@ -215,6 +215,7 @@
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="..\packages\AutoMapper.3.2.0\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.0\tools\AutoMapper.targets')" />
+  <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
