@@ -13,5 +13,10 @@ namespace Blog.Core.Security
 
             return authenticated;
         }
+
+        public void SignOut()
+        {
+            FormsAuthentication.SignOut();
+        }
     }
 }

@@ -6,7 +6,7 @@ namespace Blog.Areas.Admin.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly IAuthenticationProvider _authProvider = 
+        private readonly IAuthenticationProvider _authProvider =
             new AuthenticationProvider();
 
         public ActionResult Index()
@@ -28,13 +28,17 @@ namespace Blog.Areas.Admin.Controllers
                 var authenticated = _authProvider.Authenticate(model.Username, model.Password);
                 if (authenticated)
                 {
-
-
                     return RedirectFromLoginPage(Request.QueryString["ReturnUrl"]);
                 }
                 ModelState.AddModelError("", "Username or Password is incorrect.");
             }
             return View(model);
+        }
+
+        public ActionResult SignOut()
+        {
+            _authProvider.SignOut();
+            return RedirectToAction("Index", "Blog", new { area = "" });
         }
 
         private ActionResult RedirectFromLoginPage(string returnUrl = "/admin")
