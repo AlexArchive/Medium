@@ -17,6 +17,8 @@ namespace Blog.Models
         public DateTime PublishedAt { get; set; }
 
         public bool AllowComments { get; set; }
+
+        public bool Draft { get; set; }
     }
 
     public class EntryInput
@@ -31,7 +33,7 @@ namespace Blog.Models
         [AllowHtml]
         public string Content { get; set; }
 
-        public bool Published { get; set; }
+        public bool Draft { get; set; }
 
         public bool AllowComments { get; set; }
     }

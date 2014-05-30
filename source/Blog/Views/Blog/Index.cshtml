@@ -16,13 +16,16 @@
 
         @foreach (var entry in Model)
         {
-            <article class="blog-entry">
-                @Html.Partial("_EntryHeaderPartial", entry)
+            if (!entry.Draft)
+            { 
+                <article class="blog-entry">
+                    @Html.Partial("_EntryHeaderPartial", entry)
 
-                @Html.Raw(entry.Summary)
+                    @Html.Raw(entry.Summary)
                 
-                @Html.LinkToEntry(entry, new { @class = "flat-button" })
-            </article>
+                    @Html.LinkToEntry(entry, new { @class = "flat-button" })
+                </article>
+                }
         }
 
         @Html.Partial("_PagerPartial")

@@ -28,10 +28,9 @@
 
             <div class="options">
                 <div id="action-options">
-
-                    @Html.RadioButtonFor(x => x.Published, true, new { @id = "publish", @checked = "checked", name = "radio" })
+                    @Html.RadioButtonFor(x => x.Draft, false, new { @id = "publish", @checked = "checked", name = "radio" })
                     <label for="publish">Publish</label>
-                    @Html.RadioButtonFor(x => x.Published, false, new { @id = "save-as-draft", name = "radio" })
+                    @Html.RadioButtonFor(x => x.Draft, true, new { @id = "save-as-draft", name = "radio" })
                     <label for="save-as-draft">Save as Draft</label>
 
                   @*<input type="radio" id="publish" name="radio" checked="checked" /><label for="publish">Publish</label>

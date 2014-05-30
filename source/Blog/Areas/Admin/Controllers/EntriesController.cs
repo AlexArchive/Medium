@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Diagnostics;
+using AutoMapper;
 using Blog.Core.Infrastructure.Persistence.Entities;
 using Blog.Core.Service;
 using Blog.Infrastructure.AutoMapper;
