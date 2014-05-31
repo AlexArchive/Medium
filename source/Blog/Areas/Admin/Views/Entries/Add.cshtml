@@ -24,6 +24,7 @@
                 @*<div id="wmd-button-bar"></div>*@
                 <textarea class="wmd-input" id="wmd-input"></textarea>
             </div>
+            
             @Html.HiddenFor(m => m.Content)
 
             <div class="options">
@@ -32,10 +33,10 @@
                     <label for="publish">Publish</label>
                     @Html.RadioButtonFor(x => x.Draft, true, new { @id = "save-as-draft", name = "radio" })
                     <label for="save-as-draft">Save as Draft</label>
-
-                  @*<input type="radio" id="publish" name="radio" checked="checked" /><label for="publish">Publish</label>
-                  <input type="radio" id="save-as-draft" name="radio"  /><label for="save-as-draft">Save as Draft</label>*@
                 </div>
+                
+                <input id="tags" type="text"/>
+
             </div>
 
 
@@ -84,7 +85,49 @@
 
             });
 
+            //$("#tags").autocomplete({
+            //    source: "/Tags/Search"
+            //});
 
+
+        });
+
+        $(function() {
+
+            function split(val) {
+                return val.split(/,\s*/);
+            }
+
+            function extractLast(term) {
+                return split(term).pop();
+            }
+
+            $("#tags").bind("keydown", function(event) {
+                if (event.keyCode === $.ui.keyCode.TAB && $(this).data("ui-autocomplete").menu.active) {
+                    event.preventDefault();
+                }
+            });
+
+            $("#tags").autocomplete({
+                source: function (request, response) {
+                    $.getJSON("/Tags/Search", {
+                        term: extractLast(request.term)
+                    }, response);
+                },
+                focus: function () {
+                    return false;
+                },
+                select: function (event, ui) {
+                    var terms = split(this.value);
+                    terms.pop();
+                    terms.push(ui.item.value);
+                    terms.push("");
+                    this.value = terms.join(", ");
+                    return false;
+                },
+                autoFocus: true
+            });
+     
         });
 
     </script>
