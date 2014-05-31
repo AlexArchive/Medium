@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Infrastructure\Persistence\BlogDatabase.cs" />
+    <Compile Include="Infrastructure\Persistence\Entities\Tag.cs" />
     <Compile Include="Infrastructure\Persistence\IRepository.cs" />
     <Compile Include="Infrastructure\Persistence\Migrations\Configuration.cs" />
     <Compile Include="Infrastructure\Persistence\Entities\BlogEntry.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Security\AuthenticationProvider.cs" />
     <Compile Include="Security\IAuthenticationProvider.cs" />
     <Compile Include="Service\EntryService.cs" />
+    <Compile Include="Service\TagsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

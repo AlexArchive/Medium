@@ -5,13 +5,14 @@ using System.Threading;
 
 namespace Blog.Core.Infrastructure.Persistence.Migrations
 {
-    public class Configuration : DropCreateDatabaseIfModelChanges<BlogDatabase>
+    public class Configuration : DropCreateDatabaseAlways<BlogDatabase>
     {
         protected override void Seed(BlogDatabase database)
         {
             for (int i = 0; i < 15; i++)
             {
-                var entry = new BlogEntry {
+                var entry = new BlogEntry
+                {
                     Slug = "test-post-" + i,
                     Header = "Test Post " + i,
                     Summary = "Craft beer bespoke photo booth Thundercats Wes Anderson. Street art kitsch kogi, Etsy Shoreditch Carles Vice occupy PBR&B Pitchfork twee cred cardigan 3 wolf moon. Kale chips PBR&B sartorial ethnic pickled. Wayfarers umami irony cliche roof party, mlkshk swag direct trade sartorial butcher viral literally PBR slow-carb. Fanny pack tattooed yr kale chips VHS, meh banh mi blog cray normcore wolf Bushwick fingerstache single-origin coffee quinoa. Fingerstache Thundercats bespoke organic roof party cred. Banh mi Cosby sweater Williamsburg, bitters try-hard fixie typewriter deep v ethical forage chia synth selvage cliche narwhal.",
@@ -25,6 +26,11 @@ namespace Blog.Core.Infrastructure.Persistence.Migrations
 
                 database.BlogEntries.Add(entry);
             }
+
+            database.Tags.Add(new Tag { Name = "Programming" });
+            database.Tags.Add(new Tag { Name = "Productivity" });
+            database.Tags.Add(new Tag { Name = "Science" });
+            database.Tags.Add(new Tag { Name = "Math" });
 
             database.SaveChanges();
         }
