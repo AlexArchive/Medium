@@ -1,0 +1,19 @@
+﻿@model GoBlog.Domain.Paging.PagedList<GoBlog.Models.EntryViewModel>
+
+@if (Model.TotalPageCount > 1)
+{
+    <div class="pagination-control">
+        
+        @if (Model.PageNumber < Model.TotalPageCount) {
+            <a href="@Url.Action("Index", "Blog", new { pageNumber = Model.PageNumber + 1} )" class="older-posts-link">
+                &larr; Older Posts
+            </a>
+        }
+
+        @if (Model.PageNumber > 1) {
+            <a href="@Url.Action("Index", "Blog", new  {pageNumber = Model.PageNumber - 1} )" class="newer-posts-link">
+                Newer Posts &rarr;
+            </a>
+        }
+    </div>
+}

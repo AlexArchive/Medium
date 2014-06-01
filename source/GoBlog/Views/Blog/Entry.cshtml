@@ -1,0 +1,15 @@
+﻿@model GoBlog.Models.EntryViewModel
+
+@{
+    ViewBag.Title = Model.Header;
+}
+
+<article class="blog-entry">
+
+    @Html.Partial("_EntryHeaderPartial")
+
+    @Html.Raw(Model.Content)
+
+    @Html.Partial("_CommentsPartial")
+
+</article>

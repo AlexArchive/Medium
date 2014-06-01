@@ -1,0 +1,43 @@
+﻿@using GoBlog.Infrastructure.Common
+@model IEnumerable<GoBlog.Models.EntryViewModel>
+
+@{
+    ViewBag.Title = "All";
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Header)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Views)
+            </th>*@
+            <th>
+            @Html.DisplayNameFor(x => x.PublishedAt)
+            <th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var entry in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(_ => entry.Header)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(_ => entry.Views)
+                </td>*@
+                <td>
+                    @entry.PublishedAt.Humanize()
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { slug = entry.Slug }, new { data_confirmation_msg = "Are you sure you want to delete this entry? There is no going back." }) |
+                    @Html.ActionLink("Preview", "Entry", "Blog", new { area = "", slug = entry.Slug }, new {}) |
+                    @Html.ActionLink("Edit", "Edit", new { slug = entry.Slug })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
