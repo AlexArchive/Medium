@@ -42,21 +42,3 @@
         }
     </tbody>
 </table>
-
-@section scripts
-{
-    <script>
-        window.onload = function () {
-            var targets = document.querySelectorAll("[data-confirmation-msg]");
-
-            for (var i = 0; i < targets.length; i++) {
-                var confirmText = targets[i].getAttribute("data-confirmation-msg");
-                targets[i].onclick = function () {
-                    if (!confirm(confirmText)) {
-                        event.preventDefault();
-                    }
-                };
-            }
-        };
-    </script>
-}

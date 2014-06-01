@@ -7,48 +7,42 @@
 @Html.ValidationSummary()
 
 <div class="validation-summary-success">
-    @if (ViewBag.EntryLink != null)
-    {
+    @if (ViewBag.EntryLink != null) {
         <p>Your post has been published and is available <a href="@ViewBag.EntryLink">here</a>.</p>
     }
 </div>
 
 <div class="frame">
-
     <div class="bit-8">
-        @using (Html.BeginForm())
-        {
+        
+        @using (Html.BeginForm()) {
+            
             @Html.TextBoxFor(m => m.Header, new { placeholder = "Title", @class = "big" })
 
-            <div class="wmd-panel">
-                @*<div id="wmd-button-bar"></div>*@
-                <textarea class="wmd-input" id="wmd-input"></textarea>
-            </div>
-            
+            <textarea class="wmd-input" id="wmd-input"></textarea>
             @Html.HiddenFor(m => m.Content)
 
             <div class="options">
-                <div id="action-options">
-                    @Html.RadioButtonFor(x => x.Draft, false, new { @id = "publish", @checked = "checked", name = "radio" })
+                <div id="publish-draft-buttonset">
+                    @Html.RadioButtonFor(m => m.Draft, false, new { @id = "publish", @checked = "checked", name = "radio" })
                     <label for="publish">Publish</label>
-                    @Html.RadioButtonFor(x => x.Draft, true, new { @id = "save-as-draft", name = "radio" })
+                    @Html.RadioButtonFor(m => m.Draft, true, new { @id = "save-as-draft", name = "radio" })
                     <label for="save-as-draft">Save as Draft</label>
                 </div>
-                
                 <input id="tags" type="text"/>
-
             </div>
 
-
-            <button id="publish-button" type="submit" class="flat-button">
-                Publish Now
-            </button>
+            <button id="publish-button" type="submit" class="flat-button">Publish Now</button>
         }
+
     </div>
+
     <div class="bit-8">
+        
         <article>
-            <div id="wmd-preview" class="wmd-panel wmd-preview"></div>
+            <div id="wmd-preview" class="wmd-preview"></div>
         </article>
+
     </div>
 
 </div>
@@ -58,98 +52,7 @@
     <script src="~/Scripts/Markdown.Sanitizer.js"></script>
     <script src="~/Scripts/Markdown.Editor.js"></script>
     <script src="~/Scripts/syntax-highlighting.js"></script>
-
-    <script>
-
-        $(document).ready(function () {
-
-
-            $("#action-options input").click(function () {
-                var buttonText = $("label[for='" + $(this).attr('id') + "']").text();
-                $("#publish-button").text(buttonText);
-            });
-
-            $("#action-options").buttonset();
-
-            $("#wmd-input").val($("#Content").val());
-
-            $("form").submit(function () {
-                $("#Content").val($("#wmd-input").val());
-            });
-
-            $("#wmd-input").scroll(function () {
-
-                // this logic is so bad.
-                $("#wmd-preview")
-                    .scrollTop($("#wmd-input").scrollTop() + 400);
-
-            });
-
-            //$("#tags").autocomplete({
-            //    source: "/Tags/Search"
-            //});
-
-
-        });
-
-        $(function() {
-
-            function split(val) {
-                return val.split(/,\s*/);
-            }
-
-            function extractLast(term) {
-                return split(term).pop();
-            }
-
-            $("#tags").bind("keydown", function(event) {
-                if (event.keyCode === $.ui.keyCode.TAB && $(this).data("ui-autocomplete").menu.active) {
-                    event.preventDefault();
-                }
-            });
-
-            $("#tags").autocomplete({
-                source: function (request, response) {
-                    $.getJSON("/Tags/Search", {
-                        term: extractLast(request.term)
-                    }, response);
-                },
-                focus: function () {
-                    return false;
-                },
-                select: function (event, ui) {
-                    var terms = split(this.value);
-                    terms.pop();
-                    terms.push(ui.item.value);
-                    terms.push("");
-                    this.value = terms.join(", ");
-                    return false;
-                },
-                autoFocus: true
-            });
-     
-        });
-
-    </script>
-
-    <script>
-        (function () {
-            var converter = Markdown.getSanitizingConverter();
-
-            converter.hooks.chain("preBlockGamut", function (text, rbg) {
-                return text.replace(/^ {0,3}""" *\n((?:.*?\n)+?) {0,3}""" *$/gm, function (whole, inner) {
-                    return "<blockquote>" + rbg(inner) + "</blockquote>\n";
-                });
-            });
-
-            var editor = new Markdown.Editor(converter);
-            editor.hooks.chain("onPreviewRefresh", function () {
-                Prism.highlightAll();
-            });
-
-            editor.run();
-        })();
-    </script>
+    <script src="~/Areas/Admin/Scripts/admin.add.js"></script>
 }
 
 @section Styles {

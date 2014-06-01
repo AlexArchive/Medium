@@ -95,6 +95,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Scripts\admin.add.js" />
+    <Content Include="Areas\Admin\Scripts\admin.js" />
     <Content Include="Content\syntax-highlighting.css" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\responsive-grid.css" />
