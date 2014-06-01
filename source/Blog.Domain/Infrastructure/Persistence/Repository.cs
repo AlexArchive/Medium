@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Blog.Core.Infrastructure.Persistence
+namespace Blog.Domain.Infrastructure.Persistence
 {
     public class Repository<TEntity> : IRepository<TEntity>, IDisposable where TEntity : class
     {

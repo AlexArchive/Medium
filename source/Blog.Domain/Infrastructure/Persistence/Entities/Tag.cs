@@ -1,4 +1,4 @@
-﻿namespace Blog.Core.Infrastructure.Persistence.Entities
+﻿namespace Blog.Domain.Infrastructure.Persistence.Entities
 {
     public class Tag
     {

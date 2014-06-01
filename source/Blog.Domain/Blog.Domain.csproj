@@ -7,8 +7,8 @@
     <ProjectGuid>{C5C5DB99-C45E-40F3-8948-8B7D95DE81F3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Blog.Core</RootNamespace>
-    <AssemblyName>Blog.Core</AssemblyName>
+    <RootNamespace>Blog.Domain</RootNamespace>
+    <AssemblyName>Blog.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -51,10 +51,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Infrastructure\Persistence\BlogDatabase.cs" />
+    <Compile Include="Infrastructure\Persistence\Entities\Entry.cs" />
     <Compile Include="Infrastructure\Persistence\Entities\Tag.cs" />
     <Compile Include="Infrastructure\Persistence\IRepository.cs" />
     <Compile Include="Infrastructure\Persistence\Migrations\Configuration.cs" />
-    <Compile Include="Infrastructure\Persistence\Entities\BlogEntry.cs" />
     <Compile Include="Infrastructure\Persistence\Repository.cs" />
     <Compile Include="Paging\PagedList.cs" />
     <Compile Include="Paging\PagedListExtensions.cs" />

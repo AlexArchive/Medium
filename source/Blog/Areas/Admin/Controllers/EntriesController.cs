@@ -1,10 +1,14 @@
-﻿using AutoMapper;
-using Blog.Core.Infrastructure.Persistence.Entities;
-using Blog.Core.Service;
+﻿using System;
+using System.Collections.Generic;
+using System.Web.UI.WebControls.WebParts;
+using AutoMapper;
+using Blog.Areas.Admin.Models;
+using Blog.Domain.Infrastructure.Persistence.Entities;
+using Blog.Domain.Service;
 using Blog.Infrastructure.AutoMapper;
 using Blog.Infrastructure.Common;
-using Blog.Models;
 using System.Web.Mvc;
+using Blog.Models;
 
 namespace Blog.Areas.Admin.Controllers
 {
@@ -18,6 +22,21 @@ namespace Blog.Areas.Admin.Controllers
             RefreshEntryCount();
         }
 
+        public ActionResult Delete(string slug)
+        {
+            _entryService.Delete(slug);
+            return RedirectToAction("All");
+        }
+
+
+        public ActionResult All()
+        {
+            var entries = _entryService.List();
+            var model = Mapper.Map<List<EntryViewModel>>(entries);
+            return View(model);
+        }
+
+
         public ActionResult Add()
         {
             return View();
@@ -28,7 +47,10 @@ namespace Blog.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var entry = Mapper.Map<BlogEntry>(model);
+                var entry = Mapper.Map<Entry>(model);
+                entry.CreatedAt = DateTime.Now;
+                entry.PublishedAt = DateTime.Now;
+                entry.Summary = "";
 
                 var success = _entryService.Add(entry);
 
@@ -38,11 +60,14 @@ namespace Blog.Areas.Admin.Controllers
                     RefreshEntryCount();
                     return View();
                 }
+
                 ModelState.AddModelError("", "You have previously published a blog entry with this slug. Please choose another one.");
             }
 
             return View(model);
         }
+
+
 
         public ActionResult Edit(string slug)
         {
@@ -65,17 +90,8 @@ namespace Blog.Areas.Admin.Controllers
             return View("Add", input);
         }
 
-        public ActionResult All()
-        {
-            var entries = _entryService.List();
-            return View(entries);
-        }
 
-        public ActionResult Delete(string slug)
-        {
-            _entryService.Delete(slug);
-            return RedirectToAction("All");
-        }
+
 
         private string LinkToEntry(string slug)
         {

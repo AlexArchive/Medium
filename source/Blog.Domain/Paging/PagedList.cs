@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace Blog.Core.Paging
+namespace Blog.Domain.Paging
 {
     public class PagedList<T> : List<T>
     {

@@ -50,9 +50,6 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="HibernatingRhinos.Profiler.Appender">
-      <HintPath>C:\Users\ByteBlast\Desktop\HibernatingRhinos.Profiler.Appender.dll</HintPath>
-    </Reference>
     <Reference Include="MarkdownSharp">
       <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
     </Reference>
@@ -97,22 +94,30 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Scripts\admin.add.js" />
     <Content Include="Areas\Admin\Scripts\admin.js" />
+    <Content Include="Areas\Admin\Views\Entries\Add.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\Admin\Views\Entries\All.cshtml" />
+    <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Content\syntax-highlighting.css" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\responsive-grid.css" />
     <Content Include="Content\style-sheet.css" />
     <Content Include="Global.asax" />
-    <Content Include="Images\github.png" />
-    <Content Include="Images\skype.png" />
-    <Content Include="Images\spotify.png" />
-    <Content Include="Images\twitter.png" />
-    <Content Include="Images\wmd-buttons.png" />
-    <Content Include="Images\youtube.png" />
-    <Content Include="Scripts\Markdown.Converter.js" />
-    <Content Include="Scripts\Markdown.Editor.js" />
-    <Content Include="Scripts\Markdown.Sanitizer.js" />
+    <Content Include="Content\Images\github.png" />
+    <Content Include="Content\Images\skype.png" />
+    <Content Include="Content\Images\spotify.png" />
+    <Content Include="Content\Images\twitter.png" />
+    <Content Include="Content\Images\wmd-buttons.png" />
+    <Content Include="Content\Images\youtube.png" />
+    <Content Include="Scripts\pagedown\Markdown.Converter.js" />
+    <Content Include="Scripts\pagedown\Markdown.Editor.js" />
+    <Content Include="Scripts\pagedown\Markdown.Sanitizer.js" />
     <Content Include="Scripts\syntax-highlighting.js" />
-    <Content Include="Scripts\responsive-navigation.js" />
+    <Content Include="Scripts\do-blog.js" />
     <Content Include="Views\web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -122,22 +127,32 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\EntriesController.cs" />
-    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
-    <Compile Include="Areas\Admin\Controllers\TagsController.cs" />
-    <Compile Include="Areas\Admin\Models\Login.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Admin\Controllers\EntriesController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Admin\Controllers\LoginController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Admin\Controllers\TagsController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Admin\Models\Entry.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Admin\Models\Login.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Infrastructure\AutoMapper\AutoMapperExtensions.cs" />
     <Compile Include="Infrastructure\Common\LinkExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\AutoMapper\Profiles\EntryInputMapperProfile.cs" />
     <Compile Include="Infrastructure\Common\DateTimeExtensions.cs" />
     <Compile Include="Infrastructure\AutoMapper\AutoMapperConfiguration.cs" />
-    <Compile Include="Infrastructure\AutoMapper\Profiles\EntryMapperProfile.cs" />
-    <Compile Include="Infrastructure\AutoMapper\Profiles\PagedListMapperProfile.cs" />
     <Compile Include="Infrastructure\Common\SlugConverter.cs" />
     <Compile Include="Models\Entry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -150,20 +165,8 @@
     <Folder Include="Areas\Admin\Views\Tags\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Blog.Core\Blog.Core.csproj">
-      <Project>{c5c5db99-c45e-40f3-8948-8b7d95de81f3}</Project>
-      <Name>Blog.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Blog\Archive.cshtml" />
     <Content Include="Views\Shared\_CommentsPartial.cshtml" />
-    <Content Include="Areas\Admin\Views\Entries\Add.cshtml" />
-    <Content Include="Areas\Admin\Views\Entries\All.cshtml" />
-    <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\web.config" />
-    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\Blopg.pubxml" />
     <None Include="Properties\PublishProfiles\Niek.pubxml" />
@@ -174,6 +177,12 @@
     <None Include="web.Release.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Blog.Domain\Blog.Domain.csproj">
+      <Project>{c5c5db99-c45e-40f3-8948-8b7d95de81f3}</Project>
+      <Name>Blog.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

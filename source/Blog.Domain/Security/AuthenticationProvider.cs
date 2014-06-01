@@ -1,6 +1,6 @@
 ﻿using System.Web.Security;
 
-namespace Blog.Core.Security
+namespace Blog.Domain.Security
 {
     public class AuthenticationProvider : IAuthenticationProvider
     {

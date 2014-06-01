@@ -1,17 +1,17 @@
-﻿using Blog.Core.Infrastructure.Persistence;
-using Blog.Core.Infrastructure.Persistence.Entities;
-using Blog.Core.Paging;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Blog.Domain.Infrastructure.Persistence;
+using Blog.Domain.Infrastructure.Persistence.Entities;
+using Blog.Domain.Paging;
 
-namespace Blog.Core.Service
+namespace Blog.Domain.Service
 {
     public class EntryService
     {
-        public PagedList<BlogEntry> PaginatedList(int pageNumber, int pageSize)
+        public PagedList<Entry> PaginatedList(int pageNumber, int pageSize)
         {
-            using (var repository = new Repository<BlogEntry>())
+            using (var repository = new Repository<Entry>())
             {
                 var entries =
                     repository
@@ -24,15 +24,15 @@ namespace Blog.Core.Service
 
         public int EntriesCount()
         {
-            using (var repository = new Repository<BlogEntry>())
+            using (var repository = new Repository<Entry>())
             {
                 return repository.All().Count();
             }
         }
 
-        public List<BlogEntry> List()
+        public List<Entry> List()
         {
-            using (var repository = new Repository<BlogEntry>())
+            using (var repository = new Repository<Entry>())
             {
                 return
                     repository
@@ -41,9 +41,9 @@ namespace Blog.Core.Service
             }
         }
 
-        public BlogEntry Single(string slug)
+        public Entry Single(string slug)
         {
-            using (var repository = new Repository<BlogEntry>())
+            using (var repository = new Repository<Entry>())
             {
                 var entry =
                     repository
@@ -54,11 +54,11 @@ namespace Blog.Core.Service
             }
         }
 
-        public bool Add(BlogEntry entry)
+        public bool Add(Entry entry)
         {
             try
             {
-                using (var repository = new Repository<BlogEntry>())
+                using (var repository = new Repository<Entry>())
                 {
                     repository.Add(entry);
                     return true;
@@ -73,36 +73,19 @@ namespace Blog.Core.Service
 
         public void Delete(string slug)
         {
-            using (var repository = new Repository<BlogEntry>())
+            using (var repository = new Repository<Entry>())
             {
                 var entry = repository.Find(slug);
                 repository.Delete(entry);
             }
         }
 
-        public void Update(BlogEntry entry)
+        public void Update(Entry entry)
         {
-            using (var repository = new Repository<BlogEntry>())
+            using (var repository = new Repository<Entry>())
             {
                 repository.Update(entry, entry.Slug);
             }
         }
-
-        //private static BlogEntry MakeBlogEntry(string header, string headerSlug, string content, bool published)
-        //{
-        //    var entry = new BlogEntry
-        //    {
-        //        Header = header,
-        //        HeaderSlug = headerSlug,
-        //        Content = content,
-        //        Published = published,
-        //        PublishDate = DateTime.Now,
-        //        Summary = MakeSummary(content),
-        //        Views = 0
-        //    };
-        //    return entry;
-        //}
-
-
     }
 }

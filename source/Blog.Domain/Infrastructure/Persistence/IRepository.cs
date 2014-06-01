@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Blog.Core.Infrastructure.Persistence
+namespace Blog.Domain.Infrastructure.Persistence
 {
     public interface IRepository<TEntity> where TEntity : class
     {

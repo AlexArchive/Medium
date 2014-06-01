@@ -1,4 +1,4 @@
-﻿namespace Blog.Core.Security
+﻿namespace Blog.Domain.Security
 {
     public interface IAuthenticationProvider
     {

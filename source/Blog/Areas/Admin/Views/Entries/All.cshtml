@@ -1,6 +1,5 @@
-﻿@using Blog.Core.Infrastructure.Persistence.Entities
-@using Blog.Infrastructure.Common
-@model IEnumerable<BlogEntry>
+﻿@using Blog.Infrastructure.Common
+@model IEnumerable<Blog.Models.EntryViewModel>
 
 @{
     ViewBag.Title = "All";
@@ -12,9 +11,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Header)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Views)
-            </th>
+            </th>*@
             <th>
             @Html.DisplayNameFor(x => x.PublishedAt)
             <th>
@@ -27,9 +26,9 @@
                 <td>
                     @Html.DisplayFor(_ => entry.Header)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(_ => entry.Views)
-                </td>
+                </td>*@
                 <td>
                     @entry.PublishedAt.Humanize()
                 </td>

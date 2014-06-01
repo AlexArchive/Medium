@@ -1,11 +1,11 @@
 ﻿using System.Data.Entity;
-using Blog.Core.Infrastructure.Persistence.Entities;
+using Blog.Domain.Infrastructure.Persistence.Entities;
 
-namespace Blog.Core.Infrastructure.Persistence
+namespace Blog.Domain.Infrastructure.Persistence
 {
     public class BlogDatabase : DbContext
     {
-        public DbSet<BlogEntry> BlogEntries { get; set; }
+        public DbSet<Entry> BlogEntries { get; set; }
         public DbSet<Tag> Tags { get; set; }
 
         public BlogDatabase()

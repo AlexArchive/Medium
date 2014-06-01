@@ -1,13 +1,12 @@
 ﻿using Blog.Areas.Admin.Models;
-using Blog.Core.Security;
 using System.Web.Mvc;
+using Blog.Domain.Security;
 
 namespace Blog.Areas.Admin.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly IAuthenticationProvider _authProvider =
-            new AuthenticationProvider();
+        private readonly IAuthenticationProvider _authProvider = new AuthenticationProvider();
 
         public ActionResult Index()
         {

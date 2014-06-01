@@ -1,4 +1,4 @@
-﻿@model Blog.Models.EntryInput
+﻿@model Blog.Areas.Admin.Models.EntryInput
 
 @{
     ViewBag.Title = "Add";
@@ -7,16 +7,18 @@
 @Html.ValidationSummary()
 
 <div class="validation-summary-success">
-    @if (ViewBag.EntryLink != null) {
+    @if (ViewBag.EntryLink != null)
+    {
         <p>Your post has been published and is available <a href="@ViewBag.EntryLink">here</a>.</p>
     }
 </div>
 
 <div class="frame">
     <div class="bit-8">
-        
-        @using (Html.BeginForm()) {
-            
+
+        @using (Html.BeginForm())
+        {
+
             @Html.TextBoxFor(m => m.Header, new { placeholder = "Title", @class = "big" })
 
             <textarea class="wmd-input" id="wmd-input"></textarea>
@@ -24,12 +26,14 @@
 
             <div class="options">
                 <div id="publish-draft-buttonset">
-                    @Html.RadioButtonFor(m => m.Draft, false, new { @id = "publish", @checked = "checked", name = "radio" })
+                    @Html.RadioButtonFor(m => m.Published, true, new { @id = "publish", @checked = "checked", name = "radio" })
                     <label for="publish">Publish</label>
-                    @Html.RadioButtonFor(m => m.Draft, true, new { @id = "save-as-draft", name = "radio" })
+                    @Html.RadioButtonFor(m => m.Published, false, new { @id = "save-as-draft", name = "radio" })
                     <label for="save-as-draft">Save as Draft</label>
                 </div>
-                <input id="tags" type="text"/>
+
+                @Html.TextBoxFor(m => m.Tags, new { id = "tags" })
+                @*<input id="tags" type="text" />*@
             </div>
 
             <button id="publish-button" type="submit" class="flat-button">Publish Now</button>
@@ -38,7 +42,7 @@
     </div>
 
     <div class="bit-8">
-        
+
         <article>
             <div id="wmd-preview" class="wmd-preview"></div>
         </article>
@@ -47,10 +51,11 @@
 
 </div>
 
+
 @section Scripts {
-    <script src="~/Scripts/Markdown.Converter.js"></script>
-    <script src="~/Scripts/Markdown.Sanitizer.js"></script>
-    <script src="~/Scripts/Markdown.Editor.js"></script>
+    <script src="~/Scripts/pagedown/Markdown.Converter.js"></script>
+    <script src="~/Scripts/pagedown/Markdown.Sanitizer.js"></script>
+    <script src="~/Scripts/pagedown/Markdown.Editor.js"></script>
     <script src="~/Scripts/syntax-highlighting.js"></script>
     <script src="~/Areas/Admin/Scripts/admin.add.js"></script>
 }
@@ -58,3 +63,4 @@
 @section Styles {
     <link rel="stylesheet" href="~/Content/syntax-highlighting.css" />
 }
+

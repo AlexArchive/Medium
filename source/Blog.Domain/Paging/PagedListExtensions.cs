@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Blog.Core.Paging
+namespace Blog.Domain.Paging
 {
     public static class PagedListExtensions
     {

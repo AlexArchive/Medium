@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Blog.Core.Infrastructure.Persistence;
-using Blog.Core.Infrastructure.Persistence.Entities;
+using Blog.Domain.Infrastructure.Persistence;
+using Blog.Domain.Infrastructure.Persistence.Entities;
 
-namespace Blog.Core.Service
+namespace Blog.Domain.Service
 {
     public class TagsService
     {

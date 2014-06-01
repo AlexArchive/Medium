@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog", "Blog\Blog.csproj", "{8FF4667B-E092-4006-83D9-650A3EF51F98}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Core", "Blog.Core\Blog.Core.csproj", "{C5C5DB99-C45E-40F3-8948-8B7D95DE81F3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D3AB1504-A4D3-4128-AA11-2EA604CBBE31}"
 EndProject
@@ -13,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{F5B1635B-E
 	ProjectSection(SolutionItems) = preProject
 		todo.txt = todo.txt
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Domain", "Blog.Domain\Blog.Domain.csproj", "{C5C5DB99-C45E-40F3-8948-8B7D95DE81F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,7 +33,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{C5C5DB99-C45E-40F3-8948-8B7D95DE81F3} = {D3AB1504-A4D3-4128-AA11-2EA604CBBE31}
 		{8FF4667B-E092-4006-83D9-650A3EF51F98} = {D3AB1504-A4D3-4128-AA11-2EA604CBBE31}
+		{C5C5DB99-C45E-40F3-8948-8B7D95DE81F3} = {D3AB1504-A4D3-4128-AA11-2EA604CBBE31}
 	EndGlobalSection
 EndGlobal

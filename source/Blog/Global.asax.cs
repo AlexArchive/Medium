@@ -1,5 +1,5 @@
 ﻿using System.Data.Entity;
-using Blog.Core.Infrastructure.Persistence.Migrations;
+using Blog.Domain.Infrastructure.Persistence.Migrations;
 using Blog.Infrastructure.AutoMapper;
 using System.Web;
 using System.Web.Mvc;

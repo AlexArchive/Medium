@@ -10,8 +10,6 @@
 
     @Html.Raw(Model.Content)
 
-    @if (Model.AllowComments)  {
-        @Html.Partial("_CommentsPartial")
-    }
+    @Html.Partial("_CommentsPartial")
 
 </article>

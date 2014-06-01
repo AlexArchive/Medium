@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Blog.Core.Infrastructure.Persistence.Entities
+namespace Blog.Domain.Infrastructure.Persistence.Entities
 {
-    public class BlogEntry
+    public class Entry
     {
         [Key]
         [Required]
@@ -27,15 +27,6 @@ namespace Blog.Core.Infrastructure.Persistence.Entities
         [Required]
         public DateTime PublishedAt { get; set; }
 
-        public bool AllowComments { get; set; }
-
-        public bool Draft { get; set; }
-
-        public int Views { get; set; }
-
-        public bool Published
-        {
-            get { return !Draft && PublishedAt <= DateTime.Now; }
-        }
+        public bool Published { get; set; }
     }
 }

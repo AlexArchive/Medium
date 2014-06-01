@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using Blog.Core.Paging;
-using Blog.Core.Service;
-using Blog.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Blog.Domain.Paging;
+using Blog.Domain.Service;
+using Blog.Models;
 
 namespace Blog.Controllers
 {

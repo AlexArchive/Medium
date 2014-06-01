@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using Blog.Core.Service;
+using Blog.Domain.Service;
 
 namespace Blog.Areas.Admin.Controllers
 {
