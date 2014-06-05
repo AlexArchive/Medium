@@ -589,10 +589,15 @@ blockquote
 {
     background-color: #F9F9F9;
     border: 1px solid #e6e2df;
-    margin-bottom: 16px;
+    margin-bottom: 15px;
     padding: 10px;
 }
 
+#publish-draft-buttonset
+{
+    margin-bottom: 5px;
+    float: right;
+}
 
 .ui-button
 {
@@ -608,11 +613,7 @@ blockquote
     background-color: #f0f0f0 !important;
 }
 
-#tags
-{
-    font-size: 15px;
-    padding: .4em 1em;
-}
+
 
 .ui-autocomplete
 {
@@ -636,4 +637,30 @@ blockquote
     font-family: inherit;
     font-size: inherit;
     padding: inherit;
+}
+
+#tags
+{
+    font-size: 15px;
+    padding: 8px 12px;
+    width: 650px;
+    height: 32px;
+}
+
+.input-group {
+    display: table;
+}
+
+.input-group i {
+    display: table-cell;
+    background-color: #f0f0f0;
+    color: #555555;
+    border: 1px solid #e6e2df;
+    border-right: none;
+    padding: 6px 12px;
+}
+
+.input-group input {
+    display: table-cell;
+    margin: 0;
 }

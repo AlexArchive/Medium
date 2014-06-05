@@ -31,8 +31,13 @@
                     @Html.RadioButtonFor(m => m.Published, false, new { @id = "save-as-draft", name = "radio" })
                     <label for="save-as-draft">Save as Draft</label>
                 </div>
+                
+                <div class="input-group">
+                    <i class="fa fa-tags"></i>
+                    <input type="text" id="tags">
+                </div>
 
-                @Html.TextBoxFor(m => m.Tags, new { id = "tags" })
+                @*@Html.TextBoxFor(m => m.Tags, new { id = "tags" })*@
                 @*<input id="tags" type="text" />*@
             </div>
 
