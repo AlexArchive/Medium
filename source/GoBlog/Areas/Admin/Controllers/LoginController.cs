@@ -6,7 +6,18 @@ namespace GoBlog.Areas.Admin.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly IAuthenticationProvider _authProvider = new AuthenticationProvider();
+        private readonly IAuthenticationProvider _authProvider;
+
+        public LoginController()
+            : this(new AuthenticationProvider())
+        {
+            
+        }
+
+        public LoginController(IAuthenticationProvider authProvider)
+        {
+            _authProvider = authProvider;
+        }
 
         public ActionResult Index()
         {
@@ -40,7 +51,7 @@ namespace GoBlog.Areas.Admin.Controllers
             return RedirectToAction("Index", "Blog", new { area = "" });
         }
 
-        private ActionResult RedirectFromLoginPage(string returnUrl = "/admin")
+        private RedirectResult RedirectFromLoginPage(string returnUrl = "/admin")
         {
             return Redirect(returnUrl ?? "/admin");
         }
