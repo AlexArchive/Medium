@@ -29,5 +29,5 @@ Bugs
 	Non-published posts are displayed regardless.
 
 Now
-	Tag Input JSON
-	Split Button to Toggle Options
+	User shouldn't be able to input the same tag twice.
+	Editing tags is broke.

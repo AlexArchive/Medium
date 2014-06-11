@@ -47,10 +47,7 @@ namespace GoBlog.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var entry = Mapper.Map<Entry>(model);
-                entry.CreatedAt = DateTime.Now;
-                entry.PublishedAt = DateTime.Now;
-                entry.Summary = "";
-
+                
                 var success = _entryService.Add(entry);
 
                 if (success)

@@ -42,6 +42,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -51,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Infrastructure\Persistence\BlogDatabase.cs" />
+    <Compile Include="Infrastructure\Persistence\Extensions.cs" />
     <Compile Include="Infrastructure\Persistence\Entities\Entry.cs" />
     <Compile Include="Infrastructure\Persistence\Entities\Tag.cs" />
     <Compile Include="Infrastructure\Persistence\IRepository.cs" />

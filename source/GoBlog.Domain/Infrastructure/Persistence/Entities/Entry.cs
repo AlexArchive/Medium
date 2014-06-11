@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace GoBlog.Domain.Infrastructure.Persistence.Entities
@@ -28,5 +29,7 @@ namespace GoBlog.Domain.Infrastructure.Persistence.Entities
         public DateTime PublishedAt { get; set; }
 
         public bool Published { get; set; }
+
+        public virtual ICollection<Tag> Tags { get; set; } 
     }
 }

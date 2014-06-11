@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using GoBlog.Domain.Infrastructure.Persistence.Entities;
 
 namespace GoBlog.Models
 {
@@ -11,7 +13,8 @@ namespace GoBlog.Models
         public string Summary { get; set; }
         public string Content { get; set; }
         [DisplayName("Published")]
-        public DateTime PublishedAt { get; set; }
+        public DateTime PublishedAt { get; set; }   
         public bool Published { get; set; }
+        public IEnumerable<Tag> Tags { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace GoBlog.Domain.Infrastructure.Persistence
 {
-    public class Repository<TEntity> : IRepository<TEntity>, IDisposable where TEntity : class
+    public class Repository<TEntity> : IRepository<TEntity>, IDisposable where TEntity : class 
     {
         private readonly DbContext _context;
 
@@ -47,6 +47,20 @@ namespace GoBlog.Domain.Infrastructure.Persistence
             return entity;
         }
 
+        public TEntity Attach(TEntity entity)
+        {
+            var dbSet = _context.Set<TEntity>();
+            var entityKeys = _context.GetPrimaryKeyValues(entity).ToArray();
+            var storeEntity = dbSet.Find(entityKeys);
+
+            if (storeEntity != null)
+            {
+                _context.Entry(storeEntity).State = EntityState.Detached;
+                return _context.Set<TEntity>().Attach(entity);
+            }
+            return entity;
+        }
+
         public TEntity Update(TEntity updatedEntity, object key)
         {
             var existing = Find(key);
@@ -57,21 +71,6 @@ namespace GoBlog.Domain.Infrastructure.Persistence
                 _context.SaveChanges();
             }
             return existing;
-        }
-
-        public void UpdatePartial(TEntity updatedEntity, params Expression<Func<TEntity, object>>[] properties)
-        {
-            _context.Configuration.ValidateOnSaveEnabled = false;
-
-            _context.Set<TEntity>().Attach(updatedEntity);
-            var entry = _context.Entry(updatedEntity);
-
-            foreach (var selector in properties)
-                entry.Property(selector).IsModified = true;
-
-            _context.SaveChanges();
-
-            _context.Configuration.ValidateOnSaveEnabled = true;
         }
 
         public void Delete(TEntity entity)

@@ -14,7 +14,7 @@ namespace GoBlog
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             AutoMapperConfiguration.Configure();
-            Database.SetInitializer(new Configuration());
+            //Database.SetInitializer(new Configuration());
         }
     }
 }

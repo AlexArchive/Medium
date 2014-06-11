@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using GoBlog.Domain.Infrastructure.Persistence;
 using GoBlog.Domain.Infrastructure.Persistence.Entities;
@@ -48,6 +49,7 @@ namespace GoBlog.Domain.Service
                 var entry =
                     repository
                         .All()
+                        .Include(x => x.Tags)
                         .FirstOrDefault(e => e.Slug == slug);
 
                 return entry;
@@ -56,11 +58,20 @@ namespace GoBlog.Domain.Service
 
         public bool Add(Entry entry)
         {
+            entry.CreatedAt = DateTime.Now;
+            entry.PublishedAt = DateTime.Now;
+            entry.Summary = "coming soon.";
+
             try
             {
-                using (var repository = new Repository<Entry>())
+                var context = new BlogDatabase();
+                using (var tagRepo = new Repository<Tag>(context))
+                using (var entryRepo = new Repository<Entry>(context))
                 {
-                    repository.Add(entry);
+                    foreach (var tag in entry.Tags)
+                        tagRepo.Attach(tag);
+
+                    entryRepo.Add(entry);
                     return true;
                 }
             }
@@ -84,7 +95,8 @@ namespace GoBlog.Domain.Service
         {
             using (var repository = new Repository<Entry>())
             {
-                repository.Update(entry, entry.Slug);
+                var existing = repository.All().Include(x => x.Tags).SingleOrDefault(x => x.Slug == entry.Slug);
+                repository.Update(existing,entry);
             }
         }
     }

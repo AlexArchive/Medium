@@ -150,6 +150,7 @@
     </Compile>
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Infrastructure\AutoMapper\AutoMapperExtensions.cs" />
+    <Compile Include="Infrastructure\AutoMapper\Resolvers\TagsResolver.cs" />
     <Compile Include="Infrastructure\Common\LinkExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

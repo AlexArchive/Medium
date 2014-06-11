@@ -34,11 +34,9 @@
                 
                 <div class="input-group">
                     <i class="fa fa-tags"></i>
-                    <input type="text" id="tags">
+                    @Html.TextBoxFor(m => m.Tags, new { id = "tags" })
                 </div>
 
-                @*@Html.TextBoxFor(m => m.Tags, new { id = "tags" })*@
-                @*<input id="tags" type="text" />*@
             </div>
 
             <button id="publish-button" type="submit" class="flat-button">Publish Now</button>
