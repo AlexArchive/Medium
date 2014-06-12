@@ -16,7 +16,7 @@ namespace GoBlog.Infrastructure.AutoMapper.Resolvers
 
         public static IEnumerable<Tag> ResolveTags(string delimitedTags)
         {
-            var tags = delimitedTags.Trim().Split(new[] { Delimiter }, StringSplitOptions.RemoveEmptyEntries);
+            var tags = delimitedTags.Trim().Split(new[] {Delimiter}, StringSplitOptions.RemoveEmptyEntries).Distinct();
             return tags.Select(x => new Tag { Name = x });
         }
     }
