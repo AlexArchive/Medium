@@ -85,6 +85,7 @@
   <ItemGroup>
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Helpers\RepositoryMockHelper.cs" />
+    <Compile Include="Infrastructure\Paging\PagedListTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

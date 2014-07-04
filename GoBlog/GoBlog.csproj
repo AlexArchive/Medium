@@ -103,6 +103,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\AutoMapper\AutoMapperConfig.cs" />
+    <Compile Include="Infrastructure\Paging\PagedList.cs" />
     <Compile Include="Infrastructure\Persistence\Entities\Post.cs" />
     <Compile Include="Infrastructure\Persistence\BlogDatabase.cs" />
     <Compile Include="Infrastructure\Persistence\IRepository.cs" />
