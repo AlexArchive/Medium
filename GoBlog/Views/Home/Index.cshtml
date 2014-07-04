@@ -5,6 +5,6 @@
 }
 
 @foreach (var post in Model) {
-    <h2>@post.Title</h2>
+    <h2>@Html.ActionLink(post.Title, "Post", new { slug = post.Slug })</h2>
     <p>@post.Summary</p>
 }

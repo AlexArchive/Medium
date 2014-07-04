@@ -44,5 +44,28 @@ namespace GoBlog.Test.Controllers
             Assert.NotNull(model);
             Assert.That(model.First().Title == "Dynamic contagion, part one");
         }
+
+        [Test]
+        public void PostReturnsCorrectView()
+        {
+            // act
+            var actual = controller.Post("dynamic-contagion-part-one") as ViewResult;
+
+            // assert
+            Assert.NotNull(actual);
+            Assert.AreEqual("Post", actual.ViewName);
+        }
+
+        [Test]
+        public void PostReturnsCorrectModel()
+        {
+            // act
+            var actual = controller.Post("dynamic-contagion-part-one") as ViewResult;
+            var model = actual.Model as PostViewModel;
+
+            // assert
+            Assert.NotNull(model);
+            Assert.AreEqual("Dynamic contagion, part one", model.Title);
+        }
     }
 }

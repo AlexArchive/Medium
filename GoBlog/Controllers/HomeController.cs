@@ -11,7 +11,8 @@ namespace GoBlog.Controllers
     {
         private readonly IRepository repository;
 
-        public HomeController() : this(new BlogDatabase())
+        public HomeController()
+            : this(new BlogDatabase())
         {
         }
 
@@ -25,6 +26,13 @@ namespace GoBlog.Controllers
             var posts = repository.Posts.ToList();
             var model = Mapper.Map<List<PostViewModel>>(posts);
             return View("Index", model);
+        }
+
+        public ActionResult Post(string slug)
+        {
+            var post  = repository.Posts.FirstOrDefault(p => p.Slug == slug);
+            var model = Mapper.Map<PostViewModel>(post);
+            return View("Post", model);
         }
     }
 }

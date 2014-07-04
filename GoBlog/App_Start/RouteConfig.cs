@@ -11,8 +11,8 @@ namespace GoBlog
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                url: "{controller}/{action}/{slug}",
+                defaults: new { controller = "Home", action = "Index", slug = UrlParameter.Optional }
             );
         }
     }
