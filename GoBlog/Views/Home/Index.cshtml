@@ -1,0 +1,10 @@
+﻿@model IEnumerable<PostViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@foreach (var post in Model) {
+    <h2>@post.Title</h2>
+    <p>@post.Summary</p>
+}

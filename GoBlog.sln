@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoBlog", "GoBlog\GoBlog.csproj", "{C99263CA-E17C-4040-B059-1F1BB8111152}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoBlog.Test", "GoBlog.Test\GoBlog.Test.csproj", "{C51CBD66-966A-44B4-B394-CD2F10DFD02E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C99263CA-E17C-4040-B059-1F1BB8111152}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C99263CA-E17C-4040-B059-1F1BB8111152}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C99263CA-E17C-4040-B059-1F1BB8111152}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C99263CA-E17C-4040-B059-1F1BB8111152}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C51CBD66-966A-44B4-B394-CD2F10DFD02E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C51CBD66-966A-44B4-B394-CD2F10DFD02E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C51CBD66-966A-44B4-B394-CD2F10DFD02E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C51CBD66-966A-44B4-B394-CD2F10DFD02E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
