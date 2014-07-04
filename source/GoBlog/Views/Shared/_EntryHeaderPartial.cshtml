@@ -1,8 +1,0 @@
-﻿@using GoBlog.Infrastructure.Common
-@model GoBlog.Models.EntryViewModel
-
-<div class="entry-header">
-    <h1>@Html.LinkToEntry(Model)</h1>
-    <small><a>@Model.PublishedAt.Humanize()</a></small>
-    <small><a href="@(Url.LinkToEntry(Model.Slug) + "#disqus_thread")"></a></small>
-</div>
