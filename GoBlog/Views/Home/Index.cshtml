@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PostViewModel>
+﻿@model GoBlog.Infrastructure.Paging.PagedList<PostViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -8,3 +8,5 @@
     <h2>@Html.ActionLink(post.Title, "Post", new { slug = post.Slug })</h2>
     <p>@post.Summary</p>
 }
+
+@Html.Partial("_PagerPartial")

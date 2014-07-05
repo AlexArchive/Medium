@@ -1,5 +1,6 @@
 ﻿using GoBlog.Controllers;
 using GoBlog.Infrastructure.AutoMapper;
+using GoBlog.Infrastructure.Paging;
 using GoBlog.Models;
 using GoBlog.Test.Helpers;
 using NUnit.Framework;
@@ -38,11 +39,25 @@ namespace GoBlog.Test.Controllers
         {
             // act
             var actual = controller.Index() as ViewResult;
-            var model = actual.Model as IEnumerable<PostViewModel>;
+            var model = actual.Model as PagedList<PostViewModel>;
 
             // assert
             Assert.NotNull(model);
+            Assert.That(model.Count == 2);
             Assert.That(model.First().Title == "Dynamic contagion, part one");
+        }
+
+        [Test]
+        public void IndexAbidesByPageNumber()
+        {
+            // act
+            var actual = controller.Index(2) as ViewResult;
+            var model = actual.Model as PagedList<PostViewModel>;
+
+            // assert
+            Assert.NotNull(model);
+            Assert.That(model.Count == 2);
+            Assert.That(model.First().Title == "When should I write a property?");
         }
 
         [Test]

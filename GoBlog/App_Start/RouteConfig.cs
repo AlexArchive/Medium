@@ -10,6 +10,12 @@ namespace GoBlog
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Page",
+                url: "page/{pageNumber}",
+                defaults: new { controller = "Home", action = "Index" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{slug}",
                 defaults: new { controller = "Home", action = "Index", slug = UrlParameter.Optional }

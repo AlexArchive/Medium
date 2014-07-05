@@ -1,0 +1,14 @@
+﻿@model GoBlog.Infrastructure.Paging.PagedList<PostViewModel>
+
+@if (Model.PageCount > 1)
+{
+    if (Model.PageNumber < Model.PageCount)
+    {
+        @Html.ActionLink("Older", "Index", "Home", new { pageNumber = Model.PageNumber + 1 }, new { })
+    }
+
+    if (Model.PageNumber > 1)
+    {
+        @Html.ActionLink("Newer", "Index", "Home", new { pageNumber = Model.PageNumber - 1 }, new { })
+    }
+}
