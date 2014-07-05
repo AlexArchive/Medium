@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace GoBlog.Infrastructure.Persistence.Entities
 {
@@ -16,5 +17,8 @@ namespace GoBlog.Infrastructure.Persistence.Entities
 
         [Required]
         public string Content { get; set; }
+
+        [Required]
+        public DateTime Published { get; set; }
     }
 }

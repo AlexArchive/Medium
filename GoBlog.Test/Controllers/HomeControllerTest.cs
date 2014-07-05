@@ -4,7 +4,6 @@ using GoBlog.Infrastructure.Paging;
 using GoBlog.Models;
 using GoBlog.Test.Helpers;
 using NUnit.Framework;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -61,6 +60,21 @@ namespace GoBlog.Test.Controllers
         }
 
         [Test]
+        public void IndexPostsAreOrderedByPublishDate()
+        {
+            // arrange
+            var firstPage = (ViewResult) controller.Index();
+            var firstPageModel = (PagedList<PostViewModel>) firstPage.Model;
+            
+            var lastPage = (ViewResult)controller.Index(firstPageModel.PageCount);
+            var lastPageModel = (PagedList<PostViewModel>)lastPage.Model;
+
+            // assert
+            Assert.That(firstPageModel.First().Title == "Dynamic contagion, part one");
+            Assert.That(lastPageModel.Last().Title == "Lowering in language design, part two");
+        }
+
+        [Test]
         public void PostReturnsCorrectView()
         {
             // act
@@ -70,7 +84,7 @@ namespace GoBlog.Test.Controllers
             Assert.NotNull(actual);
             Assert.AreEqual("Post", actual.ViewName);
         }
-
+        
         [Test]
         public void PostReturnsCorrectModel()
         {

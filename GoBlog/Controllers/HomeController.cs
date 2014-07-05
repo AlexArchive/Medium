@@ -24,7 +24,7 @@ namespace GoBlog.Controllers
 
         public ActionResult Index(int pageNumber = 1)
         {
-            var posts = Mapper.Map<List<PostViewModel>>(repository.Posts.ToList());
+            var posts = Mapper.Map<List<PostViewModel>>(repository.Posts.OrderBy(x=> x.Published).ToList());
             var model = new PagedList<PostViewModel>(posts, pageNumber, 2);
             return View("Index", model);
         }
