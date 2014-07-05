@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using GoBlog.Infrastructure.AutoMapper;
-using GoBlog.Infrastructure.Persistence.Migrations;
+using GoBlog.Persistence.Migrations;
 
 namespace GoBlog
 {

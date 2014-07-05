@@ -1,10 +1,11 @@
-﻿@model GoBlog.Infrastructure.Paging.PagedList<PostViewModel>
+﻿@model PagedList<PostViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Home";
 }
 
-@foreach (var post in Model) {
+@foreach (var post in Model) 
+{
     <h2>@Html.ActionLink(post.Title, "Post", new { slug = post.Slug })</h2>
     <p>@post.Summary</p>
 }

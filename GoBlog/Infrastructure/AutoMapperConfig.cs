@@ -1,6 +1,7 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
+using GoBlog.Infrastructure.Persistence.Entities;
 using GoBlog.Models;
-using GoBlog.Persistence.Entities;
 
 namespace GoBlog.Infrastructure.AutoMapper
 {

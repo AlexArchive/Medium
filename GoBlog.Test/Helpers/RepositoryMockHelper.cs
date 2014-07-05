@@ -1,7 +1,7 @@
 ﻿using System;
 using FakeDbSet;
-using GoBlog.Infrastructure.Persistence;
-using GoBlog.Infrastructure.Persistence.Entities;
+using GoBlog.Persistence;
+using GoBlog.Persistence.Entities;
 using Moq;
 
 namespace GoBlog.Test.Helpers

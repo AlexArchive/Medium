@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using GoBlog.Infrastructure.Paging;
-using GoBlog.Infrastructure.Persistence;
 using GoBlog.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using GoBlog.Persistence;
 
 namespace GoBlog.Controllers
 {
@@ -12,7 +12,7 @@ namespace GoBlog.Controllers
     {
         private readonly IRepository repository;
 
-        public HomeController()
+        public HomeController() 
             : this(new BlogDatabase())
         {
         }
@@ -24,8 +24,9 @@ namespace GoBlog.Controllers
 
         public ActionResult Index(int pageNumber = 1)
         {
-            var posts = Mapper.Map<List<PostViewModel>>(repository.Posts.OrderBy(x=> x.Published).ToList());
-            var model = new PagedList<PostViewModel>(posts, pageNumber, 2);
+            var posts = repository.Posts.OrderBy(post => post.Published);
+            var postModels = Mapper.Map<List<PostViewModel>>(posts);
+            var model = postModels.ToPagedList(pageNumber, 2);
             return View("Index", model);
         }
 

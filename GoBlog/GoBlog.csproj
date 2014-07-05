@@ -104,10 +104,11 @@
     </Compile>
     <Compile Include="Infrastructure\AutoMapper\AutoMapperConfig.cs" />
     <Compile Include="Infrastructure\Paging\PagedList.cs" />
-    <Compile Include="Infrastructure\Persistence\Entities\Post.cs" />
-    <Compile Include="Infrastructure\Persistence\BlogDatabase.cs" />
-    <Compile Include="Infrastructure\Persistence\IRepository.cs" />
-    <Compile Include="Infrastructure\Persistence\Migrations\DatabaseSeeder.cs" />
+    <Compile Include="Infrastructure\Paging\PagedListExtensions.cs" />
+    <Compile Include="Persistence\Entities\Post.cs" />
+    <Compile Include="Persistence\BlogDatabase.cs" />
+    <Compile Include="Persistence\IRepository.cs" />
+    <Compile Include="Persistence\Migrations\DatabaseSeeder.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
