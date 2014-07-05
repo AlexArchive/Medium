@@ -1,10 +1,10 @@
-﻿using GoBlog.Infrastructure.Paging;
-using NUnit.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using GoBlog.Infrastructure.Paging;
+using NUnit.Framework;
 
-namespace GoBlog.Test.Infrastructure.Paging
+namespace GoBlog.Test.Paging
 {
     [TestFixture]
     public class PagedListTest

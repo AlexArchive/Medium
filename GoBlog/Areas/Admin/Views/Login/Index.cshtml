@@ -1,0 +1,22 @@
+﻿@model CredentialsModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Authenticate", "Login"))
+{
+    @Html.ValidationSummary()
+
+    @Html.LabelFor(m => m.Username)
+    @Html.TextBoxFor(m => m.Username)
+
+    @Html.LabelFor(m => m.Password)
+    @Html.PasswordFor(m => m.Password)
+    
+    <button type="submit">Login</button>
+}
+
+

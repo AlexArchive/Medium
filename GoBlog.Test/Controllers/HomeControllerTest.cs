@@ -47,7 +47,7 @@ namespace GoBlog.Test.Controllers
         }
 
         [Test]
-        public void IndexAbidesByPageNumber()
+        public void IndexReturnsCorrectModelForPage2()
         {
             // act
             var actual = controller.Index(2) as ViewResult;
@@ -60,9 +60,9 @@ namespace GoBlog.Test.Controllers
         }
 
         [Test]
-        public void IndexPostsAreOrderedByPublishDate()
+        public void IndexShouldOrderPostsByPublishDate()
         {
-            // arrange
+            // act
             var firstPage = (ViewResult) controller.Index();
             var firstPageModel = (PagedList<PostViewModel>) firstPage.Model;
             
