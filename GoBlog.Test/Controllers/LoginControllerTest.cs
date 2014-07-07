@@ -75,5 +75,6 @@ namespace GoBlog.Test.Controllers
         //  is password case sensitive?
         //  is username case sensitive?
         //  already authenticated?
+        //  how do I test sign out?
     }
 }
