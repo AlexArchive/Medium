@@ -15,7 +15,7 @@ namespace GoBlog.Test.Controllers
     {
         private HomeController controller;
 
-        [TestFixtureSetUp]
+        [SetUp]
         public void SetUp()
         {
             AutoMapperConfig.Configure();
@@ -57,8 +57,8 @@ namespace GoBlog.Test.Controllers
 
             // assert
             Assert.NotNull(model);
-            Assert.That(model.Count == 2);
-            Assert.That(model.First().Title == "When should I write a property?");
+            Assert.AreEqual(2, model.Count);
+            Assert.AreEqual("When should I write a property?", model.First().Title);
         }
 
         [Test]
