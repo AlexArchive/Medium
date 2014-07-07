@@ -1,7 +1,41 @@
-﻿
+﻿@model IEnumerable<PostViewModel>
+
 @{
     ViewBag.Title = "Admin";
 }
 
-<p>Welcome to the admin panel.</p>
+@Html.ActionLink("Logout", "Logout", "Login")
 
+
+<table>
+    
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Published)
+            </th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        
+        @foreach (var post in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(_ => post.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(_ => post.Published)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", "Home", new { slug = post.Slug }, new{})
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

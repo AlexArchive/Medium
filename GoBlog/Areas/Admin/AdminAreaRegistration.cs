@@ -22,8 +22,8 @@ namespace GoBlog.Areas.Admin
 
             context.MapRoute(
                 "Admin_default",
-                "admin",
-                new { controller="Home", action = "Index" },
+                "admin/{controller}/{action}/{slug}",
+                new { controller = "Home", action = "Index", slug = UrlParameter.Optional },
                 namespaces: new[] { "GoBlog.Areas.Admin.Controllers" }
             );
         }

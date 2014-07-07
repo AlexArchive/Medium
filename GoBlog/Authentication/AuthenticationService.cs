@@ -1,15 +1,26 @@
-﻿using System.Web.Security;
+﻿using System.Web;
+using System.Web.Security;
 
 namespace GoBlog.Authentication
 {
-    public class AuthenticationHandler : IAuthenticationHandler
+    public class AuthenticationService : IAuthenticationService
     {
+        public bool Authenticated
+        {
+            get { return HttpContext.Current.User.Identity.IsAuthenticated; }
+        }
+
         public bool Authenticate(string username, string password)
         {
             var authenticated = FormsAuthentication.Authenticate(username, password);
             if (authenticated)
                 FormsAuthentication.SetAuthCookie(username, false);
             return authenticated;
+        }
+
+        public void Logout()
+        {
+            FormsAuthentication.SignOut();
         }
     }
 }

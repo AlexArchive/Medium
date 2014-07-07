@@ -102,12 +102,12 @@
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Models\Credentials.cs" />
-    <Compile Include="Authentication\AuthenticationHandler.cs" />
+    <Compile Include="Authentication\AuthenticationService.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Authentication\IAuthenticationHandler.cs" />
+    <Compile Include="Authentication\IAuthenticationService.cs" />
     <Compile Include="Infrastructure\AutoMapper\AutoMapperConfig.cs" />
     <Compile Include="Infrastructure\Paging\PagedList.cs" />
     <Compile Include="Infrastructure\Paging\PagedListExtensions.cs" />

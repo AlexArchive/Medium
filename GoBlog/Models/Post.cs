@@ -8,6 +8,6 @@ namespace GoBlog.Models
         public string Title { get; set; }
         public string Summary { get; set; }
         public string Content { get; set; }
-        public DateTime PublishDate { get; set; }
+        public DateTime Published { get; set; }
     }
 }

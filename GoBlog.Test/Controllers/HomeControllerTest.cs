@@ -1,4 +1,5 @@
-﻿using GoBlog.Controllers;
+﻿using AutoMapper;
+using GoBlog.Controllers;
 using GoBlog.Infrastructure.AutoMapper;
 using GoBlog.Infrastructure.Paging;
 using GoBlog.Models;
@@ -18,6 +19,7 @@ namespace GoBlog.Test.Controllers
         public void SetUp()
         {
             AutoMapperConfig.Configure();
+            Mapper.AssertConfigurationIsValid();
             var repository = RepositoryMockHelper.MockRepository();
             controller = new HomeController(repository.Object);
         }
