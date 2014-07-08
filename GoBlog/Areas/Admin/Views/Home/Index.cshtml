@@ -32,7 +32,9 @@
                 </td>
                 <td>
                     @Html.ActionLink("Delete", "Delete", "Home", new { slug = post.Slug }, new{})
+                    @Html.ActionLink("Edit", "Edit", "Home", new { slug = post.Slug }, new { })
                     @Html.ActionLink("Preview", "Post", "Home", new { area="", slug = post.Slug }, new { })
+
                 </td>
             </tr>
         }
