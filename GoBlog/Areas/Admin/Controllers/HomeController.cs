@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using AutoMapper;
 using GoBlog.Areas.Admin.Models;
@@ -17,9 +18,9 @@ namespace GoBlog.Areas.Admin.Controllers
         private IRepository repository;
 
         public HomeController()
-            : this (new BlogDatabase())
+            : this(new BlogDatabase())
         {
-            
+
         }
 
         public HomeController(IRepository repository)
@@ -36,8 +37,8 @@ namespace GoBlog.Areas.Admin.Controllers
 
         public ActionResult Delete(string slug)
         {
-            // Thought: What if we are supplied a slug that does not exist? Test this!
             var post = repository.Posts.FirstOrDefault(p => p.Slug == slug);
+            if (post == null) return HttpNotFound("You cannot delete a post that does not exist.");
             repository.Posts.Remove(post);
             repository.SaveChanges();
             return RedirectToAction("Index");
@@ -46,6 +47,7 @@ namespace GoBlog.Areas.Admin.Controllers
         public ActionResult Edit(string slug)
         {
             var post = repository.Posts.FirstOrDefault(p => p.Slug == slug);
+            if (post == null) return HttpNotFound("You cannot edit a post that does not exist.");
             var postModel = Mapper.Map<PostInputModel>(post);
             return View("Edit", postModel);
         }
@@ -55,14 +57,16 @@ namespace GoBlog.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Thought: What if we are supplied a slug that does not exist? Test this!
                 Post existing = repository.Posts.FirstOrDefault(post => post.Slug == model.Slug);
-                Mapper.Map(model, existing, model.GetType(), typeof (Post));
+                if (existing == null) return HttpNotFound("You cannot edit a post that does not exist.");
+                Mapper.Map(model, existing, model.GetType(), typeof(Post));
                 repository.SaveChanges();
                 return Edit(existing.Slug);
             }
 
             return View("Edit", model);
         }
+
+
     }
 }

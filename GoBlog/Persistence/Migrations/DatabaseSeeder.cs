@@ -4,7 +4,7 @@ using GoBlog.Persistence.Entities;
 
 namespace GoBlog.Persistence.Migrations
 {
-    public class DatabaseSeeder : DropCreateDatabaseIfModelChanges<BlogDatabase>
+    public class DatabaseSeeder : DropCreateDatabaseAlways<BlogDatabase>
     {
         protected override void Seed(BlogDatabase context)
         {

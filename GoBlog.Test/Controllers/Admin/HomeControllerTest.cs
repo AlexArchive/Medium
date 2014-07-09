@@ -59,6 +59,14 @@ namespace GoBlog.Test.Controllers.Admin
         }
 
         [Test]
+        public void DeleteReturns404WhenPostDoesntExist()
+        {
+            var actual = controller.Delete("non-existent-slug") as HttpNotFoundResult;
+            Assert.NotNull(actual);
+            Assert.That(actual.StatusDescription, Is.EqualTo("You cannot delete a post that does not exist."));
+        }
+
+        [Test]
         public void EditReturnsCorrectView()
         {
             var actual = controller.Edit("dynamic-contagion-part-one") as ViewResult;
@@ -76,9 +84,17 @@ namespace GoBlog.Test.Controllers.Admin
         }
 
         [Test]
+        public void EditReturns404WhenPostDoesntExist()
+        {
+            var actual = controller.Edit("non-existent-slug") as HttpNotFoundResult;
+            Assert.NotNull(actual);
+            Assert.That(actual.StatusDescription, Is.EqualTo("You cannot edit a post that does not exist."));
+        }
+
+        [Test]
         public void EditPostReturnsCorrectView()
         {
-            var model = new PostInputModel { Slug = "dynamic-contagion-part-one" };
+            var model = new PostInputModel { Slug = "dynamic-contagion-part-one", Content = "" };
 
             var actual = controller.Edit(model) as ViewResult;
 
@@ -98,13 +114,22 @@ namespace GoBlog.Test.Controllers.Admin
         }
 
         [Test]
+        public void EditPostReturns404WhenPostDoesntExist()
+        {
+            var model = new PostInputModel { Slug = "non-existent-slug" };
+            var actual = controller.Edit(model) as HttpNotFoundResult;
+            Assert.NotNull(actual);
+            Assert.That(actual.StatusDescription, Is.EqualTo("You cannot edit a post that does not exist."));
+        }
+
+        [Test]
         public void InvalidModelReturnsCorrectViewAndModel()
         {
             controller.ModelState.AddModelError("", "");
             var model = new PostInputModel();
-            
+
             var actual = controller.Edit(model) as ViewResult;
-            
+
             Assert.NotNull(actual);
             Assert.That(actual.ViewName, Is.EqualTo("Edit"));
             Assert.AreEqual(model, actual.Model);
