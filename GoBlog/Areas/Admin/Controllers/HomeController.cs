@@ -58,9 +58,13 @@ namespace GoBlog.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 Post existing = repository.Posts.FirstOrDefault(post => post.Slug == model.Slug);
+                repository.Posts.Remove(existing);
+                repository.SaveChanges();
                 if (existing == null) return HttpNotFound("You cannot edit a post that does not exist.");
                 Mapper.Map(model, existing, model.GetType(), typeof(Post));
                 existing.Summary = Summarize(existing.Content);
+                existing.Slug = SlugConverter.Convert(existing.Title);
+                repository.Posts.Add(existing);
                 repository.SaveChanges();
                 return Edit(existing.Slug);
             }

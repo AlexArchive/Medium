@@ -66,6 +66,8 @@ namespace GoBlog.Test.Controllers.Admin
             Assert.That(actual.StatusDescription, Is.EqualTo("You cannot delete a post that does not exist."));
         }
 
+
+
         [Test]
         public void EditReturnsCorrectView()
         {
@@ -94,7 +96,7 @@ namespace GoBlog.Test.Controllers.Admin
         [Test]
         public void EditPostReturnsCorrectView()
         {
-            var model = new PostInputModel { Slug = "dynamic-contagion-part-one", Content = "" };
+            var model = new PostInputModel { Slug = "dynamic-contagion-part-one", Title="", Content = "" };
 
             var actual = controller.Edit(model) as ViewResult;
 
@@ -105,7 +107,7 @@ namespace GoBlog.Test.Controllers.Admin
         [Test]
         public void EditPostEditsPost()
         {
-            var model = new PostInputModel { Slug = "dynamic-contagion-part-one", Content = "test" };
+            var model = new PostInputModel { Slug = "dynamic-contagion-part-one", Title = "Dynamic Contagion Part One", Content = "test" };
 
             var actual = controller.Edit(model) as ViewResult;
 
@@ -139,12 +141,20 @@ namespace GoBlog.Test.Controllers.Admin
         [TestCase("test\r\ntest", ExpectedResult = "test")]
         public string EditPostEditsSummary(string content)
         {
-            var model = new PostInputModel { Slug = "dynamic-contagion-part-one", Content = content };
+            var model = new PostInputModel { Slug = "dynamic-contagion-part-one", Title = "Dynamic Contagion Part One", Content = content};
+
             var actual = controller.Edit(model) as ViewResult;
 
             var post = repository.Object.Posts.First(p => p.Slug == "dynamic-contagion-part-one");
             return post.Summary;
-            //Assert.That(post.Summary, Is.EqualTo("test"));
+        }
+
+        [Test]
+        public void EditPostEditsSlug()
+        {
+            var model = new PostInputModel { Slug = "dynamic-contagion-part-one", Content = "", Title = "Hello"};
+            var actual = controller.Edit(model) as ViewResult;
+            repository.Object.Posts.First(p => p.Slug == "hello");
         }
     }
 }
