@@ -94,6 +94,7 @@
     <Compile Include="Persistence\Migrations\DatabaseSeeder.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SlugConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
