@@ -134,5 +134,17 @@ namespace GoBlog.Test.Controllers.Admin
             Assert.That(actual.ViewName, Is.EqualTo("Edit"));
             Assert.AreEqual(model, actual.Model);
         }
+
+        [TestCase("test", ExpectedResult = "test")]
+        [TestCase("test\r\ntest", ExpectedResult = "test")]
+        public string EditPostEditsSummary(string content)
+        {
+            var model = new PostInputModel { Slug = "dynamic-contagion-part-one", Content = content };
+            var actual = controller.Edit(model) as ViewResult;
+
+            var post = repository.Object.Posts.First(p => p.Slug == "dynamic-contagion-part-one");
+            return post.Summary;
+            //Assert.That(post.Summary, Is.EqualTo("test"));
+        }
     }
 }

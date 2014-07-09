@@ -60,6 +60,7 @@ namespace GoBlog.Areas.Admin.Controllers
                 Post existing = repository.Posts.FirstOrDefault(post => post.Slug == model.Slug);
                 if (existing == null) return HttpNotFound("You cannot edit a post that does not exist.");
                 Mapper.Map(model, existing, model.GetType(), typeof(Post));
+                existing.Summary = Summarize(existing.Content);
                 repository.SaveChanges();
                 return Edit(existing.Slug);
             }
@@ -67,6 +68,10 @@ namespace GoBlog.Areas.Admin.Controllers
             return View("Edit", model);
         }
 
-
+        private static string Summarize(string content)
+        {
+            if (!content.Contains(Environment.NewLine)) return content;
+            return content.Split(new[] { Environment.NewLine }, StringSplitOptions.None)[0];
+        }
     }
 }
