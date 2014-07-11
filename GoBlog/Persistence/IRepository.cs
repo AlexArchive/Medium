@@ -3,7 +3,7 @@ using GoBlog.Persistence.Entities;
 
 namespace GoBlog.Persistence
 {
-    // this is a pragmatic implementation, trust me.
+    // This is a pragmatic implementation. Trust me.
     public interface IRepository
     {
         IDbSet<Post> Posts { get; }

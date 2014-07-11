@@ -7,37 +7,37 @@ using NUnit.Framework;
 using System.Collections.Specialized;
 using System.Web.Mvc;
 
-namespace GoBlog.Test.Controllers
+namespace GoBlog.Test.Controllers.Admin
 {
     [TestFixture]
     public class LoginControllerTest
     {
         private CredentialsModel credentials;
-        private Mock<IAuthenticationService> authHandler;
+        private Mock<IAuthenticationService> authService;
         private LoginController loginController;
 
         [SetUp]
         public void SetUp()
         {
-            authHandler = new Mock<IAuthenticationService>();
-            loginController = new LoginController(authHandler.Object);
+            authService = new Mock<IAuthenticationService>();
+            loginController = new LoginController(authService.Object);
             loginController.SetFakeControllerContext();
             credentials = new CredentialsModel { Username = "admin", Password = "password" };
         }
 
         [Test]
-        public void Index()
+        public void IndexReturnsCorrectView()
         {
             var actual = loginController.Index() as ViewResult;
 
             Assert.NotNull(actual);
-            Assert.AreEqual("Index", actual.ViewName);
+            Assert.That(actual.ViewName, Is.EqualTo("Index"));
         }
 
         [Test]
-        public void IndexWhenAuthenticated()
+        public void IndexReturnsCorrectViewWhenUserIsAuthenticated()
         {
-            authHandler.Setup(x => x.Authenticated).Returns(true);
+            authService.Setup(x => x.Authenticated).Returns(true);
 
             var actual = loginController.Index() as RedirectResult;
 
@@ -46,9 +46,9 @@ namespace GoBlog.Test.Controllers
         }
 
         [Test]
-        public void Authenticate()
+        public void AuthenticateReturnsCorrectRedirect()
         {
-            authHandler.Setup(handler => handler.Authenticate(credentials.Username, credentials.Password))
+            authService.Setup(handler => handler.Authenticate(credentials.Username, credentials.Password))
                        .Returns(true);
 
             var actual = loginController.Authenticate(credentials) as RedirectResult;
@@ -59,10 +59,10 @@ namespace GoBlog.Test.Controllers
         }
 
         [Test]
-        public void AuthenticateWithReturnUrl()
+        public void AuthenticateReturnsCustomRedirect()
         {
             var queryParams = new NameValueCollection { { "ReturnUrl", "/admin/settings" } };
-            authHandler.Setup(handler => handler.Authenticate("admin", "password")).Returns(true);
+            authService.Setup(handler => handler.Authenticate("admin", "password")).Returns(true);
             loginController.SetFakeControllerContext(queryParams);
 
             var actual = loginController.Authenticate(credentials) as RedirectResult;
@@ -72,9 +72,9 @@ namespace GoBlog.Test.Controllers
         }
 
         [Test]
-        public void InvalidCredentials()
+        public void IndexReturnsCorrectInvalidCredentialsModel()
         {
-            authHandler.Setup(handler => handler.Authenticate("admin", "password")).Returns(false);
+            authService.Setup(handler => handler.Authenticate("admin", "password")).Returns(false);
 
             var actual = loginController.Authenticate(credentials) as ViewResult;
 
@@ -83,7 +83,7 @@ namespace GoBlog.Test.Controllers
         }
 
         [Test]
-        public void Logout()
+        public void LogoutReturnsCorrectView()
         {
             var actual = loginController.Logout() as RedirectToRouteResult;
             

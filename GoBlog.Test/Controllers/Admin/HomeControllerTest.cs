@@ -17,43 +17,46 @@ namespace GoBlog.Test.Controllers.Admin
     {
         private HomeController controller;
         private Mock<IRepository> repository;
+        private PostInputModel postInputModel;
 
         [SetUp]
         public void SetUp()
         {
             AutoMapperConfig.Configure();
-            //Mapper.AssertConfigurationIsValid();
             repository = RepositoryMockHelper.MockRepository();
             controller = new HomeController(repository.Object);
+            postInputModel = new PostInputModel
+            {
+                Slug = "dynamic-contagion-part-one", 
+                Title = "Dynamic Contagion Part One", 
+                Content = "Edited content."
+            };
         }
 
         [Test]
         public void IndexReturnsCorrectView()
         {
-            // act
             var actual = controller.Index() as ViewResult;
 
-            // assert
             Assert.NotNull(actual);
-            Assert.AreEqual("Index", actual.ViewName);
+            Assert.That(actual.ViewName, Is.EqualTo("Index"));
         }
 
         [Test]
         public void IndexReturnsCorrectModel()
         {
-            // act
-            var actual = controller.Index() as ViewResult;
-            var model = actual.Model as IEnumerable<PostViewModel>;
+            var viewResult = controller.Index() as ViewResult;
+            var actual = viewResult.Model as IEnumerable<PostViewModel>;
 
-            // assert
-            Assert.NotNull(model);
-            Assert.That(model.Count(), Is.EqualTo(4));
+            Assert.NotNull(actual);
+            Assert.That(actual.Count(), Is.EqualTo(4));
         }
 
         [Test]
         public void DeleteDeletesPost()
         {
             var actual = controller.Delete("dynamic-contagion-part-one") as RedirectToRouteResult;
+
             Assert.NotNull(actual);
             Assert.That(repository.Object.Posts.Count(), Is.EqualTo(3));
         }
@@ -62,16 +65,16 @@ namespace GoBlog.Test.Controllers.Admin
         public void DeleteReturns404WhenPostDoesntExist()
         {
             var actual = controller.Delete("non-existent-slug") as HttpNotFoundResult;
+
             Assert.NotNull(actual);
             Assert.That(actual.StatusDescription, Is.EqualTo("You cannot delete a post that does not exist."));
         }
-
-
 
         [Test]
         public void EditReturnsCorrectView()
         {
             var actual = controller.Edit("dynamic-contagion-part-one") as ViewResult;
+
             Assert.NotNull(actual);
             Assert.That(actual.ViewName, Is.EqualTo("Edit"));
         }
@@ -79,16 +82,19 @@ namespace GoBlog.Test.Controllers.Admin
         [Test]
         public void EditReturnsCorrectModel()
         {
-            var actual = controller.Edit("dynamic-contagion-part-one") as ViewResult;
-            var model = actual.Model as PostInputModel;
-            Assert.NotNull(model);
-            Assert.That(model.Title, Is.EqualTo("Dynamic contagion, part one"));
+            var viewResult = controller.Edit("dynamic-contagion-part-one") as ViewResult;
+
+            var actual = viewResult.Model as PostInputModel;
+
+            Assert.NotNull(actual);
+            Assert.That(actual.Title, Is.EqualTo("Dynamic contagion, part one"));
         }
 
         [Test]
         public void EditReturns404WhenPostDoesntExist()
         {
             var actual = controller.Edit("non-existent-slug") as HttpNotFoundResult;
+
             Assert.NotNull(actual);
             Assert.That(actual.StatusDescription, Is.EqualTo("You cannot edit a post that does not exist."));
         }
@@ -96,36 +102,58 @@ namespace GoBlog.Test.Controllers.Admin
         [Test]
         public void EditPostReturnsCorrectView()
         {
-            var model = new PostInputModel { Slug = "dynamic-contagion-part-one", Title="", Content = "" };
-
-            var actual = controller.Edit(model) as ViewResult;
+            var actual = controller.Edit(postInputModel) as ViewResult;
 
             Assert.NotNull(actual);
             Assert.That(actual.ViewName, Is.EqualTo("Edit"));
         }
 
         [Test]
-        public void EditPostEditsPost()
+        public void EditPostEditsContent()
         {
-            var model = new PostInputModel { Slug = "dynamic-contagion-part-one", Title = "Dynamic Contagion Part One", Content = "test" };
-
-            var actual = controller.Edit(model) as ViewResult;
+            postInputModel.Content = "sample content.";
+            var actual = controller.Edit(postInputModel) as ViewResult;
 
             var post = repository.Object.Posts.First(p => p.Slug == "dynamic-contagion-part-one");
-            Assert.That(post.Content, Is.EqualTo("test"));
+            Assert.That(post.Content, Is.EqualTo("sample content."));
+        }
+
+        [TestCase("test", ExpectedResult = "test")]
+        [TestCase("test\r\ntest", ExpectedResult = "test")]
+        public string EditPostEditsSummary(string content)
+        {
+            postInputModel.Content = content;
+
+            var actual = controller.Edit(postInputModel) as ViewResult;
+
+            var post = repository.Object.Posts.First(p => p.Slug == "dynamic-contagion-part-one");
+            return post.Summary;
+        }
+
+        [Test]
+        public void EditPostEditsSlug()
+        {
+            postInputModel.Title = "Hello";
+
+            var actual = controller.Edit(postInputModel) as ViewResult;
+
+            Assert.DoesNotThrow(() =>
+                repository.Object.Posts.First(p => p.Slug == "hello"));
         }
 
         [Test]
         public void EditPostReturns404WhenPostDoesntExist()
         {
             var model = new PostInputModel { Slug = "non-existent-slug" };
+
             var actual = controller.Edit(model) as HttpNotFoundResult;
+
             Assert.NotNull(actual);
             Assert.That(actual.StatusDescription, Is.EqualTo("You cannot edit a post that does not exist."));
         }
 
         [Test]
-        public void InvalidModelReturnsCorrectViewAndModel()
+        public void EditPostReturnsCorrectViewWhenSuppliedWithInvalidModel()
         {
             controller.ModelState.AddModelError("", "");
             var model = new PostInputModel();
@@ -135,26 +163,6 @@ namespace GoBlog.Test.Controllers.Admin
             Assert.NotNull(actual);
             Assert.That(actual.ViewName, Is.EqualTo("Edit"));
             Assert.AreEqual(model, actual.Model);
-        }
-
-        [TestCase("test", ExpectedResult = "test")]
-        [TestCase("test\r\ntest", ExpectedResult = "test")]
-        public string EditPostEditsSummary(string content)
-        {
-            var model = new PostInputModel { Slug = "dynamic-contagion-part-one", Title = "Dynamic Contagion Part One", Content = content};
-
-            var actual = controller.Edit(model) as ViewResult;
-
-            var post = repository.Object.Posts.First(p => p.Slug == "dynamic-contagion-part-one");
-            return post.Summary;
-        }
-
-        [Test]
-        public void EditPostEditsSlug()
-        {
-            var model = new PostInputModel { Slug = "dynamic-contagion-part-one", Content = "", Title = "Hello"};
-            var actual = controller.Edit(model) as ViewResult;
-            repository.Object.Posts.First(p => p.Slug == "hello");
         }
     }
 }

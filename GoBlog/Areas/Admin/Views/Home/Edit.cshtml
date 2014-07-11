@@ -6,12 +6,11 @@
 
 @using (Html.BeginForm())
 {
+    @Html.ValidationSummary(false)
     @Html.LabelFor(post => post.Title)
     @Html.EditorFor(post => post.Title)
-    <br /> <!-- don't do this at home kids. -->
+    <br />
     @Html.LabelFor(post => post.Content)
     @Html.TextAreaFor(post => post.Content)
-
     <button type="submit">Edit</button>
 }
-

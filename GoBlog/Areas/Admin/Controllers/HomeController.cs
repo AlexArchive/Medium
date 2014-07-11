@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using AutoMapper;
 using GoBlog.Areas.Admin.Models;
@@ -15,13 +13,7 @@ namespace GoBlog.Areas.Admin.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        private IRepository repository;
-
-        public HomeController()
-            : this(new BlogDatabase())
-        {
-
-        }
+        private readonly IRepository repository;
 
         public HomeController(IRepository repository)
         {
@@ -31,8 +23,8 @@ namespace GoBlog.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var posts = repository.Posts.OrderBy(post => post.Published);
-            var postModels = Mapper.Map<List<PostViewModel>>(posts);
-            return View("Index", postModels);
+            var postViewModels = Mapper.Map<List<PostViewModel>>(posts);
+            return View("Index", postViewModels);
         }
 
         public ActionResult Delete(string slug)

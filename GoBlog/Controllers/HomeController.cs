@@ -12,11 +12,6 @@ namespace GoBlog.Controllers
     {
         private readonly IRepository repository;
 
-        public HomeController() 
-            : this(new BlogDatabase())
-        {
-        }
-
         public HomeController(IRepository repository)
         {
             this.repository = repository;
@@ -25,16 +20,17 @@ namespace GoBlog.Controllers
         public ActionResult Index(int pageNumber = 1)
         {
             var posts = repository.Posts.OrderBy(post => post.Published);
-            var postModels = Mapper.Map<List<PostViewModel>>(posts);
-            var model = postModels.ToPagedList(pageNumber, 2);
-            return View("Index", model);
+            var postViewModels = Mapper.Map<List<PostViewModel>>(posts);
+            var pagedList = postViewModels.ToPagedList(pageNumber, 2);
+            return View("Index", pagedList);
         }
 
         public ActionResult Post(string slug)
         {
-            var post  = repository.Posts.FirstOrDefault(p => p.Slug == slug);
-            var model = Mapper.Map<PostViewModel>(post);
-            return View("Post", model);
+            // Thought: what if the post does not exist.
+            var post = repository.Posts.FirstOrDefault(p => p.Slug == slug);
+            var postViewModel = Mapper.Map<PostViewModel>(post);
+            return View("Post", postViewModel);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace GoBlog.Persistence.Migrations
     {
         protected override void Seed(BlogDatabase context)
         {
-            // arbitrary posts borrowed from http://ericlippert.com/
+            // arbitrary posts sourced from http://ericlippert.com/
 
             context.Posts.Add(new Post
             {

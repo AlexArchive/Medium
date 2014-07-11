@@ -6,9 +6,7 @@
 
 @Html.ActionLink("Logout", "Logout", "Login")
 
-
 <table>
-    
     <thead>
         <tr>
             <th>
@@ -21,7 +19,6 @@
     </thead>
     
     <tbody>
-        
         @foreach (var post in Model) {
             <tr>
                 <td>
@@ -33,12 +30,9 @@
                 <td>
                     @Html.ActionLink("Delete", "Delete", "Home", new { slug = post.Slug }, new{})
                     @Html.ActionLink("Edit", "Edit", "Home", new { slug = post.Slug }, new { })
-                    @Html.ActionLink("Preview", "Post", "Home", new { area="", slug = post.Slug }, new { })
-
+                    @Html.ActionLink("Preview", "Post", "Home", new { area = "", slug = post.Slug }, new { })
                 </td>
             </tr>
         }
-
     </tbody>
-
 </table>

@@ -12,7 +12,6 @@ namespace GoBlog.Infrastructure.AutoMapper
             Mapper.CreateMap<Post, PostViewModel>();
             Mapper.CreateMap<Post, PostInputModel>();
             Mapper.CreateMap<PostInputModel, Post>();
-
         }
     }
 }

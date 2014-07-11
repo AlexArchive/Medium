@@ -8,7 +8,7 @@ namespace GoBlog.Test.Helpers
 {
     namespace UnitTests
     {
-        public static class MvcMockHelper
+        public static class ContextMockHelper
         {
             public static void SetFakeControllerContext(this Controller controller, NameValueCollection querystring = null)
             {

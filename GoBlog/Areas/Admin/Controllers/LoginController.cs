@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using System.Web.Routing;
 using GoBlog.Areas.Admin.Models;
 using GoBlog.Authentication;
 
@@ -7,22 +6,16 @@ namespace GoBlog.Areas.Admin.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly IAuthenticationService authenticationService;
+        private readonly IAuthenticationService authService;
 
-        public LoginController()
-            : this(new AuthenticationService())
+        public LoginController(IAuthenticationService authService)
         {
-        }
-
-        public LoginController(IAuthenticationService authenticationService)
-        {
-            this.authenticationService = authenticationService;
+            this.authService = authService;
         }
 
         public ActionResult Index()
         {
-
-            if (authenticationService.Authenticated)
+            if (authService.Authenticated)
             {
                 return Redirect("/admin");
             }
@@ -34,12 +27,11 @@ namespace GoBlog.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var authenticated = authenticationService.Authenticate(credentials.Username, credentials.Password);
+                var authenticated = authService.Authenticate(credentials.Username, credentials.Password);
                 if (authenticated)
                 {
                     return Redirect(Request.QueryString["ReturnUrl"] ?? "/admin");
                 }
-
                 ModelState.AddModelError("", "Username or Password is incorrect.");
             }
             return View("Index", credentials);
@@ -47,7 +39,7 @@ namespace GoBlog.Areas.Admin.Controllers
 
         public ActionResult Logout()
         {
-            authenticationService.Logout();
+            authService.Logout();
             return RedirectToAction("Index", "Home", new { area = "" });
         }
     }

@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using GoBlog.Controllers;
+﻿using GoBlog.Controllers;
 using GoBlog.Infrastructure.AutoMapper;
 using GoBlog.Infrastructure.Paging;
 using GoBlog.Models;
@@ -19,7 +18,6 @@ namespace GoBlog.Test.Controllers
         public void SetUp()
         {
             AutoMapperConfig.Configure();
-            Mapper.AssertConfigurationIsValid();
             var repository = RepositoryMockHelper.MockRepository();
             controller = new HomeController(repository.Object);
         }
@@ -27,76 +25,64 @@ namespace GoBlog.Test.Controllers
         [Test]
         public void IndexReturnsCorrectView()
         {
-            // act
             var actual = controller.Index() as ViewResult;
 
-            // assert
             Assert.NotNull(actual);
-            Assert.AreEqual("Index", actual.ViewName);
+            Assert.That(actual.ViewName, Is.EqualTo("Index"));
         }
 
         [Test]
         public void IndexReturnsCorrectModel()
         {
-            // act
-            var actual = controller.Index() as ViewResult;
-            var model = actual.Model as PagedList<PostViewModel>;
+            var viewResult = controller.Index() as ViewResult;
+            var actual = viewResult.Model as PagedList<PostViewModel>;
 
-            // assert
-            Assert.NotNull(model);
-            Assert.That(model.Count == 2);
-            Assert.That(model.First().Title == "Dynamic contagion, part one");
+            Assert.NotNull(actual);
+            Assert.That(actual.Count, Is.EqualTo(2));
+            Assert.That(actual.First().Title, Is.EqualTo("Dynamic contagion, part one"));
         }
 
         [Test]
         public void IndexReturnsCorrectModelForPage2()
         {
-            // act
-            var actual = controller.Index(2) as ViewResult;
-            var model = actual.Model as PagedList<PostViewModel>;
+            var viewResult = controller.Index(2) as ViewResult;
+            var actual = viewResult.Model as PagedList<PostViewModel>;
 
-            // assert
-            Assert.NotNull(model);
-            Assert.AreEqual(2, model.Count);
-            Assert.AreEqual("When should I write a property?", model.First().Title);
+            Assert.NotNull(actual);
+            Assert.That(actual.Count, Is.EqualTo(2));
+            Assert.That(actual.First().Title, Is.EqualTo("When should I write a property?"));
         }
 
         [Test]
         public void IndexShouldOrderPostsByPublishDate()
         {
-            // act
             var firstPage = (ViewResult) controller.Index();
             var firstPageModel = (PagedList<PostViewModel>) firstPage.Model;
-            
-            var lastPage = (ViewResult)controller.Index(firstPageModel.PageCount);
-            var lastPageModel = (PagedList<PostViewModel>)lastPage.Model;
 
-            // assert
-            Assert.That(firstPageModel.First().Title == "Dynamic contagion, part one");
-            Assert.That(lastPageModel.Last().Title == "Lowering in language design, part two");
+            var lastPage = (ViewResult) controller.Index(firstPageModel.PageCount);
+            var lastPageModel = (PagedList<PostViewModel>) lastPage.Model;
+
+            Assert.That(firstPageModel.First().Title, Is.EqualTo("Dynamic contagion, part one"));
+            Assert.That(lastPageModel.Last().Title, Is.EqualTo("Lowering in language design, part two"));
         }
 
         [Test]
-        public void PostReturnsCorrectView()
+        public void SinglePostReturnsCorrectView()
         {
-            // act
             var actual = controller.Post("dynamic-contagion-part-one") as ViewResult;
 
-            // assert
             Assert.NotNull(actual);
-            Assert.AreEqual("Post", actual.ViewName);
+            Assert.That(actual.ViewName, Is.EqualTo("Post"));
         }
-        
-        [Test]
-        public void PostReturnsCorrectModel()
-        {
-            // act
-            var actual = controller.Post("dynamic-contagion-part-one") as ViewResult;
-            var model = actual.Model as PostViewModel;
 
-            // assert
-            Assert.NotNull(model);
-            Assert.AreEqual("Dynamic contagion, part one", model.Title);
+        [Test]
+        public void SinglePostReturnsCorrectModel()
+        {
+            var viewResult = controller.Post("dynamic-contagion-part-one") as ViewResult;
+            var actual = viewResult.Model as PostViewModel;
+
+            Assert.NotNull(actual);
+            Assert.That( actual.Title, Is.EqualTo("Dynamic contagion, part one"));
         }
     }
 }
