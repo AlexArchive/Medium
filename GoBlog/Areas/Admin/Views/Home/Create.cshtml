@@ -1,0 +1,18 @@
+﻿@model PostInputModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(false)
+    @Html.LabelFor(post => post.Title)
+    @Html.EditorFor(post => post.Title)
+    <br />
+    @Html.LabelFor(post => post.Content)
+    @Html.TextAreaFor(post => post.Content)
+    <button type="submit">Create</button>
+}

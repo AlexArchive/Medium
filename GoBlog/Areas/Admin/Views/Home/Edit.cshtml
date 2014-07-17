@@ -1,8 +1,17 @@
-﻿@model PostInputModel
+﻿@using GoBlog.Persistence.Entities
+@model PostInputModel
 
 @{
     ViewBag.Title = "Edit";
 }
+
+<h2>Edit</h2>
+
+@if (TempData["newPost"] != null)
+{
+    <p>Your post has been published and is available @Html.ActionLink("here", "Post", "Home", new { area="", slug = Model.Slug }, new{}).</p>
+}
+
 
 @using (Html.BeginForm())
 {

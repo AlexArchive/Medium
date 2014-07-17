@@ -72,7 +72,7 @@ namespace GoBlog.Areas.Admin.Controllers
 
         public ActionResult Add()
         {
-            return View("Edit");
+            return View("Create");
         }
 
         [HttpPost]
@@ -95,7 +95,9 @@ namespace GoBlog.Areas.Admin.Controllers
                 repository.Posts.Add(post);
                 repository.SaveChanges();
             }
-            return Edit(model);
+
+            TempData["newPost"] = true;
+            return RedirectToAction("Edit", new { slug = model.Slug });
         }
     }
 }

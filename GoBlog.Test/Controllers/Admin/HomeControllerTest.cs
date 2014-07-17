@@ -58,6 +58,7 @@ namespace GoBlog.Test.Controllers.Admin
             var actual = controller.Delete("dynamic-contagion-part-one") as RedirectToRouteResult;
 
             Assert.NotNull(actual);
+            Assert.That(actual.RouteValues["action"], Is.EqualTo("Index"));
             Assert.That(repository.Object.Posts.Count(), Is.EqualTo(3));
         }
 
@@ -179,7 +180,7 @@ namespace GoBlog.Test.Controllers.Admin
             var actual = controller.Add() as ViewResult;
 
             Assert.NotNull(actual);
-            Assert.That(actual.ViewName, Is.EqualTo("Edit"));
+            Assert.That(actual.ViewName, Is.EqualTo("Create"));
         }
 
         [Test]
@@ -208,25 +209,10 @@ namespace GoBlog.Test.Controllers.Admin
                             asked during my webcast on Tuesday:"
             };
 
-            var actual = controller.Add(inputModel) as ViewResult;
+            var actual = controller.Add(inputModel) as RedirectToRouteResult;
             Assert.NotNull(actual);
-            Assert.That(actual.ViewName, Is.EqualTo("Edit"));
-        }
-
-        [Test]
-        public void Add_Post_ReturnsCorrectModel()
-        {
-            var inputModel = new PostInputModel
-            {
-                Title = "Copy-paste defects",
-                Content = @"Continuing with my series of answers to questions that were 
-                            asked during my webcast on Tuesday:"
-            };
-
-            var viewResult = controller.Add(inputModel) as ViewResult;
-            var actual = viewResult.Model as PostInputModel;
-            Assert.NotNull(actual);
-            Assert.That(actual.Slug, Is.EqualTo("copy-paste-defects"));
+            Assert.That(actual.RouteValues["action"], Is.EqualTo("Edit"));
+            Assert.That(controller.TempData["newPost"], Is.True);
         }
 
         [Test]
