@@ -27,8 +27,8 @@ namespace GoBlog.Test.Controllers.Admin
             controller = new HomeController(repository.Object);
             postInputModel = new PostInputModel
             {
-                Slug = "dynamic-contagion-part-one", 
-                Title = "Dynamic Contagion Part One", 
+                Slug = "dynamic-contagion-part-one",
+                Title = "Dynamic Contagion Part One",
                 Content = "Edited content."
             };
         }
@@ -163,6 +163,84 @@ namespace GoBlog.Test.Controllers.Admin
             Assert.NotNull(actual);
             Assert.That(actual.ViewName, Is.EqualTo("Edit"));
             Assert.AreEqual(model, actual.Model);
+        }
+
+
+
+
+
+
+
+
+
+        [Test]
+        public void Add_ReturnsCorrectView()
+        {
+            var actual = controller.Add() as ViewResult;
+
+            Assert.NotNull(actual);
+            Assert.That(actual.ViewName, Is.EqualTo("Edit"));
+        }
+
+        [Test]
+        public void Add_SavesPost()
+        {
+            var inputModel = new PostInputModel
+            {
+                Title = "Copy-paste defects",
+                Content = @"Continuing with my series of answers to questions that were 
+                            asked during my webcast on Tuesday:"
+            };
+
+            controller.Add(inputModel);
+
+            var actual = repository.Object.Posts.SingleOrDefault(post => post.Slug == "copy-paste-defects");
+            Assert.NotNull(actual);
+        }
+
+        [Test]
+        public void Add_Post_ReturnsCorrectView()
+        {
+            var inputModel = new PostInputModel
+            {
+                Title = "Copy-paste defects",
+                Content = @"Continuing with my series of answers to questions that were 
+                            asked during my webcast on Tuesday:"
+            };
+
+            var actual = controller.Add(inputModel) as ViewResult;
+            Assert.NotNull(actual);
+            Assert.That(actual.ViewName, Is.EqualTo("Edit"));
+        }
+
+        [Test]
+        public void Add_Post_ReturnsCorrectModel()
+        {
+            var inputModel = new PostInputModel
+            {
+                Title = "Copy-paste defects",
+                Content = @"Continuing with my series of answers to questions that were 
+                            asked during my webcast on Tuesday:"
+            };
+
+            var viewResult = controller.Add(inputModel) as ViewResult;
+            var actual = viewResult.Model as PostInputModel;
+            Assert.NotNull(actual);
+            Assert.That(actual.Slug, Is.EqualTo("copy-paste-defects"));
+        }
+
+        [Test]
+        public void Add_WithOccupiedSlug_ReturnsCorrectView()
+        {
+            var inputModel = new PostInputModel
+            {
+                Title = "Lowering in language design, part two",
+                Content = @"Who cares"
+            };
+
+            var actual = controller.Add(inputModel) as ViewResult;
+            Assert.NotNull(actual);
+            Assert.That(controller.ModelState[""].Errors[0].ErrorMessage == "You have previously published a post with this title. Please choose another one.");
         }
     }
 }

@@ -21,7 +21,7 @@ namespace GoBlog.Test.Helpers
                     Published = DateTime.Now.AddDays(2)
                 },
                 new Post {
-                    Slug      = "lowering-in-langauge-design-part-two",
+                    Slug      = "lowering-in-language-design-part-two",
                     Title     = "Lowering in language design, part two",
                     Summary   = "Last time on FAIC I described how",
                     Content   = "Last time on FAIC I described how",

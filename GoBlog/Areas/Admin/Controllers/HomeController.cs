@@ -69,5 +69,33 @@ namespace GoBlog.Areas.Admin.Controllers
             if (!content.Contains(Environment.NewLine)) return content;
             return content.Split(new[] { Environment.NewLine }, StringSplitOptions.None)[0];
         }
+
+        public ActionResult Add()
+        {
+            return View("Edit");
+        }
+
+        [HttpPost]
+        public ActionResult Add(PostInputModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                model.Slug = SlugConverter.Convert(model.Title);
+
+                if (repository.Posts.Any(p => p.Slug == model.Slug))
+                {
+                    ModelState.AddModelError("",
+                        "You have previously published a post with this title. Please choose another one.");
+                    return View("Edit", model);
+                }
+
+                var post = Mapper.Map<Post>(model);
+                post.Summary = Summarize(post.Content);
+                post.Published = DateTime.Now;
+                repository.Posts.Add(post);
+                repository.SaveChanges();
+            }
+            return Edit(model);
+        }
     }
 }
