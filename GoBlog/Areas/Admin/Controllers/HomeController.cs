@@ -49,13 +49,17 @@ namespace GoBlog.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var temporarySlug = SlugConverter.Convert(model.Title);
-
-                if (repository.Posts.Any(p => p.Slug == temporarySlug))
+                var toBeSlug = SlugConverter.Convert(model.Title);
+                if (toBeSlug != model.Slug)
                 {
-                    ModelState.AddModelError("",
-     "You have previously published a post with this title. Please choose another one.");
-                    return View("Edit", model); 
+                    // if the title has been changed
+
+                    if (repository.Posts.Any(p => p.Slug == toBeSlug))
+                    {
+                        ModelState.AddModelError("",
+         "You have previously published a post with this title. Please choose another one.");
+                        return View("Edit", model); 
+                    }
                 }
 
                 Post existing = repository.Posts.FirstOrDefault(post => post.Slug == model.Slug);

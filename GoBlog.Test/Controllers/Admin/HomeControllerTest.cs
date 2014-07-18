@@ -145,7 +145,7 @@ namespace GoBlog.Test.Controllers.Admin
         [Test]
         public void EditPostReturns404WhenPostDoesntExist()
         {
-            var model = new PostInputModel { Slug = "non-existent-slug" };
+            var model = new PostInputModel { Title = "Non Existent Slug", Slug = "non-existent-slug" };
 
             var actual = controller.Edit(model) as HttpNotFoundResult;
 
@@ -235,7 +235,14 @@ namespace GoBlog.Test.Controllers.Admin
             Assert.That(controller.ModelState[""].Errors[0].ErrorMessage == "You have previously published a post with this title. Please choose another one.");
         }
 
-        // Add makes summary
-        // Edit with occupied slug
+        [TestCase("test", ExpectedResult = "test")]
+        [TestCase("test\r\ntest", ExpectedResult = "test")]
+        public string AddPostEditsSummary(string content)
+        {
+            PostInputModel model = new PostInputModel { Title = "does", Content = content };
+            var actual = controller.Add(model) as ViewResult;
+            var post = repository.Object.Posts.First(p => p.Slug == "does");
+            return post.Summary;
+        }
     }
 }
