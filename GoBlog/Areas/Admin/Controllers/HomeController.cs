@@ -49,6 +49,15 @@ namespace GoBlog.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                var temporarySlug = SlugConverter.Convert(model.Title);
+
+                if (repository.Posts.Any(p => p.Slug == temporarySlug))
+                {
+                    ModelState.AddModelError("",
+     "You have previously published a post with this title. Please choose another one.");
+                    return View("Edit", model); 
+                }
+
                 Post existing = repository.Posts.FirstOrDefault(post => post.Slug == model.Slug);
                 repository.Posts.Remove(existing);
                 repository.SaveChanges();
@@ -56,6 +65,7 @@ namespace GoBlog.Areas.Admin.Controllers
                 Mapper.Map(model, existing, model.GetType(), typeof(Post));
                 existing.Summary = Summarize(existing.Content);
                 existing.Slug = SlugConverter.Convert(existing.Title);
+
                 repository.Posts.Add(existing);
                 repository.SaveChanges();
                 return Edit(existing.Slug);

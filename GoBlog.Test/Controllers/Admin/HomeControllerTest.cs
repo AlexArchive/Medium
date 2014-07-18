@@ -166,13 +166,19 @@ namespace GoBlog.Test.Controllers.Admin
             Assert.AreEqual(model, actual.Model);
         }
 
+        [Test]
+        public void Edit_WithOccupiedSlug_ReturnsCorrectView()
+        {
+            var inputModel = new PostInputModel
+            {
+                Title = "Lowering in language design, part two",
+                Content = @"Who cares"
+            };
 
-
-
-
-
-
-
+            var actual = controller.Edit(inputModel) as ViewResult;
+            Assert.NotNull(actual);
+            Assert.That(controller.ModelState[""].Errors[0].ErrorMessage == "You have previously published a post with this title. Please choose another one.");
+        }
 
         [Test]
         public void Add_ReturnsCorrectView()
@@ -228,5 +234,8 @@ namespace GoBlog.Test.Controllers.Admin
             Assert.NotNull(actual);
             Assert.That(controller.ModelState[""].Errors[0].ErrorMessage == "You have previously published a post with this title. Please choose another one.");
         }
+
+        // Add makes summary
+        // Edit with occupied slug
     }
 }
