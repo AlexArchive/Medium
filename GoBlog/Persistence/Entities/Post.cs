@@ -19,6 +19,8 @@ namespace GoBlog.Persistence.Entities
         public string Content { get; set; }
 
         [Required]
-        public DateTime Published { get; set; }
+        public DateTime PublishedAt { get; set; }
+
+        public bool Draft { get; set; }
     }
 }

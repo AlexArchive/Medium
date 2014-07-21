@@ -12,7 +12,7 @@ namespace GoBlog.Persistence.Migrations
 
             context.Posts.Add(new Post
             {
-                Published = DateTime.Now,
+                PublishedAt = DateTime.Now.AddDays(1),
                 Slug      = "how-to-debug-small-problems", 
                 Title     = "How to debug small programs", 
                 Summary   = "If you’re reading this, odds are good it’s because I or someone else linked here",
@@ -24,7 +24,7 @@ namespace GoBlog.Persistence.Migrations
 
             context.Posts.Add(new Post
             {
-                Published = DateTime.Now.AddDays(1),
+                PublishedAt = DateTime.Now.AddDays(2),
                 Slug      = "living-with-unchecked-exceptions",
                 Title     = "Living with unchecked exceptions",
                 Summary   = "Hey there fabulous readers: I’d like to get your opinions on unchecked.",
@@ -35,7 +35,7 @@ namespace GoBlog.Persistence.Migrations
 
             context.Posts.Add(new Post
             {
-                Published = DateTime.Now.AddDays(2),
+                PublishedAt = DateTime.Now.AddDays(3),
                 Slug      = "enumerator-bounds",
                 Title     = "ATBG: Why do enumerators avoid a bounds check?",
                 Summary   = "I am back from a week in which I visited England, Holland, Belgium, France and",
@@ -46,7 +46,7 @@ namespace GoBlog.Persistence.Migrations
 
             context.Posts.Add(new Post
             {
-                Published = DateTime.Now.AddDays(3),
+                PublishedAt = DateTime.Now.AddDays(4),
                 Slug      = "when-should-i-write-a-property",
                 Title     = "When should I write a property?",
                 Summary   = "One of the questions I’m asked frequently regarding design of C# classes is",
@@ -56,7 +56,7 @@ namespace GoBlog.Persistence.Migrations
 
             context.Posts.Add(new Post
             {
-                Published = DateTime.Now.AddDays(4),
+                PublishedAt = DateTime.Now.AddDays(5),
                 Slug      = "what-are-the-fundamental-rules-of-pointers",
                 Title     = "What are the fundamental rules of pointers?",
                 Summary   = "A lot of questions I see in the C tag on StackOverflow are from beginners who have",
@@ -66,7 +66,7 @@ namespace GoBlog.Persistence.Migrations
 
             context.Posts.Add(new Post
             {
-                Published = DateTime.Now.AddDays(5),
+                PublishedAt = DateTime.Now.AddDays(6),
                 Slug      = "heartbleed-and-static-analysis",
                 Title     = "Heartbleed and static analysis",
                 Summary   = "In the wake of the security disaster that is the Heartbleed vulnerability",

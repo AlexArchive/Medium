@@ -38,7 +38,7 @@ namespace GoBlog.Test.Controllers
             var actual = viewResult.Model as PagedList<PostViewModel>;
 
             Assert.NotNull(actual);
-            Assert.That(actual.Count, Is.EqualTo(2));
+            Assert.That(actual.Count, Is.EqualTo(8));
             Assert.That(actual.First().Title, Is.EqualTo("Dynamic contagion, part one"));
         }
 
@@ -50,20 +50,21 @@ namespace GoBlog.Test.Controllers
             var actual = viewResult.Model as PagedList<PostViewModel>;
 
             Assert.NotNull(actual);
-            Assert.That(actual.Count, Is.EqualTo(2));
-            Assert.That(actual.First().Title, Is.EqualTo("When should I write a property?"));
+            Assert.That(actual.Count, Is.EqualTo(1));
         }
 
         [Test]
         public void Index_PostsShouldBeOrderedByPublishDate()
         {
-            var firstPage = (ViewResult) controller.Index();
-            var firstPageModel = (PagedList<PostViewModel>)firstPage.Model;
-            var lastPage = (ViewResult) controller.Index(firstPageModel.PageCount);
-            var lastPageModel = (PagedList<PostViewModel>)lastPage.Model;
+            var viewResult = controller.Index() as ViewResult;
+            var actual = viewResult.Model as PagedList<PostViewModel>;
+            var sorted = actual.OrderBy(post => post.PublishedAt);
+            CollectionAssert.AreEqual(sorted, actual);
+        }
 
-            Assert.That(firstPageModel.First().Title, Is.EqualTo("Dynamic contagion, part one"));
-            Assert.That(lastPageModel.Last().Title, Is.EqualTo("Lowering in language design, part two"));
+        [Test]
+        public void Index_ExcludesDrafts()
+        {
         }
 
         [Test]
@@ -73,6 +74,14 @@ namespace GoBlog.Test.Controllers
 
             Assert.NotNull(actual);
             Assert.That(actual.ViewName, Is.EqualTo("Post"));
+        }
+
+        [Test]
+        public void Post_Draft_ReturnsNotFound()
+        {
+            var actual = controller.Post("a-face-made-for-email-part-three") as HttpNotFoundResult;
+            Assert.NotNull(actual);
+            Assert.That(actual.StatusDescription, Is.EqualTo("You cannot view this post because it is a draft."));
         }
 
         [Test]

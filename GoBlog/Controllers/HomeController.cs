@@ -10,6 +10,7 @@ namespace GoBlog.Controllers
 {
     public class HomeController : Controller
     {
+        private const int PageSize = 8;
         private readonly IRepository repository;
 
         public HomeController(IRepository repository)
@@ -19,9 +20,9 @@ namespace GoBlog.Controllers
 
         public ActionResult Index(int pageNumber = 1)
         {
-            var posts = repository.Posts.OrderBy(post => post.Published);
+            var posts = repository.Posts.Where(post=> !post.Draft).OrderBy(post => post.PublishedAt);
             var postViewModels = Mapper.Map<List<PostViewModel>>(posts);
-            var pagedList = postViewModels.ToPagedList(pageNumber, 2);
+            var pagedList = postViewModels.ToPagedList(pageNumber, PageSize);
             return View("Index", pagedList);
         }
 
@@ -29,6 +30,10 @@ namespace GoBlog.Controllers
         {
             // Thought: what if the post does not exist.
             var post = repository.Posts.FirstOrDefault(p => p.Slug == slug);
+            if (post.Draft)
+            {
+                return HttpNotFound("You cannot view this post because it is a draft.");           
+            }
             var postViewModel = Mapper.Map<PostViewModel>(post);
             return View("Post", postViewModel);
         }

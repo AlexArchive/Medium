@@ -59,7 +59,7 @@ namespace GoBlog.Test.Areas.Admin.Controllers
 
             Assert.NotNull(actual);
             Assert.That(actual.RouteValues["action"], Is.EqualTo("Index"));
-            Assert.That(repository.Object.Posts.Count(), Is.EqualTo(3));
+            Assert.That(repository.Object.Posts.Count(), Is.EqualTo(9));
         }
 
         [Test]
@@ -116,6 +116,16 @@ namespace GoBlog.Test.Areas.Admin.Controllers
 
             var amendedPost = repository.Object.Posts.First(p => p.Slug == "dynamic-contagion-part-one");
             Assert.That(amendedPost.Content, Is.EqualTo("arbitrary content."));
+        }
+
+        [Test]
+        public void Edit_EditsDraftStatus()
+        {
+            post.Draft = true;
+            controller.Edit(post);
+
+            var amendedPost = repository.Object.Posts.First(p => p.Slug == "dynamic-contagion-part-one");
+            Assert.True(amendedPost.Draft);
         }
 
         [TestCase("foo", ExpectedResult = "foo")]
@@ -203,6 +213,22 @@ namespace GoBlog.Test.Areas.Admin.Controllers
         }
 
         [Test]
+        public void Add_Draft_SavesPost()
+        {
+            var newPost = new PostInputModel
+            {
+                Title = "Copy-paste defects",
+                Content = @"Continuing with my series of answers to questions that were 
+                            asked during my webcast on Tuesday:",
+                Draft = true
+            };
+
+            controller.Add(newPost);
+            var addedPost = repository.Object.Posts.Single(p => p.Slug == "copy-paste-defects");
+            Assert.True(addedPost.Draft);
+        }
+
+        [Test]
         public void Add_ValidModel_RedirectsToEdit()
         {
             var newPost = new PostInputModel
@@ -233,8 +259,8 @@ namespace GoBlog.Test.Areas.Admin.Controllers
                 Is.EqualTo("You have previously published a post with this title. Please choose another one."));
         }
 
-        [TestCase("foo", ExpectedResult = "test")]
-        [TestCase("test\r\ntest", ExpectedResult = "test")]
+        [TestCase("foo", ExpectedResult = "foo")]
+        [TestCase("foo\r\nbar", ExpectedResult = "foo")]
         public string AddPostEditsSummary(string content)
         {
             PostInputModel model = new PostInputModel { Title = "does", Content = content };
@@ -242,5 +268,7 @@ namespace GoBlog.Test.Areas.Admin.Controllers
             var post = repository.Object.Posts.First(p => p.Slug == "does");
             return post.Summary;
         }
+
+        
     }
 }

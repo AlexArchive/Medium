@@ -14,7 +14,7 @@
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Published)
+                @Html.DisplayNameFor(model => model.PublishedAt)
             </th>
         </tr>
     </thead>
@@ -26,7 +26,7 @@
                     @Html.DisplayFor(_ => post.Title)
                 </td>
                 <td>
-                    @Html.DisplayFor(_ => post.Published)
+                    @Html.DisplayFor(_ => post.PublishedAt)
                 </td>
                 <td>
                     @Html.ActionLink("Delete", "Delete", "Home", new { slug = post.Slug }, new{})

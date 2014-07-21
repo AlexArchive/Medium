@@ -22,7 +22,7 @@ namespace GoBlog.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
-            var posts = repository.Posts.OrderBy(post => post.Published);
+            var posts = repository.Posts.OrderBy(post => post.PublishedAt);
             var postViewModels = Mapper.Map<List<PostViewModel>>(posts);
             return View("Index", postViewModels);
         }
@@ -105,7 +105,7 @@ namespace GoBlog.Areas.Admin.Controllers
 
                 var post = Mapper.Map<Post>(model);
                 post.Summary = Summarize(post.Content);
-                post.Published = DateTime.Now;
+                post.PublishedAt = DateTime.Now;
                 repository.Posts.Add(post);
                 repository.SaveChanges();
             }

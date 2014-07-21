@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using System.Data.Entity;
+using Autofac;
 using Autofac.Integration.Mvc;
 using GoBlog.Authentication;
 using GoBlog.Infrastructure.AutoMapper;
@@ -7,6 +8,7 @@ using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using GoBlog.Persistence.Migrations;
 
 namespace GoBlog
 {
@@ -32,6 +34,7 @@ namespace GoBlog
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             DependencyResolver.SetResolver(new AutofacDependencyResolver(CreateContainer()));
+            Database.SetInitializer(new DatabaseSeeder());
         }
     }
 }
