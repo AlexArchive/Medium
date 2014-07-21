@@ -85,6 +85,13 @@ namespace GoBlog.Test.Controllers
         }
 
         [Test]
+        public void Post_NonExistent_ReturnsNotFound()
+        {
+            var actual = controller.Post("non-existent-slug") as HttpNotFoundResult;
+            Assert.NotNull(actual);
+        }
+
+        [Test]
         public void Post_ReturnsCorrectModel()
         {
             var viewResult = (ViewResult) controller.Post("dynamic-contagion-part-one");

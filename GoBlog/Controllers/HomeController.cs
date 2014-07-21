@@ -28,12 +28,9 @@ namespace GoBlog.Controllers
 
         public ActionResult Post(string slug)
         {
-            // Thought: what if the post does not exist.
             var post = repository.Posts.FirstOrDefault(p => p.Slug == slug);
-            if (post.Draft)
-            {
-                return HttpNotFound("You cannot view this post because it is a draft.");           
-            }
+            if (post == null) return HttpNotFound();
+            if (post.Draft) return HttpNotFound("You cannot view this post because it is a draft.");           
             var postViewModel = Mapper.Map<PostViewModel>(post);
             return View("Post", postViewModel);
         }
