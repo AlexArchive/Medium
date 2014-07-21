@@ -9,7 +9,7 @@ namespace GoBlog.Test
         [TestCase("Hello, World!", ExpectedResult = "hello-world")]
         [TestCase(" Hello  World ", ExpectedResult = "hello-world")]
         [TestCase("Hello-World", ExpectedResult = "hello-world")]
-        public string SlugConversion(string input)
+        public string Convert_ReturnsExpected(string input)
         {
             return SlugConverter.Convert(input);
         }

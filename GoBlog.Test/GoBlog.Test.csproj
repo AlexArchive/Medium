@@ -56,13 +56,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\Admin\HomeControllerTest.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeControllerTest.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
-    <Compile Include="Controllers\Admin\LoginControllerTest.cs" />
-    <Compile Include="Helpers\InMemoryDbSet.cs" />
-    <Compile Include="Helpers\ContextMockHelper.cs" />
-    <Compile Include="Helpers\RepositoryMockHelper.cs" />
-    <Compile Include="Paging\PagedListTest.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginControllerTest.cs" />
+    <Compile Include="Support\FakeDbSet.cs" />
+    <Compile Include="Support\ContextMockHelper.cs" />
+    <Compile Include="Support\RepositoryMockHelper.cs" />
+    <Compile Include="Infrastructure\Paging\PagedListTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SlugConverterTest.cs" />
   </ItemGroup>

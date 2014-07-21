@@ -1,10 +1,10 @@
-﻿using System.Collections.Specialized;
+﻿using Moq;
+using System.Collections.Specialized;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Moq;
 
-namespace GoBlog.Test.Helpers
+namespace GoBlog.Test.Support
 {
     namespace UnitTests
     {
@@ -14,8 +14,9 @@ namespace GoBlog.Test.Helpers
             {
                 var context = new Mock<HttpContextBase>();
                 context.Setup(c => c.Request.QueryString).Returns(querystring ?? new NameValueCollection());
-                controller.ControllerContext = new ControllerContext(context.Object, new RouteData(),
-                    new Mock<ControllerBase>().Object);
+                var controllerBase = new Mock<ControllerBase>();
+                var routeData = new RouteData();
+                controller.ControllerContext = new ControllerContext(context.Object, routeData, controllerBase.Object);
             }
         }
     }

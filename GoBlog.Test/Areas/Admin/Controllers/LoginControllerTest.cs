@@ -1,13 +1,13 @@
 ﻿using GoBlog.Areas.Admin.Controllers;
 using GoBlog.Areas.Admin.Models;
 using GoBlog.Authentication;
-using GoBlog.Test.Helpers.UnitTests;
+using GoBlog.Test.Support.UnitTests;
 using Moq;
 using NUnit.Framework;
 using System.Collections.Specialized;
 using System.Web.Mvc;
 
-namespace GoBlog.Test.Controllers.Admin
+namespace GoBlog.Test.Areas.Admin.Controllers
 {
     [TestFixture]
     public class LoginControllerTest
@@ -26,7 +26,7 @@ namespace GoBlog.Test.Controllers.Admin
         }
 
         [Test]
-        public void IndexReturnsCorrectView()
+        public void Index_ReturnsCorrectView()
         {
             var actual = loginController.Index() as ViewResult;
 
@@ -35,9 +35,9 @@ namespace GoBlog.Test.Controllers.Admin
         }
 
         [Test]
-        public void IndexReturnsCorrectViewWhenUserIsAuthenticated()
+        public void Index_AlreadyAuthenticated_RedirectsToAdmin()
         {
-            authService.Setup(x => x.Authenticated).Returns(true);
+            authService.Setup(service => service.Authenticated).Returns(true);
 
             var actual = loginController.Index() as RedirectResult;
 
@@ -46,24 +46,25 @@ namespace GoBlog.Test.Controllers.Admin
         }
 
         [Test]
-        public void AuthenticateReturnsCorrectRedirect()
+        public void Authenticate_ValidCredentials_RedirectsToAdmin()
         {
-            authService.Setup(handler => handler.Authenticate(credentials.Username, credentials.Password))
+            authService.Setup(service => service.Authenticate(credentials.Username, credentials.Password))
                        .Returns(true);
 
             var actual = loginController.Authenticate(credentials) as RedirectResult;
 
             Assert.NotNull(actual);
             Assert.That(actual.Url, Is.EqualTo("/admin"));
-            // Thought: Should I assert that the IAuthenticationHandler.Authenticated property is set to true?
+            // Thought: Assert IAuthenticationService.Authenticated == true?
         }
 
         [Test]
-        public void AuthenticateReturnsCustomRedirect()
+        public void Authenticate_ValidCredentials_WithReturnUrl_RedirectsToReturnUrl()
         {
-            var queryParams = new NameValueCollection { { "ReturnUrl", "/admin/settings" } };
-            authService.Setup(handler => handler.Authenticate("admin", "password")).Returns(true);
-            loginController.SetFakeControllerContext(queryParams);
+            authService.Setup(service => service.Authenticate(credentials.Username, credentials.Password))
+                       .Returns(true);
+            var queryString = new NameValueCollection { { "ReturnUrl", "/admin/settings" } };
+            loginController.SetFakeControllerContext(queryString);
 
             var actual = loginController.Authenticate(credentials) as RedirectResult;
 
@@ -72,21 +73,23 @@ namespace GoBlog.Test.Controllers.Admin
         }
 
         [Test]
-        public void IndexReturnsCorrectInvalidCredentialsModel()
+        public void Authenticate_InvalidCredentials_ReturnsCorrectModel()
         {
-            authService.Setup(handler => handler.Authenticate("admin", "password")).Returns(false);
+            authService.Setup(service => service.Authenticate(credentials.Username, credentials.Password))
+                       .Returns(false);
 
             var actual = loginController.Authenticate(credentials) as ViewResult;
 
             Assert.NotNull(actual);
-            Assert.That(loginController.ModelState[""].Errors[0].ErrorMessage == "Username or Password is incorrect.");
+            Assert.That(loginController.ModelState[""].Errors[0].ErrorMessage, 
+                Is.EqualTo("Username or Password is incorrect."));
         }
 
         [Test]
-        public void LogoutReturnsCorrectView()
+        public void Logout_RedirectsToHome()
         {
             var actual = loginController.Logout() as RedirectToRouteResult;
-            
+
             Assert.NotNull(actual);
             Assert.That(actual.RouteValues["action"], Is.EqualTo("Index"));
             Assert.That(actual.RouteValues["controller"], Is.EqualTo("Home"));

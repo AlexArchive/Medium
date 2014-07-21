@@ -5,28 +5,28 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace GoBlog.Test.Helpers
+namespace GoBlog.Test.Support
 {
-    public class InMemoryDbSet<T> : IDbSet<T> where T : class
+    public class FakeDbSet<T> : IDbSet<T> where T : class
     {
-        readonly HashSet<T> _data;
-        readonly IQueryable _query;
+        private readonly HashSet<T> data;
+        private readonly IQueryable query;
 
-        public InMemoryDbSet()
+        public FakeDbSet()
         {
-            _data = new HashSet<T>();
-            _query = _data.AsQueryable();
+            data = new HashSet<T>();
+            query = data.AsQueryable();
         }
 
         public T Add(T entity)
         {
-            _data.Add(entity);
+            data.Add(entity);
             return entity;
         }
 
         public T Attach(T entity)
         {
-            _data.Add(entity);
+            data.Add(entity);
             return entity;
         }
 
@@ -42,43 +42,43 @@ namespace GoBlog.Test.Helpers
 
         public virtual T Find(params object[] keyValues)
         {
-            throw new NotImplementedException("Derive from FakeDbSet and override Find");
+            throw new NotImplementedException();
         }
 
         public System.Collections.ObjectModel.ObservableCollection<T> Local
         {
-            get { return new System.Collections.ObjectModel.ObservableCollection<T>(_data); }
+            get { return new System.Collections.ObjectModel.ObservableCollection<T>(data); }
         }
 
         public T Remove(T entity)
         {
-            _data.Remove(entity);
+            data.Remove(entity);
             return entity;
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            return _data.GetEnumerator();
+            return data.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return _data.GetEnumerator();
+            return data.GetEnumerator();
         }
 
         public Type ElementType
         {
-            get { return _query.ElementType; }
+            get { return query.ElementType; }
         }
 
         public Expression Expression
         {
-            get { return _query.Expression; }
+            get { return query.Expression; }
         }
 
         public IQueryProvider Provider
         {
-            get { return _query.Provider; }
+            get { return query.Provider; }
         }
     }
 }

@@ -2,7 +2,7 @@
 using GoBlog.Infrastructure.AutoMapper;
 using GoBlog.Infrastructure.Paging;
 using GoBlog.Models;
-using GoBlog.Test.Helpers;
+using GoBlog.Test.Support;
 using NUnit.Framework;
 using System.Linq;
 using System.Web.Mvc;
@@ -18,12 +18,11 @@ namespace GoBlog.Test.Controllers
         public void SetUp()
         {
             AutoMapperConfig.Configure();
-            var repository = RepositoryMockHelper.MockRepository();
-            controller = new HomeController(repository.Object);
+            controller = new HomeController(RepositoryMockHelper.MockRepository().Object);
         }
 
         [Test]
-        public void IndexReturnsCorrectView()
+        public void Index_ReturnsCorrectView()
         {
             var actual = controller.Index() as ViewResult;
 
@@ -32,9 +31,10 @@ namespace GoBlog.Test.Controllers
         }
 
         [Test]
-        public void IndexReturnsCorrectModel()
+        public void Index_ReturnsCorrectModel()
         {
-            var viewResult = controller.Index() as ViewResult;
+            var viewResult = (ViewResult) controller.Index();
+            
             var actual = viewResult.Model as PagedList<PostViewModel>;
 
             Assert.NotNull(actual);
@@ -43,9 +43,10 @@ namespace GoBlog.Test.Controllers
         }
 
         [Test]
-        public void IndexReturnsCorrectModelForPage2()
+        public void Index_PageNumber2_ReturnsCorrectModel()
         {
-            var viewResult = controller.Index(2) as ViewResult;
+            var viewResult = (ViewResult) controller.Index(2);
+
             var actual = viewResult.Model as PagedList<PostViewModel>;
 
             Assert.NotNull(actual);
@@ -54,20 +55,19 @@ namespace GoBlog.Test.Controllers
         }
 
         [Test]
-        public void IndexShouldOrderPostsByPublishDate()
+        public void Index_PostsShouldBeOrderedByPublishDate()
         {
             var firstPage = (ViewResult) controller.Index();
-            var firstPageModel = (PagedList<PostViewModel>) firstPage.Model;
-
+            var firstPageModel = (PagedList<PostViewModel>)firstPage.Model;
             var lastPage = (ViewResult) controller.Index(firstPageModel.PageCount);
-            var lastPageModel = (PagedList<PostViewModel>) lastPage.Model;
+            var lastPageModel = (PagedList<PostViewModel>)lastPage.Model;
 
             Assert.That(firstPageModel.First().Title, Is.EqualTo("Dynamic contagion, part one"));
             Assert.That(lastPageModel.Last().Title, Is.EqualTo("Lowering in language design, part two"));
         }
 
         [Test]
-        public void SinglePostReturnsCorrectView()
+        public void Post_ReturnsCorrectView()
         {
             var actual = controller.Post("dynamic-contagion-part-one") as ViewResult;
 
@@ -76,13 +76,14 @@ namespace GoBlog.Test.Controllers
         }
 
         [Test]
-        public void SinglePostReturnsCorrectModel()
+        public void Post_ReturnsCorrectModel()
         {
-            var viewResult = controller.Post("dynamic-contagion-part-one") as ViewResult;
+            var viewResult = (ViewResult) controller.Post("dynamic-contagion-part-one");
+
             var actual = viewResult.Model as PostViewModel;
 
             Assert.NotNull(actual);
-            Assert.That( actual.Title, Is.EqualTo("Dynamic contagion, part one"));
+            Assert.That(actual.Title, Is.EqualTo("Dynamic contagion, part one"));
         }
     }
 }
