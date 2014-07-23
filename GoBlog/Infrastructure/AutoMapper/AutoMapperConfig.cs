@@ -10,8 +10,14 @@ namespace GoBlog.Infrastructure.AutoMapper
         public static void Configure()
         {
             Mapper.CreateMap<Post, PostViewModel>();
-            Mapper.CreateMap<Post, PostInputModel>();
-            Mapper.CreateMap<PostInputModel, Post>();
+         
+            Mapper.CreateMap<Post, PostInputModel>()
+                  .ForMember(post => post.Tags,
+                             option => option.MapFrom(post => TagsResolver.ResolveFromCollection(post.Tags)));
+
+            Mapper.CreateMap<PostInputModel, Post>()
+                  .ForMember(post => post.Tags, 
+                             option => option.MapFrom(post => TagsResolver.ResolveFromString(post.Tags)));
         }
     }
 }

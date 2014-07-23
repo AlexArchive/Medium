@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Mvc.Filters;
 using AutoMapper;
 using GoBlog.Areas.Admin.Models;
 using GoBlog.Models;
@@ -67,6 +68,13 @@ namespace GoBlog.Areas.Admin.Controllers
                 repository.SaveChanges();
                 if (existing == null) return HttpNotFound("You cannot edit a post that does not exist.");
                 Mapper.Map(model, existing, model.GetType(), typeof(Post));
+                
+                foreach (var tag in existing.Tags)
+                {
+                    if (repository.Tags.Any(x => x.Name == tag.Name))
+                        repository.Tags.Attach(tag);
+                }
+
                 existing.Summary = Summarize(existing.Content);
                 existing.Slug = SlugConverter.Convert(existing.Title);
 
@@ -96,6 +104,7 @@ namespace GoBlog.Areas.Admin.Controllers
             {
                 model.Slug = SlugConverter.Convert(model.Title);
 
+
                 if (repository.Posts.Any(p => p.Slug == model.Slug))
                 {
                     ModelState.AddModelError("",
@@ -104,6 +113,13 @@ namespace GoBlog.Areas.Admin.Controllers
                 }
 
                 var post = Mapper.Map<Post>(model);
+
+                foreach (var tag in post.Tags)
+                {
+                    if (repository.Tags.Any(x=> x.Name == tag.Name))
+                        repository.Tags.Attach(tag);
+                }
+
                 post.Summary = Summarize(post.Content);
                 post.PublishedAt = DateTime.Now;
                 repository.Posts.Add(post);
@@ -113,5 +129,7 @@ namespace GoBlog.Areas.Admin.Controllers
             TempData["newPost"] = true;
             return RedirectToAction("Edit", new { slug = model.Slug });
         }
+
+
     }
 }

@@ -7,6 +7,7 @@ namespace GoBlog.Persistence
     public interface IRepository
     {
         IDbSet<Post> Posts { get; }
+        IDbSet<Tag> Tags { get; }
         int SaveChanges();
     }
 }

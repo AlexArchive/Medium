@@ -6,3 +6,10 @@
 
 <h2>@Model.Title</h2>
 <p>@Model.Content</p>
+
+<h2>Tags</h2>
+<ul>
+@foreach (var tag in Model.Tags) {
+    <li>@tag.Name</li>
+}
+</ul>

@@ -14,5 +14,8 @@ namespace GoBlog.Areas.Admin.Models
         public string Content { get; set; }
 
         public bool Draft { get; set; }
+
+        [Required]
+        public string Tags { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
 using GoBlog.Persistence.Entities;
 
@@ -19,7 +20,8 @@ namespace GoBlog.Persistence.Migrations
                 Content   = @"If you’re reading this, odds are good it’s because I or someone else linked here 
                               from your StackOverflow question shortly before it was closed and deleted. (If 
                               you’re reading this and you’re not in that position, consider leaving your 
-                              favourite tips for debugging small programs in the comments.)"
+                              favourite tips for debugging small programs in the comments.)",
+                Tags      = new Collection<Tag> { new Tag { Name="Debugging" } }
             });
 
             context.Posts.Add(new Post

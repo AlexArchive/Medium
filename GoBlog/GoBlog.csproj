@@ -92,16 +92,19 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Authentication\IAuthenticationService.cs" />
+    <Compile Include="Inflector.cs" />
     <Compile Include="Infrastructure\AutoMapper\AutoMapperConfig.cs" />
     <Compile Include="Infrastructure\Paging\PagedList.cs" />
     <Compile Include="Infrastructure\Paging\PagedListExtensions.cs" />
     <Compile Include="Persistence\Entities\Post.cs" />
     <Compile Include="Persistence\BlogDatabase.cs" />
+    <Compile Include="Persistence\Entities\Tag.cs" />
     <Compile Include="Persistence\IRepository.cs" />
     <Compile Include="Persistence\Migrations\DatabaseSeeder.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SlugConverter.cs" />
+    <Compile Include="TagsResolver.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

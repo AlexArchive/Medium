@@ -45,7 +45,7 @@ namespace GoBlog.Test.Areas.Admin.Controllers
         [Test]
         public void Index_ReturnsCorrectModel()
         {
-            var viewResult = (ViewResult) controller.Index();
+            var viewResult = (ViewResult)controller.Index();
             var actual = viewResult.Model as IEnumerable<PostViewModel>;
 
             Assert.NotNull(actual);
@@ -83,11 +83,19 @@ namespace GoBlog.Test.Areas.Admin.Controllers
         [Test]
         public void Edit_ReturnsCorrectModel()
         {
-            var viewResult = (ViewResult) controller.Edit("dynamic-contagion-part-one");
+            var viewResult = (ViewResult)controller.Edit("dynamic-contagion-part-one");
             var actual = viewResult.Model as PostInputModel;
 
             Assert.NotNull(actual);
             Assert.That(actual.Title, Is.EqualTo("Dynamic contagion, part one"));
+        }
+
+        [Test]
+        public void Edit_ReturnsModelWithTags()
+        {
+            var viewResult = (ViewResult)controller.Edit("continuing-to-an-outer-loop");
+            var actual = viewResult.Model as PostInputModel;
+            Assert.That(actual.Tags, Is.EqualTo("Programming"));
         }
 
         [Test]
@@ -140,6 +148,18 @@ namespace GoBlog.Test.Areas.Admin.Controllers
         }
 
         [Test]
+        public void Edit_EditsTags()
+        {
+            post.Tags = "Programming";
+            controller.Edit(post);
+
+            var actual = repository.Object.Posts.First(p => p.Slug == post.Slug);
+
+            var expected = new[] { "Programming" };
+            CollectionAssert.AreEquivalent(expected, actual.Tags.Select(x => x.Name));
+        }
+
+        [Test]
         public void Edit_EditsPostSlug()
         {
             post.Title = "Hello, World";
@@ -151,8 +171,8 @@ namespace GoBlog.Test.Areas.Admin.Controllers
         [Test]
         public void Edit_Post_NonExistentPost_ReturnsNotFound()
         {
-            var model = 
-                new PostInputModel {Title="Non Existent Slug",Slug="non-existent-slug"};
+            var model =
+                new PostInputModel { Title = "Non Existent Slug", Slug = "non-existent-slug" };
 
             var actual = controller.Edit(model) as HttpNotFoundResult;
 
@@ -183,7 +203,7 @@ namespace GoBlog.Test.Areas.Admin.Controllers
             };
 
             var actual = controller.Edit(model) as ViewResult;
-            
+
             Assert.NotNull(actual);
             Assert.That(controller.ModelState[""].Errors[0].ErrorMessage,
                 Is.EqualTo("You have previously published a post with this title. Please choose another one."));
@@ -210,6 +230,37 @@ namespace GoBlog.Test.Areas.Admin.Controllers
 
             controller.Add(newPost);
             repository.Object.Posts.Single(p => p.Slug == "copy-paste-defects");
+        }
+
+        [Test]
+        public void Add_WithTags_SavesPost()
+        {
+            var newPost = new PostInputModel
+            {
+                Title = "Copy-paste defects",
+                Content = @"Continuing with my series of answers to questions that were 
+                            asked during my webcast on Tuesday:",
+                Tags = "Programming, General"
+            };
+
+            controller.Add(newPost);
+            var addedPost = repository.Object.Posts.Single(p => p.Slug == "copy-paste-defects");
+            Assert.That(addedPost.Tags.Count(), Is.EqualTo(2));
+        }
+
+        [Test]
+        public void Add_WithExistingTags_SavesPost()
+        {
+            var newPost = new PostInputModel
+            {
+                Title = "Copy-paste defects",
+                Content = @"Continuing with my series of answers to questions that were 
+                            asked during my webcast on Tuesday:",
+                Tags = "Programming"
+            };
+            controller.Add(newPost);
+            newPost.Slug = "something";
+            controller.Add(newPost);
         }
 
         [Test]
@@ -255,7 +306,7 @@ namespace GoBlog.Test.Areas.Admin.Controllers
 
             var actual = controller.Add(inputModel) as ViewResult;
             Assert.NotNull(actual);
-            Assert.That(controller.ModelState[""].Errors[0].ErrorMessage, 
+            Assert.That(controller.ModelState[""].Errors[0].ErrorMessage,
                 Is.EqualTo("You have previously published a post with this title. Please choose another one."));
         }
 
@@ -269,6 +320,6 @@ namespace GoBlog.Test.Areas.Admin.Controllers
             return post.Summary;
         }
 
-        
+
     }
 }

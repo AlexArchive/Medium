@@ -1,7 +1,8 @@
-﻿using System;
-using GoBlog.Persistence;
+﻿using GoBlog.Persistence;
 using GoBlog.Persistence.Entities;
 using Moq;
+using System;
+using System.Collections.ObjectModel;
 
 namespace GoBlog.Test.Support
 {
@@ -21,6 +22,9 @@ namespace GoBlog.Test.Support
                     Summary   = "It has happened again: someone",
                     Content   = "It has happened again: someone",
                     PublishedAt = DateTime.Now.AddDays(8),
+                    // EF entities will never be equal to null - pretending that they could be will 
+                    // require one useless nullity check.
+                    Tags = new Collection<Tag>()
                 },
                 new Post 
                 {
@@ -28,7 +32,8 @@ namespace GoBlog.Test.Support
                     Title     = "Continuing to an outer loop",
                     Summary   = "When you have a nested loop, sometimes",
                     Content   = "When you have a nested loop, sometimes",
-                    PublishedAt = DateTime.Now.AddDays(7)
+                    PublishedAt = DateTime.Now.AddDays(7),
+                    Tags = new Collection<Tag> { new Tag { Name="Programming" } }
                 },
                 new Post 
                 {
@@ -36,7 +41,8 @@ namespace GoBlog.Test.Support
                     Title     = "Bad comparisons, part four",
                     Summary   = "One more easy one.",
                     Content   = "One more easy one.",
-                    PublishedAt = DateTime.Now.AddDays(6)
+                    PublishedAt = DateTime.Now.AddDays(6),
+                    Tags = new Collection<Tag>()
                 },
                 new Post 
                 {
@@ -44,7 +50,8 @@ namespace GoBlog.Test.Support
                     Title     = "Alas, Smith and Jones",
                     Summary   = "We have a feature in C#",
                     Content   = "We have a feature in C#",
-                    PublishedAt = DateTime.Now.AddDays(5)
+                    PublishedAt = DateTime.Now.AddDays(5),
+                    Tags = new Collection<Tag>()
                 },
                 new Post 
                 {
@@ -52,7 +59,8 @@ namespace GoBlog.Test.Support
                     Title     = "Defect spotting at the HUB",
                     Summary   = "The University of Washington chapter",
                     Content   = "The University of Washington chapter",
-                    PublishedAt = DateTime.Now.AddDays(4)
+                    PublishedAt = DateTime.Now.AddDays(4),
+                    Tags = new Collection<Tag>()
                 },
                 new Post 
                 {
@@ -60,7 +68,8 @@ namespace GoBlog.Test.Support
                     Title     = "Analyzing test code",
                     Summary   = "Continuing with my series",
                     Content   = "Continuing with my series",
-                    PublishedAt = DateTime.Now.AddDays(3)
+                    PublishedAt = DateTime.Now.AddDays(3),
+                    Tags = new Collection<Tag>()
                 },
                 new Post 
                 {
@@ -76,7 +85,8 @@ namespace GoBlog.Test.Support
                     Title     = "Lowering in language design, part two",
                     Summary   = "Last time on FAIC I described how",
                     Content   = "Last time on FAIC I described how",
-                    PublishedAt = DateTime.Now.AddDays(3)
+                    PublishedAt = DateTime.Now.AddDays(3),
+                    Tags = new Collection<Tag>()
                 },
                 new Post 
                 {
@@ -84,7 +94,8 @@ namespace GoBlog.Test.Support
                     Title     = "Dynamic contagion, part one",
                     Summary   = "Suppose you're an epidemiologis",
                     Content   = "Suppose you're an epidemiologis",
-                    PublishedAt = DateTime.Now
+                    PublishedAt = DateTime.Now,
+                    Tags = new Collection<Tag>()
                 },
                 new Post 
                 {
@@ -92,11 +103,14 @@ namespace GoBlog.Test.Support
                     Title     = "Dynamic contagion, part two",
                     Summary   = "Last time I discussed how",
                     Content   = "Last time I discussed how",
-                    PublishedAt = DateTime.Now.AddDays(1)
+                    PublishedAt = DateTime.Now.AddDays(1),
+                    Tags = new Collection<Tag>()
                 }
             };
-
             repository.Setup(db => db.Posts).Returns(posts);
+
+            var tags = new FakeDbSet<Tag>();
+            repository.Setup(db => db.Tags).Returns(tags);
 
             return repository;
         }

@@ -26,6 +26,7 @@ namespace GoBlog.Controllers
             return View("Index", pagedList);
         }
 
+        //Thought: Rename to Show
         public ActionResult Post(string slug)
         {
             var post = repository.Posts.FirstOrDefault(p => p.Slug == slug);

@@ -54,7 +54,7 @@ namespace GoBlog.Test.Controllers
         }
 
         [Test]
-        public void Index_PostsShouldBeOrderedByPublishDate()
+        public void Index_ShouldOrderPostsByPublishDate()
         {
             var viewResult = controller.Index() as ViewResult;
             var actual = viewResult.Model as PagedList<PostViewModel>;
@@ -100,6 +100,14 @@ namespace GoBlog.Test.Controllers
 
             Assert.NotNull(actual);
             Assert.That(actual.Title, Is.EqualTo("Dynamic contagion, part one"));
+        }
+
+        [Test]
+        public void Post_SomePost_HasTags()
+        {
+            var viewResult = (ViewResult)controller.Post("continuing-to-an-outer-loop");
+            var actual = viewResult.Model as PostViewModel;
+            CollectionAssert.IsNotEmpty(actual.Tags);
         }
     }
 }

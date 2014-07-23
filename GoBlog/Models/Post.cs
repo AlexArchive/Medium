@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using GoBlog.Persistence.Entities;
 
 namespace GoBlog.Models
 {
@@ -10,5 +12,6 @@ namespace GoBlog.Models
         public string Content { get; set; }
         public DateTime PublishedAt { get; set; }
         public bool Draft { get; set; }
+        public IEnumerable<Tag> Tags { get; set; } 
     }
 }
