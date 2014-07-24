@@ -1,4 +1,5 @@
-﻿using GoBlog.Persistence.Entities;
+using System.Text.RegularExpressions;
+using GoBlog.Persistence.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
