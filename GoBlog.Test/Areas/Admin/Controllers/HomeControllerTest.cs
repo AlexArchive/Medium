@@ -29,7 +29,8 @@ namespace GoBlog.Test.Areas.Admin.Controllers
             {
                 Slug = "dynamic-contagion-part-one",
                 Title = "Dynamic Contagion Part One",
-                Content = "Edited content."
+                Content = "Edited content.",
+                Tags = ""
             };
         }
 
@@ -225,7 +226,8 @@ namespace GoBlog.Test.Areas.Admin.Controllers
             {
                 Title = "Copy-paste defects",
                 Content = @"Continuing with my series of answers to questions that were 
-                            asked during my webcast on Tuesday:"
+                            asked during my webcast on Tuesday:",
+                Tags= ""
             };
 
             controller.Add(newPost);
@@ -271,7 +273,8 @@ namespace GoBlog.Test.Areas.Admin.Controllers
                 Title = "Copy-paste defects",
                 Content = @"Continuing with my series of answers to questions that were 
                             asked during my webcast on Tuesday:",
-                Draft = true
+                Draft = true,
+                Tags = ""
             };
 
             controller.Add(newPost);
@@ -286,7 +289,8 @@ namespace GoBlog.Test.Areas.Admin.Controllers
             {
                 Title = "Copy-paste defects",
                 Content = @"Continuing with my series of answers to questions that were 
-                            asked during my webcast on Tuesday:"
+                            asked during my webcast on Tuesday:",
+                Tags=""
             };
 
             var actual = controller.Add(newPost) as RedirectToRouteResult;
@@ -314,7 +318,7 @@ namespace GoBlog.Test.Areas.Admin.Controllers
         [TestCase("foo\r\nbar", ExpectedResult = "foo")]
         public string AddPostEditsSummary(string content)
         {
-            PostInputModel model = new PostInputModel { Title = "does", Content = content };
+            PostInputModel model = new PostInputModel { Title = "does", Content = content, Tags="" };
             var actual = controller.Add(model) as ViewResult;
             var post = repository.Object.Posts.First(p => p.Slug == "does");
             return post.Summary;
