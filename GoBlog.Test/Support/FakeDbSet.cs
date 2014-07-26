@@ -9,11 +9,13 @@ namespace GoBlog.Test.Support
 {
     public class FakeDbSet<T> : IDbSet<T> where T : class
     {
+        private Func<T, object, bool> keySelector;
         private readonly HashSet<T> data;
         private readonly IQueryable query;
 
-        public FakeDbSet()
+        public FakeDbSet(Func<T, object, bool> keySelector)
         {
+            this.keySelector = keySelector;
             data = new HashSet<T>();
             query = data.AsQueryable();
         }
@@ -42,7 +44,7 @@ namespace GoBlog.Test.Support
 
         public virtual T Find(params object[] keyValues)
         {
-            throw new NotImplementedException();
+            return data.SingleOrDefault(item => keySelector(item, keyValues.First()));
         }
 
         public System.Collections.ObjectModel.ObservableCollection<T> Local

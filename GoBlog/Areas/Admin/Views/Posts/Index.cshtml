@@ -5,7 +5,7 @@
 }
 
 @Html.ActionLink("Logout", "Logout", "Login")
-@Html.ActionLink("Add", "Add", "Home")
+@Html.ActionLink("Add", "Add", "Posts")
 
 <table>
     <thead>
@@ -29,9 +29,9 @@
                     @Html.DisplayFor(_ => post.PublishedAt)
                 </td>
                 <td>
-                    @Html.ActionLink("Delete", "Delete", "Home", new { slug = post.Slug }, new{})
-                    @Html.ActionLink("Edit", "Edit", "Home", new { slug = post.Slug }, new { })
-                    @Html.ActionLink("Preview", "Post", "Home", new { area = "", slug = post.Slug }, new { })
+                    @Html.ActionLink("Delete", "Delete", "Posts", new { slug = post.Slug }, new{})
+                    @Html.ActionLink("Edit", "Edit", "Posts", new { slug = post.Slug }, new { })
+                    @Html.ActionLink("Preview", "Post", "Posts", new { area = "", slug = post.Slug }, new { })
                 </td>
             </tr>
         }

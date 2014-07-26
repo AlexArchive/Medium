@@ -1,4 +1,4 @@
-﻿using GoBlog.Infrastructure.Paging;
+﻿using GoBlog.Paging;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;

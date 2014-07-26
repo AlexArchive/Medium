@@ -28,10 +28,8 @@ namespace GoBlog.Test.Areas.Admin.Controllers
         [Test]
         public void Index_ReturnsCorrectView()
         {
-            var actual = loginController.Index() as ViewResult;
-
-            Assert.NotNull(actual);
-            Assert.That(actual.ViewName, Is.EqualTo("Index"));
+            var actual = loginController.Index();
+            Assert.IsAssignableFrom<ViewResult>(actual);
         }
 
         [Test]
@@ -48,8 +46,7 @@ namespace GoBlog.Test.Areas.Admin.Controllers
         [Test]
         public void Authenticate_ValidCredentials_RedirectsToAdmin()
         {
-            authService.Setup(service => service.Authenticate(credentials.Username, credentials.Password))
-                       .Returns(true);
+            authService.Setup(service => service.Authenticated).Returns(true);
 
             var actual = loginController.Authenticate(credentials) as RedirectResult;
 
@@ -61,8 +58,7 @@ namespace GoBlog.Test.Areas.Admin.Controllers
         [Test]
         public void Authenticate_ValidCredentials_WithReturnUrl_RedirectsToReturnUrl()
         {
-            authService.Setup(service => service.Authenticate(credentials.Username, credentials.Password))
-                       .Returns(true);
+            authService.Setup(service => service.Authenticated).Returns(true);
             var queryString = new NameValueCollection { { "ReturnUrl", "/admin/settings" } };
             loginController.SetFakeControllerContext(queryString);
 
@@ -88,11 +84,8 @@ namespace GoBlog.Test.Areas.Admin.Controllers
         [Test]
         public void Logout_RedirectsToHome()
         {
-            var actual = loginController.Logout() as RedirectToRouteResult;
-
-            Assert.NotNull(actual);
-            Assert.That(actual.RouteValues["action"], Is.EqualTo("Index"));
-            Assert.That(actual.RouteValues["controller"], Is.EqualTo("Home"));
+            var actual = loginController.Logout();
+            Assert.IsAssignableFrom<RedirectToRouteResult>(actual);
         }
     }
 }

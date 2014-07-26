@@ -1,8 +1,7 @@
 ﻿using System.Data.Entity;
-using System.Web.SessionState;
-using GoBlog.Persistence.Entities;
+using GoBlog.Data.Entities;
 
-namespace GoBlog.Persistence
+namespace GoBlog.Data
 {
     public class BlogDatabase : DbContext, IRepository
     {
@@ -13,6 +12,5 @@ namespace GoBlog.Persistence
             : base("GoBlog")
         {
         }
-
     }
 }

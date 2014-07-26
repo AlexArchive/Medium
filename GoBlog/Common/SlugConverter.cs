@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace GoBlog
+namespace GoBlog.Common
 {
     public static class SlugConverter
     {

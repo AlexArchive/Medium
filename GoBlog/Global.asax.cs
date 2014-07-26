@@ -2,13 +2,13 @@
 using Autofac;
 using Autofac.Integration.Mvc;
 using GoBlog.Authentication;
-using GoBlog.Infrastructure.AutoMapper;
-using GoBlog.Persistence;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using GoBlog.Persistence.Migrations;
+using GoBlog.AutoMapper;
+using GoBlog.Data;
+using GoBlog.Data.Migrations;
 
 namespace GoBlog
 {

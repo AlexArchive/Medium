@@ -1,7 +1,8 @@
 ﻿using System.Data.Entity;
-using GoBlog.Persistence.Entities;
+using System.Data.Entity.Infrastructure;
+using GoBlog.Data.Entities;
 
-namespace GoBlog.Persistence
+namespace GoBlog.Data
 {
     // This is a pragmatic implementation. Trust me.
     public interface IRepository

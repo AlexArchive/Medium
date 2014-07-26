@@ -74,8 +74,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Areas\Admin\Controllers\HomeControllerTest.cs" />
-    <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="Areas\Admin\Controllers\PostsControllerTest.cs" />
+    <Compile Include="Controllers\PostsControllerTest.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginControllerTest.cs" />
     <Compile Include="InflectorTest.cs" />
     <Compile Include="Support\FakeDbSet.cs" />

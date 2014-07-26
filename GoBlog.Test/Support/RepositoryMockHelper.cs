@@ -1,5 +1,6 @@
-﻿using GoBlog.Persistence;
-using GoBlog.Persistence.Entities;
+﻿using System.Linq;
+using GoBlog.Data;
+using GoBlog.Data.Entities;
 using Moq;
 using System;
 using System.Collections.ObjectModel;
@@ -12,7 +13,7 @@ namespace GoBlog.Test.Support
         {
             var repository = new Mock<IRepository>();
 
-            var posts = new FakeDbSet<Post>()
+            var posts = new FakeDbSet<Post>((post, key) => post.Slug == (string) key)
             {
                 new Post 
                 {
@@ -109,7 +110,7 @@ namespace GoBlog.Test.Support
             };
             repository.Setup(db => db.Posts).Returns(posts);
 
-            var tags = new FakeDbSet<Tag>();
+            var tags = new FakeDbSet<Tag>((tag, key) => tag.Name == (string) key);
             repository.Setup(db => db.Tags).Returns(tags);
 
             return repository;

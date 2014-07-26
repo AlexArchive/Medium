@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GoBlog.Infrastructure.Paging
+namespace GoBlog.Paging
 {
     public static class PagedListExtensions
     {

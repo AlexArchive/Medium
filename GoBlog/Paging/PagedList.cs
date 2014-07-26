@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GoBlog.Infrastructure.Paging
+namespace GoBlog.Paging
 {
     public class PagedList<T> : List<T>
     {
@@ -22,8 +22,6 @@ namespace GoBlog.Infrastructure.Paging
 
             TotalCount = source.Count();
 
-            // If there are no elements in the sequence, there is no need no enumerate 
-            // the sequence again.
             if (TotalCount == 0) return;
 
             PageCount = (int) Math.Ceiling((double) TotalCount / PageSize);

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using GoBlog.Persistence.Entities;
+using GoBlog.Data.Entities;
 
 namespace GoBlog.Models
 {

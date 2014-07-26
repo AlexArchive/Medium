@@ -1,4 +1,5 @@
-﻿using GoBlog.Persistence.Entities;
+﻿using GoBlog.Common;
+using GoBlog.Data.Entities;
 using NUnit.Framework;
 using System.Linq;
 

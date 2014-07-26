@@ -1,4 +1,4 @@
-﻿@model PostViewModel
+@model PostViewModel
 
 @{
     ViewBag.Title = Model.Title;
@@ -9,7 +9,8 @@
 
 <h2>Tags</h2>
 <ul>
-@foreach (var tag in Model.Tags) {
-    <li>@tag.Name</li>
-}
+    @foreach (var tag in Model.Tags)
+    {
+        <li>@tag.Name</li>
+    }
 </ul>

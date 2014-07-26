@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace GoBlog.Persistence.Entities
+namespace GoBlog.Data.Entities
 {
     public class Post
     {
@@ -26,5 +26,9 @@ namespace GoBlog.Persistence.Entities
 
         public virtual ICollection<Tag> Tags { get; set; }
 
+        public void Something()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

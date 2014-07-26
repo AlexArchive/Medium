@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using GoBlog.Common;
+using NUnit.Framework;
 
 namespace GoBlog.Test
 {

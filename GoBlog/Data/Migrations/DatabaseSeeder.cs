@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
-using GoBlog.Persistence.Entities;
+using GoBlog.Data.Entities;
 
-namespace GoBlog.Persistence.Migrations
+namespace GoBlog.Data.Migrations
 {
     public class DatabaseSeeder : DropCreateDatabaseAlways<BlogDatabase>
     {

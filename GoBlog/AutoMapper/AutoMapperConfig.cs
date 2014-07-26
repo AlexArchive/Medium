@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
 using GoBlog.Areas.Admin.Models;
+using GoBlog.Common;
+using GoBlog.Data.Entities;
 using GoBlog.Models;
-using GoBlog.Persistence.Entities;
 
-namespace GoBlog.Infrastructure.AutoMapper
+namespace GoBlog.AutoMapper
 {
     public class AutoMapperConfig
     {

@@ -12,14 +12,14 @@ namespace GoBlog
             routes.MapRoute(
                 name: "Page",
                 url: "page/{pageNumber}",
-                defaults: new { controller = "Home", action = "Index" },
+                defaults: new { controller = "Posts", action = "Index" },
                 namespaces: new[] { "GoBlog.Controllers" }
             );
 
             routes.MapRoute(
-                name: "Default",
+                name: "Home",
                 url: "{controller}/{action}/{slug}",
-                defaults: new { controller = "Home", action = "Index", slug = UrlParameter.Optional },
+                defaults: new { controller = "Posts", action = "Index", slug = UrlParameter.Optional },
                 namespaces: new[] { "GoBlog.Controllers" }
             );
         }

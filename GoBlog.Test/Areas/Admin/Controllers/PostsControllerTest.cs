@@ -1,8 +1,8 @@
 ﻿using GoBlog.Areas.Admin.Controllers;
 using GoBlog.Areas.Admin.Models;
-using GoBlog.Infrastructure.AutoMapper;
+using GoBlog.AutoMapper;
+using GoBlog.Data;
 using GoBlog.Models;
-using GoBlog.Persistence;
 using GoBlog.Test.Support;
 using Moq;
 using NUnit.Framework;
@@ -13,9 +13,9 @@ using System.Web.Mvc;
 namespace GoBlog.Test.Areas.Admin.Controllers
 {
     [TestFixture]
-    public class HomeControllerTest
+    public class PostsControllerTest
     {
-        private HomeController controller;
+        private PostsController controller;
         private Mock<IRepository> repository;
         private PostInputModel post;
 
@@ -24,7 +24,7 @@ namespace GoBlog.Test.Areas.Admin.Controllers
         {
             AutoMapperConfig.Configure();
             repository = RepositoryMockHelper.MockRepository();
-            controller = new HomeController(repository.Object);
+            controller = new PostsController(repository.Object);
             post = new PostInputModel
             {
                 Slug = "dynamic-contagion-part-one",
@@ -37,10 +37,8 @@ namespace GoBlog.Test.Areas.Admin.Controllers
         [Test]
         public void Index_ReturnsCorrectView()
         {
-            var actual = controller.Index() as ViewResult;
-
-            Assert.NotNull(actual);
-            Assert.That(actual.ViewName, Is.EqualTo("Index"));
+            var actual = controller.Index();
+            Assert.IsAssignableFrom<ViewResult>(actual);
         }
 
         [Test]
@@ -67,9 +65,7 @@ namespace GoBlog.Test.Areas.Admin.Controllers
         public void Delete_NonExistentPost_ReturnsNotFound()
         {
             var actual = controller.Delete("non-existent-slug") as HttpNotFoundResult;
-
             Assert.NotNull(actual);
-            Assert.That(actual.StatusDescription, Is.EqualTo("You cannot delete a post that does not exist."));
         }
 
         [Test]
@@ -78,7 +74,6 @@ namespace GoBlog.Test.Areas.Admin.Controllers
             var actual = controller.Edit("dynamic-contagion-part-one") as ViewResult;
 
             Assert.NotNull(actual);
-            Assert.That(actual.ViewName, Is.EqualTo("Edit"));
         }
 
         [Test]
@@ -105,7 +100,6 @@ namespace GoBlog.Test.Areas.Admin.Controllers
             var actual = controller.Edit("non-existent-slug") as HttpNotFoundResult;
 
             Assert.NotNull(actual);
-            Assert.That(actual.StatusDescription, Is.EqualTo("You cannot edit a post that does not exist."));
         }
 
         [Test]
@@ -114,7 +108,6 @@ namespace GoBlog.Test.Areas.Admin.Controllers
             var actual = controller.Edit(post) as ViewResult;
 
             Assert.NotNull(actual);
-            Assert.That(actual.ViewName, Is.EqualTo("Edit"));
         }
 
         [Test]
@@ -178,7 +171,6 @@ namespace GoBlog.Test.Areas.Admin.Controllers
             var actual = controller.Edit(model) as HttpNotFoundResult;
 
             Assert.NotNull(actual);
-            Assert.That(actual.StatusDescription, Is.EqualTo("You cannot edit a post that does not exist."));
         }
 
         [Test]
@@ -190,7 +182,6 @@ namespace GoBlog.Test.Areas.Admin.Controllers
             var actual = controller.Edit(model) as ViewResult;
 
             Assert.NotNull(actual);
-            Assert.That(actual.ViewName, Is.EqualTo("Edit"));
             Assert.AreEqual(model, actual.Model);
         }
 
@@ -200,7 +191,9 @@ namespace GoBlog.Test.Areas.Admin.Controllers
             var model = new PostInputModel
             {
                 Title = "Lowering in language design, part two",
-                Content = "arbitrary content."
+                Slug = "continuing-to-an-outer-loop",
+                Content = "arbitrary content.",
+                Tags = ""
             };
 
             var actual = controller.Edit(model) as ViewResult;
@@ -214,9 +207,15 @@ namespace GoBlog.Test.Areas.Admin.Controllers
         public void Add_ReturnsCorrectView()
         {
             var actual = controller.Add() as ViewResult;
-
             Assert.NotNull(actual);
-            Assert.That(actual.ViewName, Is.EqualTo("Create"));
+        }
+
+        [Test]
+        public void Add_InvalidModel_RedirectsToAdd()
+        {
+            controller.ModelState.AddModelError("", "error");
+
+            var actual = controller.Add(new PostInputModel());
         }
 
         [Test]
@@ -227,7 +226,7 @@ namespace GoBlog.Test.Areas.Admin.Controllers
                 Title = "Copy-paste defects",
                 Content = @"Continuing with my series of answers to questions that were 
                             asked during my webcast on Tuesday:",
-                Tags= ""
+                Tags = ""
             };
 
             controller.Add(newPost);
@@ -290,7 +289,7 @@ namespace GoBlog.Test.Areas.Admin.Controllers
                 Title = "Copy-paste defects",
                 Content = @"Continuing with my series of answers to questions that were 
                             asked during my webcast on Tuesday:",
-                Tags=""
+                Tags = ""
             };
 
             var actual = controller.Add(newPost) as RedirectToRouteResult;
@@ -305,7 +304,8 @@ namespace GoBlog.Test.Areas.Admin.Controllers
             var inputModel = new PostInputModel
             {
                 Title = "Lowering in language design, part two",
-                Content = @"Who cares"
+                Content = @"Who cares",
+                Tags= "Something",
             };
 
             var actual = controller.Add(inputModel) as ViewResult;
@@ -318,7 +318,7 @@ namespace GoBlog.Test.Areas.Admin.Controllers
         [TestCase("foo\r\nbar", ExpectedResult = "foo")]
         public string AddPostEditsSummary(string content)
         {
-            PostInputModel model = new PostInputModel { Title = "does", Content = content, Tags="" };
+            PostInputModel model = new PostInputModel { Title = "does", Content = content, Tags = "" };
             var actual = controller.Add(model) as ViewResult;
             var post = repository.Object.Posts.First(p => p.Slug == "does");
             return post.Summary;

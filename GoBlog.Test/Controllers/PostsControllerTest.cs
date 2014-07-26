@@ -1,7 +1,7 @@
-﻿using GoBlog.Controllers;
-using GoBlog.Infrastructure.AutoMapper;
-using GoBlog.Infrastructure.Paging;
+﻿using GoBlog.AutoMapper;
+using GoBlog.Controllers;
 using GoBlog.Models;
+using GoBlog.Paging;
 using GoBlog.Test.Support;
 using NUnit.Framework;
 using System.Linq;
@@ -10,24 +10,22 @@ using System.Web.Mvc;
 namespace GoBlog.Test.Controllers
 {
     [TestFixture]
-    public class HomeControllerTest
+    public class PostsControllerTest
     {
-        private HomeController controller;
+        private PostsController controller;
 
         [SetUp]
         public void SetUp()
         {
             AutoMapperConfig.Configure();
-            controller = new HomeController(RepositoryMockHelper.MockRepository().Object);
+            controller = new PostsController(RepositoryMockHelper.MockRepository().Object);
         }
 
         [Test]
         public void Index_ReturnsCorrectView()
         {
-            var actual = controller.Index() as ViewResult;
-
-            Assert.NotNull(actual);
-            Assert.That(actual.ViewName, Is.EqualTo("Index"));
+            var actual = controller.Index();
+            Assert.IsAssignableFrom<ViewResult>(actual);
         }
 
         [Test]
@@ -70,10 +68,8 @@ namespace GoBlog.Test.Controllers
         [Test]
         public void Post_ReturnsCorrectView()
         {
-            var actual = controller.Post("dynamic-contagion-part-one") as ViewResult;
-
-            Assert.NotNull(actual);
-            Assert.That(actual.ViewName, Is.EqualTo("Post"));
+            var actual = controller.Post("dynamic-contagion-part-one");
+            Assert.IsAssignableFrom<ViewResult>(actual);
         }
 
         [Test]
@@ -81,7 +77,6 @@ namespace GoBlog.Test.Controllers
         {
             var actual = controller.Post("a-face-made-for-email-part-three") as HttpNotFoundResult;
             Assert.NotNull(actual);
-            Assert.That(actual.StatusDescription, Is.EqualTo("You cannot view this post because it is a draft."));
         }
 
         [Test]

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace GoBlog.Persistence.Entities
+namespace GoBlog.Data.Entities
 {
     public class Tag
     {

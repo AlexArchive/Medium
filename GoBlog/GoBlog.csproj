@@ -99,43 +99,44 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
-    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
     <Compile Include="Areas\Admin\Models\Credentials.cs" />
     <Compile Include="Areas\Admin\Models\PostInput.cs" />
     <Compile Include="Authentication\AuthenticationService.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Authentication\IAuthenticationService.cs" />
-    <Compile Include="Inflector.cs" />
-    <Compile Include="Infrastructure\AutoMapper\AutoMapperConfig.cs" />
-    <Compile Include="Infrastructure\Paging\PagedList.cs" />
-    <Compile Include="Infrastructure\Paging\PagedListExtensions.cs" />
-    <Compile Include="Persistence\Entities\Post.cs" />
-    <Compile Include="Persistence\BlogDatabase.cs" />
-    <Compile Include="Persistence\Entities\Tag.cs" />
-    <Compile Include="Persistence\IRepository.cs" />
-    <Compile Include="Persistence\Migrations\DatabaseSeeder.cs" />
+    <Compile Include="Common\Inflector.cs" />
+    <Compile Include="AutoMapper\AutoMapperConfig.cs" />
+    <Compile Include="AutoMapper\AutoMapperExtensions.cs" />
+    <Compile Include="Paging\PagedList.cs" />
+    <Compile Include="Paging\PagedListExtensions.cs" />
+    <Compile Include="Data\Entities\Post.cs" />
+    <Compile Include="Data\BlogDatabase.cs" />
+    <Compile Include="Data\Entities\Tag.cs" />
+    <Compile Include="Data\IRepository.cs" />
+    <Compile Include="Data\Migrations\DatabaseSeeder.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SlugConverter.cs" />
-    <Compile Include="TagsResolver.cs" />
+    <Compile Include="Common\SlugConverter.cs" />
+    <Compile Include="Common\TagsResolver.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Post.cshtml" />
+    <Content Include="Views\Posts\Index.cshtml" />
+    <Content Include="Views\Posts\Post.cshtml" />
     <Content Include="Views\Shared\_PagerPartial.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

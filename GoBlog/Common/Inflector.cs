@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace GoBlog
+namespace GoBlog.Common
 {
     public static class Inflector
     {
