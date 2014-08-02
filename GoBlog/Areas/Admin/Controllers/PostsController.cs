@@ -13,9 +13,9 @@ namespace GoBlog.Areas.Admin.Controllers
     [Authorize]
     public class PostsController : Controller
     {
-        private readonly IRepository repository;
+        private readonly IPostsRepository<> repository;
 
-        public PostsController(IRepository repository)
+        public PostsController(IPostsRepository<> repository)
         {
             this.repository = repository;
         }

@@ -10,17 +10,17 @@ namespace GoBlog.Controllers
     public class PostsController : Controller
     {
         private const int PageSize = 8;
-        private readonly IRepository repository;
+        private readonly IPostsRepository repository;
 
-        public PostsController(IRepository repository)
+        public PostsController(IPostsRepository repository)
         {
             this.repository = repository;
         }
 
-        public ActionResult Index(int pageNumber = 1)
+        public ViewResult Index(int pageNumber = 1)
         {
             var posts = 
-                repository.Posts
+                repository.All()
                           .Where(post => !post.Draft)
                           .OrderBy(post => post.PublishedAt);
 
@@ -28,21 +28,20 @@ namespace GoBlog.Controllers
                 posts.MapTo<PostViewModel>()
                      .ToPagedList(pageNumber, PageSize);
 
-            return View(model);
+            return View("Index", model);
         }
 
         public ActionResult Post(string slug)
         {
-            var post = 
-                repository.Posts
-                          .FirstOrDefault(p => p.Slug == slug);
+            var post =
+                repository.Find(slug);
 
             if (post == null || post.Draft)
             {
                 return HttpNotFound();
             }
 
-            return View(post.MapTo<PostViewModel>());
+            return View("Post", post.MapTo<PostViewModel>());
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Web.Security;
 
 namespace GoBlog.Authentication
 {
-    public class AuthenticationService : IAuthenticationService
+    public class Authenticator : IAuthenticator
     {
         public bool Authenticated
         {

@@ -25,10 +25,5 @@ namespace GoBlog.Data.Entities
         public bool Draft { get; set; }
 
         public virtual ICollection<Tag> Tags { get; set; }
-
-        public void Something()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

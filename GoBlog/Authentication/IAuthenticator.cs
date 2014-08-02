@@ -1,6 +1,6 @@
 ﻿namespace GoBlog.Authentication
 {
-    public interface IAuthenticationService
+    public interface IAuthenticator
     {
         bool Authenticated { get; }
         bool Authenticate(string username, string password);

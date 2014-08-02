@@ -24,8 +24,8 @@ namespace GoBlog
 
         private static void RegisterTypes(ContainerBuilder builder)
         {
-            builder.RegisterType<BlogDatabase>().As<IRepository>();
-            builder.RegisterType<AuthenticationService>().As<IAuthenticationService>();
+            builder.RegisterType<PostsRepository>().As<IPostsRepository>();
+            builder.RegisterType<Authenticator>().As<IAuthenticator>();
         }
 
         protected void Application_Start()

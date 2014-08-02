@@ -16,7 +16,6 @@ namespace GoBlog.AutoMapper
             return (TResult) Mapper.Map(self, self.GetType(), typeof(TResult));
         }
 
-
         public static TResult MapPropertiesToInstance<TResult>(this object self, TResult value)
         {
             return (TResult)Mapper.Map(self, value, self.GetType(), typeof(TResult));

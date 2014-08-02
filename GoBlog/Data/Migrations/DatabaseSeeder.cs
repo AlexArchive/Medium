@@ -5,9 +5,9 @@ using GoBlog.Data.Entities;
 
 namespace GoBlog.Data.Migrations
 {
-    public class DatabaseSeeder : DropCreateDatabaseAlways<BlogDatabase>
+    public class DatabaseSeeder : DropCreateDatabaseAlways<DatabaseContext>
     {
-        protected override void Seed(BlogDatabase context)
+        protected override void Seed(DatabaseContext context)
         {
             // arbitrary posts sourced from http://ericlippert.com/
 
