@@ -1,0 +1,13 @@
+﻿@model IEnumerable<GoBlog.Domain.Model.Post>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@foreach (var post in Model)
+{
+    <h2>@post.Title</h2>
+    <p>@post.Summary</p>
+}
