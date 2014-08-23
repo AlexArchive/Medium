@@ -106,6 +106,8 @@
     </Compile>
     <Compile Include="Domain\Model\Post.cs" />
     <Compile Include="Domain\PostsRepository.cs" />
+    <Compile Include="Common\Pagination\PagedList.cs" />
+    <Compile Include="Common\Pagination\PagedListExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

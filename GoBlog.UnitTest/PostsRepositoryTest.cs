@@ -31,11 +31,12 @@ namespace GoBlog.UnitTest
         [Test]
         public void All_ReturnsAllPosts()
         {
-            databaseSet.SetupSeedData(Enumerable.Repeat(new Post(), 2));
+            const int Count = 2;
+            databaseSet.SetupSeedData(Enumerable.Repeat(new Post(), Count));
 
             var actual = repository.All();
 
-            Assert.AreEqual(2, actual.Count());
+            Assert.AreEqual(Count, actual.Count());
         }
 
         [Test]
@@ -46,11 +47,19 @@ namespace GoBlog.UnitTest
                 new Post { PublishDate = new DateTime(2014, 2, 1) },
                 new Post { PublishDate = new DateTime(2014, 1, 1) },
             });
-
-            var actual = repository.All();
             var expected = databaseSet.Data.OrderBy(post => post.PublishDate);
 
+            var actual = repository.All();
+
             Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void All_EmptyDataSet_ReturnsEmptySequence()
+        {
+            var actual = repository.All();
+
+            Assert.IsEmpty(actual);            
         }
     }
 }

@@ -15,8 +15,9 @@ namespace GoBlog.Domain
 
         public IEnumerable<Post> All()
         {
-            return context.Posts
-                          .OrderBy(post => post.PublishDate);
+            return context
+                .Posts
+                .OrderBy(post => post.PublishDate);
         } 
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GoBlog.Domain.Model.Post>
+﻿@model GoBlog.Common.Pagination.PagedList<GoBlog.Domain.Model.Post>
 
 @{
     ViewBag.Title = "Index";
@@ -10,4 +10,21 @@
 {
     <h2>@post.Title</h2>
     <p>@post.Summary</p>
+}
+
+
+@if (Model.TotalPageCount > 1)
+{
+    if (Model.HasPreviousPage)
+    {
+        @Html.ActionLink("Older", "Index", "Home", new {pageNumber = Model.PageNumber - 1}, new {})
+    }
+    if (Model.HasNextPage)
+    {
+        @Html.ActionLink("Newer", "Index", "Home", new {pageNumber = Model.PageNumber + 1}, new {})
+    }
+}
+else
+{
+    <p>Aww shucks. Looks like you don't have any posts yet.</p>
 }

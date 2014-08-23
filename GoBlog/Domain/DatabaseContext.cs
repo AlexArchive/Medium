@@ -5,6 +5,6 @@ namespace GoBlog.Domain
 {
     public class DatabaseContext : DbContext
     {
-        public virtual IDbSet<Post> Posts { get; set; }
+        public virtual DbSet<Post> Posts { get; set; }
     }
 }
