@@ -10,12 +10,6 @@ namespace GoBlog.Controllers
         private readonly IPostsRepository repository;
         private const int PageSize = 5;
 
-        public HomeController()
-            : this(new PostsRepository(new DatabaseContext()))
-        {
-
-        }
-
         public HomeController(IPostsRepository repository)
         {
             this.repository = repository;
