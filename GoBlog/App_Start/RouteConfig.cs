@@ -10,9 +10,15 @@ namespace GoBlog
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Pagination",
+                url: "page/{pageNumber}",
+                defaults: new { controller = "Home", action = "Index" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{pageNumber}",
-                defaults: new { controller = "Home", action = "Index", pageNumber = UrlParameter.Optional }
+                url: "{controller}/{action}",
+                defaults: new { controller = "Home", action = "Index" }
             );
         }
     }
