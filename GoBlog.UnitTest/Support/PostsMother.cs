@@ -6,10 +6,16 @@ namespace GoBlog.UnitTest.Support
 {
     public class PostsMother
     {
-        public static IEnumerable<Post> CreatePosts()
+        public static IEnumerable<Post> CreateEmptyPosts(int howMany = 2)
         {
             var post = new Post();
-            return Enumerable.Repeat(post, 6);
+            return Enumerable.Repeat(post, howMany);
+        }
+
+        public static Post CreatePost(string withSlug = null)
+        {
+            var post = new Post { Slug = withSlug };
+            return post;
         }
     }
 }

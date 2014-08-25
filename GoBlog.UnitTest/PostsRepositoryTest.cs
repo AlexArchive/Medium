@@ -61,5 +61,39 @@ namespace GoBlog.UnitTest
 
             Assert.IsEmpty(actual);            
         }
+
+        [Test]
+        public void Find_PostFound_ReturnsPost()
+        {
+            const string Slug = "abc";
+            databaseSet.SetupSeedData(new List<Post>
+            {
+                new Post { Slug = Slug },
+            });
+
+            var actual = repository.Find(Slug);
+
+            Assert.AreEqual(Slug, actual.Slug);   
+        }
+
+        [Test]
+        public void Find_NonExistentPost_ReturnsNull()
+        {
+            var actual = repository.Find("abc");
+            Assert.Null(actual);
+        }
+
+        [Test]
+        public void Find_MoreThanOnePostFound_Throws()
+        {
+            const string Slug = "abc";
+            databaseSet.SetupSeedData(new List<Post>
+            {
+                new Post { Slug = Slug },
+                new Post { Slug = Slug }
+            });
+
+            Assert.Throws<InvalidOperationException>(() => repository.Find(Slug));
+        }
     }
 }

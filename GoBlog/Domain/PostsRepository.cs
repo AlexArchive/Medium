@@ -1,6 +1,6 @@
-﻿using System.Linq;
-using GoBlog.Domain.Model;
+﻿using GoBlog.Domain.Model;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GoBlog.Domain
 {
@@ -18,6 +18,13 @@ namespace GoBlog.Domain
             return context
                 .Posts
                 .OrderBy(post => post.PublishDate);
-        } 
-    }
+        }
+
+        public Post Find(string slug)
+        {
+            return context
+                .Posts
+                .SingleOrDefault(post => post.Slug == slug);
+        }
+   }
 }

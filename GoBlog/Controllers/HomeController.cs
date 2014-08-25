@@ -1,6 +1,6 @@
-﻿using System.Linq;
-using GoBlog.Common.Pagination;
+﻿using GoBlog.Common.Pagination;
 using GoBlog.Domain;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace GoBlog.Controllers
@@ -8,7 +8,7 @@ namespace GoBlog.Controllers
     public class HomeController : Controller
     {
         private readonly IPostsRepository repository;
-        private const int PageSize = 5;
+        public const int PageSize = 5;
 
         public HomeController(IPostsRepository repository)
         {
@@ -17,9 +17,7 @@ namespace GoBlog.Controllers
 
         public ActionResult Index(int pageNumber = 1)
         {
-            var posts = 
-                repository.All()
-                          .Paginate(pageNumber, PageSize);
+            var posts = repository.All().Paginate(pageNumber, PageSize);
 
             if (posts.Any() || pageNumber == 1)
             {
@@ -28,5 +26,18 @@ namespace GoBlog.Controllers
 
             return RedirectToAction("Index", new { pageNumber = posts.TotalPageCount });
         }
+
+        public ActionResult Post(string slug)
+        {
+            var post = repository.Find(slug);
+
+            if (post == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(post);
+        }
+
     }
 }

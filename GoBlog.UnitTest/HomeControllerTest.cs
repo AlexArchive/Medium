@@ -5,7 +5,7 @@ using GoBlog.Domain.Model;
 using GoBlog.UnitTest.Support;
 using Moq;
 using NUnit.Framework;
-using System.Linq;
+using System.Net;
 using TestStack.FluentMVCTesting;
 
 namespace GoBlog.UnitTest
@@ -21,15 +21,15 @@ namespace GoBlog.UnitTest
         {
             repository = new Mock<IPostsRepository>();
             controller = new HomeController(repository.Object);
-
-            repository
-                .Setup(repo => repo.All())
-                .Returns(PostsMother.CreatePosts);
         }
 
         [Test]
         public void Index_RendersDefaultView()
         {
+            repository
+                .Setup(repo => repo.All())
+                .Returns(PostsMother.CreateEmptyPosts());
+
             controller
                 .WithCallTo(c => c.Index(1))
                 .ShouldRenderDefaultView();
@@ -38,6 +38,10 @@ namespace GoBlog.UnitTest
         [Test]
         public void Index_ReturnsCorrectModelType()
         {
+            repository
+                .Setup(repo => repo.All())
+                .Returns(PostsMother.CreateEmptyPosts());
+
             controller
                 .WithCallTo(c => c.Index(1))
                 .ShouldRenderDefaultView()
@@ -48,7 +52,11 @@ namespace GoBlog.UnitTest
         public void Index_ReturnsModelWithCorrectPageNumber()
         {
             const int PageNumber = 2;
-            
+            const int Count = HomeController.PageSize + 1;
+            repository
+                .Setup(repo => repo.All())
+                .Returns(PostsMother.CreateEmptyPosts(Count));
+
             controller
                 .WithCallTo(c => c.Index(PageNumber))
                 .ShouldRenderDefaultView()
@@ -58,6 +66,11 @@ namespace GoBlog.UnitTest
         [Test]
         public void Index_NonExistentPage_RedirectsToLastAvailablePage()
         {
+            const int Count = HomeController.PageSize + 1;
+            repository
+                .Setup(repo => repo.All())
+                .Returns(PostsMother.CreateEmptyPosts(Count));
+
             var actual = controller
                 .WithCallTo(c => c.Index(3))
                 .ShouldRedirectTo(c => c.Index);
@@ -68,13 +81,58 @@ namespace GoBlog.UnitTest
         [Test]
         public void Index_EmptyRepository_RendersDefaultView()
         {
-            repository
-                .Setup(repo => repo.All())
-                .Returns(Enumerable.Empty<Post>);
-
             controller
                 .WithCallTo(c => c.Index(1))
                 .ShouldRenderDefaultView();
+        }
+
+        [Test]
+        public void Post_RendersDefaultView()
+        {
+            const string Slug = "abc";
+            repository
+                .Setup(repo => repo.Find(Slug))
+                .Returns(new Post());
+
+            controller
+                .WithCallTo(c => c.Post(Slug))
+                .ShouldRenderDefaultView();
+        }
+
+        [Test]
+        public void Post_ReturnsCorrectModelType()
+        {
+            const string Slug = "abc";
+            repository
+                .Setup(repo => repo.Find(Slug))
+                .Returns(new Post());
+
+            controller
+                .WithCallTo(c => c.Post(Slug))
+                .ShouldRenderDefaultView()
+                .WithModel<Post>();
+        }
+
+        [Test]
+        public void Post_ReturnsCorrectModel()
+        {
+            const string Slug = "abc";
+            repository
+               .Setup(repo => repo.Find(Slug))
+               .Returns(PostsMother.CreatePost(withSlug: Slug));
+
+            controller
+                .WithCallTo(c => c.Post(Slug))
+                .ShouldRenderDefaultView()
+                .WithModel<Post>(actual => actual.Slug == Slug);
+        }
+
+        [Test]
+        public void Post_NonExistentPost_ReturnsNotFound()
+        {
+            controller
+                .WithCallTo(c => c.Post("abc"))
+                .ShouldGiveHttpStatus(HttpStatusCode.NotFound);
         }
     }
 }

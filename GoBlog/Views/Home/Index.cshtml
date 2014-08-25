@@ -8,7 +8,7 @@
 
 @foreach (var post in Model)
 {
-    <h2>@post.Title</h2>
+    <h2>@Html.ActionLink(post.Title, "Post", "Home", new { slug = post.Slug },new{})</h2>
     <p>@post.Summary</p>
 }
 
@@ -17,11 +17,11 @@
 {
     if (Model.HasPreviousPage)
     {
-        @Html.ActionLink("Older", "Index", "Home", new {pageNumber = Model.PageNumber - 1}, new {})
+        @Html.ActionLink("Older", "Index", "Home", new { pageNumber = Model.PageNumber - 1 }, new { })
     }
     if (Model.HasNextPage)
     {
-        @Html.ActionLink("Newer", "Index", "Home", new {pageNumber = Model.PageNumber + 1}, new {})
+        @Html.ActionLink("Newer", "Index", "Home", new { pageNumber = Model.PageNumber + 1 }, new { })
     }
 }
 else

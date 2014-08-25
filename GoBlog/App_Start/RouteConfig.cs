@@ -8,6 +8,12 @@ namespace GoBlog
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            
+            routes.MapRoute(
+                name: "Post",
+                url: "{slug}",
+                defaults: new { controller = "Home", action = "Post" }
+            );
 
             routes.MapRoute(
                 name: "Pagination",
@@ -17,7 +23,7 @@ namespace GoBlog
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}",
+                url: "",
                 defaults: new { controller = "Home", action = "Index" }
             );
         }
