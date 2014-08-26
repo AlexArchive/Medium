@@ -1,5 +1,7 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using GoBlog.Areas.Admin;
+using GoBlog.Authentication;
 using GoBlog.Domain;
 using System.Data.Entity;
 using System.Reflection;
@@ -23,6 +25,7 @@ namespace GoBlog
         {
             builder.RegisterType<DatabaseContext>().AsSelf();
             builder.RegisterType<PostsRepository>().As<IPostsRepository>();
+            builder.RegisterType<Authenticator>().As<IAuthenticator>();
         }
 
         protected void Application_Start()

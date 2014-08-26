@@ -1,0 +1,20 @@
+﻿@model GoBlog.Areas.Admin.Models.CredentialsModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Login</h2>
+
+@Html.ValidationSummary()
+
+@using (Html.BeginForm("Login", "Login"))
+{
+    @Html.LabelFor(m => m.Username)
+    @Html.TextBoxFor(m => m.Username)
+
+    @Html.LabelFor(m => m.Password)
+    @Html.PasswordFor(m => m.Password)
+    
+    <button type="submit">Login</button>
+}
