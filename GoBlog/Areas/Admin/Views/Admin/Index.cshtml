@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<GoBlog.Domain.Model.Post>
+
 @{
     ViewBag.Title = "Index";
 }
@@ -6,6 +7,22 @@
 <h2>Index</h2>
 
 <p>You shouldn't be here unless you are authenticated.</p>
-
-
 @Html.ActionLink("Logout", "Logout", "Login")
+
+
+<table>
+    <tr>
+        <td>Title</td>
+        <td>Publish Date</td>
+    </tr>
+
+
+    @foreach (var post in Model)
+    {
+        <tr>
+            <td>@post.Title</td>
+            <td>@post.PublishDate</td>
+        </tr>
+    }
+
+</table>

@@ -1,13 +1,22 @@
-﻿using System.Web.Mvc;
+﻿using GoBlog.Domain;
+using System.Web.Mvc;
 
-namespace GoBlog.Areas.Admin.Controllers
+namespace GoBlog.Areas.Admin.Controllers 
 {
     [Authorize]
     public class AdminController : Controller
     {
+        private readonly IPostsRepository repository;
+
+        public AdminController(IPostsRepository repository)
+        {
+            this.repository = repository;
+        }
+
         public ActionResult Index()
         {
-            return View();
+            var posts = repository.All();
+            return View(posts);
         }
     }
 }
