@@ -1,6 +1,7 @@
 ﻿using EntityFramework.Testing.Moq;
 using GoBlog.Domain;
 using GoBlog.Domain.Model;
+using GoBlog.UnitTest.Support;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -32,7 +33,7 @@ namespace GoBlog.UnitTest
         public void All_ReturnsAllPosts()
         {
             const int Count = 2;
-            databaseSet.SetupSeedData(Enumerable.Repeat(new Post(), Count));
+            databaseSet.SetupSeedData(PostsMother.CreateEmptyPosts(Count));
 
             var actual = repository.All();
 
@@ -47,9 +48,9 @@ namespace GoBlog.UnitTest
                 new Post { PublishDate = new DateTime(2014, 2, 1) },
                 new Post { PublishDate = new DateTime(2014, 1, 1) },
             });
-            var expected = databaseSet.Data.OrderBy(post => post.PublishDate);
 
             var actual = repository.All();
+            var expected = databaseSet.Data.OrderBy(post => post.PublishDate);
 
             Assert.AreEqual(expected, actual);
         }
@@ -68,7 +69,7 @@ namespace GoBlog.UnitTest
             const string Slug = "abc";
             databaseSet.SetupSeedData(new List<Post>
             {
-                new Post { Slug = Slug },
+                PostsMother.CreatePost(Slug)
             });
 
             var actual = repository.Find(Slug);
@@ -77,7 +78,7 @@ namespace GoBlog.UnitTest
         }
 
         [Test]
-        public void Find_NonExistentPost_ReturnsNull()
+        public void Find_PostNotFound_ReturnsNull()
         {
             var actual = repository.Find("abc");
             Assert.Null(actual);
@@ -89,8 +90,8 @@ namespace GoBlog.UnitTest
             const string Slug = "abc";
             databaseSet.SetupSeedData(new List<Post>
             {
-                new Post { Slug = Slug },
-                new Post { Slug = Slug }
+                PostsMother.CreatePost(Slug),
+                PostsMother.CreatePost(Slug)
             });
 
             Assert.Throws<InvalidOperationException>(() => repository.Find(Slug));
