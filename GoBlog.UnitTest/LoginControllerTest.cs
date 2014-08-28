@@ -69,7 +69,7 @@ namespace GoBlog.UnitTest
         public void Login_AuthenticationSuccess_RedirectsToAdmin()
         {
             var credentials = new CredentialsModel();
-            authenticator.Setup(auth => auth.Authenticated).Returns(true);
+            authenticator.Setup(auth => auth.Authenticate(null, null)).Returns(true);
 
             controller
                 .WithCallTo(c => c.Login(credentials))
@@ -82,7 +82,7 @@ namespace GoBlog.UnitTest
         {
             const string ReturnUrl = "admin/abc";
             var credentials = new CredentialsModel();
-            authenticator.Setup(auth => auth.Authenticated).Returns(true);
+            authenticator.Setup(auth => auth.Authenticate(null, null)).Returns(true);
             controller.SetupControllerContext(new NameValueCollection {{"ReturnUrl", ReturnUrl}});
 
             controller

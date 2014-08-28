@@ -1,9 +1,11 @@
 ﻿using GoBlog.Areas.Admin.Models;
 using GoBlog.Authentication;
+using Microsoft.Web.Mvc;
 using System.Web.Mvc;
 
 namespace GoBlog.Areas.Admin.Controllers
 {
+    [ActionLinkArea("Admin")]
     public class LoginController : Controller
     {
         private readonly IAuthenticator authenticator;
@@ -25,9 +27,9 @@ namespace GoBlog.Areas.Admin.Controllers
 
         public ActionResult Login(CredentialsModel model)
         {
-            authenticator.Authenticate(model.Username, model.Password);
+            var authenticated = authenticator.Authenticate(model.Username, model.Password);
 
-            if (authenticator.Authenticated)
+            if (authenticated)
             {
                 return Redirect();
             }

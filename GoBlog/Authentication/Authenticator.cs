@@ -10,11 +10,12 @@ namespace GoBlog.Authentication
             get { return HttpContext.Current.User.Identity.IsAuthenticated; }
         }
 
-        public void Authenticate(string username, string password)
+        public bool Authenticate(string username, string password)
         {
             var authenticated = FormsAuthentication.Authenticate(username, password);
             if (authenticated)
                 FormsAuthentication.SetAuthCookie(username, false);
+            return authenticated;
         }
 
         public void Logout()

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoBlog", "GoBlog\GoBlog.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoBlog.UnitTest", "GoBlog.UnitTest\GoBlog.UnitTest.csproj", "{D9108C0E-4B5A-43A0-A13E-C55CD34BBA19}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoBlog.IntegrationTest", "GoBlog.IntegrationTest\GoBlog.IntegrationTest.csproj", "{F267C130-D6A4-4206-AD2D-2592FE1BEAC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D9108C0E-4B5A-43A0-A13E-C55CD34BBA19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9108C0E-4B5A-43A0-A13E-C55CD34BBA19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9108C0E-4B5A-43A0-A13E-C55CD34BBA19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F267C130-D6A4-4206-AD2D-2592FE1BEAC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F267C130-D6A4-4206-AD2D-2592FE1BEAC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F267C130-D6A4-4206-AD2D-2592FE1BEAC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F267C130-D6A4-4206-AD2D-2592FE1BEAC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

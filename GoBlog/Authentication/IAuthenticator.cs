@@ -3,7 +3,7 @@
     public interface IAuthenticator
     {
         bool Authenticated { get; }
-        void Authenticate(string username, string password);
+        bool Authenticate(string username, string password);
         void Logout();
     }
 }
