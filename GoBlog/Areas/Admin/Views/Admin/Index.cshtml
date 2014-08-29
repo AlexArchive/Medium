@@ -7,8 +7,6 @@
 <h2>Index</h2>
 
 <p>@TempData["Message"]</p>
-<p>You shouldn't be here unless you are authenticated.</p>
-@Html.ActionLink("Logout", "Logout", "Login")
 
 <table>
     <tr>
@@ -22,9 +20,15 @@
             <td>@post.Title</td>
             <td>@post.PublishDate</td>
             <td>
-                @Html.ActionLink("Delete", "Delete", "Admin", new { slug = post.Slug }, new{})
+                @Html.ActionLink(
+                    "Delete",
+                    "Delete",
+                    "Admin",
+                    new { slug = post.Slug },
+                    new { data_confirmation_msg = "Are you sure you want to delete this entry? There is no going back." })
             </td>
         </tr>
     }
-
 </table>
+
+@Html.ActionLink("Logout", "Logout", "Login")
