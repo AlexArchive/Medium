@@ -13,10 +13,22 @@ namespace GoBlog.Areas.Admin.Controllers
             this.repository = repository;
         }
 
-        public ActionResult Index()
+        public ViewResult Index()
         {
             var posts = repository.All();
             return View(posts);
+        }
+
+        public ActionResult Delete(string slug)
+        {
+            var success = repository.Delete(slug);
+
+            if (success)
+                TempData["Message"] = "Post deleted successfully.";
+            else
+                TempData["Message"] = "Failed to delete this post as it no longer exists.";
+
+            return RedirectToAction("Index");
         }
     }
 }

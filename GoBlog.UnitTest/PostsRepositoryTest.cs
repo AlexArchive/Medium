@@ -96,5 +96,61 @@ namespace GoBlog.UnitTest
 
             Assert.Throws<InvalidOperationException>(() => repository.Find(Slug));
         }
+
+        [Test]
+        public void Delete_ExistentPost_CallsRemove()
+        {
+            const string Slug = "abc";
+            databaseSet.SetupSeedData(new List<Post>
+            {
+                PostsMother.CreatePost(Slug)
+            });
+
+            repository.Delete(Slug);
+
+            databaseSet.Verify(d => d.Remove(It.IsAny<Post>()));
+        }
+
+        [Test]
+        public void Delete_ExistentPost_ReturnsTrue()
+        {
+            const string Slug = "abc";
+            databaseSet.SetupSeedData(new List<Post>
+            {
+                PostsMother.CreatePost(Slug)
+            });
+
+            var actual = repository.Delete(Slug);
+
+            Assert.True(actual);
+        }
+
+        [Test]
+        public void Delete_ExistentPost_CallsSaveChanges()
+        {
+            const string Slug = "abc";
+            databaseSet.SetupSeedData(new List<Post>
+            {
+                PostsMother.CreatePost(Slug)
+            });
+
+            repository.Delete(Slug);
+            
+            databaseContext.Verify(d => d.SaveChanges());
+        }
+
+        [Test]
+        public void Delete_NonExistentPost_DoesNotThrow()
+        {
+            repository.Delete("abc");
+        }
+
+        [Test]
+        public void Delete_NonExistentPost_ReturnsFalse()
+        {
+            var actual = repository.Delete("abc");
+
+            Assert.False(actual);
+        }
     }
 }

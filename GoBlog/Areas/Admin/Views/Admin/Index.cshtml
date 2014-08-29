@@ -6,9 +6,9 @@
 
 <h2>Index</h2>
 
+<p>@TempData["Message"]</p>
 <p>You shouldn't be here unless you are authenticated.</p>
 @Html.ActionLink("Logout", "Logout", "Login")
-
 
 <table>
     <tr>
@@ -16,12 +16,14 @@
         <td>Publish Date</td>
     </tr>
 
-
     @foreach (var post in Model)
     {
         <tr>
             <td>@post.Title</td>
             <td>@post.PublishDate</td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", "Admin", new { slug = post.Slug }, new{})
+            </td>
         </tr>
     }
 

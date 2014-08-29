@@ -53,5 +53,35 @@ namespace GoBlog.UnitTest
                 .ShouldRenderDefaultView()
                 .WithModel<IEnumerable<Post>>(actual => actual.Count() == PostCount);
         }
+
+        [Test]
+        public void Delete_RedirectsToIndex()
+        {
+            controller
+                .WithCallTo(c => c.Delete(""))
+                .ShouldRedirectTo(c => c.Index);
+        }
+
+        [Test]
+        public void Delete_ExistentPost_ReturnsCorrectMessage()
+        {
+            const string Slug = "";
+            repository
+                .Setup(repo => repo.Delete(Slug)).Returns(true);
+
+            controller.Delete(Slug);
+
+            var message = controller.TempData["Message"].ToString();
+            Assert.That(message.Contains("success"));
+        }
+
+        [Test]
+        public void Delete_NonExistentPost_ReturnsCorrectMessage()
+        {
+            controller.Delete("");
+
+            var message = controller.TempData["Message"].ToString();
+            Assert.That(message.Contains("no longer exists"));
+        }
     }
 }

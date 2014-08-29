@@ -26,5 +26,15 @@ namespace GoBlog.Domain
                 .Posts
                 .SingleOrDefault(post => post.Slug == slug);
         }
+
+        public bool Delete(string slug)
+        {
+            var post = Find(slug);
+            if (post == null) return false;
+
+            context.Posts.Remove(post);
+            context.SaveChanges();
+            return true;
+        }
    }
 }
