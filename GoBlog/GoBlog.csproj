@@ -125,6 +125,7 @@
     <Compile Include="Common\Pagination\PagedList.cs" />
     <Compile Include="Common\Pagination\PagedListExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SlugConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

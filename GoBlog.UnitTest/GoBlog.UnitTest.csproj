@@ -94,6 +94,7 @@
     <Compile Include="LoginControllerTest.cs" />
     <Compile Include="HomeControllerTest.cs" />
     <Compile Include="PagedListTests.cs" />
+    <Compile Include="SlugConverterTest.cs" />
     <Compile Include="Support\MockContext.cs" />
     <Compile Include="Support\PostsMother.cs" />
     <Compile Include="PostsRepositoryTest.cs" />
