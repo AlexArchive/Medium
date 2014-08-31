@@ -36,12 +36,6 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework.Testing">
-      <HintPath>..\packages\EntityFramework.Testing.1.0.0-alpha1\lib\net45\EntityFramework.Testing.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.Testing.Moq">
-      <HintPath>..\packages\EntityFramework.Testing.Moq.1.0.0-apha1\lib\net45\EntityFramework.Testing.Moq.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -94,6 +88,7 @@
     <Compile Include="LoginControllerTest.cs" />
     <Compile Include="HomeControllerTest.cs" />
     <Compile Include="PagedListTests.cs" />
+    <Compile Include="Support\Doubles.cs" />
     <Compile Include="Support\MockContext.cs" />
     <Compile Include="Support\PostsMother.cs" />
     <Compile Include="PostsRepositoryTest.cs" />
