@@ -6,9 +6,9 @@ namespace GoBlog.Domain
 {
     public class PostsRepository : IPostsRepository
     {
-        private readonly DatabaseContext context;
+        private readonly IDatabaseContext context;
 
-        public PostsRepository(DatabaseContext context)
+        public PostsRepository(IDatabaseContext context)
         {
             this.context = context;
         }
