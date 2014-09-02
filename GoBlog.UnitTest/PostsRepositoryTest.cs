@@ -12,20 +12,20 @@ namespace GoBlog.UnitTest
     public class PostsRepositoryTest
     {
         private PostsRepository repository;
-        private DatabaseContextDouble contextDouble;
+        private DatabaseContextDouble context;
 
         [SetUp]
         public void SetUp()
         {
-            contextDouble = new DatabaseContextDouble();
-            repository = new PostsRepository(contextDouble);
+            context = new DatabaseContextDouble();
+            repository = new PostsRepository(context);
         }
 
         [Test]
         public void All_ReturnsAllPosts()
         {
             const int Count = 2;
-            contextDouble.Posts.AddRange(PostsMother.CreateEmptyPosts(Count));
+            context.Posts.AddRange(PostMother.CreatePosts(Count));
 
             var actual = repository.All();
 
@@ -35,14 +35,14 @@ namespace GoBlog.UnitTest
         [Test]
         public void All_ReturnsAllPostsOrderedByPublishDate()
         {
-            contextDouble.Posts.AddRange(new List<Post>
+            context.Posts.AddRange(new List<Post>
             {
                 new Post { PublishDate = new DateTime(2014, 2, 1) },
                 new Post { PublishDate = new DateTime(2014, 1, 1) },
             });
 
             var actual = repository.All();
-            var expected = contextDouble.Posts.OrderBy(post => post.PublishDate);
+            var expected = context.Posts.OrderBy(post => post.PublishDate);
 
             Assert.AreEqual(expected, actual);
         }
@@ -59,7 +59,7 @@ namespace GoBlog.UnitTest
         public void Find_PostFound_ReturnsPost()
         {
             const string Slug = "abc";
-            contextDouble.Posts.Add(PostsMother.CreatePost(Slug));
+            context.Posts.Add(PostMother.CreatePost(Slug));
 
             var actual = repository.Find(Slug);
 
@@ -78,10 +78,10 @@ namespace GoBlog.UnitTest
         public void Find_MoreThanOnePostFound_Throws()
         {
             const string Slug = "abc";
-            contextDouble.Posts.AddRange(new List<Post>
+            context.Posts.AddRange(new List<Post>
             {
-                PostsMother.CreatePost(Slug),
-                PostsMother.CreatePost(Slug)
+                PostMother.CreatePost(Slug),
+                PostMother.CreatePost(Slug)
             });
 
             Assert.Throws<InvalidOperationException>(() => repository.Find(Slug));
@@ -91,18 +91,18 @@ namespace GoBlog.UnitTest
         public void Delete_RemovesPost()
         {
             const string Slug = "abc";
-            contextDouble.Posts.Add(PostsMother.CreatePost(Slug));
+            context.Posts.Add(PostMother.CreatePost(Slug));
 
             repository.Delete(Slug);
 
-            Assert.AreEqual(0, contextDouble.Posts.Count());
+            Assert.AreEqual(0, context.Posts.Count());
         }
 
         [Test]
         public void Delete_ExistentPost_ReturnsTrue()
         {
             const string Slug = "abc";
-            contextDouble.Posts.Add(PostsMother.CreatePost(Slug));
+            context.Posts.Add(PostMother.CreatePost(Slug));
 
             var actual = repository.Delete(Slug);
 
@@ -113,11 +113,11 @@ namespace GoBlog.UnitTest
         public void Delete_ExistentPost_CallsSaveChanges()
         {
             const string Slug = "abc";
-            contextDouble.Posts.Add(PostsMother.CreatePost(Slug));
+            context.Posts.Add(PostMother.CreatePost(Slug));
 
             repository.Delete(Slug);
 
-            Assert.AreEqual(1, contextDouble.SaveChangesCount);
+            Assert.AreEqual(1, context.SaveChangesCount);
         }
         
         [Test]
@@ -132,6 +132,59 @@ namespace GoBlog.UnitTest
         public void Delete_NonExistentPost_DoesNotThrow()
         {
             repository.Delete("abc");
+        }
+
+        [Test]
+        public void Add_AddsPost()
+        {
+            var post = PostMother.CreatePost();
+
+            repository.Add(post);
+
+            Assert.AreEqual(1, context.Posts.Count());
+        }
+
+        [Test]
+        public void Add_CallsSaveChanges()
+        {
+            var post = PostMother.CreatePost();
+
+            repository.Add(post);
+                
+            Assert.AreEqual(1, context.SaveChangesCount);
+        }
+
+        [Test]
+        public void Add_AssignsSlugToPost()
+        {
+            var post = PostMother.CreatePost(withTitle: "arbitrary title");
+            repository.Add(post);
+
+            var actual = context.Posts.First();
+
+            Assert.AreEqual(SlugConverter.Convert(post.Title), actual.Slug);
+        }
+
+        [Test]
+        public void Add_AssignsSummaryToPost()
+        {
+            var post = PostMother.CreatePost(withContent: "arbitrary content");
+            repository.Add(post);
+
+            var actual = context.Posts.First();
+
+            Assert.AreEqual(SummaryConverter.Convert(post.Content), actual.Summary);
+        }
+
+        [Test]
+        public void Add_AssignPublishDateToPost()
+        {
+            var post = PostMother.CreatePost();
+            repository.Add(post);
+
+            var actual = context.Posts.First();
+
+            Assert.AreNotEqual(DateTime.MinValue, actual.PublishDate);
         }
     }
 }

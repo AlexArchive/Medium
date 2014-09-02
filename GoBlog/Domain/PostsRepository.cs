@@ -1,4 +1,5 @@
-﻿using GoBlog.Domain.Model;
+﻿using System;
+using GoBlog.Domain.Model;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -36,5 +37,15 @@ namespace GoBlog.Domain
             context.SaveChanges();
             return true;
         }
-   }
+
+        public void Add(Post post)
+        {
+            post.Slug = SlugConverter.Convert(post.Title);
+            post.Summary = SummaryConverter.Convert(post.Content);
+            post.PublishDate = DateTime.Now;
+
+            context.Posts.Add(post);
+            context.SaveChanges();
+        }
+    }
 }

@@ -1,6 +1,6 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
-using GoBlog.Areas.Admin;
+using AutoMapper;
 using GoBlog.Authentication;
 using GoBlog.Domain;
 using System.Data.Entity;
@@ -23,9 +23,10 @@ namespace GoBlog
 
         private static void RegisterTypes(ContainerBuilder builder)
         {
-            builder.RegisterType<DatabaseContext>().AsSelf();
+            builder.RegisterType<DatabaseContext>().As<IDatabaseContext>();
             builder.RegisterType<PostsRepository>().As<IPostsRepository>();
             builder.RegisterType<Authenticator>().As<IAuthenticator>();
+            builder.Register(context => Mapper.Engine);
         }
 
         protected void Application_Start()
@@ -34,6 +35,7 @@ namespace GoBlog
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             DependencyResolver.SetResolver(new AutofacDependencyResolver(CreateContainer()));
             Database.SetInitializer(new DatabaseSeeder());
+            AutoMapperConfig.Init();
         }
     }
 }

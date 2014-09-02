@@ -8,5 +8,6 @@ namespace GoBlog.Domain
         IEnumerable<Post> All();
         Post Find(string slug);
         bool Delete(string slug);
+        void Add(Post post);
     }
 }

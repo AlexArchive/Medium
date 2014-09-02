@@ -28,7 +28,7 @@ namespace GoBlog.UnitTest
         {
             repository
                 .Setup(repo => repo.All())
-                .Returns(PostsMother.CreateEmptyPosts());
+                .Returns(PostMother.CreatePosts());
 
             controller
                 .WithCallTo(c => c.Index(1))
@@ -40,7 +40,7 @@ namespace GoBlog.UnitTest
         {
             repository
                 .Setup(repo => repo.All())
-                .Returns(PostsMother.CreateEmptyPosts());
+                .Returns(PostMother.CreatePosts());
 
             controller
                 .WithCallTo(c => c.Index(1))
@@ -55,7 +55,7 @@ namespace GoBlog.UnitTest
             const int Count = HomeController.PageSize + 1;
             repository
                 .Setup(repo => repo.All())
-                .Returns(PostsMother.CreateEmptyPosts(Count));
+                .Returns(PostMother.CreatePosts(Count));
 
             controller
                 .WithCallTo(c => c.Index(PageNumber))
@@ -69,7 +69,7 @@ namespace GoBlog.UnitTest
             const int Count = HomeController.PageSize + 1;
             repository
                 .Setup(repo => repo.All())
-                .Returns(PostsMother.CreateEmptyPosts(Count));
+                .Returns(PostMother.CreatePosts(Count));
 
             var actual = controller
                 .WithCallTo(c => c.Index(3))
@@ -119,7 +119,7 @@ namespace GoBlog.UnitTest
             const string Slug = "abc";
             repository
                .Setup(repo => repo.Find(Slug))
-               .Returns(PostsMother.CreatePost(withSlug: Slug));
+               .Returns(PostMother.CreatePost(withSlug: Slug));
 
             controller
                 .WithCallTo(c => c.Post(Slug))

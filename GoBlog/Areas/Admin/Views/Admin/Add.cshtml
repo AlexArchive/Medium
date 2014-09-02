@@ -1,0 +1,14 @@
+﻿@model GoBlog.Areas.Admin.Models.PostInputModel
+
+@{
+    ViewBag.Title = "Add";
+}
+
+@Html.ValidationSummary()
+
+@using (Html.BeginForm())
+{
+    @Html.EditorForModel()
+    <input type="submit" value="Add"/>
+}
+
