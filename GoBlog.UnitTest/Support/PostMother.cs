@@ -24,6 +24,13 @@ namespace GoBlog.UnitTest.Support
             var post = CreatePost();
             return Enumerable.Repeat(post, howMany);
         }
+
+        public static IEnumerable<Post> CreateDrafts(int howMany = 1)
+        {
+            var post = CreatePost();
+            post.Draft = true;
+            return Enumerable.Repeat(post, howMany);
+        } 
     }
 
     public class PostInputMother

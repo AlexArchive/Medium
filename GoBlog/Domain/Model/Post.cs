@@ -18,6 +18,8 @@ namespace GoBlog.Domain.Model
         [Required]
         public string Content { get; set; }
 
+        public bool Draft { get; set; }
+
         [Required]
         public DateTime PublishDate { get; set; }
     }

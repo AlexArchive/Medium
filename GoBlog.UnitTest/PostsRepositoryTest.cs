@@ -48,6 +48,17 @@ namespace GoBlog.UnitTest
         }
 
         [Test]
+        public void All_ReturnsAllPostsExcludingDrafts()
+        {
+            const int Count = 1;
+            context.Posts.AddRange(PostMother.CreateDrafts(howMany: Count));
+
+            var actual = repository.All();
+         
+            Assert.AreEqual(Count - Count, actual.Count());
+        }
+
+        [Test]
         public void All_EmptyDataSet_ReturnsEmptySequence()
         {
             var actual = repository.All();

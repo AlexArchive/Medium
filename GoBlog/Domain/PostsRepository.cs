@@ -18,6 +18,7 @@ namespace GoBlog.Domain
         {
             return context
                 .Posts
+                .Where(post => !post.Draft)
                 .OrderBy(post => post.PublishDate);
         }
 
