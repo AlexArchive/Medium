@@ -85,8 +85,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TestStack.FluentMVCTesting">
-      <HintPath>..\packages\TestStack.FluentMVCTesting.1.0.22\lib\NET40\TestStack.FluentMVCTesting.dll</HintPath>
+    <Reference Include="TestStack.FluentMVCTesting, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\TestStack.FluentMVCTesting.2.0.0\lib\NET40\TestStack.FluentMVCTesting.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
