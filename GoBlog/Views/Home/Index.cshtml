@@ -17,11 +17,11 @@
 {
     if (Model.HasPreviousPage)
     {
-        @Html.ActionLink("Older", "Index", "Home", new { pageNumber = Model.PageNumber - 1 }, new { })
+        @Html.ActionLink("Newer", "Index", "Home", new { pageNumber = Model.PageNumber - 1 }, new { })
     }
     if (Model.HasNextPage)
     {
-        @Html.ActionLink("Newer", "Index", "Home", new { pageNumber = Model.PageNumber + 1 }, new { })
+        @Html.ActionLink("Older", "Index", "Home", new { pageNumber = Model.PageNumber + 1 }, new { })
     }
 }
 else
