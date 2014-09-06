@@ -5,7 +5,7 @@ using GoBlog.Domain;
 using System.Web.Mvc;
 using GoBlog.Domain.Model;
 
-namespace GoBlog.Areas.Admin.Controllers 
+namespace GoBlog.Areas.Admin.Controllers
 {
     [Authorize]
     public class AdminController : Controller
@@ -57,12 +57,19 @@ namespace GoBlog.Areas.Admin.Controllers
                 return View(post);
             }
 
-            return RedirectToAction("Edit");
+            TempData["newPost"] = true;
+            return RedirectToAction("Edit", new { slug = entity.Slug });
         }
 
         public ActionResult Edit(string slug)
         {
-            return View();
+            var post = repository.Find(slug);
+
+            //if (post == null)
+            //    return HttpNotFound();
+
+            var entity = mapper.Map<PostInputModel>(post);
+            return View(entity);
         }
     }
 }

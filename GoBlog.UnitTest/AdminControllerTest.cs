@@ -9,6 +9,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using TestStack.FluentMVCTesting;
 
 namespace GoBlog.UnitTest
@@ -101,11 +102,30 @@ namespace GoBlog.UnitTest
         [Test]
         public void Add_ValidModel_RedirectsToEdit()
         {
+            const string Slug = "abc";
             var post = PostInputMother.CreatePost();
+            mapper
+                .Setup(m => m.Map<Post>(post))
+                .Returns(PostMother.CreatePost(withSlug: Slug));
 
-            controller
+            var actual = controller
                 .WithCallTo(c => c.Add(post))
-                .ShouldRedirectTo(c => c.Edit(""));
+                .ShouldRedirectTo(c => c.Edit(Slug))
+                .WithRouteValue("slug", Slug);
+        }
+
+        [Test]
+        public void Add_ValidModel_ReturnsCorrectMessage()
+        {
+            var post = PostInputMother.CreatePost();
+            mapper
+                .Setup(m => m.Map<Post>(post))
+                .Returns(PostMother.CreatePost());
+
+            controller.Add(post);
+
+            Assert.NotNull(controller.TempData["newPost"]);
+            Assert.True((bool) controller.TempData["newPost"]);
         }
 
         [Test]
@@ -129,7 +149,9 @@ namespace GoBlog.UnitTest
         {
             var postModel = PostInputMother.CreatePost();
             var postEntity = PostMother.CreatePost();
-            mapper.Setup(m => m.Map<Post>(postModel)).Returns(postEntity);
+            mapper
+                .Setup(m => m.Map<Post>(postModel))
+                .Returns(postEntity);
 
             controller.Add(postModel);
 
@@ -143,5 +165,40 @@ namespace GoBlog.UnitTest
                 .WithCallTo(c => c.Edit(""))
                 .ShouldRenderDefaultView();
         }
+
+        [Test]
+        public void Edit_ReturnsCorrectModelType()
+        {
+            mapper
+                .Setup(m => m.Map<PostInputModel>(It.IsAny<Post>()))
+                .Returns(PostInputMother.CreatePost());
+
+            controller
+                .WithCallTo(c => c.Edit(""))
+                .ShouldRenderDefaultView()
+                .WithModel<PostInputModel>();
+        }
+
+        [Test]
+        public void Edit_CallsMap()
+        {
+            const string Slug = "";
+            var post = PostMother.CreatePost();
+            repository
+                .Setup(repo => repo.Find(Slug))
+                .Returns(post);
+
+            controller.Edit(Slug);
+
+            mapper.Verify(m => m.Map<PostInputModel>(post), Times.Once);
+        }
+
+        //[Test]
+        //public void Edit_NonExistentPost_ReturnsNotFound()
+        //{
+        //    controller
+        //        .WithCallTo(c => c.Edit(""))
+        //        .ShouldGiveHttpStatus(HttpStatusCode.NotFound);
+        //}
     }
 }

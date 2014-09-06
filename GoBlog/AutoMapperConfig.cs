@@ -9,6 +9,7 @@ namespace GoBlog
         public static void Init()
         {
             Mapper.CreateMap<PostInputModel, Post>();
+            Mapper.CreateMap<Post, PostInputModel>();
         }         
     }
 }
