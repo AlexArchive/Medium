@@ -51,7 +51,7 @@ namespace GoBlog.UnitTest
         {
             const int PostCount = 1;
             repository
-                .Setup(repo => repo.All())
+                .Setup(repo => repo.AllPosts())
                 .Returns(PostMother.CreatePosts(PostCount));
 
             controller
@@ -73,13 +73,12 @@ namespace GoBlog.UnitTest
         {
             const string Slug = "";
             repository
-                .Setup(repo => repo.Delete(Slug))
+                .Setup(repo => repo.RemovePost(Slug))
                 .Returns(true);
 
             controller.Delete(Slug);
 
-            var message = controller.TempData["Message"].ToString();
-            Assert.That(message.Contains("success"));
+            StringAssert.Contains("success", controller.TempData["Message"] as string);
         }
 
         [Test]
@@ -87,8 +86,7 @@ namespace GoBlog.UnitTest
         {
             controller.Delete("");
 
-            var message = controller.TempData["Message"].ToString();
-            Assert.That(message.Contains("no longer exists"));
+            StringAssert.Contains("no longer exists", controller.TempData["Message"] as string);
         }
 
         [Test]
@@ -108,7 +106,7 @@ namespace GoBlog.UnitTest
                 .Setup(m => m.Map<Post>(post))
                 .Returns(PostMother.CreatePost(withSlug: Slug));
 
-            var actual = controller
+            controller
                 .WithCallTo(c => c.Add(post))
                 .ShouldRedirectTo(c => c.Edit(Slug))
                 .WithRouteValue("slug", Slug);
@@ -124,7 +122,6 @@ namespace GoBlog.UnitTest
 
             controller.Add(post);
 
-            Assert.NotNull(controller.TempData["newPost"]);
             Assert.True((bool) controller.TempData["newPost"]);
         }
 
@@ -133,7 +130,7 @@ namespace GoBlog.UnitTest
         {
             var post = PostInputMother.CreatePost();
             repository
-                .Setup(r => r.Add(It.IsAny<Post>()))
+                .Setup(r => r.AddPost(It.IsAny<Post>()))
                 .Throws<Exception>();
 
             controller
@@ -155,37 +152,55 @@ namespace GoBlog.UnitTest
 
             controller.Add(postModel);
 
-            repository.Verify(r => r.Add(postEntity), Times.Once);
+            repository.Verify(r => r.AddPost(postEntity), Times.Once);
         }
 
         [Test]
-        public void Edit_RendersDefaultView()
+        public void Edit_NonExistentPost_ReturnsNotFound()
         {
             controller
                 .WithCallTo(c => c.Edit(""))
+                .ShouldGiveHttpStatus(HttpStatusCode.NotFound);
+        }
+
+        [Test]
+        public void Edit_ExistentPost_RendersDefaultView()
+        {
+            const string Slug = "";
+            repository
+                .Setup(repo => repo.FindPost(Slug))
+                .Returns(PostMother.CreatePost());
+
+            controller
+                .WithCallTo(c => c.Edit(Slug))
                 .ShouldRenderDefaultView();
         }
 
         [Test]
-        public void Edit_ReturnsCorrectModelType()
+        public void Edit_ExistentPost_ReturnsCorrectModelType()
         {
+            const string Slug = "";
+            var post = PostMother.CreatePost();
+            repository
+                .Setup(repo => repo.FindPost(Slug))
+                .Returns(post);
             mapper
-                .Setup(m => m.Map<PostInputModel>(It.IsAny<Post>()))
+                .Setup(m => m.Map<PostInputModel>(post))
                 .Returns(PostInputMother.CreatePost());
 
             controller
-                .WithCallTo(c => c.Edit(""))
+                .WithCallTo(c => c.Edit(Slug))
                 .ShouldRenderDefaultView()
                 .WithModel<PostInputModel>();
         }
 
         [Test]
-        public void Edit_CallsMap()
+        public void Edit_ExistentPost_CallsMapper()
         {
             const string Slug = "";
             var post = PostMother.CreatePost();
             repository
-                .Setup(repo => repo.Find(Slug))
+                .Setup(repo => repo.FindPost(Slug))
                 .Returns(post);
 
             controller.Edit(Slug);
@@ -193,12 +208,49 @@ namespace GoBlog.UnitTest
             mapper.Verify(m => m.Map<PostInputModel>(post), Times.Once);
         }
 
-        //[Test]
-        //public void Edit_NonExistentPost_ReturnsNotFound()
-        //{
-        //    controller
-        //        .WithCallTo(c => c.Edit(""))
-        //        .ShouldGiveHttpStatus(HttpStatusCode.NotFound);
-        //}
+        [Test]
+        public void Edit_ValidModel_RedirectsToEdit()
+        {
+            const string Slug = "";
+            var post = PostInputMother.CreatePost();
+            mapper
+                .Setup(m => m.Map<Post>(post))
+                .Returns(PostMother.CreatePost(withSlug: Slug));
+
+            controller
+                .WithCallTo(c => c.Edit(post))
+                .ShouldRedirectTo(c => c.Edit(post.Slug))
+                .WithRouteValue("slug", Slug);
+        }
+
+        [Test]
+        public void Edit_CallsEdit()
+        {
+            var postInputModel = PostInputMother.CreatePost();
+            var post = PostMother.CreatePost();
+            mapper
+                .Setup(m => m.Map<Post>(postInputModel))
+                .Returns(post);
+
+            controller.Edit(postInputModel);
+
+            repository.Verify(r => r.UpdatePost(post), Times.Once);
+        }
+
+        [Test]
+        public void Edit_InvalidModel_ReturnsModelError()
+        {
+            var post = PostInputMother.CreatePost();
+            repository
+                .Setup(r => r.UpdatePost(It.IsAny<Post>()))
+                .Throws<Exception>();
+
+            controller
+                .WithCallTo(c => c.Edit(post))
+                .ShouldRenderDefaultView()
+                .WithModel<PostInputModel>()
+                .AndModelError("")
+                .Containing("You have previously published a post with this title.");
+        }
     }
 }

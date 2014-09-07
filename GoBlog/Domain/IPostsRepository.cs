@@ -5,9 +5,10 @@ namespace GoBlog.Domain
 {
     public interface IPostsRepository
     {
-        IEnumerable<Post> All();
-        Post Find(string slug);
-        bool Delete(string slug);
-        void Add(Post post);
+        IEnumerable<Post> AllPosts();
+        Post FindPost(string slug);
+        bool RemovePost(string slug);
+        void AddPost(Post post);
+        void UpdatePost(Post post);
     }
 }

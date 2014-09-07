@@ -1,9 +1,9 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using GoBlog.Areas.Admin.Models;
 using GoBlog.Domain;
-using System.Web.Mvc;
 using GoBlog.Domain.Model;
+using System;
+using System.Web.Mvc;
 
 namespace GoBlog.Areas.Admin.Controllers
 {
@@ -21,13 +21,13 @@ namespace GoBlog.Areas.Admin.Controllers
 
         public ViewResult Index()
         {
-            var posts = repository.All();
+            var posts = repository.AllPosts();
             return View(posts);
         }
 
         public ActionResult Delete(string slug)
         {
-            var success = repository.Delete(slug);
+            var success = repository.RemovePost(slug);
 
             if (success)
                 TempData["Message"] = "Post deleted successfully.";
@@ -43,33 +43,53 @@ namespace GoBlog.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(PostInputModel post)
+        public ActionResult Add(PostInputModel model)
         {
-            var entity = mapper.Map<Post>(post);
+            var post = mapper.Map<Post>(model);
 
             try
             {
-                repository.Add(entity);
+                repository.AddPost(post);
             }
             catch (Exception)
             {
                 ModelState.AddModelError("", "You have previously published a post with this title. Please choose another one.");
-                return View(post);
+                return View(model);
             }
 
             TempData["newPost"] = true;
-            return RedirectToAction("Edit", new { slug = entity.Slug });
+            return RedirectToAction("Edit", new { slug = post.Slug });
+        }
+
+        [HttpPost]
+        public ActionResult Edit(PostInputModel model)
+        {
+            var post = mapper.Map<Post>(model);
+           
+            try
+            {
+                repository.UpdatePost(post);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "You have previously published a post with this title. Please choose another one.");
+                return View(model);
+            }
+
+            return RedirectToAction("Edit", new { slug = post.Slug });
         }
 
         public ActionResult Edit(string slug)
         {
-            var post = repository.Find(slug);
+            var post = repository.FindPost(slug);
 
-            //if (post == null)
-            //    return HttpNotFound();
+            if (post == null)
+                return HttpNotFound();
 
             var entity = mapper.Map<PostInputModel>(post);
             return View(entity);
         }
+
+
     }
 }

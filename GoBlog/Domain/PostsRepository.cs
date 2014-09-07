@@ -1,5 +1,5 @@
-﻿using System;
-using GoBlog.Domain.Model;
+﻿using GoBlog.Domain.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,7 +14,7 @@ namespace GoBlog.Domain
             this.context = context;
         }
 
-        public IEnumerable<Post> All()
+        public IEnumerable<Post> AllPosts()
         {
             return context
                 .Posts
@@ -22,16 +22,14 @@ namespace GoBlog.Domain
                 .OrderBy(post => post.PublishDate);
         }
 
-        public Post Find(string slug)
+        public Post FindPost(string slug)
         {
-            return context
-                .Posts
-                .SingleOrDefault(post => post.Slug == slug);
+            return context.Posts.Find(slug);
         }
 
-        public bool Delete(string slug)
+        public bool RemovePost(string slug)
         {
-            var post = Find(slug);
+            var post = FindPost(slug);
             if (post == null) return false;
 
             context.Posts.Remove(post);
@@ -39,11 +37,36 @@ namespace GoBlog.Domain
             return true;
         }
 
-        public void Add(Post post)
+        public void AddPost(Post post)
         {
             post.Slug = SlugConverter.Convert(post.Title);
             post.Summary = SummaryConverter.Convert(post.Content);
             post.PublishDate = DateTime.Now;
+
+            context.Posts.Add(post);
+            context.SaveChanges();
+        }
+
+        public void UpdatePost(Post post)
+        {
+            var original = FindPost(post.Slug);
+
+            if (original == null)
+            {
+                throw new Exception();
+            }
+
+            context.Posts.Remove(original);
+            context.SaveChanges();
+
+            post.Slug = SlugConverter.Convert(post.Title);
+            post.Summary = SummaryConverter.Convert(post.Content);
+            post.PublishDate = original.PublishDate;
+
+            if (FindPost(post.Slug) != null)
+            {
+                throw new Exception();
+            }
 
             context.Posts.Add(post);
             context.SaveChanges();

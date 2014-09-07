@@ -18,10 +18,10 @@ namespace GoBlog.UnitTest.Support
 
         public DatabaseContextDouble()
         {
-            Posts = new FakeDbSet<Post>();
+            Posts = new PostDbSet();
         }
 
-        public int SaveChangesCount { get; private set; } 
+        public int SaveChangesCount { get; private set; }
         public int SaveChanges()
         {
             SaveChangesCount++;
@@ -29,7 +29,17 @@ namespace GoBlog.UnitTest.Support
         }
     }
 
+    public class PostDbSet : FakeDbSet<Post>
+    {
+        public override Post Find(params object[] keyValues)
+        {
+            return this.SingleOrDefault(post => post.Slug == (string)keyValues.Single());
+        }
+    }
+
     #region EF Infrastructure
+
+
 
     // Attribution: http://msdn.microsoft.com/en-gb/data/dn314431
     

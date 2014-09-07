@@ -1,4 +1,5 @@
-﻿using GoBlog.Areas.Admin.Models;
+﻿using System;
+using GoBlog.Areas.Admin.Models;
 using GoBlog.Domain.Model;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,8 @@ namespace GoBlog.UnitTest.Support
             {
                 Slug = withSlug,
                 Title = withTitle,
-                Content = withContent
+                Content = withContent,
+                PublishDate=DateTime.Now
             };
 
             return post;
@@ -30,15 +32,18 @@ namespace GoBlog.UnitTest.Support
             var post = CreatePost();
             post.Draft = true;
             return Enumerable.Repeat(post, howMany);
-        } 
+        }
     }
 
     public class PostInputMother
     {
-        public static PostInputModel CreatePost()
+        public static PostInputModel CreatePost(string withSlug = "")
         {
-            return new PostInputModel();
-        } 
+            return new PostInputModel
+            {
+                Slug = withSlug
+            };
+        }
     }
 
 }

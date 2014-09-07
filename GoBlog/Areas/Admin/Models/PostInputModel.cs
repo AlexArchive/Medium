@@ -6,8 +6,12 @@ namespace GoBlog.Areas.Admin.Models
     {
         [ScaffoldColumn(false)]
         public string Slug { get; set; }
+
         public string Title { get; set; }
+
+        [DataType(DataType.MultilineText)]
         public string Content { get; set; }
+
         public bool Draft { get; set; }
     }
 }

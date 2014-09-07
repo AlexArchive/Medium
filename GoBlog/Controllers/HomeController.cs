@@ -17,7 +17,7 @@ namespace GoBlog.Controllers
 
         public ActionResult Index(int pageNumber = 1)
         {
-            var posts = repository.All().Paginate(pageNumber, PageSize);
+            var posts = repository.AllPosts().Paginate(pageNumber, PageSize);
 
             if (posts.Any() || pageNumber == 1)
             {
@@ -29,7 +29,7 @@ namespace GoBlog.Controllers
 
         public ActionResult Post(string slug)
         {
-            var post = repository.Find(slug);
+            var post = repository.FindPost(slug);
 
             if (post == null)
             {

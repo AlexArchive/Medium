@@ -17,12 +17,7 @@ namespace GoBlog.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
-            if (authenticator.Authenticated)
-            {
-                return Redirect();
-            }
-
-            return View();
+            return authenticator.Authenticated ? RedirectToAdmin() : View();
         }
 
         public ActionResult Login(CredentialsModel model)
@@ -31,7 +26,7 @@ namespace GoBlog.Areas.Admin.Controllers
 
             if (authenticated)
             {
-                return Redirect();
+                return RedirectToAdmin();
             }
 
             ModelState.AddModelError("", "Invalid username or password.");
@@ -44,7 +39,7 @@ namespace GoBlog.Areas.Admin.Controllers
             return RedirectToAction("Index", "Home", new { area = "" });
         }
 
-        private ActionResult Redirect()
+        private ActionResult RedirectToAdmin()
         {
             if (Request.QueryString["ReturnUrl"] != null)
             {

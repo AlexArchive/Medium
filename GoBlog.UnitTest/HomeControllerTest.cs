@@ -27,7 +27,7 @@ namespace GoBlog.UnitTest
         public void Index_RendersDefaultView()
         {
             repository
-                .Setup(repo => repo.All())
+                .Setup(repo => repo.AllPosts())
                 .Returns(PostMother.CreatePosts());
 
             controller
@@ -39,7 +39,7 @@ namespace GoBlog.UnitTest
         public void Index_ReturnsCorrectModelType()
         {
             repository
-                .Setup(repo => repo.All())
+                .Setup(repo => repo.AllPosts())
                 .Returns(PostMother.CreatePosts());
 
             controller
@@ -54,7 +54,7 @@ namespace GoBlog.UnitTest
             const int PageNumber = 2;
             const int Count = HomeController.PageSize + 1;
             repository
-                .Setup(repo => repo.All())
+                .Setup(repo => repo.AllPosts())
                 .Returns(PostMother.CreatePosts(Count));
 
             controller
@@ -68,7 +68,7 @@ namespace GoBlog.UnitTest
         {
             const int Count = HomeController.PageSize + 1;
             repository
-                .Setup(repo => repo.All())
+                .Setup(repo => repo.AllPosts())
                 .Returns(PostMother.CreatePosts(Count));
 
             var actual = controller
@@ -91,7 +91,7 @@ namespace GoBlog.UnitTest
         {
             const string Slug = "abc";
             repository
-                .Setup(repo => repo.Find(Slug))
+                .Setup(repo => repo.FindPost(Slug))
                 .Returns(new Post());
 
             controller
@@ -104,7 +104,7 @@ namespace GoBlog.UnitTest
         {
             const string Slug = "abc";
             repository
-                .Setup(repo => repo.Find(Slug))
+                .Setup(repo => repo.FindPost(Slug))
                 .Returns(new Post());
 
             controller
@@ -118,7 +118,7 @@ namespace GoBlog.UnitTest
         {
             const string Slug = "abc";
             repository
-               .Setup(repo => repo.Find(Slug))
+               .Setup(repo => repo.FindPost(Slug))
                .Returns(PostMother.CreatePost(withSlug: Slug));
 
             controller
