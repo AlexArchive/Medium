@@ -6,11 +6,7 @@ namespace Medium.WebModel
     {
         public ActionResult Index()
         {
-            return View(
-                new HomeModel
-                {
-                    WelcomeMessage = "Welcome to Medium"
-                });
+            return View();
         }
     }
 }
