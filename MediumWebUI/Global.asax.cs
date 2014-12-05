@@ -16,8 +16,8 @@ namespace Medium.WebUI
         {
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                url: "{controller}/{action}/{postSlug}",
+                defaults: new { controller = "Home", action = "Index", postSlug = UrlParameter.Optional }
             );
         }
     }

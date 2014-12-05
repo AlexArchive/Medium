@@ -73,10 +73,17 @@
   <ItemGroup>
     <Compile Include="HomeController.cs" />
     <Compile Include="HomeModel.cs" />
+    <Compile Include="PostController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MediumDomainModel\MediumDomainModel.csproj">
+      <Project>{66bb6773-4639-4f26-a113-b79913e87240}</Project>
+      <Name>MediumDomainModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,6 +1,12 @@
-﻿@{
+﻿@model IEnumerable<MediumDomainModel.PostModel>
+
+@{
     ViewBag.Title = "Index";
 }
 
 <h1>Index</h1>
-<p>Welcome.</p>
+
+@foreach (var post in Model)
+{
+    <h2>@Html.ActionLink(post.Title, "Index", "Post", new { postSlug = post.Slug }, new { })</h2>
+}
