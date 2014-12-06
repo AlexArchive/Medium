@@ -10,3 +10,16 @@
 {
     <h2>@Html.ActionLink(post.Title, "Index", "Post", new { postSlug = post.Slug }, new { })</h2>
 }
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    @Html.ActionLink("Admin", "Index", "Admin")
+    @Html.ActionLink("Logout", "Logout", "Account")
+}
+else
+{
+    @Html.ActionLink("Login", "Login", "Account")
+}
+
+    
