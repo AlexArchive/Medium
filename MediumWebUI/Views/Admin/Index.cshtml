@@ -1,6 +1,24 @@
-﻿@Html.ActionLink("Home", "Index", "Home")
+﻿@model IEnumerable<MediumDomainModel.PostModel>
+
+@Html.ActionLink("Home", "Index", "Home")
 @Html.ActionLink("Submit New Post", "NewPost")
 @Html.ActionLink("Logout", "Logout", "Account")
 
 <h1>Admin.</h1>
 <p>Welcome to the super duper secret administrator view.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var post in Model)
+        {
+            <tr>
+                <td>@post.Title</td>
+            </tr>
+        }
+    </tbody>
+</table>

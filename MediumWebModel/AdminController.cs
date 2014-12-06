@@ -8,7 +8,9 @@ namespace Medium.WebModel
     {
         public ActionResult Index()
         {
-            return View();
+            var handler = new PostRequestHandler();
+            var model = handler.Handle();
+            return View(model);
         }
 
         public ActionResult NewPost()
