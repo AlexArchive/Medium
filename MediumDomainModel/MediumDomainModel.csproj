@@ -44,9 +44,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database.cs" />
-    <Compile Include="DeleteCommandHandler.cs" />
+    <Compile Include="DeletePostCommand.cs" />
+    <Compile Include="DeletePostCommandHandler.cs" />
+    <Compile Include="EditPostCommand.cs" />
     <Compile Include="EditPostCommandHandler.cs" />
     <Compile Include="ICommandHandler.cs" />
+    <Compile Include="NewPostCommand.cs" />
     <Compile Include="NewPostCommandHandler.cs" />
     <Compile Include="PostDetailsRequestHandler.cs" />
     <Compile Include="PostModel.cs" />

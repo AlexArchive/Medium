@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Medium.WebModel
+namespace MediumDomainModel
 {
     public static class StringExtensions
     {

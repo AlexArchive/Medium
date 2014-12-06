@@ -1,22 +1,12 @@
 ﻿using Dapper;
-using Medium.WebModel;
 
 namespace MediumDomainModel
 {
-    public class EditPostCommand
-    {
-        public string Slug { get; set; }
-
-        public string Title { get; set; }
-        public string Body { get; set; }
-        public bool Published { get; set; }
-    }
-
     public class EditPostCommandHandler : ICommandHandler<EditPostCommand, string>
     {
         public string Handle(EditPostCommand command)
         {
-            var o = new
+            var param = new
             {
                 OriginalSlug = command.Slug,
                 Slug = command.Title.ToSlug(),
@@ -35,10 +25,10 @@ namespace MediumDomainModel
                         [Title] = @Title,
                         [Body] = @Body,
                         [Published] = @Published
-                    WHERE [Slug] = @OriginalSlug", o);
+                    WHERE [Slug] = @OriginalSlug", param);
             }
 
-            return o.Slug;
+            return param.Slug;
         }
     }
 }

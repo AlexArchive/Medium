@@ -73,8 +73,8 @@ namespace Medium.WebModel
 
         public ActionResult DeletePost(string postSlug)
         {
-            DeleteCommand command = new DeleteCommand { PostSlug = postSlug };
-            ICommandHandler<DeleteCommand> commandHandler = new DeleteCommandHandler();
+            DeletePostCommand command = new DeletePostCommand { PostSlug = postSlug };
+            ICommandHandler<DeletePostCommand> commandHandler = new DeletePostCommandHandler();
             commandHandler.Handle(command);
 
             return RedirectToAction("Index");

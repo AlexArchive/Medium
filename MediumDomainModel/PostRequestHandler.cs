@@ -9,10 +9,9 @@ namespace MediumDomainModel
         {
             using (var connection = Database.Connect())
             {
-                const string commandText = @"
+                return connection.Query<PostModel>(@"
                     SELECT *
-                    FROM [Posts]";
-                return connection.Query<PostModel>(commandText);
+                    FROM [Posts]");
             }
         }
     }

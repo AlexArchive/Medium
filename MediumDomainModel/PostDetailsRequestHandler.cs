@@ -14,7 +14,8 @@ namespace MediumDomainModel
                     FROM [Posts]
                     WHERE Slug = @slug";
 
-                return connection.Query<PostModel>(commandText, new { slug = postSlug }).SingleOrDefault();
+                return connection.Query<PostModel>(commandText, new { slug = postSlug })
+                    .SingleOrDefault();
             }
         }
     }
