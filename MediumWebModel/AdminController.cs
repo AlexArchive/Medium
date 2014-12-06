@@ -21,31 +21,32 @@ namespace Medium.WebModel
         [HttpPost]
         public ActionResult NewPost(PostModel post)
         {
-            var handler = new NewPostHandler();
-            handler.Handle(post);
+            ICommandHandler<PostModel> commandHandler = new NewPostCommandHandler();
+            commandHandler.Handle(post);
             return RedirectToAction("Index", "Post", new { postSlug = post.Slug });
         }
 
         public ActionResult EditPost(string postSlug)
         {
-            var handler = new PostDetailsRequestHandler();
-            var model = handler.Handle(postSlug);
+            var requestHandler = new PostDetailsRequestHandler();
+            var model = requestHandler.Handle(postSlug);
             return View(model);
         }
 
         [HttpPost]
         public ActionResult EditPost(PostModel post)
         {
-            var handler = new EditPostCommandHandler();
-            handler.Handle(post);
+            ICommandHandler<PostModel> commandHandler = new EditPostCommandHandler();
+            commandHandler.Handle(post);
 
             return RedirectToAction("Index", "Post", new { postSlug = post.Slug });
         }
 
         public ActionResult DeletePost(string postSlug)
         {
-            var handler = new DeleteCommandHandler();
-            handler.Handle(postSlug);
+            DeleteCommand command = new DeleteCommand { PostSlug = postSlug };
+            ICommandHandler<DeleteCommand> commandHandler = new DeleteCommandHandler();
+            commandHandler.Handle(command);
 
             return RedirectToAction("Index");
         }

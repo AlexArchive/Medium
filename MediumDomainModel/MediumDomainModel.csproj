@@ -46,7 +46,8 @@
     <Compile Include="Database.cs" />
     <Compile Include="DeleteCommandHandler.cs" />
     <Compile Include="EditPostCommandHandler.cs" />
-    <Compile Include="NewPostHandler.cs" />
+    <Compile Include="ICommandHandler.cs" />
+    <Compile Include="NewPostCommandHandler.cs" />
     <Compile Include="PostDetailsRequestHandler.cs" />
     <Compile Include="PostModel.cs" />
     <Compile Include="PostRequestHandler.cs" />

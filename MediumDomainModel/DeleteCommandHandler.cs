@@ -2,13 +2,20 @@
 
 namespace MediumDomainModel
 {
-    public class DeleteCommandHandler
+    public class DeleteCommand
     {
-        public void Handle(string postSlug)
+        public string PostSlug { get; set; }
+    }
+
+    public class DeleteCommandHandler : ICommandHandler<DeleteCommand>
+    {
+        public void Handle(DeleteCommand command)
         {
             using (var connection = Database.Connect())
             {
-                connection.Execute("DELETE FROM Posts WHERE Slug= @Slug", new { slug = postSlug });
+                connection.Execute(
+                    @"DELETE FROM [Posts] WHERE [Slug] = @Slug", 
+                    new { slug = command.PostSlug });
             }
         }
     }
