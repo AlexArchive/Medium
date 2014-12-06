@@ -19,6 +19,7 @@
             <tr>
                 <td>@post.Title</td>
                 <td>@Html.ActionLink("Edit", "EditPost", new{ postSlug = post.Slug })</td>
+                <td>@Html.ActionLink("Delete", "DeletePost", new { postSlug = post.Slug })</td>
             </tr>
         }
     </tbody>

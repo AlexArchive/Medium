@@ -41,5 +41,13 @@ namespace Medium.WebModel
 
             return RedirectToAction("Index", "Post", new { postSlug = post.Slug });
         }
+
+        public ActionResult DeletePost(string postSlug)
+        {
+            var handler = new DeleteCommandHandler();
+            handler.Handle(postSlug);
+
+            return RedirectToAction("Index");
+        }
     }
 }
