@@ -1,6 +1,4 @@
-﻿using System.Configuration;
-using System.Data.SqlClient;
-using System.Linq;
+﻿using System.Linq;
 using Dapper;
 
 namespace MediumDomainModel
@@ -16,7 +14,7 @@ namespace MediumDomainModel
                     FROM [Posts]
                     WHERE Slug = @slug";
 
-                return connection.Query<PostModel>(commandText, new { slug = postSlug }).Single();
+                return connection.Query<PostModel>(commandText, new { slug = postSlug }).SingleOrDefault();
             }
         }
     }

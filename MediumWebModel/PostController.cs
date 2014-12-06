@@ -5,10 +5,16 @@ namespace Medium.WebModel
 {
     public class PostController : Controller
     {
-        public ViewResult Index(string postSlug)
+        public ActionResult Index(string postSlug)
         {
             var handler = new PostDetailsRequestHandler();
             var model = handler.Handle(postSlug);
+
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+
             return View(model);
         }
     }
