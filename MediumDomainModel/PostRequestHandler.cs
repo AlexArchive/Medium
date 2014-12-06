@@ -1,7 +1,5 @@
 ﻿using Dapper;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
 
 namespace MediumDomainModel
 {
@@ -9,10 +7,7 @@ namespace MediumDomainModel
     {
         public IEnumerable<PostModel> Handle()
         {
-            var connectionStr = ConfigurationManager
-                .ConnectionStrings["Medium"]
-                .ConnectionString;
-            using (var connection = new SqlConnection(connectionStr))
+            using (var connection = Database.Connect())
             {
                 const string commandText = @"
                     SELECT *

@@ -1,6 +1,4 @@
-﻿using System.Configuration;
-using System.Data.SqlClient;
-using Dapper;
+﻿using Dapper;
 
 namespace MediumDomainModel
 {
@@ -8,10 +6,7 @@ namespace MediumDomainModel
     {
         public void Handle(PostModel post)
         {
-            var connectionStr = ConfigurationManager
-                .ConnectionStrings["Medium"]
-                .ConnectionString;
-            using (var connection = new SqlConnection(connectionStr))
+            using (var connection = Database.Connect())
             {
                 connection.Execute(
                     @"INSERT INTO [Posts] 

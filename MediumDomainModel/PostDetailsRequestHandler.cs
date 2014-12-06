@@ -9,10 +9,7 @@ namespace MediumDomainModel
     {
         public PostModel Handle(string postSlug)
         {
-            var connectionStr = ConfigurationManager
-                .ConnectionStrings["Medium"]
-                .ConnectionString;
-            using (var connection = new SqlConnection(connectionStr))
+            using (var connection = Database.Connect())
             {
                 const string commandText = @"
                     SELECT *
