@@ -71,6 +71,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountController.cs" />
+    <Compile Include="AdminController.cs" />
+    <Compile Include="Authenticator.cs" />
+    <Compile Include="CredentialsModel.cs" />
     <Compile Include="HomeController.cs" />
     <Compile Include="HomeModel.cs" />
     <Compile Include="PostController.cs" />

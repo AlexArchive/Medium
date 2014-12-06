@@ -1,0 +1,11 @@
+﻿@model Medium.WebModel.CredentialsModel
+
+<h1>Please Login</h1>
+
+@Html.ValidationSummary()
+
+@using (Html.BeginForm())
+{
+    @Html.EditorForModel()
+    <input type="submit"/>
+}
