@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EditPostCommandHandler.cs" />
     <Compile Include="NewPostHandler.cs" />
     <Compile Include="PostDetailsRequestHandler.cs" />
     <Compile Include="PostModel.cs" />

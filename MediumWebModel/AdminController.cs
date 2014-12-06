@@ -23,7 +23,23 @@ namespace Medium.WebModel
         {
             var handler = new NewPostHandler();
             handler.Handle(post);
-            return RedirectToAction("Index", "Post", new {postSlug = post.Slug});
+            return RedirectToAction("Index", "Post", new { postSlug = post.Slug });
+        }
+
+        public ActionResult EditPost(string postSlug)
+        {
+            var handler = new PostDetailsRequestHandler();
+            var model = handler.Handle(postSlug);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult EditPost(PostModel post)
+        {
+            var handler = new EditPostCommandHandler();
+            handler.Handle(post);
+
+            return RedirectToAction("Index", "Post", new { postSlug = post.Slug });
         }
     }
 }

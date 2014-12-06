@@ -1,0 +1,9 @@
+﻿@model MediumDomainModel.PostModel
+
+<p>You want to edit: @Model.Title</p>
+
+@using (Html.BeginForm())
+{
+    @Html.EditorForModel()
+    <input type="submit" />
+}
