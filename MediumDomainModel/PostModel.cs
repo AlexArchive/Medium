@@ -1,7 +1,4 @@
-﻿
-using System;
-
-namespace MediumDomainModel
+﻿namespace MediumDomainModel
 {
     public class PostModel
     {
@@ -9,6 +6,5 @@ namespace MediumDomainModel
         public string Title { get; set; }
         public string Body { get; set; }
         public bool Published { get; set; }
-        public DateTime PublishDate { get; set; }
     }
 }
