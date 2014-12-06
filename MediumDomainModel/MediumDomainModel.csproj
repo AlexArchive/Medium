@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PostDetailsRequestHandler.cs" />
     <Compile Include="PostModel.cs" />
     <Compile Include="PostRequestHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,5 +1,5 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using MediumDomainModel;
 
 namespace Medium.WebModel
 {
@@ -7,7 +7,9 @@ namespace Medium.WebModel
     {
         public ViewResult Index(string postSlug)
         {
-            throw new NotImplementedException();
+            var handler = new PostDetailsRequestHandler();
+            var model = handler.Handle(postSlug);
+            return View(model);
         }
     }
 }
