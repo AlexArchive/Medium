@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediumWebModel", "MediumWeb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediumWebUI", "MediumWebUI\MediumWebUI.csproj", "{509266C2-F403-40C7-B377-CA90D603A441}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediumSql", "MediumSql\MediumSql.csproj", "{E48C53CC-3923-4EEA-81BE-93AB66AB3127}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediumDomainModel", "MediumDomainModel\MediumDomainModel.csproj", "{66BB6773-4639-4F26-A113-B79913E87240}"
 EndProject
 Global
@@ -25,10 +23,6 @@ Global
 		{509266C2-F403-40C7-B377-CA90D603A441}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{509266C2-F403-40C7-B377-CA90D603A441}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{509266C2-F403-40C7-B377-CA90D603A441}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E48C53CC-3923-4EEA-81BE-93AB66AB3127}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E48C53CC-3923-4EEA-81BE-93AB66AB3127}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E48C53CC-3923-4EEA-81BE-93AB66AB3127}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E48C53CC-3923-4EEA-81BE-93AB66AB3127}.Release|Any CPU.Build.0 = Release|Any CPU
 		{66BB6773-4639-4F26-A113-B79913E87240}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{66BB6773-4639-4F26-A113-B79913E87240}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66BB6773-4639-4F26-A113-B79913E87240}.Release|Any CPU.ActiveCfg = Release|Any CPU
