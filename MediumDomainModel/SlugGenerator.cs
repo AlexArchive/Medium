@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Medium.WebModel
+namespace MediumDomainModel
 {
-    public static class StringExtensions
+    public static class SlugGenerator
     {
         public static string ToSlug(this string input)
         {

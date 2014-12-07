@@ -2,9 +2,9 @@
 
 namespace MediumDomainModel
 {
-    public class NewPostCommandHandler : ICommandHandler<NewPostCommand, string>
+    public class AddPostCommandHandler : ICommandHandler<AddPostCommand, string>
     {
-        public string Handle(NewPostCommand command)
+        public string Handle(AddPostCommand command)
         {
             using (var connection = SqlConnectionFactory.Create())
             {
@@ -15,11 +15,9 @@ namespace MediumDomainModel
                     command.Body,
                     command.Published
                 };
-
-                connection.Execute(@"
-                    INSERT INTO [Posts] 
-                    VALUES (@Slug, @Title, @Body, @Published, GETDATE())", param);
-
+                connection.Execute(
+                    "INSERT INTO [Posts] VALUES (@Slug, @Title, @Body, @Published, GETDATE())", 
+                    param);
                 return param.Slug;
             }
         }

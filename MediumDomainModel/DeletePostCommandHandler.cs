@@ -9,8 +9,8 @@ namespace MediumDomainModel
             using (var connection = SqlConnectionFactory.Create())
             {
                 connection.Execute(
-                    @"DELETE FROM [Posts] WHERE [Slug] = @Slug", 
-                    new { slug = command.PostSlug });
+                    "DELETE FROM [Posts] WHERE [Slug] = @Slug", 
+                    new { command.Slug });
             }
         }
     }

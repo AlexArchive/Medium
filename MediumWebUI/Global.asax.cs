@@ -9,16 +9,10 @@ namespace Medium.WebUI
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-            RegisterRoutes(RouteTable.Routes);
-        }
-
-        private void RegisterRoutes(RouteCollection routes)
-        {
-            routes.MapRoute(
+            RouteTable.Routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{postSlug}",
-                defaults: new { controller = "Home", action = "Index", postSlug = UrlParameter.Optional }
-            );
+                defaults: new { controller = "Home", action = "Index", postSlug = UrlParameter.Optional });
         }
     }
 }

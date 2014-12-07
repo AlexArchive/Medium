@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using MediumDomainModel;
+﻿using MediumDomainModel;
 using System.Web.Mvc;
 
 namespace Medium.WebModel
@@ -10,73 +8,66 @@ namespace Medium.WebModel
     {
         public ActionResult Index()
         {
-            var handler = new PostRequestHandler();
-            var model = handler.Handle();
+            var requestHandler = new AllPostsRequestHandler();
+            var request = new AllPostsRequest();
+            var model = requestHandler.Handle(request);
             return View(model);
         }
 
-        public ActionResult NewPost()
+        public ActionResult AddPost()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult NewPost(PostInput post)
+        public ActionResult AddPost(PostInput post)
         {
-            ICommandHandler<NewPostCommand, string> commandHandler = new NewPostCommandHandler();
-
-            NewPostCommand command = new NewPostCommand
+            var commandHandler = new AddPostCommandHandler();
+            var command = new AddPostCommand
             {
                 Title = post.Title,
                 Body = post.Body,
                 Published = post.Published
             };
-
-            var slug = commandHandler.Handle(command);
-
-            return RedirectToAction("Index", "Post", new { postSlug = slug });
+            var postSlug = commandHandler.Handle(command);
+            return RedirectToAction("Index", "Post", new {  postSlug });
         }
 
         public ActionResult EditPost(string postSlug)
         {
-            var requestHandler = new PostDetailsRequestHandler();
-            var postModel = requestHandler.Handle(postSlug);
-
+            var requestHandler = new PostRequestHandler();
+            var request = new PostRequest { Slug = postSlug };
+            var model = requestHandler.Handle(request);
             var postInput = new PostInput
             {
-                Slug = postModel.Slug,
-                Title = postModel.Title,
-                Body = postModel.Body,
-                Published = postModel.Published,
+                Slug = model.Slug,
+                Title = model.Title,
+                Body = model.Body,
+                Published = model.Published,
             };
-
             return View(postInput);
         }
 
         [HttpPost]
         public ActionResult EditPost(PostInput post)
         {
-            ICommandHandler<EditPostCommand, string> commandHandler = new EditPostCommandHandler();
-
-            EditPostCommand command = new EditPostCommand
+            var commandHandler = new EditPostCommandHandler();
+            var command = new EditPostCommand
             {
                 Slug = post.Slug,
                 Title = post.Title,
                 Body = post.Body,
                 Published = post.Published
             };
-
             var updatedSlug = commandHandler.Handle(command);
-
             return RedirectToAction("Index", "Post", new { postSlug = updatedSlug });
         }
 
         public ActionResult DeletePost(string postSlug)
         {
-            DeletePostCommand command = new DeletePostCommand { PostSlug = postSlug };
-            ICommandHandler<DeletePostCommand> commandHandler = new DeletePostCommandHandler();
+            var commandHandler = new DeletePostCommandHandler();
+            var command = new DeletePostCommand { Slug = postSlug };
             commandHandler.Handle(command);
-
             return RedirectToAction("Index");
         }
     }

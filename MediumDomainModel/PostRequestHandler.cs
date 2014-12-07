@@ -1,17 +1,18 @@
-﻿using Dapper;
-using System.Collections.Generic;
+﻿using System.Linq;
+using Dapper;
 
 namespace MediumDomainModel
 {
-    public class PostRequestHandler
+    public class PostRequestHandler : IRequestHandler<PostRequest, PostModel>
     {
-        public IEnumerable<PostModel> Handle()
+        public PostModel Handle(PostRequest request)
         {
             using (var connection = SqlConnectionFactory.Create())
             {
-                return connection.Query<PostModel>(@"
-                    SELECT *
-                    FROM [Posts]");
+                return connection.Query<PostModel>(
+                    "SELECT * FROM [Posts] WHERE [Slug] = @slug", 
+                    new { request.Slug })
+                    .SingleOrDefault();
             }
         }
     }

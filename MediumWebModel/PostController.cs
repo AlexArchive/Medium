@@ -7,14 +7,13 @@ namespace Medium.WebModel
     {
         public ActionResult Index(string postSlug)
         {
-            var handler = new PostDetailsRequestHandler();
-            var model = handler.Handle(postSlug);
-
+            var requestHandler = new PostRequestHandler();
+            var request = new PostRequest { Slug = postSlug };
+            var model = requestHandler.Handle(request);
             if (model == null)
             {
                 return HttpNotFound();
             }
-
             return View(model);
         }
     }

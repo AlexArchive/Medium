@@ -18,8 +18,11 @@ namespace Medium.WebModel
             {
                 return RedirectToAction("Index", "Admin");
             }
-            ModelState.AddModelError("", "The username and password you entered did not match our records.");
-            return View(credentials);
+            else
+            {
+                ModelState.AddModelError("", "The username and password you entered did not match our records.");
+                return View(credentials);
+            }
         }
 
         public ActionResult Logout()

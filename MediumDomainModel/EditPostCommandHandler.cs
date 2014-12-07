@@ -14,20 +14,14 @@ namespace MediumDomainModel
                 command.Body,
                 command.Published
             };
-
             using (var connection = SqlConnectionFactory.Create())
             {
-                connection.Execute(@"
-                    UPDATE 
-                        [Posts]
-                    SET 
-                        [Slug] = @Slug,
-                        [Title] = @Title,
-                        [Body] = @Body,
-                        [Published] = @Published
-                    WHERE [Slug] = @OriginalSlug", param);
+                connection.Execute(
+                    "UPDATE [Posts] " +
+                        "SET [Slug] = @Slug, [Title] = @Title, [Body] = @Body, [Published] = @Published " +
+                    "WHERE [Slug] = @OriginalSlug", 
+                    param);
             }
-
             return param.Slug;
         }
     }

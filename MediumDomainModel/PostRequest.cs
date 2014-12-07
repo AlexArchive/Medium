@@ -1,6 +1,6 @@
 ﻿namespace MediumDomainModel
 {
-    public class DeletePostCommand
+    public class PostRequest
     {
         public string Slug { get; set; }
     }

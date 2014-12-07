@@ -1,5 +1,5 @@
-﻿using System.Web.Mvc;
-using MediumDomainModel;
+﻿using MediumDomainModel;
+using System.Web.Mvc;
 
 namespace Medium.WebModel
 {
@@ -7,9 +7,9 @@ namespace Medium.WebModel
     {
         public ActionResult Index()
         {
-            var database = new PostRequestHandler();
-            var model = database.Handle();
-
+            var requestHandler = new AllPostsRequestHandler();
+            var request = new AllPostsRequest();
+            var model = requestHandler.Handle(request);
             return View(model);
         }
     }
