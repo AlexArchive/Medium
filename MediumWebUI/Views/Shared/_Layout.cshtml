@@ -7,6 +7,32 @@
     <link rel="stylesheet" href="~/Content/medium.css" media="all" />
 </head>
 <body>
-    @RenderBody()
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                @Html.ActionLink("Medium", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                </ul>
+
+                @if (User.Identity.IsAuthenticated) {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                    </ul>
+                }
+                else {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Login", "Login", "Account")</li>
+                    </ul>
+                }
+        </div>
+    </nav>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
 </body>
 </html>
