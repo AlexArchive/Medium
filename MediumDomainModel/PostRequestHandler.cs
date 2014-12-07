@@ -7,7 +7,7 @@ namespace MediumDomainModel
     {
         public IEnumerable<PostModel> Handle()
         {
-            using (var connection = Database.Connect())
+            using (var connection = SqlConnectionFactory.Create())
             {
                 return connection.Query<PostModel>(@"
                     SELECT *

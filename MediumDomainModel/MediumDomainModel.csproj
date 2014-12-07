@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database.cs" />
+    <Compile Include="SqlConnectionFactory.cs" />
     <Compile Include="DeletePostCommand.cs" />
     <Compile Include="DeletePostCommandHandler.cs" />
     <Compile Include="EditPostCommand.cs" />

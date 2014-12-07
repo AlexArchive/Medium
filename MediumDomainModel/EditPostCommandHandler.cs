@@ -15,7 +15,7 @@ namespace MediumDomainModel
                 command.Published
             };
 
-            using (var connection = Database.Connect())
+            using (var connection = SqlConnectionFactory.Create())
             {
                 connection.Execute(@"
                     UPDATE 

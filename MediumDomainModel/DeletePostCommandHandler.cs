@@ -6,7 +6,7 @@ namespace MediumDomainModel
     {
         public void Handle(DeletePostCommand command)
         {
-            using (var connection = Database.Connect())
+            using (var connection = SqlConnectionFactory.Create())
             {
                 connection.Execute(
                     @"DELETE FROM [Posts] WHERE [Slug] = @Slug", 

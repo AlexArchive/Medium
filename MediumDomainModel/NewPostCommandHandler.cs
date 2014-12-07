@@ -6,7 +6,7 @@ namespace MediumDomainModel
     {
         public string Handle(NewPostCommand command)
         {
-            using (var connection = Database.Connect())
+            using (var connection = SqlConnectionFactory.Create())
             {
                 var param = new
                 {
