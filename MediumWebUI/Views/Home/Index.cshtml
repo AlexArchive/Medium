@@ -1,4 +1,5 @@
-﻿@model IEnumerable<MediumDomainModel.PostModel>
+﻿@using System.Globalization
+@model IEnumerable<MediumDomainModel.PostModel>
 
 @{
     ViewBag.Title = "Index";
@@ -16,6 +17,7 @@
         {
             <article class="post">
                 <h2>@Html.ActionLink(post.Title, "Index", "Post", new { postSlug = post.Slug }, new { })</h2>
+                <p class="date">@post.PublishedAt.ToString("f", new CultureInfo("en-US"))</p>
                 <div>
                     @post.Body
                 </div>

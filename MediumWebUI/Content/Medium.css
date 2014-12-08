@@ -4909,4 +4909,8 @@ body {
   border-bottom: 1px solid #eee;
   overflow: hidden; }
 
+.date {
+  color: #999;
+  padding-bottom: 20px; }
+
 /*# sourceMappingURL=medium.css.map */

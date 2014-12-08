@@ -1,4 +1,5 @@
-﻿@model MediumDomainModel.PostModel
+﻿@using System.Globalization
+@model MediumDomainModel.PostModel
 
 @{
     ViewBag.Title = Model.Title;
@@ -12,6 +13,8 @@
         <p>@Model.Body</p>
     </div>
     <div class="col-lg-4 col-md-4">
+        <h4>Published</h4>
+        <p class="date">@Model.PublishedAt.ToString("f", new CultureInfo("en-US"))</p>
         <h1>Medium</h1>
         <p>Medium is a beautiful blog engine. The project is open-source and hosted on <a href="https://github.com/ByteBlast/Medium">GitHub.</a></p>
         <p>You could put your own "About Me" here.</p>

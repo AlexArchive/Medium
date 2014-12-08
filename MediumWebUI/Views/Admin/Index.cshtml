@@ -1,4 +1,5 @@
-﻿@model IEnumerable<MediumDomainModel.PostModel>
+﻿@using System.Globalization
+@model IEnumerable<MediumDomainModel.PostModel>
 
 <header class="page-header">
     <ul class="nav nav-pills pull-right">
@@ -13,6 +14,7 @@
     <thead>
         <tr>
             <th>Title</th>
+            <th>Publish Date</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -21,6 +23,7 @@
         {
             <tr>
                 <td>@post.Title</td>
+                <td>@post.PublishedAt.ToString("D", new CultureInfo("en-US"))</td>
                 <td>
                     @Html.ActionLink("Edit", "EditPost", new { postSlug = post.Slug })
                     @Html.ActionLink("Delete", "DeletePost", new { postSlug = post.Slug })
