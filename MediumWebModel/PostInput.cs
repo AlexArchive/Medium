@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace Medium.WebModel
 {
@@ -9,6 +10,7 @@ namespace Medium.WebModel
 
         public string Title { get; set; }
 
+        [DataType(DataType.MultilineText)]
         public string Body { get; set; }
 
         public bool Published { get; set; }

@@ -12,27 +12,26 @@
             <div class="navbar-header">
                 @Html.ActionLink("Medium", "Index", "Home", null, new { @class = "navbar-brand" })
             </div>
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            </ul>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <ul class="nav navbar-nav navbar-right">
+                    <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                    <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
                 </ul>
-
-                @if (User.Identity.IsAuthenticated) {
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
-                    </ul>
-                }
-                else {
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>@Html.ActionLink("Login", "Login", "Account")</li>
-                    </ul>
-                }
+            }
+            else
+            {
+                <ul class="nav navbar-nav navbar-right">
+                    <li>@Html.ActionLink("Login", "Login", "Account")</li>
+                </ul>
+            }
         </div>
     </nav>
-
-    <div class="container">
+    <main class="container main-content">
         @RenderBody()
-    </div>
-
+    </main>
 </body>
 </html>
