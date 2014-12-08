@@ -1,5 +1,7 @@
 ﻿@model Medium.WebModel.PostInput
 
+@Html.ValidationSummary(true)
+
 @using (Html.BeginForm())
 {
     @Html.EditorForModel()

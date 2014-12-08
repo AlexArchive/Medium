@@ -1,6 +1,6 @@
 ﻿@model Medium.WebModel.PostInput
 
-<p>You want to edit: @Model.Title</p>
+@Html.ValidationSummary(true)
 
 @using (Html.BeginForm())
 {

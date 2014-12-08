@@ -26,6 +26,16 @@ namespace Medium.WebModel
             {
                 return View(post);
             }
+
+            var slug = post.Title.ToSlug();
+            var requestHandler = new PostRequestHandler();
+            var request = new PostRequest {Slug = slug};
+            if (requestHandler.Handle(request) != null)
+            {
+                ModelState.AddModelError("", "A post with this title already exists.");
+                return View(post);
+            }
+
             var commandHandler = new AddPostCommandHandler();
             var command = new AddPostCommand
             {
@@ -59,6 +69,16 @@ namespace Medium.WebModel
             {
                 return View(post);
             }
+
+            var slug = post.Title.ToSlug();
+            var requestHandler = new PostRequestHandler();
+            var request = new PostRequest { Slug = slug };
+            if (requestHandler.Handle(request) != null)
+            {
+                ModelState.AddModelError("", "A post with this title already exists.");
+                return View(post);
+            }
+
             var commandHandler = new EditPostCommandHandler();
             var command = new EditPostCommand
             {
