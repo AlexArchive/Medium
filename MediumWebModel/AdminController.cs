@@ -22,6 +22,10 @@ namespace Medium.WebModel
         [HttpPost]
         public ActionResult AddPost(PostInput post)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(post);
+            }
             var commandHandler = new AddPostCommandHandler();
             var command = new AddPostCommand
             {
@@ -51,6 +55,10 @@ namespace Medium.WebModel
         [HttpPost]
         public ActionResult EditPost(PostInput post)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(post);
+            }
             var commandHandler = new EditPostCommandHandler();
             var command = new EditPostCommand
             {

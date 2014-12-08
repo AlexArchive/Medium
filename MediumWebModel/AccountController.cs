@@ -12,6 +12,10 @@ namespace Medium.WebModel
         [HttpPost]
         public ActionResult Login(CredentialsModel credentials)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(credentials);
+            }
             var authenticator = new Authenticator();
             authenticator.Authenticate(credentials.Username, credentials.Password);
             if (authenticator.AuthenticationSuccessful)
