@@ -1,16 +1,19 @@
 ﻿@model IEnumerable<MediumDomainModel.PostModel>
 
-@Html.ActionLink("Home", "Index", "Home")
-@Html.ActionLink("Submit New Post", "AddPost")
-@Html.ActionLink("Logout", "Logout", "Account")
+<header class="page-header">
+    <ul class="nav nav-pills pull-right">
+        <li role="presentation">@Html.ActionLink("Add post", "AddPost")</li>
+        <li role="presentation">@Html.ActionLink("Logout", "Logout", "Account")</li>
+    </ul>
+</header>
 
-<h1>Admin.</h1>
-<p>Welcome to the super duper secret administrator view.</p>
+<h3>Posts</h3>
 
-<table>
+<table class="table table-bordered">
     <thead>
         <tr>
             <th>Title</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -18,8 +21,10 @@
         {
             <tr>
                 <td>@post.Title</td>
-                <td>@Html.ActionLink("Edit", "EditPost", new{ postSlug = post.Slug })</td>
-                <td>@Html.ActionLink("Delete", "DeletePost", new { postSlug = post.Slug })</td>
+                <td>
+                    @Html.ActionLink("Edit", "EditPost", new { postSlug = post.Slug })
+                    @Html.ActionLink("Delete", "DeletePost", new { postSlug = post.Slug })
+                </td>
             </tr>
         }
     </tbody>
