@@ -10,7 +10,7 @@ namespace MediumDomainModel
             {
                 connection.Execute(
                     "DELETE FROM [Posts] WHERE [Slug] = @Slug", 
-                    new { command.Slug });
+                    command);
             }
         }
     }

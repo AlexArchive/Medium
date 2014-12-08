@@ -11,7 +11,7 @@ namespace MediumDomainModel
             {
                 return connection.Query<PostModel>(
                     "SELECT * FROM [Posts] WHERE [Slug] = @slug", 
-                    new { request.Slug })
+                    request)
                     .SingleOrDefault();
             }
         }
