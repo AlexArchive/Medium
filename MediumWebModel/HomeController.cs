@@ -1,4 +1,5 @@
-﻿using MediumDomainModel;
+﻿using System.Linq;
+using MediumDomainModel;
 using System.Web.Mvc;
 
 namespace Medium.WebModel
@@ -9,7 +10,8 @@ namespace Medium.WebModel
         {
             var requestHandler = new AllPostsRequestHandler();
             var request = new AllPostsRequest();
-            var model = requestHandler.Handle(request);
+            var model = requestHandler.Handle(request)
+                .Where(post => post.Published);
             return View(model);
         }
     }
