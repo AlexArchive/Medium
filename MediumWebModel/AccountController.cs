@@ -4,6 +4,13 @@ namespace Medium.WebModel
 {
     public class AccountController : Controller
     {
+        private readonly IAuthenticator authenticator;
+
+        public AccountController(IAuthenticator authenticator)
+        {
+            this.authenticator = authenticator;
+        }
+
         public ActionResult Login()
         {
             return View();
@@ -16,7 +23,6 @@ namespace Medium.WebModel
             {
                 return View(credentials);
             }
-            var authenticator = new Authenticator();
             authenticator.Authenticate(credentials.Username, credentials.Password);
             if (authenticator.AuthenticationSuccessful)
             {
@@ -31,7 +37,6 @@ namespace Medium.WebModel
 
         public ActionResult Logout()
         {
-            var authenticator = new Authenticator();
             authenticator.Logout();
             return RedirectToAction("Index", "Home");
         }

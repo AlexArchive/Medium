@@ -2,7 +2,7 @@
 
 namespace Medium.WebModel
 {
-    public class Authenticator
+    public class Authenticator : IAuthenticator
     {
         public bool AuthenticationSuccessful { get; private set; }
         
