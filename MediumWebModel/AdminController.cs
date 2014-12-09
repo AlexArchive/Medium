@@ -29,7 +29,7 @@ namespace Medium.WebModel
 
             var slug = post.Title.ToSlug();
             var requestHandler = new PostRequestHandler();
-            var request = new PostRequest {Slug = slug};
+            var request = new PostRequest { Slug = slug };
             if (requestHandler.Handle(request) != null)
             {
                 ModelState.AddModelError("", "A post with this title already exists.");
@@ -44,7 +44,7 @@ namespace Medium.WebModel
                 Published = post.Published
             };
             var postSlug = commandHandler.Handle(command);
-            return RedirectToAction("Index", "Post", new {  postSlug });
+            return RedirectToAction("Index", "Post", new { postSlug });
         }
 
         public ActionResult EditPost(string postSlug)
@@ -73,7 +73,7 @@ namespace Medium.WebModel
             var slug = post.Title.ToSlug();
             var requestHandler = new PostRequestHandler();
             var request = new PostRequest { Slug = slug };
-            if (requestHandler.Handle(request) != null)
+            if (slug != post.Slug && requestHandler.Handle(request) != null)
             {
                 ModelState.AddModelError("", "A post with this title already exists.");
                 return View(post);
