@@ -81,6 +81,7 @@
     <Compile Include="PostController.cs" />
     <Compile Include="PostInput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValidateModelAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

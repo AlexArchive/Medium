@@ -40,13 +40,9 @@ namespace Medium.WebModel
         }
 
         [HttpPost]
+        [ValidateModel]
         public ActionResult AddPost(PostInput post)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(post);
-            }
-
             var slug = post.Title.ToSlug();
             var request = new PostRequest { Slug = slug };
             if (postRequestHandler.Handle(request) != null)
@@ -80,13 +76,9 @@ namespace Medium.WebModel
         }
 
         [HttpPost]
+        [ValidateModel]
         public ActionResult EditPost(PostInput post)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(post);
-            }
-
             var slug = post.Title.ToSlug();
             var request = new PostRequest { Slug = slug };
             if (slug != post.Slug && postRequestHandler.Handle(request) != null)
