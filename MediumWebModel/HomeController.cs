@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using MediumDomainModel;
 using System.Web.Mvc;
 
@@ -7,18 +6,11 @@ namespace Medium.WebModel
 {
     public class HomeController : Controller
     {
-        private readonly IRequestHandler<AllPostsRequest, IEnumerable<PostModel>> allPostsRequestHandler;
-
-        public HomeController(
-            IRequestHandler<AllPostsRequest, IEnumerable<PostModel>> allPostsRequestHandler)
-        {
-            this.allPostsRequestHandler = allPostsRequestHandler;
-        }
-
         public ActionResult Index()
         {
+            var requestHandler = new AllPostsRequestHandler();
             var request = new AllPostsRequest();
-            var model = allPostsRequestHandler.Handle(request)
+            var model = requestHandler.Handle(request)
                 .Where(post => post.Published);
             return View(model);
         }

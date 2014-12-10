@@ -194,10 +194,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MediumDomainModel\MediumDomainModel.csproj">
-      <Project>{66bb6773-4639-4f26-a113-b79913e87240}</Project>
-      <Name>MediumDomainModel</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MediumWebModel\MediumWebModel.csproj">
       <Project>{7ca7c776-043d-42b8-a68b-5fd16293c7fc}</Project>
       <Name>MediumWebModel</Name>

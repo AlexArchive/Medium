@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using MediumDomainModel;
+﻿using MediumDomainModel;
 using System.Web.Mvc;
 
 namespace Medium.WebModel
@@ -7,30 +6,11 @@ namespace Medium.WebModel
     [Authorize]
     public class AdminController : Controller
     {
-        private readonly IRequestHandler<AllPostsRequest, IEnumerable<PostModel>> allPostsRequestHandler;
-        private readonly IRequestHandler<PostRequest, PostModel> postRequestHandler;
-        private readonly ICommandHandler<AddPostCommand, string> addPostCommandHandler;
-        private readonly ICommandHandler<EditPostCommand, string> editPostCommandHandler;
-        private readonly ICommandHandler<DeletePostCommand> deletePostCommandHandler;
-
-        public AdminController(
-            IRequestHandler<AllPostsRequest, IEnumerable<PostModel>> allPostsRequestHandler, 
-            IRequestHandler<PostRequest, PostModel> postRequestHandler, 
-            ICommandHandler<AddPostCommand, string> addPostCommandHandler, 
-            ICommandHandler<EditPostCommand, string> editPostCommandHandler, 
-            ICommandHandler<DeletePostCommand> deletePostCommandHandler)
-        {
-            this.allPostsRequestHandler = allPostsRequestHandler;
-            this.postRequestHandler = postRequestHandler;
-            this.addPostCommandHandler = addPostCommandHandler;
-            this.editPostCommandHandler = editPostCommandHandler;
-            this.deletePostCommandHandler = deletePostCommandHandler;
-        }
-
         public ActionResult Index()
         {
+            var requestHandler = new AllPostsRequestHandler();
             var request = new AllPostsRequest();
-            var model = allPostsRequestHandler.Handle(request);
+            var model = requestHandler.Handle(request);
             return View(model);
         }
 
@@ -44,27 +24,30 @@ namespace Medium.WebModel
         public ActionResult AddPost(PostInput post)
         {
             var slug = post.Title.ToSlug();
+            var requestHandler = new PostRequestHandler();
             var request = new PostRequest { Slug = slug };
-            if (postRequestHandler.Handle(request) != null)
+            if (requestHandler.Handle(request) != null)
             {
                 ModelState.AddModelError("", "A post with this title already exists.");
                 return View(post);
             }
 
+            var commandHandler = new AddPostCommandHandler();
             var command = new AddPostCommand
             {
                 Title = post.Title,
                 Body = post.Body,
                 Published = post.Published
             };
-            var postSlug = addPostCommandHandler.Handle(command);
+            var postSlug = commandHandler.Handle(command);
             return RedirectToAction("Index", "Post", new { postSlug });
         }
 
         public ActionResult EditPost(string postSlug)
         {
+            var requestHandler = new PostRequestHandler();
             var request = new PostRequest { Slug = postSlug };
-            var model = postRequestHandler.Handle(request);
+            var model = requestHandler.Handle(request);
             var postInput = new PostInput
             {
                 Slug = model.Slug,
@@ -80,13 +63,15 @@ namespace Medium.WebModel
         public ActionResult EditPost(PostInput post)
         {
             var slug = post.Title.ToSlug();
+            var requestHandler = new PostRequestHandler();
             var request = new PostRequest { Slug = slug };
-            if (slug != post.Slug && postRequestHandler.Handle(request) != null)
+            if (slug != post.Slug && requestHandler.Handle(request) != null)
             {
                 ModelState.AddModelError("", "A post with this title already exists.");
                 return View(post);
             }
 
+            var commandHandler = new EditPostCommandHandler();
             var command = new EditPostCommand
             {
                 Slug = post.Slug,
@@ -94,14 +79,15 @@ namespace Medium.WebModel
                 Body = post.Body,
                 Published = post.Published
             };
-            var updatedSlug = editPostCommandHandler.Handle(command);
+            var updatedSlug = commandHandler.Handle(command);
             return RedirectToAction("Index", "Post", new { postSlug = updatedSlug });
         }
 
         public ActionResult DeletePost(string postSlug)
         {
-            var command = new DeletePostCommand { Slug =postSlug };
-            deletePostCommandHandler.Handle(command);
+            var commandHandler = new DeletePostCommandHandler();
+            var command = new DeletePostCommand { Slug = postSlug };
+            commandHandler.Handle(command);
             return RedirectToAction("Index");
         }
     }

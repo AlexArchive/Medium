@@ -5,17 +5,11 @@ namespace Medium.WebModel
 {
     public class PostController : Controller
     {
-        private readonly IRequestHandler<PostRequest, PostModel> postRequestHandler;
-
-        public PostController(IRequestHandler<PostRequest, PostModel> postRequestHandler)
-        {
-            this.postRequestHandler = postRequestHandler;
-        }
-
         public ActionResult Index(string postSlug)
         {
+            var requestHandler = new PostRequestHandler();
             var request = new PostRequest { Slug = postSlug };
-            var model = postRequestHandler.Handle(request);
+            var model = requestHandler.Handle(request);
             if (model == null)
             {
                 return HttpNotFound();
