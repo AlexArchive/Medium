@@ -8,7 +8,6 @@ namespace Medium.WebUI
     {
         protected void Application_Start()
         {
-            ControllerBuilder.Current.SetControllerFactory(new CompositionRoot());
             AreaRegistration.RegisterAllAreas();
             RouteTable.Routes.MapRoute(
                 name: "Default",
