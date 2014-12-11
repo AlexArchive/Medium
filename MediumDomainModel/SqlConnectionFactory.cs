@@ -11,6 +11,6 @@ namespace MediumDomainModel
                 .ConnectionStrings["Medium"]
                 .ConnectionString;
             return new SqlConnection(connectionStr);
-        } 
+        }
     }
 }

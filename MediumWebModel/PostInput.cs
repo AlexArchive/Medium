@@ -7,6 +7,7 @@ namespace Medium.WebModel
     {
         [HiddenInput(DisplayValue = false)]
         public string Slug { get; set; }
+
         [Required]
         public string Title { get; set; }
 

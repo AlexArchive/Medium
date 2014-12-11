@@ -1,23 +1,23 @@
-﻿using MediumDomainModel;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using MediatR;
+using MediumDomainModel;
 
 namespace Medium.WebModel
 {
     [Authorize]
     public class AdminController : Controller
     {
-        private IMediator requestBroker;
+        private readonly IMediator requestBus;
 
-        public AdminController(IMediator requestBroker)
+        public AdminController(IMediator requestBus)
         {
-            this.requestBroker = requestBroker;
+            this.requestBus = requestBus;
         }
 
         public ActionResult Index()
         {
             var request = new AllPostsRequest();
-            var model = requestBroker.Send(request);
+            var model = requestBus.Send(request);
             return View(model);
         }
 
@@ -28,68 +28,68 @@ namespace Medium.WebModel
 
         [HttpPost]
         [ValidateModel]
-        public ActionResult AddPost(PostInput post)
+        public ActionResult AddPost(PostInput postInput)
         {
-            var slug = SlugConverter.Convert(post.Title);
-            var request = new PostRequest { Slug = slug };
-            if (requestBroker.Send(request) != null)
+            var postSlug = SlugConverter.Convert(postInput.Title);
+            var postRequest = new PostRequest {PostSlug = postSlug};
+            var post = requestBus.Send(postRequest);
+            if (post != null)
             {
                 ModelState.AddModelError("", "A post with this title already exists.");
-                return View(post);
+                return View(postInput);
             }
 
-            var command = new AddPostCommand
+            var addPostCommand = new AddPostCommand
             {
                 Title = post.Title,
                 Body = post.Body,
                 Published = post.Published
             };
-            var postSlug = requestBroker.Send(command);
-            return RedirectToAction("Index", "Post", new { postSlug });
+            requestBus.Send(addPostCommand);
+            return RedirectToAction("Index", "Post", new {postSlug});
         }
 
         public ActionResult EditPost(string postSlug)
         {
-            var requestHandler = new PostRequestHandler();
-            var request = new PostRequest { Slug = postSlug };
-            var model = requestHandler.Handle(request);
+            var postRequest = new PostRequest {PostSlug = postSlug};
+            var post = requestBus.Send(postRequest);
             var postInput = new PostInput
-            {
-                Slug = model.Slug,
-                Title = model.Title,
-                Body = model.Body,
-                Published = model.Published,
-            };
-            return View(postInput);
-        }
-
-        [HttpPost]
-        [ValidateModel]
-        public ActionResult EditPost(PostInput post)
-        {
-            var slug = SlugConverter.Convert(post.Title);
-            var request = new PostRequest { Slug = slug };
-            if (slug != post.Slug && requestBroker.Send(request) != null)
-            {
-                ModelState.AddModelError("", "A post with this title already exists.");
-                return View(post);
-            }
-
-            var command = new EditPostCommand
             {
                 Slug = post.Slug,
                 Title = post.Title,
                 Body = post.Body,
                 Published = post.Published
             };
-            var updatedSlug = requestBroker.Send(command);
-            return RedirectToAction("Index", "Post", new { postSlug = updatedSlug });
+            return View(postInput);
         }
 
-        public ActionResult DeletePost(string postSlug)
+        [HttpPost]
+        [ValidateModel]
+        public ActionResult EditPost(PostInput postInput)
         {
-            var command = new DeletePostCommand { Slug = postSlug };
-            requestBroker.Send(command);
+            var postSlug = SlugConverter.Convert(postInput.Title);
+            var postRequest = new PostRequest {PostSlug = postSlug};
+            var post = requestBus.Send(postRequest);
+            if (postSlug != postInput.Slug && post != null)
+            {
+                ModelState.AddModelError("", "A post with this title already exists.");
+                return View(postInput);
+            }
+
+            var editPostCommand = new EditPostCommand
+            {
+                Slug = postInput.Slug,
+                Title = postInput.Title,
+                Body = postInput.Body,
+                Published = postInput.Published
+            };
+            var updatedSlug = requestBus.Send(editPostCommand);
+            return RedirectToAction("Index", "Post", new {postSlug = updatedSlug});
+        }
+
+        public ActionResult DeletePost(DeletePostCommand command)
+        {
+            requestBus.Send(command);
             return RedirectToAction("Index");
         }
     }

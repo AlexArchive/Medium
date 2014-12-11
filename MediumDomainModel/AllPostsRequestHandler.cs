@@ -1,5 +1,5 @@
-﻿using Dapper;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Dapper;
 using MediatR;
 
 namespace MediumDomainModel
@@ -10,8 +10,10 @@ namespace MediumDomainModel
         {
             using (var connection = SqlConnectionFactory.Create())
             {
-                return connection.Query<PostModel>(
+                var posts = connection.Query<PostModel>(
                     "SELECT * FROM [Posts]");
+
+                return posts;
             }
         }
     }

@@ -16,9 +16,11 @@ namespace MediumDomainModel
                     command.Body,
                     command.Published
                 };
+
                 connection.Execute(
-                    "INSERT INTO [Posts] VALUES (@Slug, @Title, @Body, @Published, GETDATE())", 
+                    "INSERT INTO [Posts] VALUES (@Slug, @Title, @Body, @Published, GETDATE())",
                     param);
+
                 return param.Slug;
             }
         }

@@ -1,24 +1,24 @@
 ﻿using System.Linq;
-using MediumDomainModel;
 using System.Web.Mvc;
 using MediatR;
+using MediumDomainModel;
 
 namespace Medium.WebModel
 {
     public class HomeController : Controller
     {
-        private readonly IMediator requestBroker;
+        private readonly IMediator requestBus;
 
-        public HomeController(IMediator requestBroker)
+        public HomeController(IMediator requestBus)
         {
-            this.requestBroker = requestBroker;
+            this.requestBus = requestBus;
         }
 
         public ActionResult Index()
         {
-            //var requestHandler = new AllPostsRequestHandler();
             var request = new AllPostsRequest();
-            var model = requestBroker.Send(request)
+            var model = requestBus
+                .Send(request)
                 .Where(post => post.Published);
             return View(model);
         }

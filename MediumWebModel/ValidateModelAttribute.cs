@@ -19,5 +19,4 @@ namespace Medium.WebModel
             };
         }
     }
-
 }

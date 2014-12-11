@@ -4,6 +4,6 @@ namespace MediumDomainModel
 {
     public class DeletePostCommand : IRequest
     {
-        public string Slug { get; set; }
+        public string PostSlug { get; set; }
     }
 }
