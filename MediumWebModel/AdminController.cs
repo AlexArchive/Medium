@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using MediatR;
 using MediumDomainModel;
 
@@ -30,23 +31,23 @@ namespace Medium.WebModel
         [ValidateModel]
         public ActionResult AddPost(PostInput postInput)
         {
-            var postSlug = SlugConverter.Convert(postInput.Title);
-            var postRequest = new PostRequest {PostSlug = postSlug};
-            var post = requestBus.Send(postRequest);
-            if (post != null)
-            {
-                ModelState.AddModelError("", "A post with this title already exists.");
-                return View(postInput);
-            }
-
             var addPostCommand = new AddPostCommand
             {
-                Title = post.Title,
-                Body = post.Body,
-                Published = post.Published
+                Title = postInput.Title,
+                Body = postInput.Body,
+                Published = postInput.Published
             };
-            requestBus.Send(addPostCommand);
-            return RedirectToAction("Index", "Post", new {postSlug});
+
+            var response = requestBus.Send(addPostCommand);
+
+            if (response.Successful)
+            {
+                var postSlug = response.Data;
+                return RedirectToAction("Index", "Post", new { postSlug });
+            }
+
+            ModelState.AddModelError("", "A post with this title already exists.");
+            return View(postInput);
         }
 
         public ActionResult EditPost(string postSlug)
