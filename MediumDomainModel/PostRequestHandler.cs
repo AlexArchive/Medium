@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Dapper;
+using MediatR;
 
 namespace MediumDomainModel
 {

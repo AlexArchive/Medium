@@ -1,10 +1,11 @@
 ﻿using Dapper;
+using MediatR;
 
 namespace MediumDomainModel
 {
-    public class DeletePostCommandHandler : ICommandHandler<DeletePostCommand>
+    public class DeletePostCommandHandler : IRequestHandler<DeletePostCommand, Unit>
     {
-        public void Handle(DeletePostCommand command)
+        public Unit Handle(DeletePostCommand command)
         {
             using (var connection = SqlConnectionFactory.Create())
             {
@@ -12,6 +13,7 @@ namespace MediumDomainModel
                     "DELETE FROM [Posts] WHERE [Slug] = @Slug", 
                     command);
             }
+            return Unit.Value;
         }
     }
 }

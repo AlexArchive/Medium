@@ -60,14 +60,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AllPostsRequest.cs" />
-    <Compile Include="IRequestHandler.cs" />
     <Compile Include="PostRequest.cs" />
     <Compile Include="SqlConnectionFactory.cs" />
     <Compile Include="DeletePostCommand.cs" />
     <Compile Include="DeletePostCommandHandler.cs" />
     <Compile Include="EditPostCommand.cs" />
     <Compile Include="EditPostCommandHandler.cs" />
-    <Compile Include="ICommandHandler.cs" />
     <Compile Include="AddPostCommand.cs" />
     <Compile Include="AddPostCommandHandler.cs" />
     <Compile Include="PostRequestHandler.cs" />

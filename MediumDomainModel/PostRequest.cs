@@ -1,6 +1,8 @@
-﻿namespace MediumDomainModel
+﻿using MediatR;
+
+namespace MediumDomainModel
 {
-    public class PostRequest
+    public class PostRequest : IRequest<PostModel>
     {
         public string Slug { get; set; }
     }

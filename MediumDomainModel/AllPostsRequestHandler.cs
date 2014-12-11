@@ -1,9 +1,10 @@
 ﻿using Dapper;
 using System.Collections.Generic;
+using MediatR;
 
 namespace MediumDomainModel
 {
-    public class AllPostsRequestHandler : MediatR.IRequestHandler<AllPostsRequest, IEnumerable<PostModel>>
+    public class AllPostsRequestHandler : IRequestHandler<AllPostsRequest, IEnumerable<PostModel>>
     {
         public IEnumerable<PostModel> Handle(AllPostsRequest request)
         {

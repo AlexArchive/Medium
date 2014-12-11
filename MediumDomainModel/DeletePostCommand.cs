@@ -1,6 +1,8 @@
-﻿namespace MediumDomainModel
+﻿using MediatR;
+
+namespace MediumDomainModel
 {
-    public class DeletePostCommand
+    public class DeletePostCommand : IRequest
     {
         public string Slug { get; set; }
     }

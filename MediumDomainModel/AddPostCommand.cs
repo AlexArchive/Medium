@@ -1,6 +1,8 @@
-﻿namespace MediumDomainModel
+﻿using MediatR;
+
+namespace MediumDomainModel
 {
-    public class AddPostCommand
+    public class AddPostCommand : IRequest<string>
     {
         public string Title { get; set; }
         public string Body { get; set; }

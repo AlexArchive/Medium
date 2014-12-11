@@ -1,16 +1,23 @@
 ﻿using MediumDomainModel;
 using System.Web.Mvc;
+using MediatR;
 
 namespace Medium.WebModel
 {
     [Authorize]
     public class AdminController : Controller
     {
+        private IMediator requestBroker;
+
+        public AdminController(IMediator requestBroker)
+        {
+            this.requestBroker = requestBroker;
+        }
+
         public ActionResult Index()
         {
-            var requestHandler = new AllPostsRequestHandler();
             var request = new AllPostsRequest();
-            var model = requestHandler.Handle(request);
+            var model = requestBroker.Send(request);
             return View(model);
         }
 
@@ -24,22 +31,20 @@ namespace Medium.WebModel
         public ActionResult AddPost(PostInput post)
         {
             var slug = post.Title.ToSlug();
-            var requestHandler = new PostRequestHandler();
             var request = new PostRequest { Slug = slug };
-            if (requestHandler.Handle(request) != null)
+            if (requestBroker.Send(request) != null)
             {
                 ModelState.AddModelError("", "A post with this title already exists.");
                 return View(post);
             }
 
-            var commandHandler = new AddPostCommandHandler();
             var command = new AddPostCommand
             {
                 Title = post.Title,
                 Body = post.Body,
                 Published = post.Published
             };
-            var postSlug = commandHandler.Handle(command);
+            var postSlug = requestBroker.Send(command);
             return RedirectToAction("Index", "Post", new { postSlug });
         }
 
@@ -63,15 +68,13 @@ namespace Medium.WebModel
         public ActionResult EditPost(PostInput post)
         {
             var slug = post.Title.ToSlug();
-            var requestHandler = new PostRequestHandler();
             var request = new PostRequest { Slug = slug };
-            if (slug != post.Slug && requestHandler.Handle(request) != null)
+            if (slug != post.Slug && requestBroker.Send(request) != null)
             {
                 ModelState.AddModelError("", "A post with this title already exists.");
                 return View(post);
             }
 
-            var commandHandler = new EditPostCommandHandler();
             var command = new EditPostCommand
             {
                 Slug = post.Slug,
@@ -79,15 +82,14 @@ namespace Medium.WebModel
                 Body = post.Body,
                 Published = post.Published
             };
-            var updatedSlug = commandHandler.Handle(command);
+            var updatedSlug = requestBroker.Send(command);
             return RedirectToAction("Index", "Post", new { postSlug = updatedSlug });
         }
 
         public ActionResult DeletePost(string postSlug)
         {
-            var commandHandler = new DeletePostCommandHandler();
             var command = new DeletePostCommand { Slug = postSlug };
-            commandHandler.Handle(command);
+            requestBroker.Send(command);
             return RedirectToAction("Index");
         }
     }

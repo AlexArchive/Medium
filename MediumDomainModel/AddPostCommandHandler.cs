@@ -1,8 +1,9 @@
 ﻿using Dapper;
+using MediatR;
 
 namespace MediumDomainModel
 {
-    public class AddPostCommandHandler : ICommandHandler<AddPostCommand, string>
+    public class AddPostCommandHandler : IRequestHandler<AddPostCommand, string>
     {
         public string Handle(AddPostCommand command)
         {
