@@ -1,6 +1,8 @@
-﻿namespace MediumDomainModel
+﻿using System.Collections.Generic;
+
+namespace MediumDomainModel
 {
-    public class AllPostsRequest
+    public class AllPostsRequest : MediatR.IRequest<IEnumerable<PostModel>>
     {
     }
 }

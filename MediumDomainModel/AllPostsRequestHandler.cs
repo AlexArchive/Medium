@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MediumDomainModel
 {
-    public class AllPostsRequestHandler : IRequestHandler<AllPostsRequest, IEnumerable<PostModel>>
+    public class AllPostsRequestHandler : MediatR.IRequestHandler<AllPostsRequest, IEnumerable<PostModel>>
     {
         public IEnumerable<PostModel> Handle(AllPostsRequest request)
         {
