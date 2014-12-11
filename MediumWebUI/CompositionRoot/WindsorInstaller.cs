@@ -9,7 +9,7 @@ using Microsoft.Practices.ServiceLocation;
 
 namespace Medium.WebUI.CompositionRoot
 {
-    public class WinsdorInstaller
+    public class WindsorInstaller
     {
         public IWindsorContainer Install()
         {
@@ -29,6 +29,8 @@ namespace Medium.WebUI.CompositionRoot
                 .FromAssemblyContaining<AddPostCommand>()
                 .Pick()
                 .WithServiceAllInterfaces());
+
+
 
             container.Kernel.AddHandlersFilter(new ContravariantFilter());
 

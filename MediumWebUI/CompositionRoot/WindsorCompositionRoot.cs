@@ -5,11 +5,11 @@ using Castle.Windsor;
 
 namespace Medium.WebUI.CompositionRoot
 {
-    public class WinsdorCompositionRoot : DefaultControllerFactory
+    public class WindsorCompositionRoot : DefaultControllerFactory
     {
          private readonly IWindsorContainer container;
 
-         public WinsdorCompositionRoot(IWindsorContainer container)
+         public WindsorCompositionRoot(IWindsorContainer container)
          {
              this.container = container;
          }

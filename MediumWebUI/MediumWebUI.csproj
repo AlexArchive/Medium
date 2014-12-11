@@ -215,8 +215,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompositionRoot\ContravariantFilter.cs" />
-    <Compile Include="CompositionRoot\WinsdorCompositionRoot.cs" />
-    <Compile Include="CompositionRoot\WinsdorInstaller.cs" />
+    <Compile Include="CompositionRoot\WindsorCompositionRoot.cs" />
+    <Compile Include="CompositionRoot\WindsorInstaller.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

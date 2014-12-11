@@ -16,8 +16,8 @@ namespace Medium.WebUI
                 url: "{controller}/{action}/{postSlug}",
                 defaults: new { controller = "Home", action = "Index", postSlug = UrlParameter.Optional });
 
-            IWindsorContainer container = new WinsdorInstaller().Install();
-            ControllerBuilder.Current.SetControllerFactory(new WinsdorCompositionRoot(container));
+            IWindsorContainer container = new WindsorInstaller().Install();
+            ControllerBuilder.Current.SetControllerFactory(new WindsorCompositionRoot(container));
         }
     }
 }
