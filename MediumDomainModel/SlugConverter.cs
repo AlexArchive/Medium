@@ -4,9 +4,9 @@ using System.Text.RegularExpressions;
 
 namespace MediumDomainModel
 {
-    public static class SlugGenerator
+    public static class SlugConverter
     {
-        public static string ToSlug(this string input)
+        public static string Convert(string input)
         {
             if (input == null)
             {

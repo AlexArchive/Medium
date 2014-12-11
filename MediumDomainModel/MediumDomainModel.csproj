@@ -72,7 +72,7 @@
     <Compile Include="PostModel.cs" />
     <Compile Include="AllPostsRequestHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SlugGenerator.cs" />
+    <Compile Include="SlugConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

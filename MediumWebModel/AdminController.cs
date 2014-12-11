@@ -30,7 +30,7 @@ namespace Medium.WebModel
         [ValidateModel]
         public ActionResult AddPost(PostInput post)
         {
-            var slug = post.Title.ToSlug();
+            var slug = SlugConverter.Convert(post.Title);
             var request = new PostRequest { Slug = slug };
             if (requestBroker.Send(request) != null)
             {
@@ -67,7 +67,7 @@ namespace Medium.WebModel
         [ValidateModel]
         public ActionResult EditPost(PostInput post)
         {
-            var slug = post.Title.ToSlug();
+            var slug = SlugConverter.Convert(post.Title);
             var request = new PostRequest { Slug = slug };
             if (slug != post.Slug && requestBroker.Send(request) != null)
             {
