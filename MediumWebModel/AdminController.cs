@@ -39,12 +39,7 @@ namespace Medium.WebModel
         [ValidateModel]
         public ActionResult AddPost(PostInput postInput)
         {
-            var command = new AddPostCommand
-            {
-                Title = postInput.Title,
-                Body = postInput.Body,
-                Published = postInput.Published
-            };
+            var command = postInput.MapTo<AddPostCommand>();
             var postSlug = requestBus.Send(command);
             if (postSlug != null)
             {
@@ -61,13 +56,7 @@ namespace Medium.WebModel
             {
                 return HttpNotFound();
             }
-            var postInput = new PostInput
-            {
-                Slug = post.Slug,
-                Title = post.Title,
-                Body = post.Body,
-                Published = post.Published
-            };
+            var postInput = post.MapTo<PostInput>();
             return View(postInput);
         }
 
@@ -75,13 +64,8 @@ namespace Medium.WebModel
         [ValidateModel]
         public ActionResult EditPost(PostInput postInput)
         {
-            var command = new EditPostCommand
-            {
-                OriginalSlug = postInput.Slug,
-                Title = postInput.Title,
-                Body = postInput.Body,
-                Published = postInput.Published
-            };
+            var command = postInput.MapTo<EditPostCommand>();
+            command.OriginalSlug = postInput.Slug;
             var updatedSlug = requestBus.Send(command);
             if (updatedSlug != null)
             {

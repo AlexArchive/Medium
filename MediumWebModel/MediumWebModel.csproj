@@ -93,6 +93,7 @@
     <Compile Include="Authenticator.cs" />
     <Compile Include="CredentialsModel.cs" />
     <Compile Include="HomeController.cs" />
+    <Compile Include="Mapper.cs" />
     <Compile Include="PostController.cs" />
     <Compile Include="PostInput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
