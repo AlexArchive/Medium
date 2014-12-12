@@ -32,6 +32,7 @@ namespace Medium.WebModel
         public ActionResult DeletePost(DeletePostCommand command)
         {
             requestBus.Send(command);
+            TempData["Message"] = "Your post has been deleted.";
             return RedirectToAction("Index");
         }
 
