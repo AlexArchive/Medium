@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using System.Data;
+using Dapper;
 using MediatR;
 
 namespace MediumDomainModel
@@ -18,6 +19,12 @@ namespace MediumDomainModel
 
             using (var connection = SqlConnectionFactory.Create())
             {
+                if (param.OriginalSlug != param.Slug && 
+                    UniqueKeyOccupied(connection, param.Slug))
+                {
+                    return null;
+                }
+
                 connection.Execute(@"
                     UPDATE [Posts]
                         SET [Slug] = @Slug, 
@@ -29,6 +36,17 @@ namespace MediumDomainModel
             }
 
             return param.Slug;
+        }
+
+
+        private static bool UniqueKeyOccupied(IDbConnection connection, string slug)
+        {
+            var param = new { Slug = slug };
+            var record = connection.ExecuteScalar(
+                "SELECT TOP 1 [Slug] FROM [Posts] WHERE [Slug] = @Slug",
+                param);
+
+            return record != null;
         }
     }
 }

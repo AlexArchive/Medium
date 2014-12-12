@@ -67,15 +67,6 @@ namespace Medium.WebModel
         [ValidateModel]
         public ActionResult EditPost(PostInput postInput)
         {
-            var postSlug = SlugConverter.Convert(postInput.Title);
-            var postRequest = new PostRequest {PostSlug = postSlug};
-            var post = requestBus.Send(postRequest);
-            if (postSlug != postInput.Slug && post != null)
-            {
-                ModelState.AddModelError("", "A post with this title already exists.");
-                return View(postInput);
-            }
-
             var editPostCommand = new EditPostCommand
             {
                 Slug = postInput.Slug,
@@ -83,8 +74,35 @@ namespace Medium.WebModel
                 Body = postInput.Body,
                 Published = postInput.Published
             };
-            var updatedSlug = requestBus.Send(editPostCommand);
-            return RedirectToAction("Index", "Post", new {postSlug = updatedSlug});
+
+            var response = requestBus.Send(editPostCommand);
+
+            if (response == null)
+            {
+                ModelState.AddModelError("", "A post with this title already exists.");
+                return View(postInput);
+            }
+
+            return RedirectToAction("Index", "Post", new { postSlug = response });
+
+            //var postSlug = SlugConverter.Convert(postInput.Title);
+            //var postRequest = new PostRequest {PostSlug = postSlug};
+            //var post = requestBus.Send(postRequest);
+            //if (postSlug != postInput.Slug && post != null)
+            //{
+            //    ModelState.AddModelError("", "A post with this title already exists.");
+            //    return View(postInput);
+            //}
+
+            //var editPostCommand = new EditPostCommand
+            //{
+            //    Slug = postInput.Slug,
+            //    Title = postInput.Title,
+            //    Body = postInput.Body,
+            //    Published = postInput.Published
+            //};
+            //var updatedSlug = requestBus.Send(editPostCommand);
+            //return RedirectToAction("Index", "Post", new {postSlug = updatedSlug});
         }
 
         public ActionResult DeletePost(DeletePostCommand command)
