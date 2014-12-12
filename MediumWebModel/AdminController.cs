@@ -44,7 +44,9 @@ namespace Medium.WebModel
             var postSlug = requestBus.Send(command);
             if (postSlug != null)
             {
-                return RedirectToAction("Index", "Post", new { postSlug });
+                var helper = new UrlHelper(ControllerContext.RequestContext);
+                TempData["PostUrl"] = helper.Action("Index", "Post", new { postSlug });
+                return RedirectToAction("EditPost", new { postSlug });
             }
             ModelState.AddModelError("", "A post with this title already exists.");
             return View(postInput);
