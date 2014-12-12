@@ -40,7 +40,7 @@ namespace MediumDomainModel
 
         private static bool SlugTaken(IDbConnection connection, string slug)
         {
-            var param = new { Slug = slug };
+            var param = new { slug };
             var record = connection.ExecuteScalar(
                 "SELECT TOP 1 [Slug] FROM [Posts] WHERE [Slug] = @Slug",
                 param);
