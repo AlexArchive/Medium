@@ -57,6 +57,10 @@ namespace Medium.WebModel
         public ActionResult EditPost(PostRequest request)
         {
             var post = requestBus.Send(request);
+            if (post == null)
+            {
+                return HttpNotFound();
+            }
             var postInput = new PostInput
             {
                 Slug = post.Slug,

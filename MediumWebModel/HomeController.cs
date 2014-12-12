@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using MediatR;
 using MediumDomainModel;
 
@@ -20,8 +19,7 @@ namespace Medium.WebModel
             {
                 IncludeDrafts = false
             };
-            var model = requestBus
-                .Send(request);
+            var model = requestBus.Send(request);
             return View(model);
         }
     }
