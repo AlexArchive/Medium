@@ -20,7 +20,7 @@ namespace MediumDomainModel
             using (var connection = SqlConnectionFactory.Create())
             {
                 if (param.OriginalSlug != param.Slug && 
-                    UniqueKeyOccupied(connection, param.Slug))
+                    SlugTaken(connection, param.Slug))
                 {
                     return null;
                 }
@@ -38,8 +38,7 @@ namespace MediumDomainModel
             return param.Slug;
         }
 
-
-        private static bool UniqueKeyOccupied(IDbConnection connection, string slug)
+        private static bool SlugTaken(IDbConnection connection, string slug)
         {
             var param = new { Slug = slug };
             var record = connection.ExecuteScalar(

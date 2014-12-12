@@ -8,22 +8,20 @@ namespace MediumDomainModel
     {
         public string Handle(AddPostCommand command)
         {
+            var param = new
+            {
+                Slug = SlugConverter.Convert(command.Title),
+                command.Title,
+                command.Body,
+                command.Published
+            };
+
             using (var connection = SqlConnectionFactory.Create())
             {
-                var postSlug = SlugConverter.Convert(command.Title);
-
-                if (UniqueKeyOccupied(connection, postSlug))
+                if (SlugTaken(connection, param.Slug))
                 {
                     return null;
                 }
-
-                var param = new
-                {
-                    Slug = SlugConverter.Convert(command.Title),
-                    command.Title,
-                    command.Body,
-                    command.Published
-                };
 
                 connection.Execute(
                     "INSERT INTO [Posts] VALUES (@Slug, @Title, @Body, @Published, GETDATE())",
@@ -33,7 +31,7 @@ namespace MediumDomainModel
             }
         }
 
-        private static bool UniqueKeyOccupied(IDbConnection connection, string slug)
+        private static bool SlugTaken(IDbConnection connection, string slug)
         {
             var param = new { Slug = slug };
             var record = connection.ExecuteScalar(
