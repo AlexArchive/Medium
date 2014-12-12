@@ -61,7 +61,6 @@
   <ItemGroup>
     <Compile Include="AllPostsRequest.cs" />
     <Compile Include="PostRequest.cs" />
-    <Compile Include="Response.cs" />
     <Compile Include="SqlConnectionFactory.cs" />
     <Compile Include="DeletePostCommand.cs" />
     <Compile Include="DeletePostCommandHandler.cs" />

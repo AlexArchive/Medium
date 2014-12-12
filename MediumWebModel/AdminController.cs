@@ -40,14 +40,13 @@ namespace Medium.WebModel
 
             var response = requestBus.Send(addPostCommand);
 
-            if (response.Successful)
+            if (response == null)
             {
-                var postSlug = response.Data;
-                return RedirectToAction("Index", "Post", new { postSlug });
+                ModelState.AddModelError("", "A post with this title already exists.");
+                return View(postInput);
             }
 
-            ModelState.AddModelError("", "A post with this title already exists.");
-            return View(postInput);
+            return RedirectToAction("Index", "Post", new { postSlug = response });
         }
 
         public ActionResult EditPost(string postSlug)

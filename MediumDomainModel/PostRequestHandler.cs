@@ -10,13 +10,11 @@ namespace MediumDomainModel
         {
             using (var connection = SqlConnectionFactory.Create())
             {
-                var param = new {Slug = request.PostSlug};
+                var param = new { Slug = request.PostSlug };
 
-                var post =
-                    connection.Query<PostModel>(
-                        "SELECT * FROM [Posts] WHERE [Slug] = @Slug",
-                        param)
-                        .SingleOrDefault();
+                var post = connection
+                    .Query<PostModel>("SELECT * FROM [Posts] WHERE [Slug] = @Slug", param)
+                    .SingleOrDefault();
 
                 return post;
             }

@@ -1,12 +1,13 @@
 ﻿using System.Data;
+using System.Runtime.InteropServices;
 using Dapper;
 using MediatR;
 
 namespace MediumDomainModel
 {
-    public class AddPostCommandHandler : IRequestHandler<AddPostCommand, Response<string>>
+    public class AddPostCommandHandler : IRequestHandler<AddPostCommand, string>
     {
-        public Response<string> Handle(AddPostCommand command)
+        public string Handle(AddPostCommand command)
         {
             using (var connection = SqlConnectionFactory.Create())
             {
@@ -14,7 +15,7 @@ namespace MediumDomainModel
 
                 if (UniqueKeyOccupied(connection, postSlug))
                 {
-                    return Response<string>.UnsuccessfulResponse;
+                    return null;
                 }
 
                 var param = new
@@ -29,7 +30,7 @@ namespace MediumDomainModel
                     "INSERT INTO [Posts] VALUES (@Slug, @Title, @Body, @Published, GETDATE())",
                     param);
 
-                return new Response<string>() {Data = param.Slug};
+                return param.Slug;
             }
         }
 
