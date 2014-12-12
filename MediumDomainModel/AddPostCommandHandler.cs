@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using Dapper;
 using MediatR;
 
@@ -10,6 +11,7 @@ namespace MediumDomainModel
         {
             var param = new
             {
+                PublishDate = DateTime.Now,
                 Slug = SlugConverter.Convert(command.Title),
                 command.Title,
                 command.Body,
@@ -24,7 +26,7 @@ namespace MediumDomainModel
                 }
 
                 connection.Execute(
-                    "INSERT INTO [Posts] VALUES (@Slug, @Title, @Body, @Published, GETDATE())",
+                    "INSERT INTO [Posts] VALUES (@Slug, @Title, @Body, @Published, @PublishDate)",
                     param);
 
                 return param.Slug;
