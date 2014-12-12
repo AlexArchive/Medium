@@ -10,8 +10,8 @@ namespace MediumDomainModel
         {
             var param = new
             {
-                OriginalSlug = command.Slug,
                 Slug = SlugConverter.Convert(command.Title),
+                command.OriginalSlug,
                 command.Title,
                 command.Body,
                 command.Published

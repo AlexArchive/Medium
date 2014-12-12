@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Dapper;
 using MediatR;
 
@@ -13,7 +14,9 @@ namespace MediumDomainModel
                 var posts = connection.Query<PostModel>(
                     "SELECT * FROM [Posts]");
 
-                return posts;
+                return request.IncludeDrafts 
+                    ? posts 
+                    : posts.Where(post => post.Published);
             }
         }
     }

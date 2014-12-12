@@ -16,10 +16,12 @@ namespace Medium.WebModel
 
         public ActionResult Index()
         {
-            var request = new AllPostsRequest();
+            var request = new AllPostsRequest
+            {
+                IncludeDrafts = false
+            };
             var model = requestBus
-                .Send(request)
-                .Where(post => post.Published);
+                .Send(request);
             return View(model);
         }
     }

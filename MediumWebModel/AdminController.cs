@@ -16,7 +16,11 @@ namespace Medium.WebModel
 
         public ActionResult Index()
         {
-            var posts = requestBus.Send(new AllPostsRequest());
+            var request = new AllPostsRequest
+            {
+                IncludeDrafts = true
+            };
+            var posts = requestBus.Send(request);
             return View(posts);
         }
 
@@ -69,7 +73,7 @@ namespace Medium.WebModel
         {
             var command = new EditPostCommand
             {
-                Slug = postInput.Slug,
+                OriginalSlug = postInput.Slug,
                 Title = postInput.Title,
                 Body = postInput.Body,
                 Published = postInput.Published
