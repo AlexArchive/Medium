@@ -1,10 +1,9 @@
-﻿
+﻿@using Medium.WebModel
+
 @if (ViewData.ModelState.Any(x => x.Value.Errors.Any()))
 {
-    <div class="alert alert-danger" role="alert">
-        <button type="button" class="close" data-dismiss="alert">
-            &times;
-        </button>
+    using (Html.Alert("alert-danger"))
+    {
         @Html.ValidationSummary(false)
-    </div>
+    }
 }

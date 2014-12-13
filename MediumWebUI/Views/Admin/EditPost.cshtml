@@ -1,25 +1,20 @@
-﻿@model Medium.WebModel.PostInput
+﻿@using Medium.WebModel
+@model PostInput
 
-@if (ViewBag.PostUrl != null)
+@if (ViewBag.PostUrl != null) 
 {
-    <div class="alert alert-success alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert">
-            <span aria-hidden="true">&times;</span>
-            <span class="sr-only">Close</span>
-        </button>
-        Your post has been updated <a href="@ViewBag.PostUrl">here</a>.
-    </div>
+    using (Html.Alert("alert-success")) 
+    {
+        <p>Your post has been updated <a href="@ViewBag.PostUrl">here.</a></p>
+    }
 }
 
-@if (TempData["PostUrl"] != null)
+@if (TempData["PostUrl"] != null) 
 {
-    <div class="alert alert-success alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert">
-            <span aria-hidden="true">&times;</span>
-            <span class="sr-only">Close</span>
-        </button>
-        Your post has been published <a href="@TempData["PostUrl"]">here</a>.
-    </div>
+    using (Html.Alert("alert-success"))
+    {
+        <p>Your post has been published <a href="@TempData["PostUrl"]">here.</a></p>
+    }
 }
 
 @Html.Partial("_ValidationSummary")
