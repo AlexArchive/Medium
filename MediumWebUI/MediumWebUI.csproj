@@ -132,6 +132,7 @@
     <Content Include="Content\Medium.css.map">
       <DependentUpon>Medium.css</DependentUpon>
     </Content>
+    <Content Include="Views\Shared\_ValidationSummary.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
