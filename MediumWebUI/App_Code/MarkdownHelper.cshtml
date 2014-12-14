@@ -1,0 +1,8 @@
+﻿@using MarkdownSharp
+
+@helper Transform(string text, System.Web.Mvc.HtmlHelper Html)
+{
+    var options = new MarkdownOptions { AutoHyperlink = true };
+    var markdown = new Markdown(options);
+    @Html.Raw(markdown.Transform(text));
+}

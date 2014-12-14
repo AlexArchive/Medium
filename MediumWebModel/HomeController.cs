@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using MarkdownSharp;
 using MediatR;
 using Medium.DomainModel;
 
@@ -18,14 +17,6 @@ namespace Medium.WebModel
         {
             var request = new AllPostsRequest { IncludeDrafts = false };
             var posts = bus.Send(request);
-            
-            var options = new MarkdownOptions { AutoHyperlink = true };
-            var markdown = new Markdown(options);
-            foreach (var post in posts)
-            {
-                post.Body = markdown.Transform(post.Body);
-            }
-
             return View(posts);
         }
     }

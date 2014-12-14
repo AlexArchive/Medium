@@ -1,4 +1,4 @@
-﻿@model Medium.DomainModel.PostModel
+﻿@model PostModel
 
 @{
     ViewBag.Title = Model.Title;
@@ -9,7 +9,7 @@
 </div>
 <div class="row">
     <div class="col-lg-8 col-md-8">
-        @Html.Raw(Model.Body)
+        @MarkdownHelper.Transform(Model.Body, Html)
     </div>
     <div class="col-lg-4 col-md-4">
         <h4>Published</h4>

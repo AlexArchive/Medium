@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using MarkdownSharp;
 using MediatR;
 using Medium.DomainModel;
 
@@ -21,12 +20,6 @@ namespace Medium.WebModel
             {
                 return HttpNotFound();
             }
-
-            var options = new MarkdownOptions { AutoHyperlink = true };
-            var markdown = new Markdown(options);
-
-            model.Body = markdown.Transform(model.Body);
-            
             return View(model);
         }
     }
