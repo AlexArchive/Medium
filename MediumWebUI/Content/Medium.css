@@ -31,4 +31,11 @@
   .validation-summary-errors > ul > li {
     list-style: none; }
 
+textarea {
+  min-height: 400px; }
+
+.wmd-preview {
+  border: 1px #222 dashed;
+  padding: 10px; }
+
 /*# sourceMappingURL=medium.css.map */

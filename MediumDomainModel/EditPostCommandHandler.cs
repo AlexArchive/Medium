@@ -19,8 +19,7 @@ namespace Medium.DomainModel
 
             using (var connection = SqlConnectionFactory.Create())
             {
-                var condition = param.OriginalSlug != param.Slug;
-                if (condition && 
+                if (param.OriginalSlug != param.Slug && 
                     SlugTaken(connection, param.Slug))
                 {
                     return null;
