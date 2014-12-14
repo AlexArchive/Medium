@@ -2,7 +2,7 @@
 
 @if (ViewData.ModelState.Any(x => x.Value.Errors.Any()))
 {
-    using (Html.Alert("alert-danger"))
+    using (Html.Alert(AlertCriticalness.Danger))
     {
         @Html.ValidationSummary(false)
     }

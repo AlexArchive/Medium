@@ -11,7 +11,7 @@
 
 @if (TempData["Message"] != null)
 {
-    using (Html.Alert("alert-success"))
+    using (Html.Alert(AlertCriticalness.Success))
     {
         @TempData["Message"]
     }

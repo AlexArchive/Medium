@@ -6,11 +6,11 @@ namespace Medium.WebModel
 {
     public static class TwitterBootstrapMvc
     {
-        public static IDisposable Alert(this HtmlHelper helper, string criticalness)
+        public static IDisposable Alert(this HtmlHelper helper, AlertCriticalness criticalness)
         {
             var element = new TagBuilder("div");
             element.AddCssClass("alert");
-            element.AddCssClass(criticalness);
+            element.AddCssClass(criticalness.ToString());
             element.Attributes.Add("role", "alert");
 
             helper.ViewContext
@@ -41,6 +41,24 @@ namespace Medium.WebModel
         public void Dispose()
         {
             writer.Write("</div>");
+        }
+    }
+
+    public sealed class AlertCriticalness
+    {
+        public static readonly AlertCriticalness Success = new AlertCriticalness("alert-success");
+        public static readonly AlertCriticalness Danger = new AlertCriticalness("alert-danger");
+
+        private readonly string criticalness;
+
+        private AlertCriticalness(string criticalness)
+        {
+            this.criticalness = criticalness;
+        }
+
+        public override String ToString()
+        {
+            return criticalness;
         }
     }
 }
