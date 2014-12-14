@@ -16,13 +16,14 @@ namespace Medium.WebModel
         public ActionResult Login(CredentialsModel credentials)
         {
             authenticator.Authenticate(credentials.Username, credentials.Password);
+
             if (authenticator.AuthenticationSuccessful)
             {
                 return RedirectToAction("Index", "Admin");
             }
-            ModelState.AddModelError(
-                "",
-                "The username and password you entered did not match our records.");
+
+            ModelState.AddModelError("", "The username and password you entered did not match our records.");
+            
             return View(credentials);
         }
 

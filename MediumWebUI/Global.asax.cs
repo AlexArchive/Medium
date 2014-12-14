@@ -1,7 +1,6 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Castle.Windsor;
 using Medium.WebUI.CompositionRoot;
 
 namespace Medium.WebUI
@@ -10,14 +9,22 @@ namespace Medium.WebUI
     {
         protected void Application_Start()
         {
-            AreaRegistration.RegisterAllAreas();
+            InstallWindsor();
+            ConfigureRoutes();
+        }
+
+        private void InstallWindsor()
+        {
+            ControllerBuilder.Current
+                .SetControllerFactory(new WindsorCompositionRoot(new WindsorInstaller().Install()));
+        }
+
+        private void ConfigureRoutes()
+        {
             RouteTable.Routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{postSlug}",
                 defaults: new { controller = "Home", action = "Index", postSlug = UrlParameter.Optional });
-
-            IWindsorContainer container = new WindsorInstaller().Install();
-            ControllerBuilder.Current.SetControllerFactory(new WindsorCompositionRoot(container));
         }
     }
 }

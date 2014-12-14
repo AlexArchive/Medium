@@ -19,7 +19,8 @@ namespace MediumDomainModel
 
             using (var connection = SqlConnectionFactory.Create())
             {
-                if (param.OriginalSlug != param.Slug && 
+                var condition = param.OriginalSlug != param.Slug;
+                if (condition && 
                     SlugTaken(connection, param.Slug))
                 {
                     return null;
@@ -44,7 +45,6 @@ namespace MediumDomainModel
             var record = connection.ExecuteScalar(
                 "SELECT TOP 1 [Slug] FROM [Posts] WHERE [Slug] = @Slug",
                 param);
-
             return record != null;
         }
     }

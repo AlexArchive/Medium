@@ -6,17 +6,17 @@ namespace Medium.WebModel
 {
     public class HomeController : Controller
     {
-        private readonly IMediator requestBus;
+        private readonly IMediator bus;
 
-        public HomeController(IMediator requestBus)
+        public HomeController(IMediator bus)
         {
-            this.requestBus = requestBus;
+            this.bus = bus;
         }
 
         public ActionResult Index()
         {
-            var request = new AllPostsRequest(includeDrafts: false);
-            var model = requestBus.Send(request);
+            var request = new AllPostsRequest { IncludeDrafts = false };
+            var model = bus.Send(request);
             return View(model);
         }
     }

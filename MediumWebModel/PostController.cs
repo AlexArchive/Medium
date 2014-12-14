@@ -6,16 +6,16 @@ namespace Medium.WebModel
 {
     public class PostController : Controller
     {
-        private readonly IMediator requestBus;
+        private readonly IMediator bus;
 
-        public PostController(IMediator requestBus)
+        public PostController(IMediator bus)
         {
-            this.requestBus = requestBus;
+            this.bus = bus;
         }
 
         public ActionResult Index(PostRequest request)
         {
-            var model = requestBus.Send(request);
+            var model = bus.Send(request);
             if (model == null)
             {
                 return HttpNotFound();
