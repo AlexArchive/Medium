@@ -12,6 +12,7 @@ namespace Medium.WebModel
         public string Title { get; set; }
 
         [Required]
+        [AllowHtml]
         [DataType(DataType.MultilineText)]
         public string Body { get; set; }
 

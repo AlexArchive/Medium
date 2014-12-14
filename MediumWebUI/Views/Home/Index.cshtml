@@ -18,7 +18,7 @@
                 <h2>@Html.ActionLink(post.Title, "Index", "Post", new { postSlug = post.Slug }, new { })</h2>
                 <p class="date">@post.PublishedAt.ToString("f", new CultureInfo("en-US"))</p>
                 <div>
-                    @post.Body
+                    @Html.Raw(post.Body)
                 </div>
             </article>
             <hr />
