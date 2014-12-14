@@ -7,8 +7,8 @@
     <ProjectGuid>{66BB6773-4639-4F26-A113-B79913E87240}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MediumDomainModel</RootNamespace>
-    <AssemblyName>MediumDomainModel</AssemblyName>
+    <RootNamespace>Medium.DomainModel</RootNamespace>
+    <AssemblyName>Medium.DomainModel</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

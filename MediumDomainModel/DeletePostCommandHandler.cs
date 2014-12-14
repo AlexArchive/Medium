@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using MediatR;
 
-namespace MediumDomainModel
+namespace Medium.DomainModel
 {
     public class DeletePostCommandHandler : IRequestHandler<DeletePostCommand, Unit>
     {

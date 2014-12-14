@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MediumDomainModel
+namespace Medium.DomainModel
 {
     public class PostModel
     {

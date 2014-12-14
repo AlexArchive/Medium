@@ -3,8 +3,8 @@ using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using CommonServiceLocator.WindsorAdapter.Unofficial;
 using MediatR;
+using Medium.DomainModel;
 using Medium.WebModel;
-using MediumDomainModel;
 using Microsoft.Practices.ServiceLocation;
 
 namespace Medium.WebUI.CompositionRoot

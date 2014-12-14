@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace MediumDomainModel
+namespace Medium.DomainModel
 {
     public class DeletePostCommand : IRequest
     {

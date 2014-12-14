@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using MediatR;
 
-namespace MediumDomainModel
+namespace Medium.DomainModel
 {
     public class AllPostsRequest : IRequest<IEnumerable<PostModel>>
     {

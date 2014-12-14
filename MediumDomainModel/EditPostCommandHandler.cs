@@ -2,7 +2,7 @@
 using Dapper;
 using MediatR;
 
-namespace MediumDomainModel
+namespace Medium.DomainModel
 {
     public class EditPostCommandHandler : IRequestHandler<EditPostCommand, string>
     {

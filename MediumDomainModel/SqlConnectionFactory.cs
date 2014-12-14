@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 using System.Data.SqlClient;
 
-namespace MediumDomainModel
+namespace Medium.DomainModel
 {
     public class SqlConnectionFactory
     {

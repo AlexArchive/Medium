@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace MediumDomainModel
+namespace Medium.DomainModel
 {
     public static class SlugConverter
     {

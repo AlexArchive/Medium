@@ -3,7 +3,7 @@ using System.Linq;
 using Dapper;
 using MediatR;
 
-namespace MediumDomainModel
+namespace Medium.DomainModel
 {
     public class AllPostsRequestHandler 
         : IRequestHandler<AllPostsRequest, IEnumerable<PostModel>>
