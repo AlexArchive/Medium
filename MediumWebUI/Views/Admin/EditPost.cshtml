@@ -1,19 +1,12 @@
 ﻿@using Medium.WebModel
 @model PostInput
 
-@if (ViewBag.PostUrl != null) 
-{
-    using (Html.Alert("alert-success")) 
-    {
-        <p>Your post has been updated <a href="@ViewBag.PostUrl">here.</a></p>
-    }
-}
-
-@if (TempData["PostUrl"] != null) 
+@if (TempData["alertVerb"] != null)
 {
     using (Html.Alert("alert-success"))
     {
-        <p>Your post has been published <a href="@TempData["PostUrl"]">here.</a></p>
+        var verb = @TempData["alertVerb"];
+        <p>Your post has been @verb @Html.ActionLink("here", "Index", "Post", new { postSlug = Model.Slug }, null).</p>
     }
 }
 

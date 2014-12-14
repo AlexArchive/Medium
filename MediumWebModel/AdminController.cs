@@ -44,8 +44,7 @@ namespace Medium.WebModel
             var postSlug = requestBus.Send(command);
             if (postSlug != null)
             {
-                var helper = new UrlHelper(ControllerContext.RequestContext);
-                TempData["PostUrl"] = helper.Action("Index", "Post", new { postSlug });
+                TempData["alertVerb"] = "published";
                 return RedirectToAction("EditPost", new { postSlug });
             }
             ModelState.AddModelError("", "A post with this title already exists.");
@@ -72,9 +71,8 @@ namespace Medium.WebModel
             var updatedSlug = requestBus.Send(command);
             if (updatedSlug != null)
             {
-                var helper = new UrlHelper(ControllerContext.RequestContext);
-                ViewBag.PostUrl = helper.Action("Index", "Post", new { postSlug = updatedSlug });
-                return View(postInput);
+                TempData["alertVerb"] = "updated";
+                return RedirectToAction("EditPost", new { postSlug = updatedSlug });
             }
             ModelState.AddModelError("", "A post with this title already exists.");
             return View(postInput);
