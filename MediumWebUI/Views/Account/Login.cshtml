@@ -1,11 +1,17 @@
 ﻿@model CredentialsModel
 
-<h1>Please Login</h1>
-
-@Html.ValidationSummary(true)
-
-@using (Html.BeginForm())
-{
-    @Html.EditorForModel()
-    <input type="submit"/>
-}
+@Html.Partial("_ValidationSummary")
+<div class="narrow-form-wrap">
+    @using (Html.BeginForm())
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.Username)
+            @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password)
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        </div>
+        <input type="submit" class="btn btn-primary" />
+    }
+</div>

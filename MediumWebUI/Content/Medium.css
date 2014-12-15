@@ -38,4 +38,7 @@ textarea {
   border: 1px #222 dashed;
   padding: 10px; }
 
+.narrow-form-wrap {
+  max-width: 400px; }
+
 /*# sourceMappingURL=medium.css.map */

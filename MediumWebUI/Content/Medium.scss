@@ -33,9 +33,10 @@
 
 .validation-summary-errors {
     > ul {
-        margin-bottom:0;
+        margin-bottom: 0;
         padding-left: 0;
-         > li {
+
+        > li {
             list-style: none;
         }
     }
@@ -48,4 +49,8 @@ textarea {
 .wmd-preview {
     border: 1px #222 dashed;
     padding: 10px;
+}
+
+.narrow-form-wrap {
+    max-width: 400px;
 }
