@@ -1,8 +1,8 @@
 ﻿@model PostInput
+@Html.Partial("_ValidationSummary")
 
 <div class="row">
     <div class="col-md-6">
-        @Html.Partial("_ValidationSummary")
         @using (Html.BeginForm())
         {
             <div class="form-group">
