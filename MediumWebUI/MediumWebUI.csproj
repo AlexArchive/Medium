@@ -138,6 +138,7 @@
     </Content>
     <Content Include="Views\Shared\_ValidationSummary.cshtml" />
     <Content Include="App_Code\MarkdownHelper.cshtml" />
+    <Content Include="Views\Shared\_PostInputForm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

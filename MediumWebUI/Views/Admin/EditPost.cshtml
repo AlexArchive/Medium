@@ -8,22 +8,5 @@
         <p>Your post has been @verb @Html.ActionLink("here", "Index", "Post", new { postSlug = Model.Slug }, null).</p>
     }
 }
-@Html.Partial("_ValidationSummary")
-<div class="row">
-    <div class="col-md-6">
-        @using (Html.BeginForm())
-        {
-            @Html.HiddenFor(post => post.Slug)
-            <div class="form-group">
-                @Html.TextBoxFor(post => post.Title, new { @class = "form-control", placeholder = "Title" })
-            </div>
-            <div class="form-group">
-                @Html.TextAreaFor(m => m.Body, new { id = "wmd-input", @class = "form-control ", placeholder = "Content" })
-            </div>
-            <input type="submit" class="btn btn-primary" />
-        }
-    </div>
-    <div class="col-md-6">
-        <div id="wmd-preview" class="wmd-preview"></div>
-    </div>
-</div>
+
+@Html.Partial("_PostInputForm", Model)
