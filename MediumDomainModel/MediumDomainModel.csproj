@@ -59,7 +59,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AllPostsRequest.cs" />
     <Compile Include="PostPage.cs" />
     <Compile Include="PostPageRequest.cs" />
     <Compile Include="PostPageRequestHandler.cs" />
@@ -73,7 +72,6 @@
     <Compile Include="AddPostCommandHandler.cs" />
     <Compile Include="PostRequestHandler.cs" />
     <Compile Include="PostModel.cs" />
-    <Compile Include="AllPostsRequestHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SlugConverter.cs" />
   </ItemGroup>
