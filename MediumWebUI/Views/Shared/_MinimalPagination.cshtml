@@ -7,32 +7,39 @@
         @if (Model.HasPreviousPage)
         {
             <li>
-                @Html.ActionLink(HttpUtility.HtmlDecode("&laquo;"), "Index", new { pageNumber = Model.PageNumber - 1 })
+                @Html.ActionLink(
+                    HttpUtility.HtmlDecode("&laquo;"),
+                    "Index",
+                    new { pageNumber = Model.PageNumber - 1 })
             </li>
         }
         else
         {
             <li class="disabled">
-                <a>«</a>
+                <a>&laquo;</a>
             </li>
         }
 
         <li>
-            <a>Page @Model.PageNumber of @Model.TotalPageCount.</a>
+            <a>
+                Page @Model.PageNumber of @Model.TotalPageCount.
+            </a>
         </li>
 
         @if (Model.HasNextPage)
         {
             <li>
-                @Html.ActionLink(HttpUtility.HtmlDecode("&raquo;"), "Index", new { pageNumber = Model.PageNumber + 1 })
+                @Html.ActionLink(
+                    HttpUtility.HtmlDecode("&raquo;"),
+                    "Index",
+                    new { pageNumber = Model.PageNumber + 1 })
             </li>
         }
         else
         {
             <li class="disabled">
-                <a>»</a>
+                <a>&raquo;</a>
             </li>
         }
-
     </ul>
 }

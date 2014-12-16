@@ -1,51 +1,57 @@
-﻿
-@if (Model.TotalPageCount > 1)
+﻿@if (Model.TotalPageCount > 1)
 {
-    <nav>
-        <ul class="pagination">
+    <ul class="pagination">
 
-            @if (Model.HasPreviousPage)
+        @if (Model.HasPreviousPage)
+        {
+            <li>
+                @Html.ActionLink(
+                    HttpUtility.HtmlDecode("&laquo;"),
+                    "Index",
+                    new { pageNumber = Model.PageNumber - 1 })
+            </li>
+        }
+        else
+        {
+            <li class="disabled">
+                <a>&laquo;</a>
+            </li>
+        }
+
+
+        @for (var pageNo = 1; pageNo <= Model.TotalPageCount; pageNo += 1)
+        {
+            if (Model.PageNumber == pageNo)
             {
-                <li>
-                    @Html.ActionLink(HttpUtility.HtmlDecode("&laquo;"), "Index", new { pageNumber = Model.PageNumber - 1 })
+                <li class="active">
+                    @Html.ActionLink(
+                        pageNo.ToString(),
+                        "Index",
+                        new { pageNumber = pageNo })
                 </li>
             }
             else
             {
-                <li class="disabled">
-                    <a>«</a>
-                </li>
-            }
-
-            @for (var page = 1; page <= Model.TotalPageCount; page++)
-            {
-                if (Model.PageNumber == page)
-                {
-                    <li class="active">
-                        @Html.ActionLink(page.ToString(), "Index", new { pageNumber = page })
-                    </li>
-                }
-                else
-                {
-                    <li>
-                        @Html.ActionLink(page.ToString(), "Index", new { pageNumber = page })
-                    </li>
-                }
-            }
-
-            @if (Model.HasNextPage)
-            {
                 <li>
-                    @Html.ActionLink(HttpUtility.HtmlDecode("&raquo;"), "Index", new { pageNumber = Model.PageNumber + 1 })
+                    @Html.ActionLink(pageNo.ToString(), "Index", new { pageNumber = pageNo })
                 </li>
             }
-            else
-            {
-                <li class="disabled">
-                    <a>»</a>
-                </li>
-            }
-        </ul>
+        }
 
-    </nav>
+        @if (Model.HasNextPage)
+        {
+            <li>
+                @Html.ActionLink(
+                    HttpUtility.HtmlDecode("&raquo;"),
+                    "Index",
+                    new { pageNumber = Model.PageNumber + 1 })
+            </li>
+        }
+        else
+        {
+            <li class="disabled">
+                <a>&raquo;</a>
+            </li>
+        }
+    </ul>
 }
