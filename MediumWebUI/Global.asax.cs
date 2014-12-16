@@ -22,6 +22,11 @@ namespace Medium.WebUI
         private void ConfigureRoutes()
         {
             RouteTable.Routes.MapRoute(
+                name: "Pagination",
+                url: "{controller}/{action}/{pageNumber}",
+                defaults: new { controller = "Home", action = "Index", pageNumber = UrlParameter.Optional });
+
+            RouteTable.Routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{postSlug}",
                 defaults: new { controller = "Home", action = "Index", postSlug = UrlParameter.Optional });

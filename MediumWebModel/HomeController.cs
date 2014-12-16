@@ -13,11 +13,11 @@ namespace Medium.WebModel
             this.bus = bus;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int pageNumber = 1)
         {
-            var request = new AllPostsRequest { IncludeDrafts = false };
-            var posts = bus.Send(request);
-            return View(posts);
+            var postPageRequest = new PostPageRequest(pageNumber, postsPerPage: 2);
+            var postPage = bus.Send(postPageRequest);
+            return View(postPage);
         }
     }
 }
