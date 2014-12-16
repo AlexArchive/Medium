@@ -140,6 +140,7 @@
     <Content Include="App_Code\MarkdownHelper.cshtml" />
     <Content Include="Views\Shared\_PostInputForm.cshtml" />
     <Content Include="Views\Shared\_MinimalPagination.cshtml" />
+    <Content Include="Views\Shared\_ClassicPagination.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

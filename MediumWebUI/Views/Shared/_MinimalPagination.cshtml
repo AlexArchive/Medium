@@ -7,7 +7,7 @@
         @if (Model.HasPreviousPage)
         {
             <li>
-                @Html.ActionLink("«", "Index", "Home", new {pageNumber = Model.PageNumber - 1}, new {})
+                @Html.ActionLink("«", "Index", new { pageNumber = Model.PageNumber - 1 })
             </li>
         }
         else
@@ -24,7 +24,7 @@
         @if (Model.HasNextPage)
         {
             <li>
-                @Html.ActionLink("»", "Index", "Home", new {pageNumber = Model.PageNumber + 1}, new {})
+                @Html.ActionLink("»", "Index", new { pageNumber = Model.PageNumber + 1 })
             </li>
         }
         else

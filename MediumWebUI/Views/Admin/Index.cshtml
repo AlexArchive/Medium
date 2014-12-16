@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Medium.DomainModel.PostModel>
+﻿@model PostPage
 
 <header class="page-header">
     <ul class="nav nav-pills pull-right">
@@ -41,3 +41,5 @@
         }
     </tbody>
 </table>
+
+@Html.Partial("_ClassicPagination")

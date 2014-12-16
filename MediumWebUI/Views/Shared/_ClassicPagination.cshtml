@@ -1,0 +1,51 @@
+﻿
+@if (Model.TotalPageCount > 1)
+{
+    <nav>
+        <ul class="pagination">
+
+            @if (Model.HasPreviousPage)
+            {
+                <li>
+                    @Html.ActionLink("«", "Index", new { pageNumber = Model.PageNumber - 1 })
+                </li>
+            }
+            else
+            {
+                <li class="disabled">
+                    <a>«</a>
+                </li>
+            }
+
+            @for (var page = 1; page <= Model.TotalPageCount; page++)
+            {
+                if (Model.PageNumber == page)
+                {
+                    <li class="active">
+                        @Html.ActionLink(page.ToString(), "Index", new { pageNumber = page })
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        @Html.ActionLink(page.ToString(), "Index", new { pageNumber = page })
+                    </li>
+                }
+            }
+
+            @if (Model.HasNextPage)
+            {
+                <li>
+                    @Html.ActionLink("»", "Index", new { pageNumber = Model.PageNumber + 1 })
+                </li>
+            }
+            else
+            {
+                <li class="disabled">
+                    <a>»</a>
+                </li>
+            }
+        </ul>
+
+    </nav>
+}

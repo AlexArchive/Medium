@@ -14,9 +14,9 @@ namespace Medium.WebModel
             this.bus = bus;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int pageNumber = 1)
         {
-            var request = new AllPostsRequest { IncludeDrafts = true };
+            var request = new PostPageRequest(pageNumber, postsPerPage: 10);
             var posts = bus.Send(request);
             return View(posts);
         }
