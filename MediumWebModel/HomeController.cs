@@ -15,7 +15,7 @@ namespace Medium.WebModel
 
         public ActionResult Index(int pageNumber = 1)
         {
-            var postPageRequest = new PostPageRequest(pageNumber, postsPerPage: 2);
+            var postPageRequest = new PostPageRequest(pageNumber, postsPerPage: 5);
             var postPage = bus.Send(postPageRequest);
             return View(postPage);
         }

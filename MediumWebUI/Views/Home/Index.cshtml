@@ -31,16 +31,4 @@
     </aside>
 </div>
 
-@if (Model.TotalPageCount > 1)
-{
-    if (Model.HasNextPage)
-    {
-        @Html.ActionLink("Older", "Index", "Home", new { pageNumber = Model.PageNumber + 1 }, new { })
-    }
-
-    if (Model.HasPreviousPage)
-    {
-        @Html.ActionLink("Newer", "Index", "Home", new { pageNumber = Model.PageNumber - 1 }, new { })
-    }
-    <p>Page @Model.PageNumber of @Model.TotalPageCount</p>
-}
+@Html.Partial("_MinimalPagination")

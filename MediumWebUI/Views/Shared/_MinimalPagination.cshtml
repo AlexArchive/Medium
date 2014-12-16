@@ -1,0 +1,38 @@
+﻿@model PostPage
+
+@if (Model.TotalPageCount > 1)
+{
+    <ul class="pagination">
+
+        @if (Model.HasPreviousPage)
+        {
+            <li>
+                @Html.ActionLink("«", "Index", "Home", new {pageNumber = Model.PageNumber - 1}, new {})
+            </li>
+        }
+        else
+        {
+            <li class="disabled">
+                <a>«</a>
+            </li>
+        }
+
+        <li>
+            <a>Page @Model.PageNumber of @Model.TotalPageCount.</a>
+        </li>
+
+        @if (Model.HasNextPage)
+        {
+            <li>
+                @Html.ActionLink("»", "Index", "Home", new {pageNumber = Model.PageNumber + 1}, new {})
+            </li>
+        }
+        else
+        {
+            <li class="disabled">
+                <a>»</a>
+            </li>
+        }
+
+    </ul>
+}
