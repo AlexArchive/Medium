@@ -7,13 +7,13 @@ namespace Medium.WebModel
     {
         public bool AuthenticationSuccessful { get; private set; }
 
-        public void Authenticate(string username, string password)
+        public void Authenticate(string username, string password, bool rememberMe)
         {
             AuthenticationSuccessful =
                 FormsAuthentication.Authenticate(username, password);
             if (AuthenticationSuccessful)
             {
-                FormsAuthentication.SetAuthCookie(username, true);
+                FormsAuthentication.SetAuthCookie(username, rememberMe);
             }
         }
 

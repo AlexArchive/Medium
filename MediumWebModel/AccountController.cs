@@ -15,7 +15,10 @@ namespace Medium.WebModel
         [ValidateModel]
         public ActionResult Login(CredentialsModel credentials)
         {
-            authenticator.Authenticate(credentials.Username, credentials.Password);
+            authenticator.Authenticate(
+                credentials.Username, 
+                credentials.Password,
+                credentials.RememberMe);
 
             if (authenticator.AuthenticationSuccessful)
             {
