@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using System.Linq;
+using Dapper;
 using MediatR;
 
 namespace Medium.DomainModel
@@ -9,10 +10,13 @@ namespace Medium.DomainModel
         {
             using (var connection = SqlConnectionFactory.Create())
             {
-                var posts = connection.Query<PostModel>(
-                    "SELECT * FROM [Posts] WHERE [Published] = 1");
-                return posts.ToPostPage(
-                    request.PageNumber, request.PostsPerPage);
+                var posts = connection.Query<PostModel>("SELECT * FROM [Posts]");
+
+                posts = request.IncludeDrafts
+                    ? posts
+                    : posts.Where(post => post.Published);
+
+                return posts.ToPostPage(request.PageNumber, request.PostsPerPage);
             }
         }
     }

@@ -16,9 +16,13 @@ namespace Medium.WebModel
 
         public ActionResult Index(int pageNumber = 1)
         {
-            var request = new PostPageRequest(pageNumber, postsPerPage: 10);
-            var posts = bus.Send(request);
-            return View(posts);
+            var request = new PostPageRequest(
+                pageNumber,
+                postsPerPage: 10,
+                includeDrafts: true);
+
+            var page = bus.Send(request);
+            return View(page);
         }
 
         public ActionResult AddPost()
@@ -37,7 +41,7 @@ namespace Medium.WebModel
             {
                 TempData["alertVerb"] = "published";
 
-                return RedirectToAction("EditPost", 
+                return RedirectToAction("EditPost",
                     new { postSlug = commandResponse });
             }
 
@@ -70,7 +74,7 @@ namespace Medium.WebModel
             {
                 TempData["alertVerb"] = "updated";
 
-                return RedirectToAction("EditPost", 
+                return RedirectToAction("EditPost",
                     new { postSlug = updatedSlug });
             }
 
