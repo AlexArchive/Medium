@@ -10,7 +10,8 @@ namespace Medium.DomainModel
         {
             using (var connection = SqlConnectionFactory.Create())
             {
-                var posts = connection.Query<PostModel>("SELECT * FROM [Posts]");
+                var posts = connection.Query<PostModel>(
+                    "SELECT * FROM [Posts] ORDER BY [PublishedAt] DESC");
 
                 posts = request.IncludeDrafts
                     ? posts
