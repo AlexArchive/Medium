@@ -5,6 +5,7 @@
     <div class="col-md-6">
         @using (Html.BeginForm())
         {
+            @Html.AntiForgeryToken()
             @Html.HiddenFor(post => post.Slug)
             <div class="form-group">
                 @Html.TextBoxFor(post => post.Title, new { @class = "form-control", placeholder = "Title" })

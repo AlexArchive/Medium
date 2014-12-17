@@ -34,6 +34,7 @@ namespace Medium.WebModel
 
         [HttpPost]
         [ValidateModel]
+        [ValidateAntiForgeryToken]
         public ActionResult AddPost(PostInput postInput)
         {
             var command = postInput.MapTo<AddPostCommand>();
@@ -66,6 +67,7 @@ namespace Medium.WebModel
 
         [HttpPost]
         [ValidateModel]
+        [ValidateAntiForgeryToken]
         public ActionResult EditPost(PostInput postInput)
         {
             var command = postInput.MapTo<EditPostCommand>();
