@@ -86,8 +86,19 @@ namespace Medium.WebModel
 
         public ActionResult DeletePost(DeletePostCommand command)
         {
-            bus.Send(command);
-            TempData["Message"] = "Your post has been deleted.";
+            var deleted = bus.Send(command);
+
+            if (deleted)
+            {
+                TempData["Criticalness"] = AlertCriticalness.Success;
+                TempData["Message"] = "Your post has been deleted.";
+            }
+            else
+            {
+                TempData["Criticalness"] = AlertCriticalness.Danger;
+                TempData["Message"] = "The post you tried to delete does not exist.";
+            }
+
             return RedirectToAction("Index");
         }
     }

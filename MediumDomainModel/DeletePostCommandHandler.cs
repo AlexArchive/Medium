@@ -3,17 +3,17 @@ using MediatR;
 
 namespace Medium.DomainModel
 {
-    public class DeletePostCommandHandler : IRequestHandler<DeletePostCommand, Unit>
+    public class DeletePostCommandHandler : IRequestHandler<DeletePostCommand, bool>
     {
-        public Unit Handle(DeletePostCommand command)
+        public bool Handle(DeletePostCommand command)
         {
             using (var connection = SqlConnectionFactory.Create())
             {
                 var param = new { Slug = command.PostSlug };
 
-                connection.Execute("DELETE FROM [Posts] WHERE [Slug] = @Slug", param);
+                var deletedPosts = connection.Execute("DELETE FROM [Posts] WHERE [Slug] = @Slug", param);
 
-                return Unit.Value;
+                return deletedPosts == 1;
             }
         }
     }
