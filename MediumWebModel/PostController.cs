@@ -15,12 +15,12 @@ namespace Medium.WebModel
 
         public ActionResult Index(PostRequest request)
         {
-            var model = bus.Send(request);
-            if (model == null)
+            var postModel = bus.Send(request);
+            if (postModel == null || postModel.Published == false)
             {
                 return HttpNotFound();
             }
-            return View(model);
+            return View(postModel);
         }
     }
 }
