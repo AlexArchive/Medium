@@ -15,10 +15,12 @@ namespace Medium.WebModel
 
         public ActionResult Index(int pageNumber = 1)
         {
-            var request = new PostPageRequest(
-                pageNumber,
-                postsPerPage: 5,
-                includeDrafts: false);
+            var request = new PostPageRequest
+            {
+                IncludeDrafts = false,
+                PageNumber = pageNumber,
+                PostsPerPage = 5
+            };
 
             var page = bus.Send(request);
             return View(page);
