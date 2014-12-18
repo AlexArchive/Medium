@@ -25,7 +25,7 @@ namespace Medium.WebModel
 
             var page = bus.Send(request);
 
-            if (page.Any())
+            if (page.Any() || pageNumber == 1 || page.TotalPageCount == 0)
             {
                 return View(page);
             }
