@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Medium.DomainModel
 {
@@ -9,5 +10,6 @@ namespace Medium.DomainModel
         public string Body { get; set; }
         public bool Published { get; set; }
         public DateTime PublishedAt { get; set; }
+        public IEnumerable<string> Tags { get; set; }
     }
 }

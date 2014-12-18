@@ -16,6 +16,9 @@ namespace Medium.DomainModel
                     .Query<PostModel>("SELECT * FROM [Posts] WHERE [Slug] = @Slug", param)
                     .SingleOrDefault();
 
+                post.Tags = connection
+                    .Query<string>("SELECT [TagName] FROM [Junction] WHERE [PostSlug] = @Slug", param);
+
                 return post;
             }
         }

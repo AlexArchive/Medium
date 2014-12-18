@@ -11,7 +11,11 @@ namespace Medium.DomainModel
             {
                 var param = new { Slug = command.PostSlug };
 
-                var deletedPosts = connection.Execute("DELETE FROM [Posts] WHERE [Slug] = @Slug", param);
+                connection
+                    .Execute("DELETE FROM [Junction] WHERE [PostSlug] = @Slug", param);
+
+                var deletedPosts = connection
+                    .Execute("DELETE FROM [Posts] WHERE [Slug] = @Slug", param);
 
                 return deletedPosts == 1;
             }

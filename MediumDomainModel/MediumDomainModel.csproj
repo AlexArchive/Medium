@@ -74,6 +74,7 @@
     <Compile Include="PostModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SlugConverter.cs" />
+    <Compile Include="TagConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

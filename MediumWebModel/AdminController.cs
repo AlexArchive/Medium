@@ -61,7 +61,14 @@ namespace Medium.WebModel
                 return HttpNotFound();
             }
 
-            var postInput = post.MapTo<PostInput>();
+            var postInput = new PostInput
+            {
+                Slug = post.Slug,
+                Title = post.Title,
+                Body = post.Body,
+                Published = post.Published,
+                Tags = TagConverter.Convert(post.Tags)
+            };
             return View(postInput);
         }
 
