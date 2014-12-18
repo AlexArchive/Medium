@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using MediatR;
 using Medium.DomainModel;
 
@@ -24,7 +25,15 @@ namespace Medium.WebModel
             };
 
             var page = bus.Send(request);
-            return View(page);
+
+            if (page.Any() || pageNumber == 1 || page.TotalPageCount == 0)
+            {
+                return View(page);
+            }
+            else
+            {
+                return RedirectToAction("Index", new { pageNumber = page.TotalPageCount });
+            }
         }
 
         public ActionResult AddPost()
