@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System.Collections.Generic;
+using System.Data;
 using Dapper;
 using MediatR;
 
@@ -19,6 +20,20 @@ namespace Medium.DomainModel
 
             using (var connection = SqlConnectionFactory.Create())
             {
+                connection.Execute("DELETE FROM [Junction] WHERE [PostSlug] = @OriginalSlug", param);
+
+                IEnumerable<string> tags = TagConverter.Convert(command.Tags);
+                foreach (var tag in tags)
+                {
+                    if (!TagExists(connection, tag))
+                    {
+                        connection.Execute(
+                            "INSERT INTO [Tags] VALUES (@Tag)", new { tag });
+                    }
+                    connection.Execute(
+                        "INSERT INTO [Junction] VALUES (@Slug, @Tag)", new { param.Slug, tag });
+                }
+
                 if (param.OriginalSlug != param.Slug && 
                     SlugTaken(connection, param.Slug))
                 {
@@ -43,6 +58,15 @@ namespace Medium.DomainModel
             var param = new { slug };
             var record = connection.ExecuteScalar(
                 "SELECT TOP 1 [Slug] FROM [Posts] WHERE [Slug] = @Slug",
+                param);
+            return record != null;
+        }
+
+        private static bool TagExists(IDbConnection connection, string tagName)
+        {
+            var param = new { tagName };
+            var record = connection.ExecuteScalar(
+                "SELECT TOP 1 [Name] FROM [Tags] WHERE [Name] = @TagName",
                 param);
             return record != null;
         }
