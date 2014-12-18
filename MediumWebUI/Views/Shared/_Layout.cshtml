@@ -6,6 +6,7 @@
     <title>@ViewBag.Title</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/Content/medium.css" media="all" />
+    @RenderSection("Styles", false)
 </head>
 <body>
     <nav class="navbar navbar-inverse" role="navigation">
@@ -37,16 +38,6 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    @RenderSection("Scripts", false);
-
-
-    <script>
-        (function() {
-            var converter = new Markdown.Converter();
-            var editor = new Markdown.Editor(converter);
-            editor.run();
-        })();
-    </script>
-
+    @RenderSection("Scripts", false)
 </body>
 </html>

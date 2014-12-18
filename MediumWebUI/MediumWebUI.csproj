@@ -116,6 +116,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\medium.admin.js" />
     <Content Include="packages.config" />
     <Content Include="Content\Medium.css">
       <DependentUpon>medium.scss</DependentUpon>
