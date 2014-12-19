@@ -48,17 +48,14 @@ namespace Medium.DomainModel
                 command.Published
             };
 
-            connection.Execute(@"
-                DELETE FROM [Junction] 
-                WHERE [PostSlug] = @OriginalSlug", param);
-
-            UpdateTags(command.Tags, param.OriginalSlug);
-
             var slugHasBeenEdited = param.OriginalSlug != param.Slug;
             if (slugHasBeenEdited && SlugIsOccupied(param.Slug))
             {
                 return null;
             }
+            connection.Execute(@"
+                DELETE FROM [Junction]
+                WHERE [PostSlug] = @OriginalSlug", param);
 
             connection.Execute(@"
                 UPDATE [Posts]
@@ -67,6 +64,8 @@ namespace Medium.DomainModel
                         [Body] = @Body, 
                         [Published] = @Published 
                 WHERE [Slug] = @OriginalSlug", param);
+
+            UpdateTags(command.Tags, param.Slug);
 
             return param.Slug;
         }
