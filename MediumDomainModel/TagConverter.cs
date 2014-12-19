@@ -15,7 +15,7 @@ namespace Medium.DomainModel
                 .Replace(delimitedTags, @"(\s*)(,|^|$)(\s*)", "$2")
                 .Trim()
                 .Split(new[] { Delimiter }, StringSplitOptions.RemoveEmptyEntries)
-                .Distinct();
+                .Distinct(StringComparer.InvariantCultureIgnoreCase);
         }
 
         public static string Convert(IEnumerable<string> tags)
