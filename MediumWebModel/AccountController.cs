@@ -13,7 +13,6 @@ namespace Medium.WebModel
 
         [HttpPost]
         [ValidateModel]
-        [ValidateAntiForgeryToken]
         public ActionResult Login(CredentialsModel credentials)
         {
             authenticator.Authenticate(
