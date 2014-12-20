@@ -43,4 +43,13 @@ textarea {
   max-width: 400px;
   margin: 0 auto; }
 
+.tag-list {
+  padding-left: 0; }
+  .tag-list li {
+    list-style: none;
+    line-height: 35px; }
+    .tag-list li span {
+      padding: 5px 10px;
+      background-color: #eee; }
+
 /*# sourceMappingURL=medium.css.map */

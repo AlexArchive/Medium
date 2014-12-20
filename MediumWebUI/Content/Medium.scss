@@ -48,11 +48,23 @@ textarea {
 
 .wmd-preview {
     border: 1px #222 dashed;
-    padding: 10px;11
+    padding: 10px;
 }
 
 .narrow-form-wrap {
     padding: 20px;
     max-width: 400px;
     margin:0 auto;
+}
+
+.tag-list {
+    padding-left:0;
+    li {
+        list-style: none;
+        line-height: 35px;
+        span {
+            padding: 5px 10px;
+            background-color: #eee;
+        }
+    }
 }
