@@ -16,7 +16,7 @@ namespace Medium.WebModel
         [DataType(DataType.MultilineText)]
         public string Body { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "You must specify at least one tag.")]
         public string Tags { get; set; }
 
         public bool Published { get; set; }
