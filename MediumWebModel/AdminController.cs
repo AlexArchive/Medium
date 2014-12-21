@@ -76,7 +76,7 @@ namespace Medium.WebModel
                 Title = post.Title,
                 Body = post.Body,
                 Published = post.Published,
-                Tags = TagConverter.Convert(post.Tags)
+                Tags = TagConverter.Convert(post.Tags.Select(tag => tag.Name))
             };
             return View(postInput);
         }

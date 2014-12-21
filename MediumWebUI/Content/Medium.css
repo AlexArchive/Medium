@@ -48,7 +48,7 @@ textarea {
   .tag-list li {
     list-style: none;
     line-height: 35px; }
-    .tag-list li span {
+    .tag-list li > span {
       padding: 5px 10px;
       background-color: #eee; }
 

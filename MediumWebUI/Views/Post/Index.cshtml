@@ -18,7 +18,12 @@
         <ul class="tag-list">
             @foreach (var tag in Model.Tags)
             {
-                <li><span>@tag</span></li>
+                <li>
+                    <span>
+                        @tag.Name
+                        <span class="label label-default">@tag.Count</span>
+                    </span>
+                </li>
             }
         </ul>
         <h1>Medium</h1>
