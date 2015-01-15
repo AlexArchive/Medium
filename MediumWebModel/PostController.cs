@@ -4,18 +4,15 @@ using Medium.DomainModel;
 
 namespace Medium.WebModel
 {
-    public class PostController : Controller
+    public class PostController : ControllerBase
     {
-        private readonly IMediator bus;
-
-        public PostController(IMediator bus)
+        public PostController(IMediator mediator):base(mediator)
         {
-            this.bus = bus;
         }
 
         public ActionResult Index(PostRequest request)
         {
-            var postModel = bus.Send(request);
+            var postModel = base.Mediator.Send(request);
             if (postModel == null || (postModel.Published == false && !Request.IsAuthenticated))
             {
                 return HttpNotFound();

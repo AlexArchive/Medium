@@ -27,3 +27,12 @@ CREATE TABLE [Junction] (
 	CONSTRAINT [Fk_Tag] FOREIGN KEY ([TagName]) REFERENCES [Tags] ([Name])
 )
 GO
+
+CREATE TABLE [Configuration] (
+	[Key] NVARCHAR(250) PRIMARY KEY NOT NULL,
+	[Value] NVARCHAR(300) NOT NULL
+)
+GO
+
+INSERT INTO [Configuration]
+	VALUES ('BlogTitle', 'Medium');

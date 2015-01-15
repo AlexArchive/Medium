@@ -12,7 +12,7 @@
     <nav class="navbar navbar-inverse" role="navigation">
         <div class="container">
             <div class="navbar-header">
-                @Html.ActionLink("Medium", "Index", "Home", null, new { @class = "navbar-brand" })
+                @Html.ActionLink((string)ViewBag.SiteConfig.BlogTitle, "Index", "Home", null, new { @class = "navbar-brand" })
             </div>
             <ul class="nav navbar-nav">
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>

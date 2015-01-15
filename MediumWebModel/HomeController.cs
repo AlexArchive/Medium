@@ -5,13 +5,10 @@ using Medium.DomainModel;
 
 namespace Medium.WebModel
 {
-    public class HomeController : Controller
+    public class HomeController : ControllerBase
     {
-        private readonly IMediator bus;
-
-        public HomeController(IMediator bus)
+        public HomeController(IMediator mediator) : base(mediator)
         {
-            this.bus = bus;
         }
 
         public ActionResult Index(int pageNumber = 1)
@@ -23,7 +20,7 @@ namespace Medium.WebModel
                 PostsPerPage = 5
             };
 
-            var page = bus.Send(request);
+            var page = base.Mediator.Send(request);
 
             if (page.Any() || pageNumber == 1 || page.TotalPageCount == 0)
             {

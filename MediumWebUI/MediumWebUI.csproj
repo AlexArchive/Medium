@@ -142,6 +142,7 @@
     <Content Include="Views\Shared\_PostInputForm.cshtml" />
     <Content Include="Views\Shared\_MinimalPagination.cshtml" />
     <Content Include="Views\Shared\_ClassicPagination.cshtml" />
+    <Content Include="Views\Configuration\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

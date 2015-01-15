@@ -6,13 +6,10 @@ using Medium.DomainModel;
 namespace Medium.WebModel
 {
     [Authorize]
-    public class AdminController : Controller
+    public class AdminController : ControllerBase
     {
-        private readonly IMediator bus;
-
-        public AdminController(IMediator bus)
+        public AdminController(IMediator mediator) : base(mediator)
         {
-            this.bus = bus;
         }
 
         public ActionResult Index(int pageNumber = 1)
@@ -24,7 +21,7 @@ namespace Medium.WebModel
                 PostsPerPage = 20
             };
 
-            var page = bus.Send(request);
+            var page = base.Mediator.Send(request);
 
             if (page.Any() || pageNumber == 1 || page.TotalPageCount == 0)
             {
@@ -47,7 +44,7 @@ namespace Medium.WebModel
         public ActionResult AddPost(PostInput postInput)
         {
             var command = postInput.MapTo<AddPostCommand>();
-            var commandResponse = bus.Send(command);
+            var commandResponse = base.Mediator.Send(command);
 
             if (commandResponse != null)
             {
@@ -63,7 +60,7 @@ namespace Medium.WebModel
 
         public ActionResult EditPost(PostRequest request)
         {
-            var post = bus.Send(request);
+            var post = base.Mediator.Send(request);
 
             if (post == null)
             {
@@ -89,7 +86,7 @@ namespace Medium.WebModel
             var command = postInput.MapTo<EditPostCommand>();
             command.OriginalSlug = postInput.Slug;
 
-            var updatedSlug = bus.Send(command);
+            var updatedSlug = base.Mediator.Send(command);
             if (updatedSlug != null)
             {
                 TempData["alertVerb"] = "updated";
@@ -104,7 +101,7 @@ namespace Medium.WebModel
 
         public ActionResult DeletePost(DeletePostCommand command)
         {
-            var deleted = bus.Send(command);
+            var deleted = base.Mediator.Send(command);
 
             if (deleted)
             {

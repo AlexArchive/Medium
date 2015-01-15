@@ -1,0 +1,13 @@
+﻿@model ConfigurationModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Configuration</h2>
+
+@using (Html.BeginForm("Save", "Configuration"))
+{
+    @Html.EditorForModel()
+    <input type="submit" value="Save"/>
+}

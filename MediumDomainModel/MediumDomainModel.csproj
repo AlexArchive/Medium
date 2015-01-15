@@ -30,7 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dapper">
+    <Reference Include="Dapper, Version=1.38.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Dapper.1.38\lib\net45\Dapper.dll</HintPath>
     </Reference>
     <Reference Include="MediatR">
@@ -59,6 +60,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigurationModel.cs" />
+    <Compile Include="ConfigurationRequest.cs" />
+    <Compile Include="ConfigurationRequestHandler.cs" />
     <Compile Include="PostPage.cs" />
     <Compile Include="PostPageRequest.cs" />
     <Compile Include="PostPageRequestHandler.cs" />
@@ -77,6 +81,8 @@
     <Compile Include="TagsRequest.cs" />
     <Compile Include="TagsRequestHandler.cs" />
     <Compile Include="UpdateCommandHandler.cs" />
+    <Compile Include="UpdateConfigurationCommand.cs" />
+    <Compile Include="UpdateConfigurationCommandHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,10 +1,15 @@
 ﻿using System.Web.Mvc;
+using MediatR;
 
 namespace Medium.WebModel
 {
-    public class AccountController : Controller
+    public class AccountController : ControllerBase
     {
         private readonly Authenticator authenticator = new Authenticator();
+
+        public AccountController(IMediator mediator) : base(mediator)
+        {
+        }
 
         public ActionResult Login()
         {
