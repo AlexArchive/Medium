@@ -13,11 +13,26 @@ namespace Medium.WebModel
             Mediator = mediator;
         }
 
+        private ConfigurationModel _configurationModel;
+        protected ConfigurationModel Configuration
+        {
+            get
+            {
+                if (_configurationModel != null)
+                {
+                    return _configurationModel;
+                }
+
+                _configurationModel = Mediator.Send(new ConfigurationRequest());
+                return _configurationModel;
+            }
+        }
+
         protected override void OnActionExecuted(ActionExecutedContext filterContext)
         {
             base.OnActionExecuted(filterContext);
 
-            ViewBag.SiteConfig = Mediator.Send(new ConfigurationRequest());
+            ViewBag.SiteConfig = Configuration;
         }
     }
 }

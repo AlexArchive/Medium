@@ -53,6 +53,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -99,6 +100,8 @@
     <Compile Include="PostController.cs" />
     <Compile Include="PostInput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RssActionResult.cs" />
+    <Compile Include="RssController.cs" />
     <Compile Include="TagsJsonController.cs" />
     <Compile Include="TwitterBootstrapMvc.cs" />
     <Compile Include="ValidateModelAttribute.cs" />
