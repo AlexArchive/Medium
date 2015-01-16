@@ -91,6 +91,7 @@
   <ItemGroup>
     <Compile Include="AccountController.cs" />
     <Compile Include="AdminController.cs" />
+    <Compile Include="ArchiveController.cs" />
     <Compile Include="Authenticator.cs" />
     <Compile Include="ConfigurationController.cs" />
     <Compile Include="ControllerBase.cs" />

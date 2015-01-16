@@ -60,6 +60,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArchiveModel.cs" />
+    <Compile Include="ArchiveRequest.cs" />
+    <Compile Include="ArchiveRequestHandler.cs" />
     <Compile Include="ConfigurationModel.cs" />
     <Compile Include="ConfigurationRequest.cs" />
     <Compile Include="ConfigurationRequestHandler.cs" />

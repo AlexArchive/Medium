@@ -1,0 +1,22 @@
+﻿@model ArchiveModel
+
+@{
+    ViewBag.Title = "Archive";
+}
+
+<header class="page-header">
+    <h1>
+        Archive
+    </h1>
+</header>
+
+@foreach (var year in Model.Years)
+{
+    <h2>@year.Key</h2>
+    <ul>
+        @foreach (var post in year)
+        {
+            <li>@Html.ActionLink(post.Title, "Index", "Post", new { postSlug = post.Slug },new{})</li>
+        }
+    </ul>
+}
