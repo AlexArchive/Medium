@@ -15,20 +15,20 @@
                 @Html.ActionLink((string)ViewBag.SiteConfig.BlogTitle, "Index", "Home", null, new { @class = "navbar-brand" })
             </div>
             <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("Archive", "Index", "Archive")</li>
+                @Html.NavigationLi("Home", "Index", "Home")
+                @Html.NavigationLi("Archive", "Index", "Archive")
             </ul>
             @if (User.Identity.IsAuthenticated)
             {
                 <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                    @Html.NavigationLi("Admin", "Index", "Admin")
                     <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
                 </ul>
             }
             else
             {
                 <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("Login", "Login", "Account")</li>
+                    @Html.NavigationLi("Login", "Login", "Account")
                 </ul>
             }
         </div>

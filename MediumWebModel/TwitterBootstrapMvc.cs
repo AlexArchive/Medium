@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Html;
 
 namespace Medium.WebModel
 {
@@ -59,6 +61,33 @@ namespace Medium.WebModel
         public override String ToString()
         {
             return criticalness;
+        }
+    }
+
+    public static class TwitterNavigation
+    {
+        public static HtmlString NavigationLi(
+           this HtmlHelper helper,
+           string linkText,
+           string actionName,
+           string controllerName)
+        {
+            const string activeCssClass = "active";
+            var currentAction = (string)helper.ViewContext.RouteData.Values["action"];
+            var currentController = (string)helper.ViewContext.RouteData.Values["controller"];
+            var isCurrent = currentAction == actionName && currentController == controllerName;
+            var element = new TagBuilder("li");
+            if (isCurrent)
+            {
+                element.AddCssClass(activeCssClass);
+            }
+            element.InnerHtml = helper
+                .ActionLink(
+                    linkText,
+                    actionName,
+                    controllerName)
+                .ToString();
+            return new MvcHtmlString(element.ToString());
         }
     }
 }
