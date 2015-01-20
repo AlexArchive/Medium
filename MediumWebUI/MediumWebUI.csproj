@@ -117,6 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\medium.admin.js" />
+    <Content Include="Content\medium.js" />
     <Content Include="packages.config" />
     <Content Include="Content\Medium.css">
       <DependentUpon>medium.scss</DependentUpon>
