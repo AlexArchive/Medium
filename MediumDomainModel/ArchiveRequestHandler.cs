@@ -15,6 +15,8 @@ namespace Medium.DomainModel
                 {
                     Years =
                         from post in posts
+                        orderby post.PublishedAt descending
+                        where post.Published
                         group post by post.PublishedAt.Year
                         into postsByYear
                         from postsByMonth in
