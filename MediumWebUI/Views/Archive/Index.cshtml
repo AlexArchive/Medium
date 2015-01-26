@@ -13,10 +13,16 @@
 @foreach (var year in Model.Years)
 {
     <h2>@year.Key</h2>
-    <ul>
-        @foreach (var post in year)
-        {
-            <li>@Html.ActionLink(post.Title, "Index", "Post", new { postSlug = post.Slug },new{})</li>
-        }
-    </ul>
+    foreach (var month in year)
+    {
+        <h3>@month.Key</h3>
+        <ul>
+            @foreach (var post in month)
+            {
+                <li>
+                    @post.PublishedAt.ToString("MMMM dd, yyyy") » @Html.ActionLink(post.Title, "Index", "Post", new { postSlug = post.Slug }, new { })
+                </li>
+            }
+        </ul>
+    }
 }

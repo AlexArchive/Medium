@@ -13,7 +13,14 @@ namespace Medium.DomainModel
                 var posts = connection.Query<PostModel>("SELECT * FROM [Posts]");
                 return new ArchiveModel
                 {
-                    Years = posts.GroupBy(post => post.PublishedAt.Year)
+                    Years =
+                        from post in posts
+                        group post by post.PublishedAt.Year
+                        into postsByYear
+                        from postsByMonth in
+                            (from post in postsByYear
+                                group post by post.PublishedAt.ToString("MMMM"))
+                        group postsByMonth by postsByYear.Key
                 };
             }
         }
