@@ -4,18 +4,16 @@ using Medium.DomainModel;
 
 namespace Medium.WebModel
 {
-    public class TagsJsonController : Controller
+    public class TagsJsonController : ControllerBase
     {
-        private readonly IMediator requestBus;
-
-        public TagsJsonController(IMediator requestBus)
+        public TagsJsonController(IMediator mediator) 
+            : base(mediator)
         {
-            this.requestBus = requestBus;
         }
 
         public JsonResult Search(TagSequenceRequest request)
         {
-            var model = requestBus.Send(request);
+            var model = base.Mediator.Send(request);
 
             return Json(model, JsonRequestBehavior.AllowGet);
         }

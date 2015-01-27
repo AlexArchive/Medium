@@ -20,8 +20,10 @@
             {
                 <li>
                     <span>
-                        @tag.Name
-                        <span class="label label-default">@tag.Count</span>
+                        <a href="@Url.Action("Index", "Tags")#@tag.Name">
+                            @tag.Name
+                            <span class="label label-default">@tag.Count</span>
+                        </a>
                     </span>
                 </li>
             }

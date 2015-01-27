@@ -14,8 +14,10 @@
     {
         <li>
             <span>
-                @tag.Name
-                <span class="label label-default">@tag.Count</span>
+                <a href="#@tag.Name">
+                    @tag.Name
+                    <span class="label label-default">@tag.Count</span>
+                </a>
             </span>
         </li>
     }
@@ -23,12 +25,12 @@
 
 @foreach (var pair in Model.TagsMap)
 {
-    <h2>@pair.Key.Name</h2>
+    <h2 id='@pair.Key.Name'>@pair.Key.Name</h2>
 
     <ul>
         @foreach (var post in pair.Value)
         {
-            <li>@post</li>
+            <li>@Html.ActionLink(post.Title, "Index", "Post", new{postSlug=post.Slug}, null)</li>
         }
     </ul>
 }

@@ -30,7 +30,7 @@ namespace Medium.DomainModel
                     TagsMap = posts
                         .SelectMany(post => post.Tags.Select(tag => new { Tag = tag, Post = post }))
                         .GroupBy(pair => pair.Tag)
-                        .ToDictionary(group => group.Key, group => group.Select(pair => pair.Post.Title).ToArray())
+                        .ToDictionary(group => group.Key, group => group.Select(pair => pair.Post).ToArray())
                 };
             }
         }
