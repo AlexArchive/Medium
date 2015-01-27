@@ -1,19 +1,37 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Dapper;
 using MediatR;
 
 namespace Medium.DomainModel
 {
-    public class TagsRequestHandler : IRequestHandler<TagsRequest, IEnumerable<string>>
+    public class TagsRequestHandler : IRequestHandler<TagsRequest, TagsModel>
     {
-        public IEnumerable<string> Handle(TagsRequest request)
+        public TagsModel Handle(TagsRequest message)
         {
             using (var connection = SqlConnectionFactory.Create())
             {
-                var param = new { Term = "%" + request.SearchTerm + "%"};
+                var posts = connection.Query<PostModel>("SELECT * FROM [Posts]").ToList();
+                foreach (var post in posts)
+                {
+                    post.Tags = connection.Query<TagModel>(@"
+                        SELECT
+                            [TagName] AS [Name],
+                            (SELECT COUNT (*)
+	                        FROM [Junction]
+	                        WHERE [Junc].[TagName] = [TagName]) AS [Count]
+                        FROM [Junction] AS [Junc]
+                        WHERE [PostSlug] = @Slug", post);
+                }
+                return new TagsModel
+                {
+                    Tags = posts.SelectMany(post => post.Tags).Distinct(),
 
-                return connection
-                    .Query<string>("Select [Name] FROM [Tags] WHERE [Name] LIKE @Term", param);
+                    TagsMap = posts
+                        .SelectMany(post => post.Tags.Select(tag => new { Tag = tag, Post = post }))
+                        .GroupBy(pair => pair.Tag)
+                        .ToDictionary(group => group.Key, group => group.Select(pair => pair.Post.Title).ToArray())
+                };
             }
         }
     }

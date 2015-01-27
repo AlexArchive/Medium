@@ -17,6 +17,8 @@
             <ul class="nav navbar-nav">
                 @Html.NavigationLi("Home", "Index", "Home")
                 @Html.NavigationLi("Archive", "Index", "Archive")
+                @Html.NavigationLi("Tags", "Index", "Tags")
+
             </ul>
             @if (User.Identity.IsAuthenticated)
             {

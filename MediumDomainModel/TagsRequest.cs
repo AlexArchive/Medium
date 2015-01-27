@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using MediatR;
+﻿using MediatR;
 
 namespace Medium.DomainModel
 {
-    public class TagsRequest : IRequest<IEnumerable<string>>
+    public class TagsRequest : IRequest<TagsModel>
     {
-        public string SearchTerm { get; set; }
     }
 }

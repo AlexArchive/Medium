@@ -1,21 +1,20 @@
 ﻿using System.Web.Mvc;
 using MediatR;
+using Medium.DomainModel;
 
 namespace Medium.WebModel
 {
-    public class TagsController : Controller
+    public class TagsController : ControllerBase
     {
-        private readonly IMediator requestBus;
-
-        public TagsController(IMediator requestBus)
+        public TagsController(IMediator mediator)
+            : base(mediator)
         {
-            this.requestBus = requestBus;
         }
-
 
         public ActionResult Index()
         {
-            return View();
+            var model = base.Mediator.Send(new TagsRequest());
+            return View(model);
         }
     }
 }

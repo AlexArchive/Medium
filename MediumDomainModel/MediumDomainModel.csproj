@@ -70,6 +70,8 @@
     <Compile Include="PostPageRequest.cs" />
     <Compile Include="PostPageRequestHandler.cs" />
     <Compile Include="PostRequest.cs" />
+    <Compile Include="TagsModel.cs" />
+    <Compile Include="TagsRequest.cs" />
     <Compile Include="SqlConnectionFactory.cs" />
     <Compile Include="DeletePostCommand.cs" />
     <Compile Include="DeletePostCommandHandler.cs" />
@@ -81,7 +83,8 @@
     <Compile Include="SlugConverter.cs" />
     <Compile Include="TagConverter.cs" />
     <Compile Include="TagModel.cs" />
-    <Compile Include="TagsRequest.cs" />
+    <Compile Include="TagSequenceRequest.cs" />
+    <Compile Include="TagSequenceRequestHandler.cs" />
     <Compile Include="TagsRequestHandler.cs" />
     <Compile Include="UpdateCommandHandler.cs" />
     <Compile Include="UpdateConfigurationCommand.cs" />

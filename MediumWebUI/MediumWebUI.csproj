@@ -145,6 +145,7 @@
     <Content Include="Views\Shared\_ClassicPagination.cshtml" />
     <Content Include="Views\Configuration\Index.cshtml" />
     <Content Include="Views\Archive\Index.cshtml" />
+    <Content Include="Views\Tags\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

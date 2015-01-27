@@ -13,7 +13,7 @@ namespace Medium.WebModel
             this.requestBus = requestBus;
         }
 
-        public JsonResult Search(TagsRequest request)
+        public JsonResult Search(TagSequenceRequest request)
         {
             var model = requestBus.Send(request);
 
