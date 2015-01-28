@@ -4,4 +4,6 @@
         $(this).button("loading");
     });
 
+    $("time[datetime]").ago();
+    
 });

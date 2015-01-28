@@ -128,6 +128,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\ago.js" />
     <Content Include="Content\medium.admin.js" />
     <Content Include="Content\medium.js" />
     <Content Include="packages.config" />
