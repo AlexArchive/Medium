@@ -16,7 +16,7 @@
         {
             <article class="post">
                 <h2>@Html.ActionLink(post.Title, "Index", "Post", new { postSlug = post.Slug }, new { })</h2>
-                <p class="date">@post.PublishedAt.ToString("f", new CultureInfo("en-US"))</p>
+                <time class="publish-time">@post.PublishedAt.ToString("f", new CultureInfo("en-US"))</time>
                 <div>
                     @MarkdownHelper.Transform(post.Body, Html)
                 </div>

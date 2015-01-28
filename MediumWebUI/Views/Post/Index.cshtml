@@ -13,7 +13,7 @@
     </div>
     <div class="col-lg-4 col-md-4">
         <h4>Published</h4>
-        <p class="date">@Model.PublishedAt.ToString("f", new CultureInfo("en-US"))</p>
+        <time class="publish-time">@Model.PublishedAt.ToString("f", new CultureInfo("en-US"))</time>
         <h4>Tags</h4>
         <ul class="tag-list">
             @foreach (var tag in Model.Tags)
