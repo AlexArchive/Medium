@@ -18,9 +18,10 @@
   border-bottom: 1px solid #eee;
   overflow: hidden; }
 
-.date {
+.publish-time {
   color: #999;
-  padding-bottom: 20px; }
+  padding-bottom: 20px;
+  display: block; }
 
 .alert {
   border-radius: 0; }
