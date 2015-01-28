@@ -21,6 +21,9 @@ namespace Medium.WebUI
 
         private void ConfigureRoutes()
         {
+            RouteTable.Routes.IgnoreRoute(
+                url: "{resource}.axd/{*pathInfo}");
+
             RouteTable.Routes.MapRoute(
                 name: "Pagination",
                 url: "{controller}/{action}/{pageNumber}",
