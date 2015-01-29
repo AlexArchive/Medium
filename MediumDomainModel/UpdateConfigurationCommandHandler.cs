@@ -1,21 +1,20 @@
-﻿using System.Data;
-using Dapper;
-using MediatR;
+﻿using MediatR;
+using System.IO;
+using System.Web;
+using System.Web.Script.Serialization;
 
 namespace Medium.DomainModel
 {
     public class UpdateConfigurationCommandHandler : IRequestHandler<UpdateConfigurationCommand, Unit>
     {
-        private readonly IDbConnection _connection;
-
-        public UpdateConfigurationCommandHandler(IDbConnection connection)
-        {
-            _connection = connection;
-        }
-
         public Unit Handle(UpdateConfigurationCommand command)
         {
-            _connection.Execute("UPDATE [Configuration] SET [Value] = @BlogTitle WHERE [Key]='BlogTitle'", command.Configuration);
+            var configPath = HttpContext.Current
+                .Server
+                .MapPath("~/Configuration.json");
+            File.Delete(configPath);
+            var configJson = new JavaScriptSerializer().Serialize(command.Configuration);
+            File.WriteAllText(configPath, configJson);
             return Unit.Value;
         }
     }

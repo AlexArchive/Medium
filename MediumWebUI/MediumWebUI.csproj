@@ -159,6 +159,7 @@
     <Content Include="Views\Configuration\Index.cshtml" />
     <Content Include="Views\Archive\Index.cshtml" />
     <Content Include="Views\Tags\Index.cshtml" />
+    <Content Include="Configuration.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

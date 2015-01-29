@@ -1,27 +1,19 @@
-﻿using System.Data;
-using System.Linq;
-using Dapper;
-using MediatR;
+﻿using MediatR;
+using System.IO;
+using System.Web;
+using System.Web.Script.Serialization;
 
 namespace Medium.DomainModel
 {
     public class ConfigurationRequestHandler : IRequestHandler<ConfigurationRequest, ConfigurationModel>
     {
-        private readonly IDbConnection _connection;
-
-        public ConfigurationRequestHandler(IDbConnection connection)
-        {
-            _connection = connection;
-        }
-
         public ConfigurationModel Handle(ConfigurationRequest request)
         {
-            var config = new ConfigurationModel
-            {
-                BlogTitle = _connection
-                    .Query<string>("SELECT [Value] FROM [Configuration] WHERE [Key] = @key", new {key = "BlogTitle"})
-                    .SingleOrDefault()
-            };
+            var configPath = HttpContext.Current
+                .Server
+                .MapPath("~/Configuration.json");
+            var configJson = File.ReadAllText(configPath);
+            var config = new JavaScriptSerializer().Deserialize<ConfigurationModel>(configJson);
             return config;
         }
     }
