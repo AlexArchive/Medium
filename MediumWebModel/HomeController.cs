@@ -17,7 +17,7 @@ namespace Medium.WebModel
             {
                 IncludeDrafts = false,
                 PageNumber = pageNumber,
-                PostsPerPage = 5
+                PostsPerPage = Configuration.PageSize
             };
 
             var page = base.Mediator.Send(request);

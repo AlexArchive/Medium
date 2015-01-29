@@ -9,6 +9,8 @@ namespace Medium.DomainModel
 
         [DataType(DataType.MultilineText)]
         [AllowHtml]
-        public string AboutText { get; set; } 
+        public string AboutText { get; set; }
+
+        public int PageSize { get; set; }
     }
 }
