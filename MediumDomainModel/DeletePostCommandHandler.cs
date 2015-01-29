@@ -18,7 +18,7 @@ namespace Medium.DomainModel
             var param = new { Slug = command.PostSlug };
 
             _connection
-                .Execute("DELETE FROM [Junction] WHERE [PostSlug] = @Slug", param);
+                .Execute("DELETE FROM [PostTagJunction] WHERE [PostSlug] = @Slug", param);
 
             var deletedPosts = _connection
                 .Execute("DELETE FROM [Posts] WHERE [Slug] = @Slug", param);

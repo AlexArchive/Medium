@@ -18,7 +18,7 @@ CREATE TABLE [Tags] (
 )
 GO
 
-CREATE TABLE [Junction] (
+CREATE TABLE PostTagJunction (
 	[PostSlug] NVARCHAR(250),
 	[TagName] NVARCHAR(250)
 

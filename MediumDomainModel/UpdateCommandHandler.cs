@@ -59,7 +59,7 @@ namespace Medium.DomainModel
                 return null;
             }
             _connection.Execute(@"
-                DELETE FROM [Junction]
+                DELETE FROM [PostTagJunction]
                 WHERE [PostSlug] = @OriginalSlug", param);
 
             _connection.Execute(@"
@@ -91,7 +91,7 @@ namespace Medium.DomainModel
 
                 var param1 = new { slug, tag };
                 _connection.Execute(@"
-                    INSERT INTO [Junction] 
+                    INSERT INTO [PostTagJunction] 
                     VALUES (@Slug, @Tag)", param1);
             }
         }

@@ -23,9 +23,9 @@ namespace Medium.DomainModel
                         SELECT
                             [TagName] AS [Name],
                             (SELECT COUNT (*)
-	                        FROM [Junction]
+	                        FROM [PostTagJunction]
 	                        WHERE [Junc].[TagName] = [TagName]) AS [Count]
-                        FROM [Junction] AS [Junc]
+                        FROM [PostTagJunction] AS [Junc]
                         WHERE [PostSlug] = @Slug", post);
             }
             return new TagsModel
