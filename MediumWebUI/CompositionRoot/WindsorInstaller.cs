@@ -36,8 +36,6 @@ namespace Medium.WebUI.CompositionRoot
                 .Pick()
                 .WithServiceAllInterfaces());
 
-            container.Kernel.AddHandlersFilter(new ContravariantFilter());
-
             var serviceLocator = new WindsorServiceLocator(container);
             var serviceLocatorProvider = new ServiceLocatorProvider(() => serviceLocator);
             container.Register(Component
