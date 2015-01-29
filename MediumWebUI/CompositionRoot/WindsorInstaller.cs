@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Data;
+using System.Web.Mvc;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using CommonServiceLocator.WindsorAdapter.Unofficial;
@@ -14,6 +15,11 @@ namespace Medium.WebUI.CompositionRoot
         public IWindsorContainer Install()
         {
             var container = new WindsorContainer();
+
+            container.Register(Component
+                .For<IDbConnection>()
+                .UsingFactoryMethod(SqlConnectionFactory.Create)
+                .LifestyleTransient());
 
             container.Register(Classes
                 .FromAssemblyContaining<HomeController>()

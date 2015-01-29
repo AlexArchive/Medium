@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Data;
 using System.Linq;
 using Dapper;
 using MediatR;
@@ -7,14 +7,19 @@ namespace Medium.DomainModel
 {
     public class TagsRequestHandler : IRequestHandler<TagsRequest, TagsModel>
     {
+        private readonly IDbConnection _connection;
+
+        public TagsRequestHandler(IDbConnection connection)
+        {
+            _connection = connection;
+        }
+
         public TagsModel Handle(TagsRequest message)
         {
-            using (var connection = SqlConnectionFactory.Create())
+            var posts = _connection.Query<PostModel>("SELECT * FROM [Posts]").ToList();
+            foreach (var post in posts)
             {
-                var posts = connection.Query<PostModel>("SELECT * FROM [Posts]").ToList();
-                foreach (var post in posts)
-                {
-                    post.Tags = connection.Query<TagModel>(@"
+                post.Tags = _connection.Query<TagModel>(@"
                         SELECT
                             [TagName] AS [Name],
                             (SELECT COUNT (*)
@@ -22,17 +27,16 @@ namespace Medium.DomainModel
 	                        WHERE [Junc].[TagName] = [TagName]) AS [Count]
                         FROM [Junction] AS [Junc]
                         WHERE [PostSlug] = @Slug", post);
-                }
-                return new TagsModel
-                {
-                    Tags = posts.SelectMany(post => post.Tags).Distinct(),
-
-                    TagsMap = posts
-                        .SelectMany(post => post.Tags.Select(tag => new { Tag = tag, Post = post }))
-                        .GroupBy(pair => pair.Tag)
-                        .ToDictionary(group => group.Key, group => group.Select(pair => pair.Post).ToArray())
-                };
             }
+            return new TagsModel
+            {
+                Tags = posts.SelectMany(post => post.Tags).Distinct(),
+
+                TagsMap = posts
+                    .SelectMany(post => post.Tags.Select(tag => new { Tag = tag, Post = post }))
+                    .GroupBy(pair => pair.Tag)
+                    .ToDictionary(group => group.Key, group => group.Select(pair => pair.Post).ToArray())
+            };
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Data;
+using System.Linq;
 using Dapper;
 using MediatR;
 
@@ -6,18 +7,23 @@ namespace Medium.DomainModel
 {
     public class PostRequestHandler : IRequestHandler<PostRequest, PostModel>
     {
+        private readonly IDbConnection _connection;
+
+        public PostRequestHandler(IDbConnection connection)
+        {
+            _connection = connection;
+        }
+
         public PostModel Handle(PostRequest request)
         {
-            using (var connection = SqlConnectionFactory.Create())
-            {
-                var param = new { Slug = request.PostSlug };
+            var param = new { Slug = request.PostSlug };
 
-                var post = connection
-                    .Query<PostModel>(@"SELECT * FROM [Posts] WHERE [Slug] = @Slug", param)
-                    .SingleOrDefault();
+            var post = _connection
+                .Query<PostModel>(@"SELECT * FROM [Posts] WHERE [Slug] = @Slug", param)
+                .SingleOrDefault();
 
-                post.Tags = connection
-                    .Query<TagModel>(@"
+            post.Tags = _connection
+                .Query<TagModel>(@"
                         SELECT 
                             [TagName] AS [Name],
                             (SELECT COUNT (*) 
@@ -26,8 +32,7 @@ namespace Medium.DomainModel
                         FROM [Junction] AS [Junc]
                         WHERE [PostSlug] = @Slug", param);
 
-                return post;
-            }
+            return post;
         }
     }
 }

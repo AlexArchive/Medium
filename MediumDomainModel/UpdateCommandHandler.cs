@@ -10,7 +10,12 @@ namespace Medium.DomainModel
         IRequestHandler<AddPostCommand, string>,
         IRequestHandler<EditPostCommand, string>
     {
-        private readonly IDbConnection connection = SqlConnectionFactory.Create();
+        private readonly IDbConnection _connection;
+
+        public UpdateCommandHandler(IDbConnection connection)
+        {
+            _connection = connection;
+        }
 
         public string Handle(AddPostCommand command)
         {
@@ -28,7 +33,7 @@ namespace Medium.DomainModel
                 return null;
             }
 
-            connection.Execute(@"
+            _connection.Execute(@"
                 INSERT INTO [Posts] 
                 VALUES (@Slug, @Title, @Body, @Published, @PublishDate)", param);
 
@@ -53,11 +58,11 @@ namespace Medium.DomainModel
             {
                 return null;
             }
-            connection.Execute(@"
+            _connection.Execute(@"
                 DELETE FROM [Junction]
                 WHERE [PostSlug] = @OriginalSlug", param);
 
-            connection.Execute(@"
+            _connection.Execute(@"
                 UPDATE [Posts]
                     SET [Slug] = @Slug, 
                         [Title] = @Title, 
@@ -79,13 +84,13 @@ namespace Medium.DomainModel
                 if (TagHasNotBeenSaved(tag))
                 {
                     var param = new { tag };
-                    connection.Execute(@"
+                    _connection.Execute(@"
                         INSERT INTO [Tags] 
                         VALUES (@Tag)", param);
                 }
 
                 var param1 = new { slug, tag };
-                connection.Execute(@"
+                _connection.Execute(@"
                     INSERT INTO [Junction] 
                     VALUES (@Slug, @Tag)", param1);
             }
@@ -94,7 +99,7 @@ namespace Medium.DomainModel
         private bool TagHasNotBeenSaved(string tagName)
         {
             var param = new { tagName };
-            var record = connection.ExecuteScalar(@"
+            var record = _connection.ExecuteScalar(@"
                 SELECT TOP 1 [Name] 
                 FROM [Tags] 
                 WHERE [Name] = @TagName", param);
@@ -105,7 +110,7 @@ namespace Medium.DomainModel
         private bool SlugIsOccupied(string slug)
         {
             var param = new { slug };
-            var record = connection.ExecuteScalar(@"
+            var record = _connection.ExecuteScalar(@"
                 SELECT TOP 1 [Slug] 
                 FROM [Posts] 
                 WHERE [Slug] = @Slug", param);
