@@ -27,9 +27,10 @@
         }
     </section>
     <aside class="col-lg-4 col-md-4">
-        <h1>Medium</h1>
+        @MarkdownHelper.Transform(ViewBag.SiteConfig.AboutText, Html)
+        @*<h1>Medium</h1>
         <p>Medium is a beautiful blog engine. The project is open-source and hosted on <a href="https://github.com/ByteBlast/Medium">GitHub.</a></p>
-        <p>You could put your own "About Me" here.</p>
+        <p>You could put your own "About Me" here.</p>*@
     </aside>
 </div>
 
