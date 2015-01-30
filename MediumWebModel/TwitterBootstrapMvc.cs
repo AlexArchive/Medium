@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.IO;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
+using System.Web.UI;
 
 namespace Medium.WebModel
 {
@@ -30,7 +32,7 @@ namespace Medium.WebModel
         public BootstrapAlert(ViewContext context)
         {
             writer = context.Writer;
-            
+
             var element = new TagBuilder("button");
             element.Attributes.Add("type", "button");
             element.Attributes.Add("data-dismiss", "alert");
@@ -73,11 +75,10 @@ namespace Medium.WebModel
            string controllerName)
         {
             const string activeCssClass = "active";
-            var currentAction = (string)helper.ViewContext.RouteData.Values["action"];
             var currentController = (string)helper.ViewContext.RouteData.Values["controller"];
-            var isCurrent = currentAction == actionName && currentController == controllerName;
+            var active = string.Equals(currentController, controllerName, StringComparison.CurrentCultureIgnoreCase);
             var element = new TagBuilder("li");
-            if (isCurrent)
+            if (active)
             {
                 element.AddCssClass(activeCssClass);
             }

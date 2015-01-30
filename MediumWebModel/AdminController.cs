@@ -116,5 +116,23 @@ namespace Medium.WebModel
 
             return RedirectToAction("Index");
         }
+
+        public new ActionResult Configuration()
+        {
+            var configuration = base.Mediator.Send(new ConfigurationRequest());
+            return View(configuration);
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateConfiguration(ConfigurationModel configuration)
+        {
+            if (ModelState.IsValid)
+            {
+                base.Mediator.Send(new UpdateConfigurationCommand { Configuration = configuration });
+                TempData["Message"] = "Your configuration has been successfully updated.";
+
+            }
+            return View("Configuration");
+        }
     }
 }

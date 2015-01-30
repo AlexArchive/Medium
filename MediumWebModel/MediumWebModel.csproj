@@ -93,7 +93,6 @@
     <Compile Include="AdminController.cs" />
     <Compile Include="ArchiveController.cs" />
     <Compile Include="Authenticator.cs" />
-    <Compile Include="ConfigurationController.cs" />
     <Compile Include="ControllerBase.cs" />
     <Compile Include="CredentialsModel.cs" />
     <Compile Include="HomeController.cs" />
