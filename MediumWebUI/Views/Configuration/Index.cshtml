@@ -6,6 +6,7 @@
 
 <h3>Configuration</h3>
 
+@Html.Partial("_ValidationSummary")
 @if (TempData["Message"] != null)
 {
     using (Html.Alert(AlertCriticalness.Success))

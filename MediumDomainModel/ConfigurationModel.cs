@@ -7,14 +7,18 @@ namespace Medium.DomainModel
     public class ConfigurationModel
     {
         [DisplayName("Title")]
+        [Required]
         public string BlogTitle { get; set; }
 
         [DisplayName("About")]
         [DataType(DataType.MultilineText)]
         [AllowHtml]
+        [Required]
         public string AboutText { get; set; }
 
         [DisplayName("Posts per page")]
+        [Required]
+        [Range(0, 50)]
         public int PageSize { get; set; }
     }
 }

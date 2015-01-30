@@ -19,8 +19,13 @@ namespace Medium.WebModel
         [ValidateAntiForgeryToken]
         public ActionResult Save(ConfigurationModel configuration)
         {
-            base.Mediator.Send(new UpdateConfigurationCommand { Configuration = configuration });
-            TempData["Message"] = "Your configuration has been successfully updated.";
+            if (ModelState.IsValid)
+            {
+                base.Mediator.Send(new UpdateConfigurationCommand { Configuration = configuration });
+                TempData["Message"] = "Your configuration has been successfully updated.";
+
+            }
+            
             return View("Index");
         }
     }
