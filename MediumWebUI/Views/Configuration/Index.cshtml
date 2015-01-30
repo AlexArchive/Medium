@@ -1,13 +1,26 @@
 ﻿@model ConfigurationModel
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Configuration";
 }
 
-<h2>Configuration</h2>
+<h3>Configuration</h3>
 
 @using (Html.BeginForm("Save", "Configuration"))
 {
-    @Html.EditorForModel()
-    <input type="submit" value="Save"/>
+    <div class="form-group">
+        @Html.LabelFor(config => config.BlogTitle)
+        @Html.TextBoxFor(config => config.BlogTitle, new { @class = "form-control", placeholder = "Title" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(config => config.AboutText)
+        @Html.TextAreaFor(config => config.AboutText, new { @class = "form-control", placeholder = "Title" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(config => config.PageSize)
+        <div>
+            @Html.EditorFor(config => config.PageSize, new { @class = "form-control", placeholder = "Title" })
+        </div>
+    </div>
+    <input type="submit" value="Save" class="btn btn-primary" />
 }
