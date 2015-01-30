@@ -20,6 +20,7 @@ namespace Medium.WebModel
         public ActionResult Save(ConfigurationModel configuration)
         {
             base.Mediator.Send(new UpdateConfigurationCommand { Configuration = configuration });
+            TempData["Message"] = "Your configuration has been successfully updated.";
             return View("Index");
         }
     }

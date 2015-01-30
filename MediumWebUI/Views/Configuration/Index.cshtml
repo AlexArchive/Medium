@@ -6,6 +6,14 @@
 
 <h3>Configuration</h3>
 
+@if (TempData["Message"] != null)
+{
+    using (Html.Alert(AlertCriticalness.Success))
+    {
+        @TempData["Message"]
+    }
+}
+
 @using (Html.BeginForm("Save", "Configuration"))
 {
     @Html.AntiForgeryToken()
