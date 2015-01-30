@@ -16,6 +16,7 @@ namespace Medium.WebModel
             return View(configuration);
         }
 
+        [ValidateAntiForgeryToken]
         public ActionResult Save(ConfigurationModel configuration)
         {
             base.Mediator.Send(new UpdateConfigurationCommand { Configuration = configuration });

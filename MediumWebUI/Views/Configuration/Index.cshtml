@@ -8,6 +8,7 @@
 
 @using (Html.BeginForm("Save", "Configuration"))
 {
+    @Html.AntiForgeryToken()
     <div class="form-group">
         @Html.LabelFor(config => config.BlogTitle)
         @Html.TextBoxFor(config => config.BlogTitle, new { @class = "form-control", placeholder = "Title" })
