@@ -1,7 +1,7 @@
-﻿using System.Data;
-using System.Linq;
-using Dapper;
+﻿using Dapper;
 using MediatR;
+using System.Data;
+using System.Text;
 
 namespace Medium.DomainModel
 {
@@ -16,13 +16,12 @@ namespace Medium.DomainModel
 
         public PostPage Handle(PostPageRequest request)
         {
-            var posts = _connection.Query<PostModel>(
-                "SELECT * FROM [Posts] ORDER BY [PublishedAt] DESC");
-
-            posts = request.IncludeDrafts
-                ? posts
-                : posts.Where(post => post.Published);
-
+            var builder = new StringBuilder();
+            builder.Append("SELECT * FROM [Posts]");
+            if (!request.IncludeDrafts)
+                builder.Append("WHERE [Published] = 1");
+            builder.Append("ORDER BY [PublishedAt] DESC");
+            var posts = _connection.Query<PostModel>(builder.ToString());
             return posts.ToPostPage(request.PageNumber, request.PostsPerPage);
         }
     }
