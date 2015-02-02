@@ -1,7 +1,9 @@
-﻿using Dapper;
+﻿using System.Collections.Generic;
+using Dapper;
 using MediatR;
 using System.Data;
-using System.Text;
+using System.Linq;
+using UniqueNamespace.Dapper;
 
 namespace Medium.DomainModel
 {
@@ -16,13 +18,25 @@ namespace Medium.DomainModel
 
         public PostPage Handle(PostPageRequest request)
         {
-            var builder = new StringBuilder();
-            builder.Append("SELECT * FROM [Posts]");
+            int start = (request.PageNumber - 1) * request.PostsPerPage + 1;
+            int finish = request.PageNumber * request.PostsPerPage;
+            var builder = new SqlBuilder();
+            var countSql = builder.AddTemplate("SELECT COUNT(*) FROM [Posts] {{WHERE}}");
+            var postsSql = builder.AddTemplate(@"
+                SELECT * FROM
+                    (SELECT *, ROW_NUMBER() OVER (ORDER BY [PublishedAt] DESC) AS [RowNum]
+                     FROM [Posts]
+                     {{WHERE}}) 
+                    As [RowConstrainedResult]
+                WHERE [RowNum] BETWEEN @start AND @finish", new {start, finish});
             if (!request.IncludeDrafts)
-                builder.Append("WHERE [Published] = 1");
-            builder.Append("ORDER BY [PublishedAt] DESC");
-            var posts = _connection.Query<PostModel>(builder.ToString());
-            return posts.ToPostPage(request.PageNumber, request.PostsPerPage);
+            {
+                builder.Where("Published = 1");
+            }
+            int count = _connection.Query<int>(countSql.RawSql).Single();
+            IEnumerable<PostModel> posts = _connection.Query<PostModel>(
+                postsSql.RawSql, postsSql.Parameters);
+            return new PostPage(posts, request.PageNumber, count, request.PostsPerPage);
         }
     }
 }

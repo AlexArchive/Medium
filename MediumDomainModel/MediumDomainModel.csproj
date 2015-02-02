@@ -62,6 +62,12 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="UniqueNamespace.SqlBuilder">
+      <HintPath>..\packages\UniqueNamespace.SqlBuilder.2.0.1\lib\UniqueNamespace.SqlBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="UniqueNamespace.SqlBuilder.Dapper">
+      <HintPath>..\packages\UniqueNamespace.SqlBuilder.Dapper.2.0.1\lib\UniqueNamespace.SqlBuilder.Dapper.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArchiveModel.cs" />
