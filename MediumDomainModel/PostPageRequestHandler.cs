@@ -18,8 +18,11 @@ namespace Medium.DomainModel
 
         public PostPage Handle(PostPageRequest request)
         {
-            int start = (request.PageNumber - 1) * request.PostsPerPage + 1;
-            int finish = request.PageNumber * request.PostsPerPage;
+            var param = new
+            {
+                Start = (request.PageNumber - 1)*request.PostsPerPage + 1,
+                Finish = request.PageNumber*request.PostsPerPage
+            };
             var builder = new SqlBuilder();
             var countSql = builder.AddTemplate("SELECT COUNT(*) FROM dbo.Posts {{WHERE}}");
             var postsSql = builder.AddTemplate(@"
@@ -28,7 +31,7 @@ namespace Medium.DomainModel
                      FROM dbo.Posts
                      {{WHERE}}) 
                     As RowConstrainedResult
-                WHERE RowNum BETWEEN @start AND @finish", new {start, finish});
+                WHERE RowNum BETWEEN @Start AND @Finish", param);
             if (!request.IncludeDrafts)
             {
                 builder.Where("Published = 1");
