@@ -21,18 +21,52 @@ namespace Medium.WebUI
 
         private void ConfigureRoutes()
         {
+            RouteTable.Routes.LowercaseUrls = true;
+
             RouteTable.Routes.IgnoreRoute(
                 url: "{resource}.axd/{*pathInfo}");
 
             RouteTable.Routes.MapRoute(
-                name: "Pagination",
-                url: "{controller}/{action}/{pageNumber}",
-                defaults: new { controller = "Home", action = "Index", pageNumber = UrlParameter.Optional });
+                name: "Archive",
+                url: "archive",
+                defaults: new { controller = "Archive", action = "Index" });
+
+            RouteTable.Routes.MapRoute(
+                name: "Tags",
+                url: "tags",
+                defaults: new { controller = "Tags", action = "Index" });
+
+            RouteTable.Routes.MapRoute(
+                name: "Admin",
+                url: "admin",
+                defaults: new { controller = "Admin", action = "Index" });
+
+            RouteTable.Routes.MapRoute(
+                name: "Page",
+                url: "page/{pageNumber}",
+                defaults: new { controller = "Home", action = "Index" }
+            );
+
+            RouteTable.Routes.MapRoute(
+                name: "Post",
+                url: "{postSlug}",
+                defaults: new { controller = "Post", action = "Index" });
 
             RouteTable.Routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{postSlug}",
                 defaults: new { controller = "Home", action = "Index", postSlug = UrlParameter.Optional });
+        }
+
+        private void Hello(params string[] soo)
+        {
+            foreach (var s in soo)
+            {
+                RouteTable.Routes.MapRoute(
+                    name: s,
+                    url: s,
+                    defaults: new { controller = s, action = "Index" });
+            }
         }
     }
 }

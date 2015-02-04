@@ -8,7 +8,8 @@
                 @Html.ActionLink(
                     HttpUtility.HtmlDecode("&laquo;"),
                     "Index",
-                    new { pageNumber = Model.PageNumber - 1 })
+                    new { pageNumber = Model.PageNumber - 1 },
+                    null)
             </li>
         }
         else
@@ -27,13 +28,14 @@
                     @Html.ActionLink(
                         pageNo.ToString(),
                         "Index",
-                        new { pageNumber = pageNo })
+                        new { pageNumber = pageNo },
+                        null)
                 </li>
             }
             else
             {
                 <li>
-                    @Html.ActionLink(pageNo.ToString(), "Index", new { pageNumber = pageNo })
+                    @Html.ActionLink(pageNo.ToString(), "Index", new { pageNumber = pageNo }, null)
                 </li>
             }
         }
@@ -44,7 +46,7 @@
                 @Html.ActionLink(
                     HttpUtility.HtmlDecode("&raquo;"),
                     "Index",
-                    new { pageNumber = Model.PageNumber + 1 })
+                    new { pageNumber = Model.PageNumber + 1 },null)
             </li>
         }
         else
