@@ -19,7 +19,7 @@ namespace Medium.DomainModel
             var param = new { Term = "%" + request.SearchTerm + "%" };
 
             return _connection
-                .Query<string>("Select [Name] FROM [Tags] WHERE [Name] LIKE @Term", param);
+                .Query<string>("Select Name FROM dbo.Tags WHERE Name LIKE @Term", param);
         }
     }
 }

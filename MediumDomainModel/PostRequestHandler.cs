@@ -19,18 +19,18 @@ namespace Medium.DomainModel
             var param = new { Slug = request.PostSlug };
 
             var post = _connection
-                .Query<PostModel>(@"SELECT * FROM [Posts] WHERE [Slug] = @Slug", param)
+                .Query<PostModel>(@"SELECT * FROM dbo.Posts WHERE Slug = @Slug", param)
                 .SingleOrDefault();
 
             post.Tags = _connection
                 .Query<TagModel>(@"
                         SELECT 
-                            [TagName] AS [Name],
+                            TagName AS Name,
                             (SELECT COUNT (*) 
-	                         FROM [PostTagJunction]
-	                          WHERE [Junc].[TagName] = [TagName]) AS [Count]
-                        FROM [PostTagJunction] AS [Junc]
-                        WHERE [PostSlug] = @Slug", param);
+	                         FROM dbo.PostTagJunction
+	                          WHERE Junc.TagName = TagName) AS Count
+                        FROM dbo.PostTagJunction AS Junc
+                        WHERE PostSlug = @Slug", param);
 
             return post;
         }

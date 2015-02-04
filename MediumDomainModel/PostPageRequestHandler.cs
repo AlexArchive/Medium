@@ -21,14 +21,14 @@ namespace Medium.DomainModel
             int start = (request.PageNumber - 1) * request.PostsPerPage + 1;
             int finish = request.PageNumber * request.PostsPerPage;
             var builder = new SqlBuilder();
-            var countSql = builder.AddTemplate("SELECT COUNT(*) FROM [Posts] {{WHERE}}");
+            var countSql = builder.AddTemplate("SELECT COUNT(*) FROM dbo.Posts {{WHERE}}");
             var postsSql = builder.AddTemplate(@"
                 SELECT * FROM
-                    (SELECT *, ROW_NUMBER() OVER (ORDER BY [PublishedAt] DESC) AS [RowNum]
-                     FROM [Posts]
+                    (SELECT *, ROW_NUMBER() OVER (ORDER BY PublishedAt DESC) AS RowNum
+                     FROM dbo.Posts
                      {{WHERE}}) 
-                    As [RowConstrainedResult]
-                WHERE [RowNum] BETWEEN @start AND @finish", new {start, finish});
+                    As RowConstrainedResult
+                WHERE RowNum BETWEEN @start AND @finish", new {start, finish});
             if (!request.IncludeDrafts)
             {
                 builder.Where("Published = 1");

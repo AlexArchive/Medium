@@ -34,7 +34,7 @@ namespace Medium.DomainModel
             }
 
             _connection.Execute(@"
-                INSERT INTO [Posts] 
+                INSERT INTO dbo.Posts
                 VALUES (@Slug, @Title, @Body, @Published, @PublishDate)", param);
 
             UpdateTags(command.Tags, param.Slug);
@@ -59,16 +59,16 @@ namespace Medium.DomainModel
                 return null;
             }
             _connection.Execute(@"
-                DELETE FROM [PostTagJunction]
-                WHERE [PostSlug] = @OriginalSlug", param);
+                DELETE FROM dbo.PostTagJunction
+                WHERE PostSlug = @OriginalSlug", param);
 
             _connection.Execute(@"
-                UPDATE [Posts]
-                    SET [Slug] = @Slug, 
-                        [Title] = @Title, 
-                        [Body] = @Body, 
-                        [Published] = @Published 
-                WHERE [Slug] = @OriginalSlug", param);
+                UPDATE dbo.Posts
+                    SET Slug = @Slug, 
+                        Title = @Title, 
+                        Body = @Body, 
+                        Published = @Published 
+                WHERE Slug = @OriginalSlug", param);
 
             UpdateTags(command.Tags, param.Slug);
 
@@ -85,13 +85,13 @@ namespace Medium.DomainModel
                 {
                     var param = new { tag };
                     _connection.Execute(@"
-                        INSERT INTO [Tags] 
+                        INSERT INTO dbo.Tags
                         VALUES (@Tag)", param);
                 }
 
                 var param1 = new { slug, tag };
                 _connection.Execute(@"
-                    INSERT INTO [PostTagJunction] 
+                    INSERT INTO dbo.PostTagJunction
                     VALUES (@Slug, @Tag)", param1);
             }
         }
@@ -100,9 +100,9 @@ namespace Medium.DomainModel
         {
             var param = new { tagName };
             var record = _connection.ExecuteScalar(@"
-                SELECT TOP 1 [Name] 
-                FROM [Tags] 
-                WHERE [Name] = @TagName", param);
+                SELECT TOP 1 Name 
+                FROM dbo.Tags 
+                WHERE Name = @TagName", param);
 
             return record == null;
         }
@@ -111,9 +111,9 @@ namespace Medium.DomainModel
         {
             var param = new { slug };
             var record = _connection.ExecuteScalar(@"
-                SELECT TOP 1 [Slug] 
-                FROM [Posts] 
-                WHERE [Slug] = @Slug", param);
+                SELECT TOP 1 Slug 
+                FROM dbo.Posts 
+                WHERE Slug = @Slug", param);
 
             return record != null;
         }
