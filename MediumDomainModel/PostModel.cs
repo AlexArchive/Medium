@@ -10,6 +10,6 @@ namespace Medium.DomainModel
         public string Body { get; set; }
         public bool Published { get; set; }
         public DateTime PublishedAt { get; set; }
-        public IEnumerable<TagModel> Tags { get; set; }
+        public ICollection<TagModel> Tags { get; set; }
     }
 }

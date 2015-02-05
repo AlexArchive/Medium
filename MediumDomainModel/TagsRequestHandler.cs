@@ -27,7 +27,7 @@ namespace Medium.DomainModel
 	                        FROM dbo.PostTagJunction
 	                        WHERE Junc.TagName = TagName) AS Count
                         FROM dbo.PostTagJunction AS Junc
-                        WHERE PostSlug = @Slug", post);
+                        WHERE PostSlug = @Slug", post).ToList();
             }
             return new TagsModel
             {
