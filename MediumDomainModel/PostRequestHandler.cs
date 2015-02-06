@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Dapper;
+using MediatR;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using Dapper;
-using MediatR;
 
 namespace Medium.DomainModel
 {
@@ -21,13 +21,14 @@ namespace Medium.DomainModel
             var cache = new Dictionary<string, PostModel>();
             var command = @"
                 SELECT 
-	                dbo.Posts.*, 
-	                TagName as Name,
+	                P.*, 
+	                J.TagName AS Name,
 	                (SELECT COUNT (*) 
-                     FROM dbo.PostTagJunction
-                     WHERE dbo.PostTagJunction.TagName = TagName) AS Count
-                FROM dbo.Posts
-                LEFT OUTER JOIN dbo.PostTagJunction ON dbo.PostTagJunction.PostSlug = dbo.Posts.Slug
+                     FROM dbo.PostTagJunction J1
+                     WHERE J.TagName = J1.TagName) AS Count
+                FROM dbo.Posts P
+                LEFT OUTER JOIN dbo.PostTagJunction J
+	                ON J.PostSlug = P.Slug
                 WHERE Slug = @Slug";
             _connection.Query<PostModel, TagModel, PostModel>(command, (post, tag) =>
             {
