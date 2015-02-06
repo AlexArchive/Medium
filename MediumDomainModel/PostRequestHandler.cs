@@ -22,7 +22,7 @@ namespace Medium.DomainModel
             var command = @"
                 SELECT 
 	                dbo.Posts.*, 
-	                Slug as Name,
+	                TagName as Name,
 	                (SELECT COUNT (*) 
                      FROM dbo.PostTagJunction
                      WHERE dbo.PostTagJunction.TagName = TagName) AS Count
