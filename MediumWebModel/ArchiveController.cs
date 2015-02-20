@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using MediatR;
 using Medium.DomainModel;
+using Medium.DomainModel.Archive;
 
 namespace Medium.WebModel
 {

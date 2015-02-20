@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace Medium.DomainModel
+namespace Medium.DomainModel.Configuration
 {
     public class ConfigurationModel
     {

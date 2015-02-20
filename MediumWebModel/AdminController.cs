@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using MediatR;
 using Medium.DomainModel;
+using Medium.DomainModel.Configuration;
 
 namespace Medium.WebModel
 {

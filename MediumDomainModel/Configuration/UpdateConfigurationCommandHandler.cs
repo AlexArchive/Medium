@@ -1,9 +1,9 @@
-﻿using MediatR;
-using System.IO;
+﻿using System.IO;
 using System.Web;
 using System.Web.Script.Serialization;
+using MediatR;
 
-namespace Medium.DomainModel
+namespace Medium.DomainModel.Configuration
 {
     public class UpdateConfigurationCommandHandler : IRequestHandler<UpdateConfigurationCommand, Unit>
     {

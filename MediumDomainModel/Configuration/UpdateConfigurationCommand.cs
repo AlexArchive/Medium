@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Medium.DomainModel
+namespace Medium.DomainModel.Configuration
 {   
     public class UpdateConfigurationCommand : IRequest<Unit>
     {

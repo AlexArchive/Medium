@@ -90,12 +90,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArchiveModel.cs" />
-    <Compile Include="ArchiveRequest.cs" />
-    <Compile Include="ArchiveRequestHandler.cs" />
-    <Compile Include="ConfigurationModel.cs" />
-    <Compile Include="ConfigurationRequest.cs" />
-    <Compile Include="ConfigurationRequestHandler.cs" />
+    <Compile Include="Archive\ArchiveModel.cs" />
+    <Compile Include="Archive\ArchiveRequest.cs" />
+    <Compile Include="Archive\ArchiveRequestHandler.cs" />
+    <Compile Include="Configuration\ConfigurationModel.cs" />
+    <Compile Include="Configuration\ConfigurationRequest.cs" />
+    <Compile Include="Configuration\ConfigurationRequestHandler.cs" />
     <Compile Include="PostPage.cs" />
     <Compile Include="PostPageRequest.cs" />
     <Compile Include="PostPageRequestHandler.cs" />
@@ -117,8 +117,8 @@
     <Compile Include="TagSequenceRequestHandler.cs" />
     <Compile Include="TagsRequestHandler.cs" />
     <Compile Include="UpdateCommandHandler.cs" />
-    <Compile Include="UpdateConfigurationCommand.cs" />
-    <Compile Include="UpdateConfigurationCommandHandler.cs" />
+    <Compile Include="Configuration\UpdateConfigurationCommand.cs" />
+    <Compile Include="Configuration\UpdateConfigurationCommandHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -126,6 +126,7 @@
   <ItemGroup>
     <Content Include="MediumSchema.sql" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

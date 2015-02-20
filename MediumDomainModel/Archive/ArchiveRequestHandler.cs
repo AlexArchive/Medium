@@ -3,7 +3,7 @@ using System.Linq;
 using Dapper;
 using MediatR;
 
-namespace Medium.DomainModel
+namespace Medium.DomainModel.Archive
 {
     public class ArchiveRequestHandler : IRequestHandler<ArchiveRequest, ArchiveModel>
     {

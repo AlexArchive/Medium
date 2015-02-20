@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Medium.DomainModel
+namespace Medium.DomainModel.Archive
 {
     public class ArchiveModel
     {
