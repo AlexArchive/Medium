@@ -20,10 +20,10 @@ namespace Medium.DomainModel
             _connection
                 .Execute("DELETE FROM dbo.PostTagJunction WHERE PostSlug = @Slug", param);
 
-            var deletedPosts = _connection
-                .Execute("DELETE FROM dbo.Posts WHERE Slug = @Slug", param);
+            var successful = _connection
+                .Execute("DELETE FROM dbo.Posts WHERE Slug = @Slug", param) == 1;
 
-            return deletedPosts == 1;
+            return successful;
         }
     }
 }
