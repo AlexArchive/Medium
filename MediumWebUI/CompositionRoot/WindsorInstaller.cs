@@ -1,12 +1,11 @@
-﻿using System.Data;
+﻿using System.Collections.Generic;
+using System.Data;
 using System.Web.Mvc;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
-using CommonServiceLocator.WindsorAdapter.Unofficial;
 using MediatR;
 using Medium.DomainModel;
 using Medium.WebModel;
-using Microsoft.Practices.ServiceLocation;
 
 namespace Medium.WebUI.CompositionRoot
 {
@@ -26,21 +25,22 @@ namespace Medium.WebUI.CompositionRoot
                 .BasedOn<IController>()
                 .LifestylePerWebRequest());
 
-            container.Register(Classes
-                .FromAssemblyContaining<IMediator>()
-                .Pick()
-                .WithServiceAllInterfaces());
+            container.Register(Component
+                .For<IMediator>()
+                .ImplementedBy<Mediator>());
+
+            container.Register(Component
+                .For<SingleInstanceFactory>()
+                .UsingFactoryMethod<SingleInstanceFactory>(k => t => k.Resolve(t)));
+
+            container.Register(Component
+                .For<MultiInstanceFactory>()
+                .UsingFactoryMethod<MultiInstanceFactory>(k => t => (IEnumerable<object>) k.ResolveAll(t)));
 
             container.Register(Classes
                 .FromAssemblyContaining<AddPostCommand>()
                 .Pick()
                 .WithServiceAllInterfaces());
-
-            var serviceLocator = new WindsorServiceLocator(container);
-            var serviceLocatorProvider = new ServiceLocatorProvider(() => serviceLocator);
-            container.Register(Component
-                .For<ServiceLocatorProvider>()
-                .Instance(serviceLocatorProvider));
 
             return container;
         }
