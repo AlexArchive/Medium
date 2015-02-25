@@ -57,16 +57,5 @@ namespace Medium.WebUI
                 url: "{controller}/{action}/{postSlug}",
                 defaults: new { controller = "Home", action = "Index", postSlug = UrlParameter.Optional });
         }
-
-        private void Hello(params string[] soo)
-        {
-            foreach (var s in soo)
-            {
-                RouteTable.Routes.MapRoute(
-                    name: s,
-                    url: s,
-                    defaults: new { controller = s, action = "Index" });
-            }
-        }
     }
 }
