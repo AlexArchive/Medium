@@ -74,21 +74,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountController.cs" />
-    <Compile Include="AdminController.cs" />
-    <Compile Include="ArchiveController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ArchiveController.cs" />
     <Compile Include="Authenticator.cs" />
-    <Compile Include="ControllerBase.cs" />
-    <Compile Include="CredentialsModel.cs" />
-    <Compile Include="HomeController.cs" />
+    <Compile Include="Controllers\ControllerBase.cs" />
+    <Compile Include="Models\CredentialsModel.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Mapper.cs" />
-    <Compile Include="PostController.cs" />
-    <Compile Include="PostInput.cs" />
+    <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Models\PostInputModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RssActionResult.cs" />
-    <Compile Include="RssController.cs" />
-    <Compile Include="TagsController.cs" />
-    <Compile Include="TagsJsonController.cs" />
+    <Compile Include="Controllers\RssController.cs" />
+    <Compile Include="Controllers\TagsController.cs" />
+    <Compile Include="Controllers\TagsJsonController.cs" />
     <Compile Include="TwitterBootstrapMvc.cs" />
     <Compile Include="ValidateModelAttribute.cs" />
   </ItemGroup>

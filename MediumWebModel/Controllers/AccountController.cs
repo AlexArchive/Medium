@@ -1,7 +1,8 @@
 ﻿using System.Web.Mvc;
 using MediatR;
+using Medium.WebModel.Models;
 
-namespace Medium.WebModel
+namespace Medium.WebModel.Controllers
 {
     public class AccountController : ControllerBase
     {

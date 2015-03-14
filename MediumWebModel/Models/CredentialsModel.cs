@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Medium.WebModel
+namespace Medium.WebModel.Models
 {
     public class CredentialsModel
     {

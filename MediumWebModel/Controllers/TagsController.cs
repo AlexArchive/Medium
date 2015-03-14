@@ -2,7 +2,7 @@
 using MediatR;
 using Medium.DomainModel;
 
-namespace Medium.WebModel
+namespace Medium.WebModel.Controllers
 {
     public class TagsController : ControllerBase
     {

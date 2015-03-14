@@ -6,6 +6,7 @@ using Castle.Windsor;
 using MediatR;
 using Medium.DomainModel;
 using Medium.WebModel;
+using Medium.WebModel.Controllers;
 
 namespace Medium.WebUI.CompositionRoot
 {

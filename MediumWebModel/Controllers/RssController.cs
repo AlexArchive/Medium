@@ -1,11 +1,11 @@
-﻿using MediatR;
-using Medium.DomainModel;
-using System;
+﻿using System;
 using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Web.Mvc;
+using MediatR;
+using Medium.DomainModel;
 
-namespace Medium.WebModel
+namespace Medium.WebModel.Controllers
 {
     public class RssController : ControllerBase
     {

@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using MediatR;
 using Medium.DomainModel;
 
-namespace Medium.WebModel
+namespace Medium.WebModel.Controllers
 {
     public class HomeController : ControllerBase
     {

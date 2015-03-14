@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace Medium.WebModel
+namespace Medium.WebModel.Models
 {
-    public class PostInput
+    public class PostInputModel
     {
         [HiddenInput(DisplayValue = false)]
         public string Slug { get; set; }

@@ -113,14 +113,14 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\ago.js" />
-    <Content Include="Content\medium.admin.js" />
-    <Content Include="Content\medium.js" />
+    <Content Include="Content\scripts\ago.js" />
+    <Content Include="Content\scripts\medium.admin.js" />
+    <Content Include="Content\scripts\medium.js" />
     <Content Include="packages.config" />
-    <Content Include="Content\Medium.css">
+    <Content Include="Content\css\Medium.css">
       <DependentUpon>medium.scss</DependentUpon>
     </Content>
-    <Content Include="Content\Medium.min.css">
+    <Content Include="Content\css\Medium.min.css">
       <DependentUpon>Medium.css</DependentUpon>
     </Content>
     <Content Include="Views\Home\Index.cshtml" />
@@ -132,8 +132,8 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\AddPost.cshtml" />
     <Content Include="Views\Admin\EditPost.cshtml" />
-    <Content Include="Content\medium.scss" />
-    <Content Include="Content\Medium.css.map">
+    <Content Include="Content\css\medium.scss" />
+    <Content Include="Content\css\Medium.css.map">
       <DependentUpon>Medium.css</DependentUpon>
     </Content>
     <Content Include="Views\Shared\_ValidationSummary.cshtml" />

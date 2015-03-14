@@ -3,8 +3,9 @@ using System.Web.Mvc;
 using MediatR;
 using Medium.DomainModel;
 using Medium.DomainModel.Configuration;
+using Medium.WebModel.Models;
 
-namespace Medium.WebModel
+namespace Medium.WebModel.Controllers
 {
     [Authorize]
     public class AdminController : ControllerBase
@@ -42,7 +43,7 @@ namespace Medium.WebModel
         [HttpPost]
         [ValidateModel]
         [ValidateAntiForgeryToken]
-        public ActionResult AddPost(PostInput postInput)
+        public ActionResult AddPost(PostInputModel postInput)
         {
             var command = postInput.MapTo<AddPostCommand>();
             var commandResponse = base.Mediator.Send(command);
@@ -68,7 +69,7 @@ namespace Medium.WebModel
                 return HttpNotFound();
             }
 
-            var postInput = new PostInput
+            var postInput = new PostInputModel
             {
                 Slug = post.Slug,
                 Title = post.Title,
@@ -82,7 +83,7 @@ namespace Medium.WebModel
         [HttpPost]
         [ValidateModel]
         [ValidateAntiForgeryToken]
-        public ActionResult EditPost(PostInput postInput)
+        public ActionResult EditPost(PostInputModel postInput)
         {
             var command = postInput.MapTo<EditPostCommand>();
             command.OriginalSlug = postInput.Slug;

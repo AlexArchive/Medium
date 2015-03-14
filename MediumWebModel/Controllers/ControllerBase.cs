@@ -1,9 +1,8 @@
-﻿using MediatR;
-using Medium.DomainModel;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using MediatR;
 using Medium.DomainModel.Configuration;
 
-namespace Medium.WebModel
+namespace Medium.WebModel.Controllers
 {
     public class ControllerBase : Controller
     {
